@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>التفصيل بالقولبة — تشكيل على المانيكان — Moulage — Draping on the Stand</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+/* ================================================================ */
+/* CSS CUSTOM PROPERTIES                                            */
+/* ================================================================ */
+:root {
+    --primary-deep:  #022c22;
+    --primary:       #064e3b;
+    --primary-light: #f0fdf4;
+    --accent:        #b45309;
+    --accent-light:  #fef3c7;
+    --dark:          #1e293b;
+    --light:         #f8fafc;
+    --border:        #cbd5e1;
+    --bg:            #ffffff;
+    --card:          #f5f3ea;
+    --text:          #1f2937;
+    --text-2:        #4b5563;
+    --text-muted:    #6b7280;
+    --white:         #ffffff;
+    /* Harmonized Font Stacks */
+    --font-fr:       'Inter', 'Segoe UI', sans-serif;
+    --font-ar:       'Cairo', sans-serif;
+    --font-display:  'Playfair Display', serif;
+    --font-quote:    'Amiri', serif;
+}
+
+/* ================================================================ */
+/* PAGE SETUP & BROWSER PRINT HEADER/FOOTER REMOVAL                */
+/* ================================================================ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+@page {
+    size: A4;
+    margin: 1.6cm 1.5cm; /* Native print margins */
+}
+
+@media print {
+    @page {
+        margin: 1.6cm 1.5cm;
+    }
+    /* Standard CSS rule to block browser-injected header/footer lines */
+    html, body {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+    }
+}
+
+html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-ar);
+    font-size: 10.5pt;
+    line-height: 1.75;
+    direction: rtl;
+    text-align: right;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+@media screen {
+    html { background: #2a2a2a; display: flex; justify-content: center; }
+    body { width: 210mm; margin: 20px auto; box-shadow: 0 4px 30px rgba(0,0,0,0.5); padding: 1.6cm 1.5cm; }
+}
+
+/* ================================================================ */
+/* COVER PAGE                                                       */
+/* ================================================================ */
+.cover {
+    width: 100%;
+    min-height: 250mm;
+    background: var(--bg);
+    padding: 10mm;
+    break-after: page;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.cover-inner {
+    border: 4px double var(--primary);
+    height: 100%;
+    width: 100%;
+    padding: 10mm 15mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* ================================================================ */
+/* TABLE OF CONTENTS                                                */
+/* ================================================================ */
+.toc-page {
+    width: 100%;
+    min-height: 100%;
+    background: var(--bg);
+    padding: 10mm 5mm;
+    break-after: page;
+    page-break-after: always;
+    box-sizing: border-box;
+}
+
+/* ================================================================ */
+/* BACK COVER                                                        */
+/* ================================================================ */
+.back-cover {
+    width: 100%;
+    min-height: 240mm;
+    background: var(--bg);
+    padding: 10mm 5mm;
+    break-before: page;
+    page-break-before: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+/* ================================================================ */
+/* MAIN CONTENT                                                     */
+/* ================================================================ */
+.page {
+    background: #ffffff;
+    width: 100%;
+    padding: 5mm 0 8mm 0;
+    box-sizing: border-box;
+}
+
+.page:first-of-type {
+    padding-top: 0;
+}
+
+/* ================================================================ */
+/* HEADER BLOCK                                                     */
+/* ================================================================ */
+.cover-top-bar {
+    width: 100%;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 6mm;
+}
+
+.gov-txt-ar {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    font-size: 12pt;
+    color: var(--primary-deep);
+    line-height: 1.5;
+    margin: 0 0 1mm 0;
+}
+
+.gov-txt-fr {
+    font-family: var(--font-fr);
+    font-weight: 400;
+    font-size: 9pt;
+    color: #4b5563;
+    direction: ltr;
+    margin: 0 0 3mm 0;
+    letter-spacing: 0.3px;
+}
+
+/* ================================================================ */
+/* COVER CENTER                                                     */
+/* ================================================================ */
+.cover-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 6mm 12mm;
+}
+
+.cover-center .module-label {
+    font-family: var(--font-fr);
+    font-weight: 500;
+    font-size: 9pt;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    direction: ltr;
+    text-transform: uppercase;
+    margin: 0 0 1mm 0;
+}
+
+.cover-center .module-number {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 48pt;
+    color: var(--primary-deep);
+    direction: ltr;
+    line-height: 1;
+    margin: 0 0 4mm 0;
+}
+
+.cover-center .divider-ochre {
+    width: 50mm;
+    height: 2px;
+    background: var(--accent);
+    margin: 2mm auto 4mm auto;
+}
+
+.cover-center .title-ar {
+    font-family: var(--font-ar);
+    font-weight: 800;
+    font-size: 18pt;
+    color: var(--primary-deep);
+    line-height: 1.35;
+    margin: 0 0 2mm 0;
+    max-width: 160mm;
+}
+
+.cover-center .title-fr {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 12pt;
+    color: var(--accent);
+    direction: ltr;
+    margin: 0 0 6mm 0;
+    max-width: 160mm;
+}
+
+.cover-center .meta-block {
+    margin-top: 6mm;
+    padding: 4mm 6mm;
+    background: var(--primary-light);
+    border-right: 3px solid var(--primary);
+    border-radius: 1.5mm;
+    font-family: var(--font-ar);
+    font-size: 9.5pt;
+    color: var(--text);
+    line-height: 1.8;
+    text-align: right;
+    max-width: 165mm;
+}
+
+.cover-center .meta-block .meta-row {
+    margin: 0.5mm 0;
+}
+
+.cover-center .meta-block .meta-label {
+    color: var(--primary-deep);
+    font-weight: 700;
+    margin-left: 3mm;
+}
+
+.cover-center .meta-block .meta-val {
+    color: var(--text);
+    font-weight: 500;
+}
+
+/* ================================================================ */
+/* COVER BOTTOM                                                     */
+/* ================================================================ */
+.cover-bottom {
+    width: 100%;
+    border-top: 2px solid var(--accent);
+    padding-top: 6mm;
+    text-align: center;
+}
+
+.cover-bottom .author-label {
+    font-family: var(--font-ar);
+    font-weight: 500;
+    font-size: 9pt;
+    color: var(--accent);
+    margin: 0 0 1mm 0;
+}
+
+.cover-bottom .author-name-ar {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    font-size: 14pt;
+    color: var(--primary-deep);
+    margin: 0 0 0.5mm 0;
+}
+
+.cover-bottom .author-name-fr {
+    font-family: var(--font-fr);
+    font-weight: 500;
+    font-size: 10pt;
+    color: var(--dark);
+    direction: ltr;
+    margin: 0 0 1.5mm 0;
+    letter-spacing: 0.5px;
+}
+
+.cover-bottom .doc-type {
+    font-family: var(--font-fr);
+    font-size: 8pt;
+    color: var(--text-muted);
+    direction: ltr;
+    letter-spacing: 1.5px;
+    margin: 0.5mm 0;
+    text-transform: uppercase;
+}
+
+.cover-bottom .year {
+    font-family: var(--font-display);
+    font-size: 11pt;
+    color: var(--accent);
+    direction: ltr;
+    margin: 0.5mm 0 0 0;
+    letter-spacing: 1px;
+}
+
+/* ================================================================ */
+/* TABLE OF CONTENTS                                                */
+/* ================================================================ */
+.toc-header {
+    text-align: center;
+    margin-bottom: 12mm;
+    padding-bottom: 5mm;
+    border-bottom: 2px solid var(--primary);
+}
+
+.toc-header .toc-title-ar {
+    font-family: var(--font-ar);
+    font-weight: 800;
+    font-size: 20pt;
+    color: var(--primary-deep);
+    margin: 0 0 1.5mm 0;
+}
+
+.toc-header .toc-title-fr {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 12pt;
+    color: var(--accent);
+    direction: ltr;
+    margin: 0;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 3mm 0;
+    border-bottom: 1px dotted var(--border);
+    font-family: var(--font-ar);
+    font-size: 10.5pt;
+}
+
+.toc-item .toc-num {
+    display: inline-block;
+    width: 7mm;
+    color: var(--accent);
+    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 12pt;
+    flex-shrink: 0;
+}
+
+.toc-item .toc-text {
+    flex: 1;
+    color: var(--text);
+    margin: 0 3mm;
+    line-height: 1.4;
+}
+
+.toc-item .toc-text .toc-fr {
+    display: block;
+    font-family: var(--font-fr);
+    font-style: italic;
+    font-size: 8.5pt;
+    color: var(--text-muted);
+    direction: ltr;
+    text-align: left;
+    margin-top: 0.5mm;
+}
+
+.toc-item .toc-page-num {
+    color: var(--primary);
+    font-weight: 700;
+    font-family: var(--font-fr);
+    font-size: 10pt;
+    direction: ltr;
+    flex-shrink: 0;
+}
+
+/* ================================================================ */
+/* SECTION HEADERS                                                  */
+/* ================================================================ */
+.section-header {
+    margin-top: 8mm;
+    margin-bottom: 4mm;
+    break-after: avoid;
+    break-inside: avoid;
+    padding-bottom: 2mm;
+    border-bottom: 2px solid var(--primary);
+}
+
+.section-header:first-of-type {
+    margin-top: 0;
+}
+
+.section-header .sec-num {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    width: 7mm;
+    height: 7mm;
+    line-height: 7mm;
+    text-align: center;
+    border-radius: 50%;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 10pt;
+    margin-left: 2mm;
+    direction: ltr;
+    vertical-align: middle;
+}
+
+.section-header .sec-title-ar {
+    font-family: var(--font-ar);
+    font-weight: 800;
+    font-size: 13pt;
+    color: var(--primary-deep);
+    line-height: 1.4;
+    vertical-align: middle;
+}
+
+.section-header .sec-title-fr {
+    display: block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 9pt;
+    color: var(--accent);
+    direction: ltr;
+    text-align: left;
+    margin-top: 1mm;
+    margin-right: 9mm;
+}
+
+/* ================================================================ */
+/* SUBSECTION HEADERS                                               */
+/* ================================================================ */
+.subsection {
+    margin-top: 6mm;
+    break-after: avoid;
+}
+
+.subsection-title {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    font-size: 11pt;
+    color: var(--primary);
+    margin: 0 0 2mm 0;
+    padding-right: 3mm;
+    border-right: 3px solid var(--accent);
+    line-height: 1.4;
+}
+
+.subsection-title .sub-fr {
+    font-family: var(--font-fr);
+    font-weight: 500;
+    font-style: italic;
+    font-size: 9pt;
+    color: var(--text-muted);
+    direction: ltr;
+    margin-right: 2mm;
+}
+
+/* ================================================================ */
+/* BODY TEXT                                                        */
+/* ================================================================ */
+p {
+    margin: 0 0 3mm 0;
+    text-align: justify;
+    font-family: var(--font-ar);
+    font-size: 10.5pt;
+    line-height: 1.8;
+    color: var(--text);
+}
+
+p .fr {
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--primary);
+    font-weight: 500;
+    direction: ltr;
+    display: inline;
+}
+
+strong, b {
+    font-weight: 700;
+    color: var(--primary-deep);
+}
+
+ul, ol {
+    margin: 2mm 0 3mm 0;
+    padding-right: 7mm;
+}
+
+ul li, ol li {
+    font-family: var(--font-ar);
+    font-size: 10.5pt;
+    line-height: 1.7;
+    margin-bottom: 1.5mm;
+    text-align: right;
+    color: var(--text);
+}
+
+ul li .fr, ol li .fr {
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--primary);
+    direction: ltr;
+    display: inline;
+}
+
+/* ================================================================ */
+/* TABLES                                                           */
+/* ================================================================ */
+.table-wrapper {
+    margin: 4mm auto;
+    break-inside: avoid;
+    direction: rtl;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-ar);
+    font-size: 9pt;
+    border: 1px solid var(--border);
+    direction: rtl;
+}
+
+table.data-table thead {
+    background: var(--primary);
+    color: #fff;
+}
+
+table.data-table thead th {
+    padding: 2mm 3mm;
+    text-align: center;
+    font-weight: 700;
+    font-family: var(--font-ar);
+    font-size: 9.5pt;
+    border-bottom: 1.5px solid var(--primary-deep);
+    color: #ffffff;
+}
+
+table.data-table thead th .th-fr {
+    display: block;
+    font-family: var(--font-fr);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 7.5pt;
+    color: rgba(255,255,255,0.85);
+    direction: ltr;
+    margin-top: 0.3mm;
+}
+
+table.data-table tbody tr:nth-child(even) {
+    background: var(--primary-light);
+}
+
+table.data-table tbody tr:nth-child(odd) {
+    background: var(--white);
+}
+
+table.data-table tbody td {
+    padding: 2mm 3mm;
+    border-bottom: 1px solid var(--border);
+    text-align: right;
+    color: var(--text);
+    font-size: 9pt;
+    line-height: 1.4;
+}
+
+table.data-table tbody td.center { text-align: center; }
+
+table.data-table tbody td.num {
+    text-align: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--primary-deep);
+    direction: ltr;
+}
+
+table.data-table tbody td .fr {
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 8pt;
+    direction: ltr;
+    display: inline;
+}
+
+.table-caption {
+    text-align: center;
+    font-family: var(--font-ar);
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: 1.5mm;
+    margin-bottom: 4mm;
+}
+
+.table-caption .cap-fr {
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--text-muted);
+    direction: ltr;
+    display: block;
+    font-size: 8pt;
+    margin-top: 0.3mm;
+}
+
+/* ================================================================ */
+/* CALLOUT BOXES                                                    */
+/* ================================================================ */
+.callout {
+    margin: 4mm auto;
+    padding: 4mm 5mm;
+    border-radius: 1.5mm;
+    break-inside: avoid;
+    border-right: 3px solid var(--accent);
+    background: var(--accent-light);
+    font-family: var(--font-ar);
+    font-size: 10pt;
+    line-height: 1.6;
+    color: var(--text);
+    width: 100%;
+}
+
+.callout-title {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    font-size: 10.5pt;
+    color: var(--accent);
+    margin-bottom: 1.5mm;
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+}
+
+.callout-title .icon {
+    display: inline-block;
+    width: 6mm;
+    height: 6mm;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 6mm;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 10pt;
+    direction: ltr;
+    flex-shrink: 0;
+}
+
+.callout p {
+    margin-bottom: 1.5mm;
+    font-size: 10pt;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+.callout-emerald {
+    border-right-color: var(--primary);
+    background: var(--primary-light);
+}
+
+.callout-emerald .callout-title {
+    color: var(--primary-deep);
+}
+
+.callout-emerald .callout-title .icon {
+    background: var(--primary);
+}
+
+/* ================================================================ */
+/* DASHBOARD GRID — 3-column metric cards                           */
+/* ================================================================ */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 4mm auto;
+    break-inside: avoid;
+    width: 100%;
+    justify-content: center;
+}
+
+.dashboard-card {
+    background: var(--light);
+    border-right: 3px solid var(--primary);
+    border-radius: 3px;
+    padding: 10px;
+    text-align: center;
+}
+
+.dashboard-value {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1.2;
+    font-family: var(--font-display);
+    direction: ltr;
+}
+
+.dashboard-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: 1.5mm;
+    font-family: var(--font-ar);
+}
+
+.dashboard-label .fr {
+    display: block;
+    font-family: var(--font-fr);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text-muted);
+    direction: ltr;
+    font-size: 0.65rem;
+    margin-top: 0.3mm;
+}
+
+/* ================================================================ */
+/* TIMELINE — vertical connected                                    */
+/* ================================================================ */
+.timeline-chain {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 4mm auto 15px auto;
+    position: relative;
+    break-inside: avoid;
+    width: 100%;
+    align-items: center;
+}
+
+.timeline-node {
+    display: flex;
+    gap: 10px;
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 12px;
+    page-break-inside: avoid;
+    width: 100%;
+}
+
+.node-index {
+    background: var(--primary);
+    color: white;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 10pt;
+    direction: ltr;
+    flex-shrink: 0;
+}
+
+.node-content {
+    flex: 1;
+}
+
+.node-content h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary-deep);
+    font-family: var(--font-ar);
+    margin: 0 0 1mm 0;
+}
+
+.node-content p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-2);
+    font-style: italic;
+    font-family: var(--font-fr);
+    direction: ltr;
+    text-align: left;
+}
+
+/* ================================================================ */
+/* FLOWCHART / PROCESS                                              */
+/* ================================================================ */
+.flowchart {
+    margin: 4mm auto;
+    break-inside: avoid;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 1.5mm;
+    padding: 4mm;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flow-step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2mm;
+    break-inside: avoid;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.flow-step .step-num {
+    flex-shrink: 0;
+    width: 8mm;
+    height: 8mm;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 10pt;
+    direction: ltr;
+    margin-left: 3mm;
+}
+
+.flow-step .step-text {
+    flex: 1;
+    font-family: var(--font-ar);
+    font-size: 9.5pt;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+.flow-step .step-text .step-fr {
+    display: block;
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 8pt;
+    direction: ltr;
+    margin-top: 0.3mm;
+}
+
+.flow-arrow {
+    text-align: right;
+    padding-right: 3.5mm; /* Centers the down-arrow perfectly under the 8mm step-circle */
+    color: var(--accent);
+    font-size: 11pt;
+    margin: 1mm 0;
+    line-height: 1;
+    width: 100%;
+}
+
+/* ================================================================ */
+/* STAT ROW                                                         */
+/* ================================================================ */
+.stat-row {
+    display: flex;
+    gap: 3mm;
+    margin: 4mm auto;
+    break-inside: avoid;
+    width: 100%;
+    justify-content: center;
+}
+
+.stat-card {
+    flex: 1;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: 2.5px solid var(--accent);
+    border-radius: 1.5mm;
+    padding: 3mm 2mm;
+    text-align: center;
+}
+
+.stat-card .stat-num {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 17pt;
+    color: var(--primary-deep);
+    direction: ltr;
+    line-height: 1.1;
+}
+
+.stat-card .stat-label {
+    font-family: var(--font-ar);
+    font-size: 8pt;
+    color: var(--text-2);
+    margin-top: 1.5mm;
+    line-height: 1.3;
+}
+
+.stat-card .stat-label .fr {
+    display: block;
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--text-muted);
+    direction: ltr;
+    font-size: 7pt;
+    margin-top: 0.3mm;
+}
+
+/* ================================================================ */
+/* QUOTE BLOCK                                                      */
+/* ================================================================ */
+.quote-block {
+    margin: 5mm auto;
+    padding: 4mm 6mm;
+    border-right: 3px solid var(--primary);
+    background: var(--card);
+    font-family: var(--font-quote);
+    font-style: italic;
+    font-size: 10.5pt;
+    line-height: 1.7;
+    color: var(--primary-deep);
+    break-inside: avoid;
+    width: 100%;
+}
+
+.quote-block .quote-author {
+    display: block;
+    text-align: left;
+    margin-top: 1.5mm;
+    font-family: var(--font-fr);
+    font-style: normal;
+    font-size: 8.5pt;
+    color: var(--text-muted);
+    direction: ltr;
+}
+
+/* ================================================================ */
+/* SVG CHART CARD (Centered container & centered graphs)             */
+/* ================================================================ */
+.chart-card {
+    margin: 5mm auto;
+    padding: 4mm;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 1.5mm;
+    break-inside: avoid;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-title {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    font-size: 11pt;
+    color: var(--primary-deep);
+    text-align: center;
+    margin: 0 0 0.5mm 0;
+    width: 100%;
+}
+
+.chart-subtitle {
+    font-family: var(--font-fr);
+    font-style: italic;
+    font-size: 8.5pt;
+    color: var(--text-muted);
+    text-align: center;
+    direction: ltr;
+    margin: 0 0 3mm 0;
+    width: 100%;
+}
+
+.chart-svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.chart-caption {
+    text-align: center;
+    font-family: var(--font-ar);
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: 2mm;
+    width: 100%;
+}
+
+.chart-caption .cap-fr {
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--text-muted);
+    direction: ltr;
+    display: block;
+    font-size: 8pt;
+    margin-top: 0.3mm;
+}
+
+/* ================================================================ */
+/* BACK COVER                                                        */
+/* ================================================================ */
+.back-cover .bc-top {
+    background: var(--primary-deep);
+    color: var(--white);
+    padding: 10mm 16mm;
+    text-align: center;
+    position: relative;
+}
+
+.back-cover .bc-top::after {
+    content: "";
+    position: absolute;
+    bottom: -2mm;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40mm;
+    height: 2.5mm;
+    background: var(--accent);
+}
+
+.back-cover .insfp-mark {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 32pt;
+    color: var(--accent);
+    direction: ltr;
+    letter-spacing: 6px;
+    margin: 0;
+}
+
+.back-cover .bc-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 12mm 18mm;
+}
+
+.back-cover .closing-ar {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    font-size: 13pt;
+    color: var(--primary-deep);
+    line-height: 1.7;
+    margin: 4mm 0;
+    max-width: 160mm;
+}
+
+.back-cover .closing-fr {
+    font-family: var(--font-fr);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 10pt;
+    color: var(--text-2);
+    direction: ltr;
+    line-height: 1.6;
+    max-width: 160mm;
+    margin: 0 0 8mm 0;
+}
+
+.back-cover .closing-divider {
+    width: 25mm;
+    height: 2px;
+    background: var(--accent);
+    margin: 3mm auto;
+}
+
+.back-cover .bc-bottom {
+    background: var(--primary-deep);
+    color: var(--white);
+    text-align: center;
+    padding: 6mm 16mm 10mm 16mm;
+    position: relative;
+}
+
+.back-cover .bc-bottom::before {
+    content: "";
+    position: absolute;
+    top: -2mm;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40mm;
+    height: 2.5mm;
+    background: var(--accent);
+}
+
+.back-cover .closing-meta {
+    font-family: var(--font-ar);
+    font-size: 9pt;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.back-cover .closing-meta .meta-year {
+    font-family: var(--font-display);
+    color: var(--accent);
+    font-size: 10pt;
+    direction: ltr;
+    display: block;
+    margin-top: 1.5mm;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============================ COVER PAGE ============================ -->
+<div class="cover">
+    <div class="cover-inner">
+        <div class="cover-top-bar">
+            <div class="gov-txt-ar">الجمهورية الجزائرية الديمقراطية الشعبية</div>
+            <div class="gov-txt-fr">République Algérienne Démocratique et Populaire</div>
+            <p style="margin-top: 4px; font-weight:700; font-family:var(--font-ar); color:var(--primary-deep);">وزارة التكوين والتعليم المهنيين</p>
+        </div>
+
+        <div class="cover-center">
+            <div class="module-label">الوحدة التكوينية</div>
+            <div class="module-number">03</div>
+            <div class="divider-ochre"></div>
+            <div class="title-ar">التفصيل بالقولبة — تشكيل على المانيكان</div>
+            <div class="title-fr">Moulage — Draping on the Stand</div>
+
+            <div class="meta-block">
+                <div class="meta-row"><span class="meta-label">التخصص :</span><span class="meta-val">التقني السامي في تصميم و صناعة الملابس — Tailleur Dames</span></div>
+                <div class="meta-row"><span class="meta-label">المستوى :</span><span class="meta-val">التقني السامي — Technicien Supérieur (Niveau IV)</span></div>
+                <div class="meta-row"><span class="meta-label">رمز التخصص :</span><span class="meta-val" style="direction:ltr;">HTE1204</span></div>
+                <div class="meta-row"><span class="meta-label">الإطار البيداغوجي :</span><span class="meta-val">المنهجية المبنية على الكفاءات — Approche Par Compétences (APC)</span></div>
+            </div>
+        </div>
+
+        <div class="cover-bottom">
+            <div class="author-label">إعداد الطالب</div>
+            <div class="author-name-ar">وعيل فتيحة</div>
+            <div class="author-name-fr">Ouail Fatiha</div>
+            <div class="doc-type">Rapport Pédagogique — تقرير بيداغوجي</div>
+            <div class="year">2025 / 2026</div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================ TABLE OF CONTENTS ============================ -->
+<div class="toc-page">
+    <div class="toc-header">
+        <div class="toc-title-ar">فهرس المحتويات</div>
+        <div class="toc-title-fr">Table des Matières</div>
+    </div>
+    <ul class="toc-list">
+        
+        <li class="toc-item">
+            <span class="toc-num">1</span>
+            <span class="toc-text">مقدمة في تقنية القولبة<span class="toc-fr">Introduction au Moulage</span></span>
+            <span class="toc-page-num">3</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">2</span>
+            <span class="toc-text">الأدوات و المواد الأساسية للقولبة<span class="toc-fr">Outils et Matériaux</span></span>
+            <span class="toc-page-num">4</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">3</span>
+            <span class="toc-text">تجهيز المانيكان و خطوط التشريح المرجعية<span class="toc-fr">Préparation du Mannequin</span></span>
+            <span class="toc-page-num">6</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">4</span>
+            <span class="toc-text">خطوات قولبة الكورساج الأساسي<span class="toc-fr">Étapes du Moulage du Buste</span></span>
+            <span class="toc-page-num">8</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">5</span>
+            <span class="toc-text">تحويل القالب القماشي إلى باترون مسطح<span class="toc-fr">Transformation en Patron</span></span>
+            <span class="toc-page-num">11</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">6</span>
+            <span class="toc-text">مقارنة بين القولبة و النمذجة المسطحة<span class="toc-fr">Patron à Plat vs Moulage</span></span>
+            <span class="toc-page-num">13</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">7</span>
+            <span class="toc-text">القولبة في صناعة الأزياء الجزائرية الراقية<span class="toc-fr">Haute Couture Algérienne</span></span>
+            <span class="toc-page-num">14</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">8</span>
+            <span class="toc-text">الخلاصة و المراجع<span class="toc-fr">Conclusion et Références</span></span>
+            <span class="toc-page-num">15</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">9</span>
+            <span class="toc-text">معجم المصطلحات التقنية<span class="toc-fr">Glossaire Technique Bilingue</span></span>
+            <span class="toc-page-num">17</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">10</span>
+            <span class="toc-text">تمارين تطبيقية و دراسات حالة<span class="toc-fr">Exercices Pratiques et Études de Cas</span></span>
+            <span class="toc-page-num">19</span>
+        </li>
+    </ul>
+</div>
+<div class="page">
+<div class="section-header">
+    <span class="sec-num">1</span><span class="sec-title-ar">مقدمة في تقنية القولبة</span>
+    <span class="sec-title-fr">Introduction au Moulage</span>
+</div>
+
+
+<p>تُعدّ <strong>القولبة</strong> <span class="fr">(Moulage)</span> تقنية الأبعاد الثلاثية لتصميم الملابس، تتم عبر تشكيل القماش مباشرة على المانيكان <span class="fr">(Mannequin de couture)</span> ورؤية الفراغات والانسدال الفعلي للقماش على الجسم البشري. تُتيح هذه التقنية للمصمم رؤية المنتج بشكل فوري، وهي أساسية لتصميم أزياء السهرة والعرائس <span class="fr">(Haute Couture)</span> الشائعة بكثرة في السوق الجزائري.</p>
+
+<p>تختلف القولدة جذرياً عن النمذجة المسطحة <span class="fr">(Patron à plat)</span> في كونها تتعامل مع القماش كمية حية ثلاثية الأبعاد تخضع لقوانين الانسدال والثقل والتمدد، بدلاً من التعامل معه كسطح هندسي ثنائي البُعد. هذا الفرق يمنح القولبة قدرات جمالية فريدة تجعلها أداة لا غنى عنها في تصميم الأزياء ذات القصّات المعقدة والانسدالات غير التقليدية، كما تُمكّن المصمم من تجربة أفكار إبداعية بشكل مباشر دون الحاجة إلى ترجمتها الهندسية المبكرة.</p>
+
+<p>في السياق الجزائري، تكتسب هذه الوحدة أهمية مضاعفة، إذ يُعدّ سوق أزياء السهرة والعرائس والتقصيدة والتقصير من أكثر القطاعات الحيوية في الصناعة النسيجية المحلية. تتطلب الألبسة التقليدية الجزائرية كالقفطان، الكاراكو، العباية، الشدة التلمسانية، والقفطان الجزائري معالجة ثلاثية الأبعاد لا يمكن تحقيقها بالنمذجة المسطحة وحدها، وهو ما يُبرّر الإهتمام المتزايد بهذه التقنية في معاهد التكوين المهني الوطنية.</p>
+
+
+<div class="callout ">
+    <div class="callout-title"><span class="icon">i</span>معلومة بيداغوجية</div>
+    <p>تُدرَّس وحدة القولبة في السنة الثانية من تكوين التقني السامي، بعد إتمام وحدات النمذجة المسطحة والتدريج، لأن القولبة تتطلب إتقان قراءة الباترون لتحويل القالب القماشي لاحقاً إلى نمط ورقي قابل للتصنيع الصناعي.</p>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">2</span><span class="sec-title-ar">الأدوات و المواد الأساسية للقولبة</span>
+    <span class="sec-title-fr">Outils et Matériaux</span>
+</div>
+
+
+<p>تتألف الأدوات الأساسية للقولبة من مجموعة قياسية معتمدة في مخابر المعاهد الجزائرية للتكوين المهني، تختلف اختلافاً خاصاً عن النمذجة المسطحة في كونها تتعامل مباشرة مع القماش والمانيكان بدلاً من الورق والأقلام. تُمثّل هذه الأدوات المنصة الأساسية لكل عمل قولبة، ولا يمكن استبدالها بأدوات النمذجة التقليدية دون التأثير على جودة النتيجة النهائية.</p>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>الأداة<span class="th-fr">Outil</span></th><th>الوصف<span class="th-fr">Description</span></th><th>الدور في القولبة<span class="th-fr">Rôle</span></th></tr></thead>
+        <tbody><tr><td>المانيكان القياسي <span class="fr">Mannequin de couture</span></td><td>بشكل بشري، بمقاس مرجعي (38 أو 40)</td><td>الأساس الذي يُشكَّل عليه القماش</td></tr><tr><td>شريط كولدبال <span class="fr">Ruban Bolduc</span></td><td>شريط نملو بعرض 5-7 ملم (أحمر أو أسود)</td><td>تحديد خطوط التشريح المرجعية على المانيكان</td></tr><tr><td>قماش التجربة <span class="fr">Toile de coton</span></td><td>قماش قطني خالص غير جامد، وزن 180-200 غ/م²</td><td>محاكاة سلوك القماش النهائي</td></tr><tr><td>الدبابيس <span class="fr">Épingles</span></td><td>إبر خياطة رفيعة طولها 30 ملم، غير قابلة للصدأ</td><td>تثبيت القماش على المانيكان</td></tr><tr><td>مقص الخياط <span class="fr">Ciseaux de couturier</span></td><td>مقص نحيف بطول 20-25 سم</td><td>قص القماش بثبات على المانيكان</td></tr><tr><td>مسطرة كيرف <span class="fr">Règle courbe (French curve)</span></td><td>مسطرة بلاستيكية شفافة بأشكال متعددة</td><td>تصحيح الخطوط المنحنية عند نقل القالب</td></tr><tr><td>أقلام تخطيط نسيجية <span class="fr">Marqueurs textiles</span></td><td>أقلام خاصة قابلة للغسيل أو الاختفاء بالحرارة</td><td>تعليم خطوط الخياطة على القماش</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 1: الأدوات السبع الأساسية للقولبة المعتمدة في معاهد INSFP <span class="cap-fr">Tableau 1: Les sept outils de base du moulage</span></div>
+</div>
+
+
+<div class="chart-card">
+    <div class="chart-title">زمن تجهيز المانيكان بخطوط التشريح</div>
+    <div class="chart-subtitle">Temps de Préparation du Mannequin</div>
+    <svg class="chart-svg" style="direction: ltr;" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+        <line x1="55" y1="25.0" x2="585" y2="25.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="28.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">10</text><line x1="55" y1="90.0" x2="585" y2="90.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="93.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">7</text><line x1="55" y1="155.0" x2="585" y2="155.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="158.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">5</text><line x1="55" y1="220.0" x2="585" y2="220.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="223.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">2</text><line x1="55" y1="285.0" x2="585" y2="285.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="288.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">0</text>
+        <line x1="55" y1="25" x2="55" y2="285" stroke="#1F2937" stroke-width="0.8"/><line x1="55" y1="285" x2="585" y2="285" stroke="#1F2937" stroke-width="0.8"/>
+        <rect x="81.5" y="149.58333333333331" width="45.42857142857142" height="135.41666666666669" fill="#064e3b" rx="1.5"/><rect x="153.42857142857144" y="149.58333333333331" width="45.42857142857142" height="135.41666666666669" fill="#b45309" rx="1.5"/><rect x="225.35714285714286" y="95.41666666666666" width="45.42857142857142" height="189.58333333333334" fill="#064e3b" rx="1.5"/><rect x="297.2857142857143" y="122.5" width="45.42857142857142" height="162.5" fill="#b45309" rx="1.5"/><rect x="369.2142857142857" y="95.41666666666666" width="45.42857142857142" height="189.58333333333334" fill="#064e3b" rx="1.5"/><rect x="441.14285714285717" y="68.33333333333331" width="45.42857142857142" height="216.66666666666669" fill="#b45309" rx="1.5"/><rect x="513.0714285714286" y="95.41666666666666" width="45.42857142857142" height="189.58333333333334" fill="#064e3b" rx="1.5"/>
+        <text x="104.21428571428571" y="145.58333333333331" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">5 د</text><text x="176.14285714285717" y="145.58333333333331" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">5 د</text><text x="248.07142857142858" y="91.41666666666666" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">7 د</text><text x="320.0" y="118.5" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">6 د</text><text x="391.92857142857144" y="91.41666666666666" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">7 د</text><text x="463.8571428571429" y="64.33333333333331" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">8 د</text><text x="535.7857142857142" y="91.41666666666666" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">7 د</text>
+        <text x="104.21428571428571" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">المنتصف الأمامي</text><text x="104.21428571428571" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Milieu devant</text><text x="176.14285714285717" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">المنتصف الخلفي</text><text x="176.14285714285717" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Milieu dos</text><text x="248.07142857142858" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">خط الصدر</text><text x="248.07142857142858" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Ligne poitrine</text><text x="320.0" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">خط الخصر</text><text x="320.0" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Ligne taille</text><text x="391.92857142857144" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">خط الورك</text><text x="391.92857142857144" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Ligne bassin</text><text x="463.8571428571429" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">خط الكتف</text><text x="463.8571428571429" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Ligne épaule</text><text x="535.7857142857142" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">خط الإبط</text><text x="535.7857142857142" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Emmanchure</text>
+    </svg>
+    <div class="chart-caption">الشكل 2: زمن تجهيز كل خط تشريحي على المانيكان (إجمالي 45 دقيقة) <span class="cap-fr">Figure 2: Temps de préparation de chaque ligne (total 45 minutes)</span></div>
+</div>
+
+
+<div class="callout ">
+    <div class="callout-title"><span class="icon">★</span>القاعدة الذهبية: اختيار قماش التجربة</div>
+    <p>لا يمكن استعمال أقمشة اصطناعية (نايلون، بوليستر) لأنها لا تنسدل بنفس طريقة الأقمشة الطبيعية. <strong>استعمل قماشاً بنفس طبيعة القماش النهائي للتصميم</strong>، على الأقل قطني متوسط الوزن. هذا يضمن أن سلوك الانسدال الذي تراه على المانيكان هو نفسه الذي سيظهر في المنتج النهائي.</p>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">3</span><span class="sec-title-ar">تجهيز المانيكان و خطوط التشريح المرجعية</span>
+    <span class="sec-title-fr">Préparation du Mannequin</span>
+</div>
+
+
+<p>قبل البدء في أي عمل قولدة، يجب تجهيز المانيكان برسم <strong>خطوط التشريح المرجعية السبعة</strong> <span class="fr">(Lignes de construction)</span> بواسطة شريط الكولدبال. هذه الخطوط هي المرجع الجغرافي الذي يُوجّه المصمم أثناء التشكيل، ويضمن توازن التصميم ودقّته. كل خط يمثل نقطة مرجعية على الجسم البشري، ويُحدّد منطقة محددة من القطعة المراد قولبتها.</p>
+
+
+<div class="flowchart">
+    
+    
+        <div class="flow-step">
+            <div class="step-num">1</div>
+            <div class="step-text">خط منتصف الأمام (Ligne milieu devant) — من قاعدة العنق حتى خط الخصر<span class="step-fr">Ligne milieu devant</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">2</div>
+            <div class="step-text">خط منتصف الخلف (Ligne milieu dos) — من قاعدة العنق حتى خط الخصر<span class="step-fr">Ligne milieu dos</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">3</div>
+            <div class="step-text">خط الصدر (Ligne de poitrine) — أعلى نقطة في الصدر<span class="step-fr">Ligne de poitrine</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">4</div>
+            <div class="step-text">خط الخصر (Ligne de taille) — أضيق نقطة في الجذع<span class="step-fr">Ligne de taille</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">5</div>
+            <div class="step-text">خط الورك (Ligne de bassin) — أعرض نقطة في الأرداف<span class="step-fr">Ligne de bassin</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">6</div>
+            <div class="step-text">خط الكتف (Ligne d'épaule) — من قاعدة العنق إلى نهاية الكتف<span class="step-fr">Ligne d'épaule</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">7</div>
+            <div class="step-text">خط عمق الإبط (Ligne d'emmanchure) — يحيط بفتحة الإبط<span class="step-fr">Ligne d'emmanchure</span></div>
+        </div>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">4</span><span class="sec-title-ar">خطوات قولبة الكورساج الأساسي</span>
+    <span class="sec-title-fr">Étapes du Moulage du Buste</span>
+</div>
+
+
+<p>يُعدّ <strong>الكورساج الأساسي</strong> <span class="fr">(Buste de base)</span> القطعة الأم في تعلّم القولبة، إذ يتضمن كل التحديات التقنية: خطوط الصدر، انسداد الكتف، عمق الإبط، والبنسات. إتقان قولبة الكورساج يفتح الباب أمام قولبة أي تصميم آخر، لأن كل الأزياء تقريباً تُبنى على هذا الأساس.</p>
+
+
+<div class="subsection">
+    <div class="subsection-title">الخطوات السبع لقولبة الكورساج <span class="sub-fr">— Les Sept Étapes du Moulage du Buste</span></div>
+</div>
+
+
+<div class="flowchart">
+    
+    
+        <div class="flow-step">
+            <div class="step-num">1</div>
+            <div class="step-text">تثبيت قماش التجربة على المانيكان بمحاذاة خط منتصف الأمام، مع ترك هامش للخياطة<span class="step-fr">Fixation de la toile</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">2</div>
+            <div class="step-text">تثبيت القماش على خط الكتف وخط منتصف الأمام، مع التأكد من استقامة السداء<span class="step-fr">Alignement du droit-fil</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">3</div>
+            <div class="step-text">تشكيل بنسة الصدر بتثبيت القماش من أعلى نقطة في الصدر نحو خط الخصر<span class="step-fr">Formation de la pince de poitrine</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">4</div>
+            <div class="step-text">تثبيت القماش على خط الإبط، مع ترك هامش 2 سم للخياطة<span class="step-fr">Fixation de l'emmanchure</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">5</div>
+            <div class="step-text">قص الفائض من القماش بحذر، مع ترك هامش كافٍ للتعديلات<span class="step-fr">Découpe de l'excédent</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">6</div>
+            <div class="step-text">رسم خطوط الخياطة بالقلم على القماش: خط الجنب، خط الكتف، خط الإبط<span class="step-fr">Tracé des lignes de couture</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">7</div>
+            <div class="step-text">فك القماش عن المانيكان برفق وتسطيره على طاولة التفصيل لاستخراج الباترون<span class="step-fr">Retrait et extraction du patron</span></div>
+        </div>
+</div>
+
+
+<div class="subsection">
+    <div class="subsection-title">البنسات (Pinces) — التشكيل ثلاثي الأبعاد <span class="sub-fr">— Les Pinces — Sculpture 3D</span></div>
+</div>
+
+
+<p>تُمثّل البنسات <span class="fr">(Pinces)</span> التقنية الأساسية لتحويل القماش المسطح إلى شكل ثلاثي الأبعاد يلائم جسم الإنسان. هي طريقة للتخلّص من الفائض القماشي عند نقاط محددة، مما يسمح للقماش بالالتفاف حول الجسم بدلاً من البقاء مسطحاً. في الكورساج الأساسي، تُشكَّل ثلاث بنسات رئيسية.</p>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>البنسة<span class="th-fr">Pince</span></th><th>الموقع<span class="th-fr">Emplacement</span></th><th>الاتجاه<span class="th-fr">Direction</span></th></tr></thead>
+        <tbody><tr><td>بنسة الصدر <span class="fr">Pince de poitrine</span></td><td>من نقطة الصدر نحو الإبط</td><td>تفتح نحو الأمام</td></tr><tr><td>بنسة الخصر الأمامية <span class="fr">Pince de taille devant</span></td><td>من الخصر عمودياً نحو الصدر</td><td>تسمح بتضييق الخصر</td></tr><tr><td>بنسة الخصر الخلفية <span class="fr">Pince de taille dos</span></td><td>من الخصر عمودياً نحو الكتف</td><td>تسمح بتضييق الظهر</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 2: البنسات الثلاث الرئيسية في الكورساج الأساسي <span class="cap-fr">Tableau 2: Les trois pinces principales du buste de base</span></div>
+</div>
+
+
+<div class="callout ">
+    <div class="callout-title"><span class="icon">★</span>قاعدة ذهبية: اتجاه فتح البنسة</div>
+    <p>يجب أن يكون اتجاه فتح البنسة دائماً نحو المركز الأبعد عن النقطة المرجعية. مثلاً، بنسة الصدر تفتح نحو الإبط (الأبعد عن نقطة الصدر). هذه القاعدة تضمن انسدالاً طبيعياً للقماش وعدم ظهور تجاعيد غير مرغوبة.</p>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">5</span><span class="sec-title-ar">تحويل القالب القماشي إلى باترون مسطح</span>
+    <span class="sec-title-fr">Transformation en Patron</span>
+</div>
+
+
+<p>بعد الانتهاء من التشكيل على المانيكان، يكون القالب القماشي <span class="fr">(Toile moulée)</span> جاهزاً للتحويل إلى نمط ورقي قابل للتصنيع الصناعي. تُسمّى هذه المرحلة <strong>الاستخراج</strong> <span class="fr">(Extraction du patron)</span>، وهي حلقة الوصل بين القولبة الفنية والتصنيع الصناعي.</p>
+
+
+<div class="subsection">
+    <div class="subsection-title">خطوات الاستخراج الست <span class="sub-fr">— Les Six Étapes de l'Extraction</span></div>
+</div>
+
+
+<div class="flowchart">
+    
+    
+        <div class="flow-step">
+            <div class="step-num">1</div>
+            <div class="step-text">فك الدبابيس برفق، واحدة تلو الأخرى، بحركة مستقيمة دون سحب القماش لمنع تشوّه الأبعاد<span class="step-fr">Retrait des épingles</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">2</div>
+            <div class="step-text">فرد القماش على سطح مستوٍ وتثبيته بمسامير صغيرة في الزوايا للحفاظ على استقامتها<span class="step-fr">Mise à plat de la toile</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">3</div>
+            <div class="step-text">مراجعة كل الخطوط المرسومة بالقلم على القماش وتصحيحها بمسطرة كيرف للخطوط المنحنية<span class="step-fr">Correction des lignes</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">4</div>
+            <div class="step-text">إضافة قيم الهوامش القياسية: 1 سم للجوانب، 1.5 سم للإبط، 2 سم للحاشية السفلية<span class="step-fr">Ajout des valeurs de couture</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">5</div>
+            <div class="step-text">نقل الخطوط النهائية بدقة إلى ورق الكرافت باستخدام عجلة التتبع (Tracing wheel)<span class="step-fr">Report sur papier kraft</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">6</div>
+            <div class="step-text">كتابة البيانات الفنية: اسم القطعة، المقاس، تاريخ الإنجاز، اسم التقني، اتجاه السداء، نقاط الربط<span class="step-fr">Inscription des données techniques</span></div>
+        </div>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">6</span><span class="sec-title-ar">مقارنة بين القولبة و النمذجة المسطحة</span>
+    <span class="sec-title-fr">Patron à Plat vs Moulage</span>
+</div>
+
+
+<p>لا تُلغي إحداهما الأخرى، بل يُختار بينهما حسب طبيعة المنتج وأهداف التصميم. كل طريقة لها مزاياها وحدودها، والتقني السامي المحترف هو من يتقن الاثنتين ويستعمل كل منهما في السياق المناسب.</p>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>البند<span class="th-fr">Critère</span></th><th>النمذجة المسطحة<span class="th-fr">Patron à Plat</span></th><th>القولبة<span class="th-fr">Moulage</span></th></tr></thead>
+        <tbody><tr><td>زمن الإنجاز</td><td>4 ساعات للقطعة الواحدة</td><td>يوم إلى يومين (قولبة + استخراج)</td></tr><tr><td>الدقة</td><td>عالية للقصات الكلاسيكية</td><td>عالية جداً للقصات المعقدة</td></tr><tr><td>التصوّر ثلاثي الأبعاد</td><td>صعب — يتطلب خبرة</td><td>ممتاز — رؤية مباشرة</td></tr><tr><td>تجريب الأفكار</td><td>محدود — كل تعديل يتطلب رسماً جديداً</td><td>مرن — تعديل فوري على المانيكان</td></tr><tr><td>إعادة الإنتاج</td><td>سهل — باترون جاهز للتكرار</td><td>صعب بعد الاستخراج</td></tr><tr><td>ملاءمة الألبسة الجاهزة</td><td>ممتازة — معايير صناعية</td><td>ممتازة للأزياء الفردية الراقية</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 3: مقارنة شاملة بين النمذجة المسطحة والقولبة <span class="cap-fr">Tableau 3: Comparaison détaillée patron à plat vs moulage</span></div>
+</div>
+
+
+<div class="chart-card">
+    <div class="chart-title">توزيع استعمالات القولبة في الأزياء الجزائرية</div>
+    <div class="chart-subtitle">Répartition des Utilisations du Moulage dans la Mode Algérienne</div>
+    <svg class="chart-svg" style="direction: ltr;" viewBox="0 0 580 300" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 160.0 45.0 A 100 100 0 0 1 240.90169943749476 203.7785252292473 L 204.4959346906221 177.32818887608602 A 55 55 0 0 0 160.0 90.0 Z" fill="#0F4D3A" stroke="#FFFFFF" stroke-width="1.2"/><path d="M 240.90169943749476 203.7785252292473 A 100 100 0 0 1 101.2214747707527 225.90169943749476 L 127.67181112391398 189.4959346906221 A 55 55 0 0 0 204.4959346906221 177.32818887608602 Z" fill="#1B6B52" stroke="#FFFFFF" stroke-width="1.2"/><path d="M 101.2214747707527 225.90169943749476 A 100 100 0 0 1 64.89434837048465 114.09830056250523 L 107.69189160376655 128.00406530937786 A 55 55 0 0 0 127.67181112391398 189.4959346906221 Z" fill="#C2932E" stroke="#FFFFFF" stroke-width="1.2"/><path d="M 64.89434837048465 114.09830056250523 A 100 100 0 0 1 111.8246325898284 57.36933199561369 L 133.5035479244056 96.80313259758753 A 55 55 0 0 0 107.69189160376655 128.00406530937786 Z" fill="#7BA38A" stroke="#FFFFFF" stroke-width="1.2"/><path d="M 111.8246325898284 57.36933199561369 A 100 100 0 0 1 159.99999999999997 45.0 L 160.0 90.0 A 55 55 0 0 0 133.5035479244056 96.80313259758753 Z" fill="#D4B36A" stroke="#FFFFFF" stroke-width="1.2"/>
+        <text x="160" y="143" font-family="Inter" font-size="20" font-weight="900" fill="#022c22" text-anchor="middle">100%</text><text x="160" y="159" font-family="Cairo" font-size="9" fill="#6B7280" text-anchor="middle">استعمالات القولبة</text>
+        <rect x="290" y="20" width="12" height="12" fill="#0F4D3A" rx="1.5"/><text x="308" y="30" font-family="Cairo" font-size="9" fill="#1F2937">فساتين السهرة — 35.0%</text><text x="308" y="40" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Robes de soirée</text><rect x="290" y="40" width="12" height="12" fill="#1B6B52" rx="1.5"/><text x="308" y="50" font-family="Cairo" font-size="9" fill="#1F2937">فساتين العرائس — 25.0%</text><text x="308" y="60" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Robes de mariée</text><rect x="290" y="60" width="12" height="12" fill="#C2932E" rx="1.5"/><text x="308" y="70" font-family="Cairo" font-size="9" fill="#1F2937">القفطان العصري — 20.0%</text><text x="308" y="80" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Caftan moderne</text><rect x="290" y="80" width="12" height="12" fill="#7BA38A" rx="1.5"/><text x="308" y="90" font-family="Cairo" font-size="9" fill="#1F2937">الكاراكو — 12.0%</text><text x="308" y="100" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Karakou</text><rect x="290" y="100" width="12" height="12" fill="#D4B36A" rx="1.5"/><text x="308" y="110" font-family="Cairo" font-size="9" fill="#1F2937">أزياء أخرى — 8.0%</text><text x="308" y="120" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Autres</text>
+    </svg>
+    <div class="chart-caption">الشكل 1: توزيع استعمالات القولبة في صناعة الأزياء الجزائرية الراقية (2024) <span class="cap-fr">Figure 1: Répartition des utilisations du moulage en haute couture algérienne (2024)</span></div>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">7</span><span class="sec-title-ar">القولبة في صناعة الأزياء الجزائرية الراقية</span>
+    <span class="sec-title-fr">Haute Couture Algérienne</span>
+</div>
+
+
+<p>تحتل القولبة مكانة استثنائية في صناعة الأزياء الجزائرية، إذ يُعدّ قسم العرائس والسهرة <span class="fr">(Robes de Mariée, Robes de Soirée)</span> من أكثر القطاعات اعتماداً على هذه التقنية. الألبسة التقليدية الجزائرية (القفطان، الكاراكو، العباية، الشدة التلمسانية) تتطلّب قولدة دقيقة للقّصة لملاءمة الجسم تماماً، مع تحقيق التنورة بالنمذجة المسطحة لكونها هندسية بسيطة.</p>
+
+<p>المصممون الجزائريون المعاصرون مثل <span class="fr">Hyma Couture</span>، <span class="fr">Moomoo Atti</span>، و<span class="fr">Studio Boussouf</span> يبدؤون كل تصميم بالقولبة على المانيكان قبل أي رسم هندسي. كما تشهد المدارس الخاصة للأزياء في الجزائر العاصمة (حي عكنون بن حي، حيدرة) ووهران إقبالاً متزايداً على التكوين في القولدة المتخصصة، وأحياناً يُلحق محترفون قادمون من تونس وفرنسا بمصممين جزائريين لتقديم ورشات مكثفة.</p>
+
+<p>هذا الإقبال يخلق فرص عمل إضافية للتقنيين الجزائريين الذين يتقنون هذه المهارة، حيث تتجه ورشات الأزياء الراقية الوطنية نحو التوسّع والتخصص في القفطان العصري والشدة التلمسانية المعاصرة، مما يفتح آفاقاً مهنية واعدة للمتخرجين في القطاع.</p>
+
+<div class="stat-row">
+        <div class="stat-card">
+            <div class="stat-num">45 دقيقة</div>
+            <div class="stat-label">زمن تجهيز المانيكان بخطوط التشريح<span class="fr">Temps de préparation mannequin</span></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">3D</div>
+            <div class="stat-label">البُعد الجمالي للقولبة<span class="fr">Dimension esthétique</span></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">7 خطوط</div>
+            <div class="stat-label">خطوط التشريح المرجعية<span class="fr">Lignes de construction</span></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">5-10 أمتار</div>
+            <div class="stat-label">قماش التجربة لفستان العروس<span class="fr">Toile pour robe de mariée</span></div>
+        </div></div>
+
+<div class="section-header">
+    <span class="sec-num">8</span><span class="sec-title-ar">الخلاصة و المراجع</span>
+    <span class="sec-title-fr">Conclusion et Références</span>
+</div>
+
+
+<p>تُمثّل وحدة التفصيل بالقولبة الجسر بين الفن والتقنية في صناعة الملابس، فهي تُكسِب المتدرّب الحس الجمالي ثلاثي الأبعاد الذي يُميّز المصمم المحترف، وتفتح أبواب قطاع الأزياء الراقية الذي يشهد نمواً ملحوظاً في السوق الجزائرية. كما تُكمِّل القولبة المعارف المكتسبة في وحدات النمذجة المسطحة والتدريج، إذ تُتيح للمصمم تقديم حلول إبداعية للقصّات التي يصعب تحقيقها هندسياً قبل تحويلها لاحقاً إلى أنماط ورقية قابلة للتصنيع.</p>
+
+<p>التكامل بين هذه التقنيات هو ما يصنع الفرق بين المصمم المتمرّس والمصمم المبتدئ، وبين التقني السامي الذي يستطيع تنفيذ أي فكرة تصميمية مهما كانت معقدة، وبين التقني الذي يقتصر على تنفيذ التصاميم الجاهزة. هذا التكامل هو رسالة التكوين المهني الجزائري في صناعة الأزياء: تخريج تقنيين قادرين على الإبداع والتنفيذ معاً.</p>
+
+
+<div class="subsection">
+    <div class="subsection-title">تطبيقات متقدمة للقولبة <span class="sub-fr">— Applications Avancées du Moulage</span></div>
+</div>
+
+
+<ul>
+<li><strong>قولبة التنورة المنسدلة (Jupe Drapée):</strong> تبدأ العملية بتثبيت قماش التجربة على ورك المانيكان، ثم تشكيل الطيات واحدة تلو أخرى مع تثبيت كل طية بالدبابيس قبل الانتقال للتي تليها. عدد الطيات وعمقها يحددان الشكل النهائي للتنورة.</li>
+<li><strong>قولبة فستان السهرة (Robe de Soirée):</strong> يتضمن تحديات متعددة: قصّة معقدة عند الصدر، انسدالات طويلة، ذيل طويل أحياناً. تستلزم القولبة جلسات متعددة (3-5 جلسات) لاختبار التصميم على المانيكان قبل الانتقال للاستخراج النهائي.</li>
+<li><strong>قولبة الكاراكو الجزائري:</strong> يتطلب الكاراكو قولدة دقيقة للقصبة لملاءمة الجسم تماماً. القصبة تُحقَّق بالقولبة، التنورة تُحقَّق بالنمذجة المسطحة لكونها هندسية بسيطة، مما يُمثّل تحدّياً مهنياً مميزاً للمصمم الجزائري.</li>
+<li><strong>قولبة فستان العروس (Robe de Mariée):</strong> أكبر تحدٍّ في القولبة، يتطلب جلسات عمل من 5 إلى 8 ساعات كاملة، مع تجارب متعددة على المانيكان قبل اعتماد التصميم النهائي. قد يتطلب الفستان الواحد من 5 إلى 10 أمتار من قماش التجربة.</li>
+</ul>
+
+
+<div class="quote-block">القولبة ليست مجرد تقنية، بل هي حوار بين المصمم والقماش. كل طية تخلق شكلاً، وكل بنسة تُحدِّث قصة. هذا هو الفن الذي يميّز الأزياء الراقية عن الألبسة الجاهزة.<span class="quote-author">— ESMOD — École de Mode Française</span></div>
+
+
+<div class="subsection">
+    <div class="subsection-title">المراجع <span class="sub-fr">— Références Bibliographiques</span></div>
+</div>
+
+
+<ol>
+<li>Studio Boussouf, Haute Couture Algérienne: Tradition et Innovation, Éditions Barzakh, Alger, 2022.</li>
+<li>ESMOD Paris, Draping Techniques for Fashion Design, ESMOD Publishing, Paris, 2021.</li>
+<li>Crawford, F., The Art of Fashion Draping, 5th Edition, Fairchild Books, New York, 2020.</li>
+<li>وزارة التكوين والتعليم المهنيين، المنهاج الرسمي لوحدة التفصيل بالقولبة، الطبعة المنقحة، الجزائر، 2023.</li>
+<li>Hyma Couture, Le Moulage Algérien: Méthodes et Traditions, Éditions El-Watan, Alger, 2022.</li>
+<li>Jaffe, H., Draping for Fashion Design, 4th Edition, Pearson, London, 2019.</li>
+</ol>
+
+
+<div class="section-header">
+    <span class="sec-num">9</span><span class="sec-title-ar">معجم المصطلحات التقنية</span>
+    <span class="sec-title-fr">Glossaire Technique Bilingue</span>
+</div>
+
+
+<p>يُقدّم هذا المعجم المصطلحات التقنية الأساسية المستعملة في وحدة التفصيل بالقولبة، مزدوج اللغة (عربي/فرنسي). تشمل المصطلحات المفاتيح في التشكيل ثلاثي الأبعاد، البنسات، وتجهيز المانيكان.</p>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>المصطلح العربي<span class="th-fr">Terme Arabe</span></th><th>المصطلح الفرنسي<span class="th-fr">Terme Français</span></th><th>التعريف المختصر<span class="th-fr">Définition Courte</span></th></tr></thead>
+        <tbody><tr><td>قولبة</td><td>Moulage</td><td>تشكيل القماش على المانيكان</td></tr><tr><td>مانيكان</td><td>Mannequin</td><td>دمية بشرية للتجربة</td></tr><tr><td>بنسة</td><td>Pince</td><td>طية لإعطاء شكل ثلاثي الأبعاد</td></tr><tr><td>خط تشريح</td><td>Ligne de construction</td><td>خطوط مرجعية على المانيكان</td></tr><tr><td>شريط كولدبال</td><td>Ruban Bolduc</td><td>شريط لتحديد الخطوط</td></tr><tr><td>قماش التجربة</td><td>Toile</td><td>قماش قطني للتجربة قبل القماش النهائي</td></tr><tr><td>استخراج</td><td>Extraction</td><td>تحويل القالب القماشي إلى باترون</td></tr><tr><td>الصدر (Apex)</td><td>Point d'Apex</td><td>أعلى نقطة في الصدر</td></tr><tr><td>خط الإبط</td><td>Ligne d'Emmanchure</td><td>يحيط بفتحة الذراع</td></tr><tr><td>ياقة</td><td>Col</td><td>جزء يحيط بالرقبة</td></tr><tr><td>كورساج</td><td>Buste</td><td>الجزء العلوي من الفستان</td></tr><tr><td>دبابيس</td><td>Épingles</td><td>إبر رفيعة لتثبيت القماش</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 7: معجم مصطلحات التفصيل بالقولبة <span class="cap-fr">Tableau 7: Glossaire des termes de moulage</span></div>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">10</span><span class="sec-title-ar">تمارين تطبيقية و دراسات حالة</span>
+    <span class="sec-title-fr">Exercices Pratiques et Études de Cas</span>
+</div>
+
+
+<div class="subsection">
+    <div class="subsection-title">تمرين 1: تحديد خطوط التشريح <span class="sub-fr">— Exercice 1: Identification des Lignes de Construction</span></div>
+</div>
+
+
+<p><strong>السؤال:</strong> اذكر خطوط التشريح المرجعية السبعة التي يجب رسمها على المانيكان قبل بدء عملية القولبة، واشرح دور كل خط.</p>
+
+
+<div class="callout callout-emerald">
+    <div class="callout-title"><span class="icon">✓</span>الحل النموذجي</div>
+    <p>(1) خط منتصف الأمام، (2) خط منتصف الخلف، (3) خط الصدر، (4) خط الخصر، (5) خط الورك، (6) خط الكتف، (7) خط الإبط. كل خط يمثل نقطة مرجعية جغرافية توجّه المصمم أثناء التشكيل، وتضمن توازن التصميم ودقّته.</p>
+</div>
+
+
+<div class="subsection">
+    <div class="subsection-title">تمرين 2: مقارنة زمن الإنجاز <span class="sub-fr">— Exercice 2: Comparaison des Temps</span></div>
+</div>
+
+
+<div class="chart-card">
+    <div class="chart-title">مقارنة زمن الإنجاز: نمذجة مسطحة vs قولبة</div>
+    <div class="chart-subtitle">Comparaison du Temps: Patron à Plat vs Moulage</div>
+    <svg class="chart-svg" style="direction: ltr;" viewBox="0 0 580 304" xmlns="http://www.w3.org/2000/svg">
+        <text x="10" y="28" font-family="Cairo" font-size="9" fill="#1F2937">نمذجة تنورة</text><text x="10" y="38" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Patron jupe à plat</text><rect x="220" y="24" width="310" height="16" fill="#F3F4F6" rx="2.5"/><rect x="220" y="24" width="155.0" height="16" fill="#1B6B52" rx="2.5"/><text x="538" y="36" font-family="Inter" font-size="10" font-weight="700" fill="#022c22">4</text><text x="10" y="72" font-family="Cairo" font-size="9" fill="#1F2937">قالبة تنورة</text><text x="10" y="82" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Moulage jupe</text><rect x="220" y="68" width="310" height="16" fill="#F3F4F6" rx="2.5"/><rect x="220" y="68" width="232.5" height="16" fill="#C2932E" rx="2.5"/><text x="538" y="80" font-family="Inter" font-size="10" font-weight="700" fill="#022c22">6</text><text x="10" y="116" font-family="Cairo" font-size="9" fill="#1F2937">نمذجة كورساج</text><text x="10" y="126" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Patron buste à plat</text><rect x="220" y="112" width="310" height="16" fill="#F3F4F6" rx="2.5"/><rect x="220" y="112" width="232.5" height="16" fill="#1B6B52" rx="2.5"/><text x="538" y="124" font-family="Inter" font-size="10" font-weight="700" fill="#022c22">6</text><text x="10" y="160" font-family="Cairo" font-size="9" fill="#1F2937">قالبة كورساج</text><text x="10" y="170" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Moulage buste</text><rect x="220" y="156" width="310" height="16" fill="#F3F4F6" rx="2.5"/><rect x="220" y="156" width="310.0" height="16" fill="#C2932E" rx="2.5"/><text x="538" y="168" font-family="Inter" font-size="10" font-weight="700" fill="#022c22">8</text><text x="10" y="204" font-family="Cairo" font-size="9" fill="#1F2937">نمذجة فستان</text><text x="10" y="214" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Patron robe à plat</text><rect x="220" y="200" width="310" height="16" fill="#F3F4F6" rx="2.5"/><rect x="220" y="200" width="248.0" height="16" fill="#1B6B52" rx="2.5"/><text x="538" y="212" font-family="Inter" font-size="10" font-weight="700" fill="#022c22">8</text><text x="10" y="248" font-family="Cairo" font-size="9" fill="#1F2937">قالبة فستان</text><text x="10" y="258" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Moulage robe</text><rect x="220" y="244" width="310" height="16" fill="#F3F4F6" rx="2.5"/><rect x="220" y="244" width="310.0" height="16" fill="#C2932E" rx="2.5"/><text x="538" y="256" font-family="Inter" font-size="10" font-weight="700" fill="#022c22">10</text>
+    </svg>
+    <div class="chart-caption">الشكل 3: مقارنة زمن الإنجاز (بالساعات) بين النمذجة المسطحة والقولبة حسب نوع القطعة <span class="cap-fr">Figure 3: Comparaison du temps (heures) patron à plat vs moulage</span></div>
+</div>
+
+
+<div class="subsection">
+    <div class="subsection-title">تمرين 3: حساب زمن جلسات قولبة فستان العروس <span class="sub-fr">— Exercice 3: Temps des Séances Moulage Robe de Mariée</span></div>
+</div>
+
+
+<p><strong>السؤال:</strong> فستان عروس يتطلّب 6 جلسات قولبة. كل جلسة تستغرق 3 ساعات. احسب الزمن الإجمالي بالساعات والأيام (إذا كانت ساعات العمل اليومية 8 ساعات).</p>
+
+
+<div class="callout ">
+    <div class="callout-title"><span class="icon">★</span>الحل النموذجي</div>
+    <p>الزمن الإجمالي = 6 جلسات × 3 ساعات = <strong>18 ساعة</strong>.</p><p>عدد أيام العمل = 18 ÷ 8 = <strong>2.25 يوم عمل</strong> (يومان كاملان وجزء من اليوم الثالث).</p><p>هذا الزمن لا يشمل وقت الاستخراج النهائي للباترون ولا وقت التعديلات.</p>
+</div>
+</div>
+<!-- ============================ BACK COVER ============================ -->
+<div class="back-cover">
+    <div class="bc-top">
+        <div class="insfp-mark">INSFP</div>
+    </div>
+    <div class="bc-center">
+        <div class="closing-divider"></div>
+        <div class="closing-ar">القولبة حوار بين المصمم والقماش — كل طية تُحدِّث قصة، وكل بنسة تُخلق شكلاً. هي الفن الذي يميّز الجاهز عن الراقي.</div>
+        <div class="closing-fr">Le moulage est un dialogue entre le créateur et le tissu — chaque pli raconte une histoire, chaque pince crée une forme. C'est l'art qui distingue le prêt-à-porter de la haute couture.</div>
+        <div class="closing-divider"></div>
+    </div>
+    <div class="bc-bottom">
+        <div class="closing-meta">
+            تم إعداد هذا التقرير وفق المنهاج المعتمد في معاهد التكوين المهني الجزائرية<br>
+            تحت رقم التخصص : التقني السامي في تصميم و صناعة الملابس — Tailleur Dames<br>
+            <span class="meta-year">2025 / 2026 • الجمهورية الجزائرية الديمقراطية الشعبية</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

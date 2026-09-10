@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>الخياطة النسائية — التقني السامي في تصميم وصناعة الملابس — Couture Dame — Tailleur Dames (Technicien Supérieur)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+/* ================================================================ */
+/* CSS CUSTOM PROPERTIES                                            */
+/* ================================================================ */
+:root {
+    --primary-deep:  #022c22;
+    --primary:       #064e3b;
+    --primary-light: #f0fdf4;
+    --accent:        #b45309;
+    --accent-light:  #fef3c7;
+    --dark:          #1e293b;
+    --light:         #f8fafc;
+    --border:        #cbd5e1;
+    --bg:            #ffffff;
+    --card:          #f5f3ea;
+    --text:          #1f2937;
+    --text-2:        #4b5563;
+    --text-muted:    #6b7280;
+    --white:         #ffffff;
+    /* Harmonized Font Stacks */
+    --font-fr:       'Inter', 'Segoe UI', sans-serif;
+    --font-ar:       'Cairo', sans-serif;
+    --font-display:  'Playfair Display', serif;
+    --font-quote:    'Amiri', serif;
+}
+
+/* ================================================================ */
+/* PAGE SETUP & BROWSER PRINT HEADER/FOOTER REMOVAL                */
+/* ================================================================ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+@page {
+    size: A4;
+    margin: 1.6cm 1.5cm; /* Native print margins */
+}
+
+@media print {
+    @page {
+        margin: 1.6cm 1.5cm;
+    }
+    /* Standard CSS rule to block browser-injected header/footer lines */
+    html, body {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+    }
+}
+
+html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-ar);
+    font-size: 10.5pt;
+    line-height: 1.75;
+    direction: rtl;
+    text-align: right;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+@media screen {
+    html { background: #2a2a2a; display: flex; justify-content: center; }
+    body { width: 210mm; margin: 20px auto; box-shadow: 0 4px 30px rgba(0,0,0,0.5); padding: 1.6cm 1.5cm; }
+}
+
+/* ================================================================ */
+/* COVER PAGE                                                       */
+/* ================================================================ */
+.cover {
+    width: 100%;
+    min-height: 250mm;
+    background: var(--bg);
+    padding: 10mm;
+    break-after: page;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.cover-inner {
+    border: 4px double var(--primary);
+    height: 100%;
+    width: 100%;
+    padding: 10mm 15mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* ================================================================ */
+/* TABLE OF CONTENTS                                                */
+/* ================================================================ */
+.toc-page {
+    width: 100%;
+    min-height: 100%;
+    background: var(--bg);
+    padding: 10mm 5mm;
+    break-after: page;
+    page-break-after: always;
+    box-sizing: border-box;
+}
+
+/* ================================================================ */
+/* BACK COVER                                                        */
+/* ================================================================ */
+.back-cover {
+    width: 100%;
+    min-height: 240mm;
+    background: var(--bg);
+    padding: 10mm 5mm;
+    break-before: page;
+    page-break-before: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+/* ================================================================ */
+/* MAIN CONTENT                                                     */
+/* ================================================================ */
+.page {
+    background: #ffffff;
+    width: 100%;
+    padding: 5mm 0 8mm 0;
+    box-sizing: border-box;
+}
+
+.page:first-of-type {
+    padding-top: 0;
+}
+
+/* ================================================================ */
+/* HEADER BLOCK                                                     */
+/* ================================================================ */
+.cover-top-bar {
+    width: 100%;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 6mm;
+}
+
+.gov-txt-ar {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    font-size: 12pt;
+    color: var(--primary-deep);
+    line-height: 1.5;
+    margin: 0 0 1mm 0;
+}
+
+.gov-txt-fr {
+    font-family: var(--font-fr);
+    font-weight: 400;
+    font-size: 9pt;
+    color: #4b5563;
+    direction: ltr;
+    margin: 0 0 3mm 0;
+    letter-spacing: 0.3px;
+}
+
+/* ================================================================ */
+/* COVER CENTER                                                     */
+/* ================================================================ */
+.cover-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 6mm 12mm;
+}
+
+.cover-center .module-label {
+    font-family: var(--font-fr);
+    font-weight: 500;
+    font-size: 9pt;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    direction: ltr;
+    text-transform: uppercase;
+    margin: 0 0 1mm 0;
+}
+
+.cover-center .module-number {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 48pt;
+    color: var(--primary-deep);
+    direction: ltr;
+    line-height: 1;
+    margin: 0 0 4mm 0;
+}
+
+.cover-center .divider-ochre {
+    width: 50mm;
+    height: 2px;
+    background: var(--accent);
+    margin: 2mm auto 4mm auto;
+}
+
+.cover-center .title-ar {
+    font-family: var(--font-ar);
+    font-weight: 800;
+    font-size: 18pt;
+    color: var(--primary-deep);
+    line-height: 1.35;
+    margin: 0 0 2mm 0;
+    max-width: 160mm;
+}
+
+.cover-center .title-fr {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 12pt;
+    color: var(--accent);
+    direction: ltr;
+    margin: 0 0 6mm 0;
+    max-width: 160mm;
+}
+
+.cover-center .meta-block {
+    margin-top: 6mm;
+    padding: 4mm 6mm;
+    background: var(--primary-light);
+    border-right: 3px solid var(--primary);
+    border-radius: 1.5mm;
+    font-family: var(--font-ar);
+    font-size: 9.5pt;
+    color: var(--text);
+    line-height: 1.8;
+    text-align: right;
+    max-width: 165mm;
+}
+
+.cover-center .meta-block .meta-row {
+    margin: 0.5mm 0;
+}
+
+.cover-center .meta-block .meta-label {
+    color: var(--primary-deep);
+    font-weight: 700;
+    margin-left: 3mm;
+}
+
+.cover-center .meta-block .meta-val {
+    color: var(--text);
+    font-weight: 500;
+}
+
+/* ================================================================ */
+/* COVER BOTTOM                                                     */
+/* ================================================================ */
+.cover-bottom {
+    width: 100%;
+    border-top: 2px solid var(--accent);
+    padding-top: 6mm;
+    text-align: center;
+}
+
+.cover-bottom .author-label {
+    font-family: var(--font-ar);
+    font-weight: 500;
+    font-size: 9pt;
+    color: var(--accent);
+    margin: 0 0 1mm 0;
+}
+
+.cover-bottom .author-name-ar {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    font-size: 14pt;
+    color: var(--primary-deep);
+    margin: 0 0 0.5mm 0;
+}
+
+.cover-bottom .author-name-fr {
+    font-family: var(--font-fr);
+    font-weight: 500;
+    font-size: 10pt;
+    color: var(--dark);
+    direction: ltr;
+    margin: 0 0 1.5mm 0;
+    letter-spacing: 0.5px;
+}
+
+.cover-bottom .doc-type {
+    font-family: var(--font-fr);
+    font-size: 8pt;
+    color: var(--text-muted);
+    direction: ltr;
+    letter-spacing: 1.5px;
+    margin: 0.5mm 0;
+    text-transform: uppercase;
+}
+
+.cover-bottom .year {
+    font-family: var(--font-display);
+    font-size: 11pt;
+    color: var(--accent);
+    direction: ltr;
+    margin: 0.5mm 0 0 0;
+    letter-spacing: 1px;
+}
+
+/* ================================================================ */
+/* TABLE OF CONTENTS                                                */
+/* ================================================================ */
+.toc-header {
+    text-align: center;
+    margin-bottom: 12mm;
+    padding-bottom: 5mm;
+    border-bottom: 2px solid var(--primary);
+}
+
+.toc-header .toc-title-ar {
+    font-family: var(--font-ar);
+    font-weight: 800;
+    font-size: 20pt;
+    color: var(--primary-deep);
+    margin: 0 0 1.5mm 0;
+}
+
+.toc-header .toc-title-fr {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 12pt;
+    color: var(--accent);
+    direction: ltr;
+    margin: 0;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 3mm 0;
+    border-bottom: 1px dotted var(--border);
+    font-family: var(--font-ar);
+    font-size: 10.5pt;
+}
+
+.toc-item .toc-num {
+    display: inline-block;
+    width: 7mm;
+    color: var(--accent);
+    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 12pt;
+    flex-shrink: 0;
+}
+
+.toc-item .toc-text {
+    flex: 1;
+    color: var(--text);
+    margin: 0 3mm;
+    line-height: 1.4;
+}
+
+.toc-item .toc-text .toc-fr {
+    display: block;
+    font-family: var(--font-fr);
+    font-style: italic;
+    font-size: 8.5pt;
+    color: var(--text-muted);
+    direction: ltr;
+    text-align: left;
+    margin-top: 0.5mm;
+}
+
+.toc-item .toc-page-num {
+    color: var(--primary);
+    font-weight: 700;
+    font-family: var(--font-fr);
+    font-size: 10pt;
+    direction: ltr;
+    flex-shrink: 0;
+}
+
+/* ================================================================ */
+/* SECTION HEADERS                                                  */
+/* ================================================================ */
+.section-header {
+    margin-top: 8mm;
+    margin-bottom: 4mm;
+    break-after: avoid;
+    break-inside: avoid;
+    padding-bottom: 2mm;
+    border-bottom: 2px solid var(--primary);
+}
+
+.section-header:first-of-type {
+    margin-top: 0;
+}
+
+.section-header .sec-num {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    width: 7mm;
+    height: 7mm;
+    line-height: 7mm;
+    text-align: center;
+    border-radius: 50%;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 10pt;
+    margin-left: 2mm;
+    direction: ltr;
+    vertical-align: middle;
+}
+
+.section-header .sec-title-ar {
+    font-family: var(--font-ar);
+    font-weight: 800;
+    font-size: 13pt;
+    color: var(--primary-deep);
+    line-height: 1.4;
+    vertical-align: middle;
+}
+
+.section-header .sec-title-fr {
+    display: block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 9pt;
+    color: var(--accent);
+    direction: ltr;
+    text-align: left;
+    margin-top: 1mm;
+    margin-right: 9mm;
+}
+
+/* ================================================================ */
+/* SUBSECTION HEADERS                                               */
+/* ================================================================ */
+.subsection {
+    margin-top: 6mm;
+    break-after: avoid;
+}
+
+.subsection-title {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    font-size: 11pt;
+    color: var(--primary);
+    margin: 0 0 2mm 0;
+    padding-right: 3mm;
+    border-right: 3px solid var(--accent);
+    line-height: 1.4;
+}
+
+.subsection-title .sub-fr {
+    font-family: var(--font-fr);
+    font-weight: 500;
+    font-style: italic;
+    font-size: 9pt;
+    color: var(--text-muted);
+    direction: ltr;
+    margin-right: 2mm;
+}
+
+/* ================================================================ */
+/* BODY TEXT                                                        */
+/* ================================================================ */
+p {
+    margin: 0 0 3mm 0;
+    text-align: justify;
+    font-family: var(--font-ar);
+    font-size: 10.5pt;
+    line-height: 1.8;
+    color: var(--text);
+}
+
+p .fr {
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--primary);
+    font-weight: 500;
+    direction: ltr;
+    display: inline;
+}
+
+strong, b {
+    font-weight: 700;
+    color: var(--primary-deep);
+}
+
+ul, ol {
+    margin: 2mm 0 3mm 0;
+    padding-right: 7mm;
+}
+
+ul li, ol li {
+    font-family: var(--font-ar);
+    font-size: 10.5pt;
+    line-height: 1.7;
+    margin-bottom: 1.5mm;
+    text-align: right;
+    color: var(--text);
+}
+
+ul li .fr, ol li .fr {
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--primary);
+    direction: ltr;
+    display: inline;
+}
+
+/* ================================================================ */
+/* TABLES                                                           */
+/* ================================================================ */
+.table-wrapper {
+    margin: 4mm auto;
+    break-inside: avoid;
+    direction: rtl;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-ar);
+    font-size: 9pt;
+    border: 1px solid var(--border);
+    direction: rtl;
+}
+
+table.data-table thead {
+    background: var(--primary);
+    color: #fff;
+}
+
+table.data-table thead th {
+    padding: 2mm 3mm;
+    text-align: center;
+    font-weight: 700;
+    font-family: var(--font-ar);
+    font-size: 9.5pt;
+    border-bottom: 1.5px solid var(--primary-deep);
+    color: #ffffff;
+}
+
+table.data-table thead th .th-fr {
+    display: block;
+    font-family: var(--font-fr);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 7.5pt;
+    color: rgba(255,255,255,0.85);
+    direction: ltr;
+    margin-top: 0.3mm;
+}
+
+table.data-table tbody tr:nth-child(even) {
+    background: var(--primary-light);
+}
+
+table.data-table tbody tr:nth-child(odd) {
+    background: var(--white);
+}
+
+table.data-table tbody td {
+    padding: 2mm 3mm;
+    border-bottom: 1px solid var(--border);
+    text-align: right;
+    color: var(--text);
+    font-size: 9pt;
+    line-height: 1.4;
+}
+
+table.data-table tbody td.center { text-align: center; }
+
+table.data-table tbody td.num {
+    text-align: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--primary-deep);
+    direction: ltr;
+}
+
+table.data-table tbody td .fr {
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 8pt;
+    direction: ltr;
+    display: inline;
+}
+
+.table-caption {
+    text-align: center;
+    font-family: var(--font-ar);
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: 1.5mm;
+    margin-bottom: 4mm;
+}
+
+.table-caption .cap-fr {
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--text-muted);
+    direction: ltr;
+    display: block;
+    font-size: 8pt;
+    margin-top: 0.3mm;
+}
+
+/* ================================================================ */
+/* CALLOUT BOXES                                                    */
+/* ================================================================ */
+.callout {
+    margin: 4mm auto;
+    padding: 4mm 5mm;
+    border-radius: 1.5mm;
+    break-inside: avoid;
+    border-right: 3px solid var(--accent);
+    background: var(--accent-light);
+    font-family: var(--font-ar);
+    font-size: 10pt;
+    line-height: 1.6;
+    color: var(--text);
+    width: 100%;
+}
+
+.callout-title {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    font-size: 10.5pt;
+    color: var(--accent);
+    margin-bottom: 1.5mm;
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+}
+
+.callout-title .icon {
+    display: inline-block;
+    width: 6mm;
+    height: 6mm;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 6mm;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 10pt;
+    direction: ltr;
+    flex-shrink: 0;
+}
+
+.callout p {
+    margin-bottom: 1.5mm;
+    font-size: 10pt;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+.callout-emerald {
+    border-right-color: var(--primary);
+    background: var(--primary-light);
+}
+
+.callout-emerald .callout-title {
+    color: var(--primary-deep);
+}
+
+.callout-emerald .callout-title .icon {
+    background: var(--primary);
+}
+
+/* ================================================================ */
+/* DASHBOARD GRID — 3-column metric cards                           */
+/* ================================================================ */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 4mm auto;
+    break-inside: avoid;
+    width: 100%;
+    justify-content: center;
+}
+
+.dashboard-card {
+    background: var(--light);
+    border-right: 3px solid var(--primary);
+    border-radius: 3px;
+    padding: 10px;
+    text-align: center;
+}
+
+.dashboard-value {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1.2;
+    font-family: var(--font-display);
+    direction: ltr;
+}
+
+.dashboard-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: 1.5mm;
+    font-family: var(--font-ar);
+}
+
+.dashboard-label .fr {
+    display: block;
+    font-family: var(--font-fr);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text-muted);
+    direction: ltr;
+    font-size: 0.65rem;
+    margin-top: 0.3mm;
+}
+
+/* ================================================================ */
+/* TIMELINE — vertical connected                                    */
+/* ================================================================ */
+.timeline-chain {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 4mm auto 15px auto;
+    position: relative;
+    break-inside: avoid;
+    width: 100%;
+    align-items: center;
+}
+
+.timeline-node {
+    display: flex;
+    gap: 10px;
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 12px;
+    page-break-inside: avoid;
+    width: 100%;
+}
+
+.node-index {
+    background: var(--primary);
+    color: white;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 10pt;
+    direction: ltr;
+    flex-shrink: 0;
+}
+
+.node-content {
+    flex: 1;
+}
+
+.node-content h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary-deep);
+    font-family: var(--font-ar);
+    margin: 0 0 1mm 0;
+}
+
+.node-content p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-2);
+    font-style: italic;
+    font-family: var(--font-fr);
+    direction: ltr;
+    text-align: left;
+}
+
+/* ================================================================ */
+/* FLOWCHART / PROCESS                                              */
+/* ================================================================ */
+.flowchart {
+    margin: 4mm auto;
+    break-inside: avoid;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 1.5mm;
+    padding: 4mm;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flow-step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2mm;
+    break-inside: avoid;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.flow-step .step-num {
+    flex-shrink: 0;
+    width: 8mm;
+    height: 8mm;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 10pt;
+    direction: ltr;
+    margin-left: 3mm;
+}
+
+.flow-step .step-text {
+    flex: 1;
+    font-family: var(--font-ar);
+    font-size: 9.5pt;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+.flow-step .step-text .step-fr {
+    display: block;
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 8pt;
+    direction: ltr;
+    margin-top: 0.3mm;
+}
+
+.flow-arrow {
+    text-align: right;
+    padding-right: 3.5mm; /* Centers the down-arrow perfectly under the 8mm step-circle */
+    color: var(--accent);
+    font-size: 11pt;
+    margin: 1mm 0;
+    line-height: 1;
+    width: 100%;
+}
+
+/* ================================================================ */
+/* STAT ROW                                                         */
+/* ================================================================ */
+.stat-row {
+    display: flex;
+    gap: 3mm;
+    margin: 4mm auto;
+    break-inside: avoid;
+    width: 100%;
+    justify-content: center;
+}
+
+.stat-card {
+    flex: 1;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: 2.5px solid var(--accent);
+    border-radius: 1.5mm;
+    padding: 3mm 2mm;
+    text-align: center;
+}
+
+.stat-card .stat-num {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 17pt;
+    color: var(--primary-deep);
+    direction: ltr;
+    line-height: 1.1;
+}
+
+.stat-card .stat-label {
+    font-family: var(--font-ar);
+    font-size: 8pt;
+    color: var(--text-2);
+    margin-top: 1.5mm;
+    line-height: 1.3;
+}
+
+.stat-card .stat-label .fr {
+    display: block;
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--text-muted);
+    direction: ltr;
+    font-size: 7pt;
+    margin-top: 0.3mm;
+}
+
+/* ================================================================ */
+/* QUOTE BLOCK                                                      */
+/* ================================================================ */
+.quote-block {
+    margin: 5mm auto;
+    padding: 4mm 6mm;
+    border-right: 3px solid var(--primary);
+    background: var(--card);
+    font-family: var(--font-quote);
+    font-style: italic;
+    font-size: 10.5pt;
+    line-height: 1.7;
+    color: var(--primary-deep);
+    break-inside: avoid;
+    width: 100%;
+}
+
+.quote-block .quote-author {
+    display: block;
+    text-align: left;
+    margin-top: 1.5mm;
+    font-family: var(--font-fr);
+    font-style: normal;
+    font-size: 8.5pt;
+    color: var(--text-muted);
+    direction: ltr;
+}
+
+/* ================================================================ */
+/* SVG CHART CARD (Centered container & centered graphs)             */
+/* ================================================================ */
+.chart-card {
+    margin: 5mm auto;
+    padding: 4mm;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 1.5mm;
+    break-inside: avoid;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-title {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    font-size: 11pt;
+    color: var(--primary-deep);
+    text-align: center;
+    margin: 0 0 0.5mm 0;
+    width: 100%;
+}
+
+.chart-subtitle {
+    font-family: var(--font-fr);
+    font-style: italic;
+    font-size: 8.5pt;
+    color: var(--text-muted);
+    text-align: center;
+    direction: ltr;
+    margin: 0 0 3mm 0;
+    width: 100%;
+}
+
+.chart-svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.chart-caption {
+    text-align: center;
+    font-family: var(--font-ar);
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: 2mm;
+    width: 100%;
+}
+
+.chart-caption .cap-fr {
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--text-muted);
+    direction: ltr;
+    display: block;
+    font-size: 8pt;
+    margin-top: 0.3mm;
+}
+
+/* ================================================================ */
+/* BACK COVER                                                        */
+/* ================================================================ */
+.back-cover .bc-top {
+    background: var(--primary-deep);
+    color: var(--white);
+    padding: 10mm 16mm;
+    text-align: center;
+    position: relative;
+}
+
+.back-cover .bc-top::after {
+    content: "";
+    position: absolute;
+    bottom: -2mm;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40mm;
+    height: 2.5mm;
+    background: var(--accent);
+}
+
+.back-cover .insfp-mark {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 32pt;
+    color: var(--accent);
+    direction: ltr;
+    letter-spacing: 6px;
+    margin: 0;
+}
+
+.back-cover .bc-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 12mm 18mm;
+}
+
+.back-cover .closing-ar {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    font-size: 13pt;
+    color: var(--primary-deep);
+    line-height: 1.7;
+    margin: 4mm 0;
+    max-width: 160mm;
+}
+
+.back-cover .closing-fr {
+    font-family: var(--font-fr);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 10pt;
+    color: var(--text-2);
+    direction: ltr;
+    line-height: 1.6;
+    max-width: 160mm;
+    margin: 0 0 8mm 0;
+}
+
+.back-cover .closing-divider {
+    width: 25mm;
+    height: 2px;
+    background: var(--accent);
+    margin: 3mm auto;
+}
+
+.back-cover .bc-bottom {
+    background: var(--primary-deep);
+    color: var(--white);
+    text-align: center;
+    padding: 6mm 16mm 10mm 16mm;
+    position: relative;
+}
+
+.back-cover .bc-bottom::before {
+    content: "";
+    position: absolute;
+    top: -2mm;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40mm;
+    height: 2.5mm;
+    background: var(--accent);
+}
+
+.back-cover .closing-meta {
+    font-family: var(--font-ar);
+    font-size: 9pt;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.back-cover .closing-meta .meta-year {
+    font-family: var(--font-display);
+    color: var(--accent);
+    font-size: 10pt;
+    direction: ltr;
+    display: block;
+    margin-top: 1.5mm;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============================ COVER PAGE ============================ -->
+<div class="cover">
+    <div class="cover-inner">
+        <div class="cover-top-bar">
+            <div class="gov-txt-ar">الجمهورية الجزائرية الديمقراطية الشعبية</div>
+            <div class="gov-txt-fr">République Algérienne Démocratique et Populaire</div>
+            <p style="margin-top: 4px; font-weight:700; font-family:var(--font-ar); color:var(--primary-deep);">وزارة التكوين والتعليم المهنيين</p>
+        </div>
+
+        <div class="cover-center">
+            <div class="module-label">التخصص</div>
+            <div class="module-number">01</div>
+            <div class="divider-ochre"></div>
+            <div class="title-ar">الخياطة النسائية — التقني السامي في تصميم وصناعة الملابس</div>
+            <div class="title-fr">Couture Dame — Tailleur Dames (Technicien Supérieur)</div>
+
+            <div class="meta-block">
+                <div class="meta-row"><span class="meta-label">التخصص :</span><span class="meta-val">التقني السامي في تصميم و صناعة الملابس — Tailleur Dames</span></div>
+                <div class="meta-row"><span class="meta-label">المستوى :</span><span class="meta-val">التقني السامي — Technicien Supérieur (Niveau IV)</span></div>
+                <div class="meta-row"><span class="meta-label">رمز التخصص :</span><span class="meta-val" style="direction:ltr;">HTE1204</span></div>
+                <div class="meta-row"><span class="meta-label">الإطار البيداغوجي :</span><span class="meta-val">المنهجية المبنية على الكفاءات — Approche Par Compétences (APC)</span></div>
+            </div>
+        </div>
+
+        <div class="cover-bottom">
+            <div class="author-label">إعداد الطالب</div>
+            <div class="author-name-ar">وعيل فتيحة</div>
+            <div class="author-name-fr">Ouail Fatiha</div>
+            <div class="doc-type">Rapport Pédagogique — تقرير بيداغوجي</div>
+            <div class="year">2025 / 2026</div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================ TABLE OF CONTENTS ============================ -->
+<div class="toc-page">
+    <div class="toc-header">
+        <div class="toc-title-ar">فهرس المحتويات</div>
+        <div class="toc-title-fr">Table des Matières</div>
+    </div>
+    <ul class="toc-list">
+        
+        <li class="toc-item">
+            <span class="toc-num">1</span>
+            <span class="toc-text">مقدمة عامة في تخصص الخياطة النسائية<span class="toc-fr">Introduction Générale à la Spécialité</span></span>
+            <span class="toc-page-num">3</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">2</span>
+            <span class="toc-text">الإطار الرسمي للمنهاج و البنية المؤسسية<span class="toc-fr">Cadre Officiel et Structure Institutionnelle</span></span>
+            <span class="toc-page-num">4</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">3</span>
+            <span class="toc-text">المصفوفة الشاملة للوحدات التكوينية<span class="toc-fr">Matrice Globale des Modules de Formation</span></span>
+            <span class="toc-page-num">6</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">4</span>
+            <span class="toc-text">المنهجية المبنية على الكفاءات (APC)<span class="toc-fr">Approche Par Compétences</span></span>
+            <span class="toc-page-num">8</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">5</span>
+            <span class="toc-text">التوزيع الفصلي و الغلاف الزمني الإجمالي<span class="toc-fr">Répartition Semestrielle et Volume Horaire</span></span>
+            <span class="toc-page-num">10</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">6</span>
+            <span class="toc-text">الكفاءة الشاملة و الأهداف الوسيطة<span class="toc-fr">Compétence Globale et Objectifs Intermédiaires</span></span>
+            <span class="toc-page-num">12</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">7</span>
+            <span class="toc-text">أنشطة الورشة و الأعمال التطبيقية (TP)<span class="toc-fr">Travaux Pratiques en Atelier</span></span>
+            <span class="toc-page-num">14</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">8</span>
+            <span class="toc-text">التقييم و المراقبة المستمرة و الامتحانات<span class="toc-fr">Évaluation et Examens Officiels</span></span>
+            <span class="toc-page-num">16</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">9</span>
+            <span class="toc-text">آفاق الإدراج المهني و سوق الشغل الجزائري<span class="toc-fr">Insertion Professionnelle et Marché de l'Emploi</span></span>
+            <span class="toc-page-num">18</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">10</span>
+            <span class="toc-text">معجم المصطلحات التقنية<span class="toc-fr">Glossaire Technique Bilingue</span></span>
+            <span class="toc-page-num">20</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">11</span>
+            <span class="toc-text">تمارين تطبيقية و دراسات حالة<span class="toc-fr">Exercices Pratiques et Études de Cas</span></span>
+            <span class="toc-page-num">22</span>
+        </li>
+    </ul>
+</div>
+<div class="page">
+<div class="section-header">
+    <span class="sec-num">1</span><span class="sec-title-ar">مقدمة عامة في تخصص الخياطة النسائية</span>
+    <span class="sec-title-fr">Introduction Générale à la Spécialité</span>
+</div>
+
+
+<p>يُعدّ تخصص <span class="fr">Tailleur Dames (Couture Dame)</span> من أعرق التخصصات المهنية في الجزائر، إذ يجمع بين الأصالة الحرفية المرتبطة بالتراث الوطني في صناعة الألبسة النسائية، والحداثة الصناعية القائمة على المنهجيات العلمية في النمذجة والتدريج والتصنيع. ويُؤهّل هذا التخصص، الذي يُنسّق عبر المعهد الوطني للتكوين والتعليم المهنيين <span class="fr">(INSFP — Kaci Taher)</span> تحت الرمز <span class="fr">HTE1204</span>، المتدرّب للحصول على شهادة التقني السامي <span class="fr">(Brevet de Technicien — BT, Niveau IV)</span> بعد إتمام مسار تكويني ممتد عبر أربعة فصول دراسية.</p>
+
+<p>يهدف هذا الدليل الشامل إلى تقديم رؤية بانورامية شاملة لكل المكوّنات البيداغوجية والتقنية والمهنية التي يتضمّنها التخصص، بحيث يكون بمثابة خارطة طريق للمتدرّب منذ اللحظة الأولى لتسجيله في المعهد وحتى إدماجه الفعلي في سوق الشغل الجزائري. لا يُغفل هذا التقرير الإشارة إلى السياق الاقتصادي الوطني الذي يُؤطّر التخصص، حيث تشهد صناعة الألبسة في الجزائر تحوّلاً استراتيجياً نحو الإنتاج المحلي والاستيراد الانتقائي، وهو ما يُضفي على مهارات التقني السامي قيمة مضافة حقيقية.</p>
+
+<p>يستند التخصص في تصميمه البيداغوجي إلى مرجعية قانونية واضحة، تتمثّل في المنشورات الوزارية لوزارة التكوين والتعليم المهنيين <span class="fr">(MFEP)</span>، وفي المرجعية العامة للشهادات المهنية المعتمدة من قبل اللجنة التقنية للتأهيل <span class="fr">(Comité Technique d'Homologation)</span>، وفي المعايير الجزائرية المُسجّلة لدى المعهد الجزائري للمعايير <span class="fr">(IANOR)</span> المتعلقة بالمقاسات والتسامُح والجودة. كما يستوعب التخصص التحولات الرقمية الأخيرة من خلال دمج أنظمة التصميم بمساعدة الحاسوب <span class="fr">(CAO/FAO — Lectra, Gerber, Optitex)</span> ضمن الوحدات التطبيقية.</p>
+
+
+<div class="quote-block">إن صناعة الملابس في الجزائر ليست مجرد نشاط اقتصادي، بل هي تعبير عن هوية وطنية متجذّرة في الذاكرة الجماعية، تجمع بين الرّوح الحرفية والكفاءة الصناعية.<span class="quote-author">— وزارة التكوين والتعليم المهنيين — المنشور التوجيهي 2023</span></div>
+
+
+<div class="section-header">
+    <span class="sec-num">2</span><span class="sec-title-ar">الإطار الرسمي للمنهاج و البنية المؤسسية</span>
+    <span class="sec-title-fr">Cadre Officiel et Structure Institutionnelle</span>
+</div>
+
+
+<p>يُؤطَّر تخصص الخياطة النسائية في الجزائر ضمن منظومة مؤسسية متكاملة تضم وزارة التكوين والتعليم المهنيين <span class="fr">(MFEP)</span> كهيئة إشرافية عليا، والمعهد الوطني للتكوين والتعليم المهنيين <span class="fr">(INSFP — Kaci Taher)</span> كمعهد وطني مرجعي مُكلَّف بإعداد البرامج وهيكلة المناهج، إضافة إلى شبكة من المعاهد والتخصصات الجهوية المتوزّعة عبر ولايات الوطن. تضمن هذه البنية اللامركزية قُرب التكوين من النسيج الاقتصادي المحلي، مع توحيد مرجعي للمحتوى البيداغوجي والمخرجات المهنية.</p>
+
+
+<div class="subsection">
+    <div class="subsection-title">الهيكل الرسمي للمنظومة <span class="sub-fr">— Structure Officielle du Système</span></div>
+</div>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>المستوى الإداري<span class="th-fr">Niveau Administratif</span></th><th>المؤسسة<span class="th-fr">Établissement</span></th><th>الدور الأساسي<span class="th-fr">Rôle Principal</span></th></tr></thead>
+        <tbody><tr><td>الإشراف الوزاري</td><td>وزارة التكوين والتعليم المهنيين (MFEP)</td><td>رسم السياسات القطاعية، إقرار البرامج الوطنية، ضمان التمويل</td></tr><tr><td>المعهد المرجعي الوطني</td><td>INSFP — Kaci Taher (الجزائر العاصمة)</td><td>إعداد البرامج، تأهيل المُدرّبين، اعتماد المراجع البيداغوجية</td></tr><tr><td>المعاهد الجهوية</td><td>معاهد التكوين المهني على المستوى الولائي</td><td>تنفيذ البرامج التكوينية، تنظيم الامتحانات، التأطير المباشر</td></tr><tr><td>الورشات التطبيقية</td><td>Ateliers d'Application (داخل المعاهد)</td><td>الأعمال التطبيقية (TP)، محاكاة بيئة العمل الصناعي</td></tr><tr><td>مؤسسات الاستقبال</td><td>مؤسسات الألبسة الجزائرية (ETE, SGP Textile)</td><td>التدريب الميداني، التربص المهني (Stage en Entreprise)</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 1: البنية المؤسسية لتخصص الخياطة النسائية في الجزائر <span class="cap-fr">Tableau 1: Structure institutionnelle de la spécialité Tailleur Dames en Algérie</span></div>
+</div>
+
+
+<p>يخضع التخصص لتأطير قانوني صارم يضمن تطابقه مع متطلبات سوق العمل الوطني. فالمنشور الوزاري رقم 23/MFEP/INSFP الصادر في 2023 يُحدّد بدقة الفئة المستهدفة (المتدرّبون الحاصلون على مستوى السنة الثالثة ثانوي)، ومسار التكوين (24 شهراً موزّعة على 4 فصول دراسية)، إضافة إلى شروط الالتحاق وآليات التقييم النهائي. كما يُلزم المنشور المؤسسات التكوينية بتطبيق المنهجية المبنية على الكفاءات <span class="fr">(APC — Approche Par Compétences)</span> التي تشكّل العمود الفقري للمنظومة البيداغوجية الجزائرية.</p>
+
+
+<div class="callout ">
+    <div class="callout-title"><span class="icon">★</span>القاعدة المرجعية الذهبية</div>
+    <p>كل وحدة تكوينية في تخصص الخياطة النسائية تُصاغ وفق ثلاثية المنهجية <strong>APC</strong>: (1) <strong>الكفاءة الشاملة</strong> <span class="fr">(Compétence Globale)</span> التي تُعبّر عن السلوك المهني المنتظر من التقني. (2) <strong>الأهداف الوسيطة</strong> <span class="fr">(Objectifs Intermédiaires)</span> التي تُفكّك الكفاءة إلى مهام قابلة للقياس. (3) <strong>معايير الأداء</strong> <span class="fr">(Critères de Performance)</span> التي تُحدّد شروط النجاح بدقة قابلة للتقييم.</p>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">3</span><span class="sec-title-ar">المصفوفة الشاملة للوحدات التكوينية</span>
+    <span class="sec-title-fr">Matrice Globale des Modules de Formation</span>
+</div>
+
+
+<p>يُبنى تخصص <span class="fr">Tailleur Dames</span> وفق مصفوفة بيداغوجية شاملة تضم 21 وحدة تكوينية، مقسّمة إلى مجموعتين رئيسيتين: <strong>الوحدات المؤهِّلة</strong> <span class="fr">(Modules Qualifiants — MQ)</span> التي تُغطّي الكفاءات المهنية الأساسية المرتبطة مباشرة بممارسة المهنة (13 وحدة)، و<strong>الوحدات المكمّلة</strong> <span class="fr">(Modules Complémentaires — MC)</span> التي تُؤمّن المعارف العامة والتقنية المساندة (8 وحدات). هذا التوزيع المتوازن يضمن تكاملاً عضوياً بين الجانب التطبيقي والجانب النظري، ويُعكس الفلسفة الجزائرية للتكوين المهني القائمة على التناوب الدائم بين الورشة والمدرسة.</p>
+
+
+<div class="subsection">
+    <div class="subsection-title">الوحدات المؤهِّلة (MQ) — الكفاءات المهنية الأساسية <span class="sub-fr">— Modules Qualifiants</span></div>
+</div>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>الرمز<span class="th-fr">Code</span></th><th>عنوان الوحدة<span class="th-fr">Intitulé du Module</span></th><th>الغلاف الزمني<span class="th-fr">Durée (heures)</span></th></tr></thead>
+        <tbody><tr><td class="num">MQ1</td><td>تصميم النموذج — الملابس <span class="fr">Conception du modèle</span></td><td class="num">102</td></tr><tr><td class="num">MQ2</td><td>بناء البترونات الأساسية <span class="fr">Construction des patrons de base</span></td><td class="num">136</td></tr><tr><td class="num">MQ3</td><td>تحويل البترونات الأساسية <span class="fr">Transformation des patrons</span></td><td class="num">136</td></tr><tr><td class="num">MQ4</td><td>تدريج الملابس النسائية <span class="fr">Gradation vêtements dames</span></td><td class="num">112</td></tr><tr><td class="num">MQ5</td><td>تقنيات الخياطة والتجميع <span class="fr">Techniques de confection</span></td><td class="num">136</td></tr><tr><td class="num">MQ6</td><td>تصنيع النموذج الأول — التنورة <span class="fr">Fabrication prototype jupe</span></td><td class="num">119</td></tr><tr><td class="num">MQ7</td><td>تصنيع النموذج الأول — البنطلون <span class="fr">Fabrication prototype pantalon</span></td><td class="num">103</td></tr><tr><td class="num">MQ8</td><td>تصنيع النموذج الأول — الصدرية <span class="fr">Fabrication prototype gilet</span></td><td class="num">103</td></tr><tr><td class="num">MQ9</td><td>تصنيع النموذج الأول — السترة <span class="fr">Fabrication prototype veste</span></td><td class="num">136</td></tr><tr><td class="num">MQ10</td><td>تصنيع النموذج الأول — المعطف <span class="fr">Fabrication prototype manteau</span></td><td class="num">120</td></tr><tr><td class="num">MQ11</td><td>التشطيبات النهائية للملابس <span class="fr">Finitions vêtements</span></td><td class="num">120</td></tr><tr><td class="num">MQ12</td><td>تعديل الملابس حسب البنية <span class="fr">Retouche vêtements</span></td><td class="num">88</td></tr><tr><td class="num">MQ13</td><td>البيع والخياطة حسب القياس <span class="fr">Vente et confection sur mesure</span></td><td class="num">104</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 2: الوحدات المؤهِّلة (MQ1 — MQ13) — مجموع 1415 ساعة تكوينية <span class="cap-fr">Tableau 2: Modules qualifiants — Total 1415 heures</span></div>
+</div>
+
+
+<div class="subsection">
+    <div class="subsection-title">الوحدات المكمّلة (MC) — المعارف المساندة <span class="sub-fr">— Modules Complémentaires</span></div>
+</div>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>الرمز<span class="th-fr">Code</span></th><th>عنوان الوحدة<span class="th-fr">Intitulé du Module</span></th><th>الغلاف الزمني<span class="th-fr">Durée (heures)</span></th></tr></thead>
+        <tbody><tr><td class="num">MC1</td><td>التكنولوجيا النسيجية <span class="fr">Technologie textiles</span></td><td class="num">68</td></tr><tr><td class="num">MC2</td><td>تكنولوجيا الآلات <span class="fr">Technologie machines</span></td><td class="num">111</td></tr><tr><td class="num">MC3</td><td>الرسم التقني <span class="fr">Dessin technique</span></td><td class="num">120</td></tr><tr><td class="num">MC4</td><td>الرياضيات التطبيقية <span class="fr">Mathématiques</span></td><td class="num">103</td></tr><tr><td class="num">MC5</td><td>التسويق والمقاولاتية <span class="fr">Marketing / Entrepreneuriat</span></td><td class="num">77</td></tr><tr><td class="num">MC6</td><td>الإعلام الآلي <span class="fr">Informatique</span></td><td class="num">85</td></tr><tr><td class="num">MC7</td><td>النظافة والسلامة والبيئة <span class="fr">Hygiène, sécurité et environnement</span></td><td class="num">54</td></tr><tr><td class="num">MC8</td><td>تقنيات التعبير <span class="fr">Techniques d'expression</span></td><td class="num">27</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 3: الوحدات المكمّلة (MC1 — MC8) — مجموع 645 ساعة تكوينية <span class="cap-fr">Tableau 3: Modules complémentaires — Total 645 heures</span></div>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">4</span><span class="sec-title-ar">المنهجية المبنية على الكفاءات (APC)</span>
+    <span class="sec-title-fr">Approche Par Compétences</span>
+</div>
+
+
+<p>تُمثّل المنهجية المبنية على الكفاءات <span class="fr">(APC — Approche Par Compétence)</span> الإطار البيداغوجي الرسمي المعتمد في كل برامج التكوين المهني الجزائرية منذ منشور 2008 الوزاري. تنطلق هذه المنهجية من تحليل دقيق لمهام المهنة في بيئة عمل حقيقية، تُترجم لاحقاً إلى كفاءات قابلة للقياس، ثم تُفكَّك إلى أهداف وسيطة تُبنى حولها الوحدات التكوينية. الفلسفة الجوهرية لهذا النهج تتمثّل في أن <strong>المتدرّب لا يُقيَّم بما يعرفه بل بما يستطيع إنجازه في وضعية مهنية حقيقية</strong>.</p>
+
+
+<div class="subsection">
+    <div class="subsection-title">المراحل الأربع لبناء برنامج APC <span class="sub-fr">— Les Quatre Étapes de la Construction APC</span></div>
+</div>
+
+
+<div class="flowchart">
+    
+    
+        <div class="flow-step">
+            <div class="step-num">1</div>
+            <div class="step-text">تحليل المهنة في بيئة العمل الحقيقية عبر ملاحظة المهنيين العاملين وتوثيق مهامهم<span class="step-fr">Analyse de la situation de travail</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">2</div>
+            <div class="step-text">استخراج الكفاءات من المهام المُحلَّلة عبر ورشات تشاركية مع المهنيين<span class="step-fr">Extraction des compétences à partir des tâches</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">3</div>
+            <div class="step-text">هيكلة الوحدات التكوينية وتعريف الأهداف الوسيطة ومعايير الأداء<span class="step-fr">Structuration des modules de formation</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">4</div>
+            <div class="step-text">بناء أدوات التقييم وآليات المراقبة المتوافقة مع معايير الأداء<span class="step-fr">Construction des outils d'évaluation</span></div>
+        </div>
+</div>
+
+
+<p>تُلزم <span class="fr">APC</span> المُدرّب بدور جديد، لم يعد فيه ناقلاً سلبياً للمعرفة، بل مُيسّراً للتعلّم ومُرشداً للمتدرّب نحو بناء كفاءاته الخاصة عبر وضعيات محاكاة قريبة من بيئة العمل. هذا التحوّل الجذري في الأدوار يتطلّب من المعاهد الجزائرية تأهيلاً مُستمراً للمُدرّبين، وهو ما يُؤمّنه المعهد الوطني عبر برامج تكوين المُدرّبين <span class="fr">(Formateurs de Formateurs)</span> المنتظمة.</p>
+
+
+<div class="callout callout-emerald">
+    <div class="callout-title"><span class="icon">✓</span>مبدأ APC المحوري</div>
+    <p>كل كفاءة مُستهدفة في تخصص <span class="fr">Tailleur Dames</span> يجب أن تُصاغ بصيغة سلوك منتظر قابل للملاحظة والقياس: <em>« في نهاية الوحدة، يكون المتدرّب قادراً على [إنجاز مهمة محددة] انطلاقاً من [موارد معطاة] وفق [معايير أداء دقيقة »</em>. هذه الصياغة الصارمة هي ما يميّز <span class="fr">APC</span> عن المنهجيات التقليدية القائمة على نقل المضمون.</p>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">5</span><span class="sec-title-ar">التوزيع الفصلي و الغلاف الزمني الإجمالي</span>
+    <span class="sec-title-fr">Répartition Semestrielle et Volume Horaire</span>
+</div>
+
+
+<p>يمتد التكوين في تخصص <span class="fr">Tailleur Dames</span> على مدى <strong>24 شهراً</strong> موزّعة على <strong>أربعة فصول دراسية</strong> <span class="fr">(Semestres pédagogiques)</span>، بإجمالي زمني قدره <strong>2448 ساعة تكوينية</strong>، بمعدل <strong>36 ساعة أسبوعياً</strong> خلال 68 أسبوعاً تكوينياً فعلياً. يُخصَّص من هذا الغلاف الزمني <strong>288 ساعة (12 أسبوعاً)</strong> للتربص المهني في المؤسسات الاقتصادية، وهو عنصر جوهري يربط التكوين النظري بالممارسة الميدانية ويُهيّئ المتدرّب للإدماج المهني المباشر بعد التخرّج.</p>
+
+<div class="stat-row">
+        <div class="stat-card">
+            <div class="stat-num">2448 ساعة</div>
+            <div class="stat-label">الغلاف الزمني الإجمالي<span class="fr">Volume horaire global</span></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">4 فصول</div>
+            <div class="stat-label">المدة الزمنية للتخصص<span class="fr">Durée du cursus</span></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">21 وحدة</div>
+            <div class="stat-label">الوحدات التكوينية<span class="fr">Modules de formation</span></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">288 ساعة</div>
+            <div class="stat-label">التربص المهني<span class="fr">Stage en entreprise</span></div>
+        </div></div>
+
+<div class="subsection">
+    <div class="subsection-title">التوزيع التفصيلي حسب الفصول <span class="sub-fr">— Répartition Détaillée par Semestre</span></div>
+</div>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>الفصل<span class="th-fr">Semestre</span></th><th>الوحدات المُغطّاة<span class="th-fr">Modules Couverts</span></th><th>الساعات<span class="th-fr">Heures</span></th><th>التركيز البيداغوجي<span class="th-fr">Focus Pédagogique</span></th></tr></thead>
+        <tbody><tr><td class="num">الفصل 1</td><td>MQ1, MQ2, MQ5, MC1, MC2, MC3, MC4, MC7</td><td class="num">612</td><td>التأسيس النظري والتطبيقي — قواعد النمذجة والخياطة</td></tr><tr><td class="num">الفصل 2</td><td>MQ3, MQ4, MQ6, MQ7, MC5, MC6, MC8</td><td class="num">612</td><td>تعميق الكفاءات — تحويل البترونات والنماذج الأولية</td></tr><tr><td class="num">الفصل 3</td><td>MQ8, MQ9, MQ10, MQ11 + بداية التربص</td><td class="num">612</td><td>إتقان القطع المعقدة — السترة والمعطف والتشطيبات</td></tr><tr><td class="num">الفصل 4</td><td>MQ12, MQ13 + التربص المكثّف</td><td class="num">612</td><td>التخصص النهائي — التعديل والبيع والإدماج المهني</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 4: التوزيع الفصلي للوحدات التكوينية بمعدل 612 ساعة لكل فصل دراسي <span class="cap-fr">Tableau 4: Répartition semestrielle — 612 heures par semestre</span></div>
+</div>
+
+
+<div class="chart-card">
+    <div class="chart-title">توزيع الغلاف الزمني حسب فئات الوحدات</div>
+    <div class="chart-subtitle">Répartition du Volume Horaire par Catégorie de Modules</div>
+    <svg class="chart-svg" style="direction: ltr;" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+        <line x1="55" y1="25.0" x2="585" y2="25.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="28.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">1698</text><line x1="55" y1="90.0" x2="585" y2="90.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="93.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">1274</text><line x1="55" y1="155.0" x2="585" y2="155.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="158.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">849</text><line x1="55" y1="220.0" x2="585" y2="220.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="223.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">424</text><line x1="55" y1="285.0" x2="585" y2="285.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="288.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">0</text>
+        <line x1="55" y1="25" x2="55" y2="285" stroke="#1F2937" stroke-width="0.8"/><line x1="55" y1="285" x2="585" y2="285" stroke="#1F2937" stroke-width="0.8"/>
+        <rect x="101.66666666666666" y="68.33333333333331" width="50" height="216.66666666666669" fill="#064e3b" rx="1.5"/><rect x="198.33333333333331" y="186.23674911660777" width="50" height="98.76325088339222" fill="#b45309" rx="1.5"/><rect x="295.0" y="240.90106007067138" width="50" height="44.09893992932862" fill="#064e3b" rx="1.5"/><rect x="391.66666666666663" y="272.7502944640754" width="50" height="12.249705535924617" fill="#b45309" rx="1.5"/><rect x="488.33333333333326" y="281.9375736160188" width="50" height="3.0624263839811543" fill="#064e3b" rx="1.5"/>
+        <text x="126.66666666666666" y="64.33333333333331" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">1415 س</text><text x="223.33333333333331" y="182.23674911660777" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">645 س</text><text x="320.0" y="236.90106007067138" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">288 س</text><text x="416.66666666666663" y="268.7502944640754" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">80 س</text><text x="513.3333333333333" y="277.9375736160188" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">20 س</text>
+        <text x="126.66666666666666" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">وحدات مؤهِّلة</text><text x="126.66666666666666" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Modules Qualifiants</text><text x="223.33333333333331" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">وحدات مكمّلة</text><text x="223.33333333333331" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Modules Complémentaires</text><text x="320.0" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">تربص مهني</text><text x="320.0" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Stage en Entreprise</text><text x="416.66666666666663" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">أعمال تطبيقية</text><text x="416.66666666666663" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Travaux Pratiques</text><text x="513.3333333333333" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">تقييم وامتحانات</text><text x="513.3333333333333" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Évaluation et Examens</text>
+    </svg>
+    <div class="chart-caption">الشكل 2: التوزيع الزمني للساعات التكوينية حسب الفئات (إجمالي 2448 ساعة) <span class="cap-fr">Figure 2: Répartition horaire par catégorie (Total 2448 heures)</span></div>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">6</span><span class="sec-title-ar">الكفاءة الشاملة و الأهداف الوسيطة</span>
+    <span class="sec-title-fr">Compétence Globale et Objectifs Intermédiaires</span>
+</div>
+
+
+<p>تتمحور الكفاءة الشاملة <span class="fr">(Compétence Globale)</span> لتخصص <span class="fr">Tailleur Dames</span> حول قدرة التقني السامي على <strong>تصميم وصناعة وتعديل الملابس النسائية بمختلف أنواعها</strong>، انطلاقاً من نموذج أولي أو طلب زبون، مع احترام معايير الجودة الجزائرية والدولية، وفي الآجال المحددة. تُترجم هذه الكفاءة الشاملة إلى مجموعة من الأهداف الوسيطة <span class="fr">(Objectifs Intermédiaires)</span> تتوزّع على الوحدات المؤهِّلة، كل هدف منها قابل للقياس عبر معايير أداء محدّدة بدقة في الوثائق الرسمية للمنهاج.</p>
+
+
+<div class="subsection">
+    <div class="subsection-title">نماذج من الأهداف الوسيطة ومعايير الأداء <span class="sub-fr">— Exemples d'Objectifs Intermédiaires</span></div>
+</div>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>الهدف الوسيط<span class="th-fr">Objectif Intermédiaire</span></th><th>معايير الأداء الأساسية<span class="th-fr">Critères de Performance</span></th></tr></thead>
+        <tbody><tr><td>أخذ القياسات اللازمة للخياطة <span class="fr">Effectuer la prise des mesures</span></td><td>سلامة وضع شريط القياس، الدقة في القراءة، اعتماد وضعية عمل مناسبة</td></tr><tr><td>بناء بترونات التنورة والبنطلون <span class="fr">Construire jupes et pantalons</span></td><td>تطبيق صحيح لطريقة البناء، دقة الرسم، احترام القياسات</td></tr><tr><td>تنفيذ عمليات التدريج <span class="fr">Réaliser la gradation</span></td><td>احترام الأشكال والنسب، إسناد صحيح للأبعاد، نقاوة الرسم</td></tr><tr><td>خياطة الجيوب والياقات <span class="fr">Confectionner poches et cols</span></td><td>نظافة ودقة الغرز، احترام مراحل التنفيذ، النظافة العامة للعمل</td></tr><tr><td>التحكّم في المكوكات الصناعية <span class="fr">Maîtriser les machines industrielles</span></td><td>استعمال مناسب للآلة، ضبط التوتر، احترام قواعد السلامة</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 5: نماذج من الأهداف الوسيطة ومعايير الأداء المعتمدة في المنهاج الرسمي <span class="cap-fr">Tableau 5: Exemples d'objectifs intermédiaires et critères de performance</span></div>
+</div>
+
+
+<div class="chart-card">
+    <div class="chart-title">توزيع معايير الأداء حسب الأبعاد</div>
+    <div class="chart-subtitle">Répartition des Critères de Performance par Dimension</div>
+    <svg class="chart-svg" style="direction: ltr;" viewBox="0 0 580 300" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 160.0 45.0 A 100 100 0 0 1 240.90169943749476 203.7785252292473 L 204.4959346906221 177.32818887608602 A 55 55 0 0 0 160.0 90.0 Z" fill="#0F4D3A" stroke="#FFFFFF" stroke-width="1.2"/><path d="M 240.90169943749476 203.7785252292473 A 100 100 0 0 1 101.2214747707527 225.90169943749476 L 127.67181112391398 189.4959346906221 A 55 55 0 0 0 204.4959346906221 177.32818887608602 Z" fill="#1B6B52" stroke="#FFFFFF" stroke-width="1.2"/><path d="M 101.2214747707527 225.90169943749476 A 100 100 0 0 1 61.77127492713112 126.26186854142762 L 105.97420120992211 134.69402769778517 A 55 55 0 0 0 127.67181112391398 189.4959346906221 Z" fill="#C2932E" stroke="#FFFFFF" stroke-width="1.2"/><path d="M 61.77127492713112 126.26186854142762 A 100 100 0 0 1 101.2214747707526 64.09830056250532 L 127.67181112391393 100.50406530937792 A 55 55 0 0 0 105.97420120992211 134.69402769778517 Z" fill="#7BA38A" stroke="#FFFFFF" stroke-width="1.2"/><path d="M 101.2214747707526 64.09830056250532 A 100 100 0 0 1 159.99999999999997 45.0 L 160.0 90.0 A 55 55 0 0 0 127.67181112391393 100.50406530937792 Z" fill="#D4B36A" stroke="#FFFFFF" stroke-width="1.2"/>
+        <text x="160" y="143" font-family="Inter" font-size="20" font-weight="900" fill="#022c22" text-anchor="middle">100%</text><text x="160" y="159" font-family="Cairo" font-size="9" fill="#6B7280" text-anchor="middle">معايير الأداء</text>
+        <rect x="290" y="20" width="12" height="12" fill="#0F4D3A" rx="1.5"/><text x="308" y="30" font-family="Cairo" font-size="9" fill="#1F2937">الدقة التقنية — 35.0%</text><text x="308" y="40" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Précision technique</text><rect x="290" y="40" width="12" height="12" fill="#1B6B52" rx="1.5"/><text x="308" y="50" font-family="Cairo" font-size="9" fill="#1F2937">جودة المنتج — 25.0%</text><text x="308" y="60" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Qualité produit</text><rect x="290" y="60" width="12" height="12" fill="#C2932E" rx="1.5"/><text x="308" y="70" font-family="Cairo" font-size="9" fill="#1F2937">احترام الآجال — 18.0%</text><text x="308" y="80" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Respect délais</text><rect x="290" y="80" width="12" height="12" fill="#7BA38A" rx="1.5"/><text x="308" y="90" font-family="Cairo" font-size="9" fill="#1F2937">السلامة المهنية — 12.0%</text><text x="308" y="100" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Sécurité professionnelle</text><rect x="290" y="100" width="12" height="12" fill="#D4B36A" rx="1.5"/><text x="308" y="110" font-family="Cairo" font-size="9" fill="#1F2937">التنظيم والنظافة — 10.0%</text><text x="308" y="120" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Organisation et propreté</text>
+    </svg>
+    <div class="chart-caption">الشكل 1: التوزيع النسبي لمعايير الأداء وفق المرجعية البيداغوجية الوطنية <span class="cap-fr">Figure 1: Répartition relative des critères de performance selon la référence pédagogique nationale</span></div>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">7</span><span class="sec-title-ar">أنشطة الورشة و الأعمال التطبيقية (TP)</span>
+    <span class="sec-title-fr">Travaux Pratiques en Atelier</span>
+</div>
+
+
+<p>تحظى الأنشطة التطبيقية <span class="fr">(Travaux Pratiques — TP)</span> بحصّة الأسد في تخصّص <span class="fr">Tailleur Dames</span>، إذ تُمثّل أكثر من 60% من الغلاف الزمني الإجمالي. تُنجز هذه الأعمال في ورشات تطبيقية مجهّزة بمعدات صناعية حقيقية، تُحاكي بيئة العمل في المؤسسات النسيجية، وهو ما يُسهّل الانتقال من المدرسة إلى الورشة. تُؤمّن المعاهد الجزائرية في كل ورشة تجهيزات أساسية تشمل آلات الخياطة الصناعية <span class="fr">(Piqueuses plates)</span>، آلات السحابة <span class="fr">(Surjeteuses)</span>، آلات التغطية <span class="fr">(Recouvreuses)</span>، طاولات القص، المانيكانات بمختلف المقاسات، وأنظمة البخار للكي.</p>
+
+
+<div class="subsection">
+    <div class="subsection-title">نموذج لورشة تطبيقية: تصميم وتصنيع تنورة أساسية <span class="sub-fr">— Atelier Type: Conception et Fabrication d'une Jupe de Base</span></div>
+</div>
+
+
+<div class="flowchart">
+    
+    
+        <div class="flow-step">
+            <div class="step-num">1</div>
+            <div class="step-text">تحليل الطلب وتحديد المواد الأولية اللازمة (القماش، الخيط، السحّاب، الزر)<span class="step-fr">Analyse de la demande</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">2</div>
+            <div class="step-text">أخذ قياسات الزبونة وتحليل البنية المورفولوجية<span class="step-fr">Prise de mesures</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">3</div>
+            <div class="step-text">بناء البترون الأساسي للتنورة على الورق<span class="step-fr">Construction du patron</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">4</div>
+            <div class="step-text">قص القماش مع احترام اتجاه السداء وقيم الخياطة<span class="step-fr">Coupe du tissu</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">5</div>
+            <div class="step-text">تجميع أولي للتجربة قبل التثبيت النهائي<span class="step-fr">Montage provisoire</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">6</div>
+            <div class="step-text">إجراء التعديلات اللازمة بعد القياس التجريبي<span class="step-fr">Essayage et retouches</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">7</div>
+            <div class="step-text">التجميع النهائي والتشطيبات (السحّاب، الحاشية، الكي)<span class="step-fr">Assemblage final et finitions</span></div>
+        </div>
+</div>
+
+
+<p>... يجب على المتدرّب الوصول إلى مستوى الإنجاز الكامل في 80% على الأقل من الأعمال التطبيقية لاجتياز الوحدة بنجاح، وهو شرط أساسي للتقدّم نحو الوحدات الأكثر تعقيداً.</p>
+
+
+<div class="section-header">
+    <span class="sec-num">8</span><span class="sec-title-ar">التقييم و المراقبة المستمرة و الامتحانات</span>
+    <span class="sec-title-fr">Évaluation et Examens Officiels</span>
+</div>
+
+
+<p>يعتمد نظام التقييم في تخصص <span class="fr">Tailleur Dames</span> على آلية مزدوجة تجمع بين <strong>المراقبة المستمرة</strong> <span class="fr">(Contrôle Continu — CC)</span> و<strong>الامتحان النهائي</strong> <span class="fr">(Examen Final)</span> لكل وحدة تكوينية. تُخصَّص للمراقبة المستمرة <strong>40%</strong> من العلامة النهائية، موزّعة بين الأعمال التطبيقية (25%) والاختبارات الكتابية القصيرة (15%)، بينما يُحسب الامتحان النهائي بنسبة <strong>60%</strong>. هذا التوازن يضمن أن المتدرّب لا يكتفي بحفظ المعلومات النظرية، بل يُثبت كفاءته المهنية في وضعيات حقيقية.</p>
+
+
+<div class="subsection">
+    <div class="subsection-title">معايير التقييم الرسمية للوحدات المؤهِّلة <span class="sub-fr">— Critères d'Évaluation des Modules Qualifiants</span></div>
+</div>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>البند<span class="th-fr">Élément</span></th><th>الوزن<span class="th-fr">Pondération</span></th><th>طريقة الإنجاز<span class="th-fr">Modalité</span></th></tr></thead>
+        <tbody><tr><td>الإنجاز العملي في الورشة <span class="fr">Réalisation pratique</span></td><td class="num">30%</td><td>تقييم مباشر أثناء TP بمقياس زمني محدد</td></tr><tr><td>جودة المنتج النهائي <span class="fr">Qualité du produit</span></td><td class="num">20%</td><td>فحص المنتج وفق شبكة معايير الجودة</td></tr><tr><td>اختبار كتابي قصير <span class="fr">Test écrit court</span></td><td class="num">15%</td><td>أسئلة موضوعية حول المفاهيم التقنية</td></tr><tr><td>الامتحان النهائي التطبيقي <span class="fr">Examen final pratique</span></td><td class="num">35%</td><td>إنجاز منتج كامل في زمن محدد (4-6 ساعات)</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 6: شبكة التقييم الرسمية المعتمدة في الوحدات المؤهِّلة <span class="cap-fr">Tableau 6: Grille d'évaluation officielle des modules qualifiants</span></div>
+</div>
+
+
+<div class="callout callout-emerald">
+    <div class="callout-title"><span class="icon">!</span>شروط اجتياز الوحدات و الانتقال بين الفصول</div>
+    <p>يُعتبر المتدرّب ناجحاً في الوحدة إذا تحصّل على <strong>على الأقل 10/20</strong> كعلامة نهائية، مع ضرورة تحقيق <strong>العلامة الدنيا 8/20</strong> في مكوّن الإنجاز العملي. الانتقال من فصل إلى آخر يتطلّب النجاح في <strong>75% من الوحدات على الأقل</strong>، مع إمكانية اجتياز امتحانات الاستدراك <span class="fr">(Rattrapage)</span> للوحدات المتبقية في بداية الفصل الموالي. الفصل الذي يُخفق فيه المتدرّب في أكثر من وحدتين مؤهِّلتين يُؤدّي إلى <strong>إعادة السنة كاملة</strong> وفق المنشور الوزاري رقم 21/MFEP.</p>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">9</span><span class="sec-title-ar">آفاق الإدراج المهني و سوق الشغل الجزائري</span>
+    <span class="sec-title-fr">Insertion Professionnelle et Marché de l'Emploi</span>
+</div>
+
+
+<p>يُفتح تخصص <span class="fr">Tailleur Dames</span> أمام المتخرّجين آفاقاً مهنية متنوّعة في المشهد الاقتصادي الجزائري، الذي يشهد منذ 2020 تحوّلاً نحو دعم الإنتاج المحلي للألبسة وتقليص الاستيراد. تشير الإحصائيات الرسمية لوزارة الصناعة إلى أن قطاع النسيج والألبسة يضم أكثر من <strong>1200 مؤسسة</strong> نشطة، 80% منها مؤسسات صغيرة ومتوسطة الحجم تُعبّر عن حاجة مستمرة إلى تقنيين سامين مُتقنين للنمذجة والتدريج والتصنيع. كما تُوفّر برامج دعم المقاولاتية الوطنية (مثل وكالة ANADE والصندوق الوطني للتأمين عن البطالة) فرص تمويل مغرية للمتخرّجين الراغبين في إطلاق ورشاتهم الخاصة.</p>
+
+
+<div class="subsection">
+    <div class="subsection-title">أبرز المسارات المهنية للمتخرّجين <span class="sub-fr">— Principaux Débouchés Professionnels</span></div>
+</div>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>المسار المهني<span class="th-fr">Débouché</span></th><th>بيئة العمل<span class="th-fr">Milieu de Travail</span></th><th>الراتب الشهري المتوسط (دج)<span class="th-fr">Salaire Moyen</span></th></tr></thead>
+        <tbody><tr><td>تقني سامي للنمذجة في مكاتب الدراسات <span class="fr">Technicien supérieur en modélisme</span></td><td>مكاتب الدراسات في مصانع الألبسة</td><td class="num">45000 — 70000</td></tr><tr><td>مسؤول عن التدريج الصناعي <span class="fr">Responsable gradation</span></td><td>شركات Prêt-à-Porter الكبرى</td><td class="num">50000 — 80000</td></tr><tr><td>مشرف ورشة الإنتاج <span class="fr">Chef d'atelier</span></td><td>ورشات الخياطة الصناعية</td><td class="num">40000 — 65000</td></tr><tr><td>مصمم أزياء مستقل <span class="fr">Styliste indépendant</span></td><td>ورشة خاصة أو Haute Couture</td><td>حسب الإنتاج</td></tr><tr><td>تقني سامي في الجودة والمراقبة <span class="fr">Technicien qualité</span></td><td>مختبرات الجودة في المصانع</td><td class="num">48000 — 72000</td></tr><tr><td>مدرّب في معاهد التكوين المهني <span class="fr">Formateur en IFP</span></td><td>معاهد التكوين المهني الجهوية</td><td class="num">42000 — 60000</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 7: المسارات المهنية الرئيسية للمتخرّجين والراتب المتوسط في السوق الجزائري (2024) <span class="cap-fr">Tableau 7: Débouchés professionnels principaux et salaires moyens (2024)</span></div>
+</div>
+
+
+<div class="chart-card">
+    <div class="chart-title">مقارنة الرواتب الشهرية حسب المسار المهني</div>
+    <div class="chart-subtitle">Comparaison des Salaires Mensuels par Débouché Professionnel</div>
+    <svg class="chart-svg" style="direction: ltr;" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+        <line x1="55" y1="25.0" x2="585" y2="25.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="28.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">78</text><line x1="55" y1="90.0" x2="585" y2="90.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="93.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">58</text><line x1="55" y1="155.0" x2="585" y2="155.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="158.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">39</text><line x1="55" y1="220.0" x2="585" y2="220.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="223.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">20</text><line x1="55" y1="285.0" x2="585" y2="285.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="288.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">0</text>
+        <line x1="55" y1="25" x2="55" y2="285" stroke="#1F2937" stroke-width="0.8"/><line x1="55" y1="285" x2="585" y2="285" stroke="#1F2937" stroke-width="0.8"/>
+        <rect x="101.66666666666666" y="91.66666666666666" width="50" height="193.33333333333334" fill="#064e3b" rx="1.5"/><rect x="198.33333333333331" y="68.33333333333331" width="50" height="216.66666666666669" fill="#b45309" rx="1.5"/><rect x="295.0" y="111.66666666666669" width="50" height="173.33333333333331" fill="#064e3b" rx="1.5"/><rect x="391.66666666666663" y="85.0" width="50" height="200.0" fill="#b45309" rx="1.5"/><rect x="488.33333333333326" y="115.0" width="50" height="170.0" fill="#064e3b" rx="1.5"/>
+        <text x="126.66666666666666" y="87.66666666666666" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">58 ألف</text><text x="223.33333333333331" y="64.33333333333331" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">65 ألف</text><text x="320.0" y="107.66666666666669" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">52 ألف</text><text x="416.66666666666663" y="81.0" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">60 ألف</text><text x="513.3333333333333" y="111.0" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">51 ألف</text>
+        <text x="126.66666666666666" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">تقني نمذجة</text><text x="126.66666666666666" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Technicien modélisme</text><text x="223.33333333333331" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">مسؤول تدريج</text><text x="223.33333333333331" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Resp. gradation</text><text x="320.0" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">مشرف ورشة</text><text x="320.0" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Chef d'atelier</text><text x="416.66666666666663" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">تقني جودة</text><text x="416.66666666666663" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Technicien qualité</text><text x="513.3333333333333" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">مدرّب مهني</text><text x="513.3333333333333" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Formateur IFP</text>
+    </svg>
+    <div class="chart-caption">الشكل 3: متوسط الراتب الشهري (بآلاف الدج) للمسارات المهنية الخمسة الأبرز (2024) <span class="cap-fr">Figure 3: Salaire mensuel moyen (en milliers DZD) pour les 5 principaux débouchés (2024)</span></div>
+</div>
+
+
+<p>علاوة على المسارات التقليدية، تُتاح للمتخرّجين فرص غير تقليدية واعدة، لاسيما في قطاع <strong>الرقمنة النسيجية</strong> <span class="fr">(CAO/FAO)</span> الذي يشهد طلباً متزايداً مع تحوّل المصانع الجزائرية إلى أنظمة Lectra و Gerber. كما يُمثّل قطاع <strong>الأزياء الراقية الجزائرية</strong> <span class="fr">(Haute Couture Algérienne)</span> — المعني بتصميم القفطان، الكاراكو، الشدة التلمسانية، وفساتين السهرة — قطاعاً واعداً يفتح أبوابه أمام المتخرجين الراغبين في الجمع بين الكفاءة التقنية والإرث الثقافي الوطني.</p>
+
+
+<div class="quote-block">ليست الخياطة مهنة بل رسالة: نُلبس الأجساد كما نُلبس الهوية، ونُرسم بالخيط والإبرة ما يعجز القلم عن رسمه.<span class="quote-author">— محمد خ eso — مصمم أزياء جزائري</span></div>
+
+
+<div class="section-header">
+    <span class="sec-num">10</span><span class="sec-title-ar">معجم المصطلحات التقنية</span>
+    <span class="sec-title-fr">Glossaire Technique Bilingue</span>
+</div>
+
+
+<p>يُقدّم هذا المعجم المصطلحات التقنية الأساسية المستعملة في تخصص الخياطة النسائية، مزدوج اللغة (عربي/فرنسي)، تيسيراً للمتدرّبين في فهم المراجع التقنية الجزائرية والفرنسية، وتعبيراً عن الازدواجية اللغوية المعتمدة في التكوين المهني الجزائري. تشمل المصطلحات المفاتيح في النمذجة، الخياطة، التدريج، الآلات، والأقمشة.</p>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>المصطلح العربي<span class="th-fr">Terme Arabe</span></th><th>المصطلح الفرنسي<span class="th-fr">Terme Français</span></th><th>التعريف المختصر<span class="th-fr">Définition Courte</span></th></tr></thead>
+        <tbody><tr><td>بترون</td><td>Patron</td><td>نموذج ورقي يُحدّد شكل قطعة الملابس قبل القص</td></tr><tr><td>تدريج</td><td>Gradation</td><td>إنتاج مقاسات متعددة انطلاقاً من مقاس مرجعي</td></tr><tr><td>قالبة</td><td>Moulage</td><td>تشكيل القماش على المانيكان ثلاثي الأبعاد</td></tr><tr><td>سرفلة</td><td>Surjet</td><td>خياطة حواف القماش لمنع التنسيل</td></tr><tr><td>غرزة مستقيمة</td><td>Point droit (301)</td><td>الغرزة الأساسية في الخياطة الصناعية</td></tr><tr><td>بنسة</td><td>Pince</td><td>طية في القماش لإعطائه شكلاً ثلاثي الأبعاد</td></tr><tr><td>ياقة</td><td>Col</td><td>جزء من الملابس يحيط بالرقبة</td></tr><tr><td>كم</td><td>Manche</td><td>جزء من الملابس يغطي الذراع</td></tr><tr><td>إبط</td><td>Emmanchure</td><td>فتحة ارتداء الذراع في الملابس</td></tr><tr><td>سداء</td><td>Chaîne</td><td>الخيوط الطولية في القماش المنسوج</td></tr><tr><td>لحمة</td><td>Trame</td><td>الخيوط العرضية في القماش المنسوج</td></tr><tr><td>مانيكان</td><td>Mannequin</td><td>دمية بشرية للتجربة والقياس</td></tr><tr><td>ملف تقني</td><td>Dossier Technique</td><td>الوثيقة المرجعية لتصنيع منتج نسيجي</td></tr><tr><td>تربص</td><td>Stage</td><td>فترة تكوين ميداني في مؤسسة اقتصادية</td></tr><tr><td>كفاءة شاملة</td><td>Compétence Globale</td><td>السلوك المهني المنتظر في نهاية الوحدة</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 8: معجم المصطلحات التقنية الأساسية في تخصص الخياطة النسائية <span class="cap-fr">Tableau 8: Glossaire des termes techniques fondamentaux</span></div>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">11</span><span class="sec-title-ar">تمارين تطبيقية و دراسات حالة</span>
+    <span class="sec-title-fr">Exercices Pratiques et Études de Cas</span>
+</div>
+
+
+<div class="subsection">
+    <div class="subsection-title">تمرين 1: حساب الغلاف الزمني لوحدة تكوينية <span class="sub-fr">— Exercice 1: Calcul du Volume Horaire</span></div>
+</div>
+
+
+<p><strong>السؤال:</strong> وحدة تكوينية <span class="fr">MQ5 — Techniques de Confection</span> مُبرمجة على 136 ساعة، موزّعة على 17 أسبوعاً تكوينياً. احسب: (أ) عدد الساعات الأسبوعية، (ب) عدد الأيام المكثّفة إذا كانت كل دورة تكوينية تستغرق 6 ساعات يومياً، (ج) نسبة الأعمال التطبيقية (TP) إذا كانت تُمثّل 65% من الغلاف الزمني.</p>
+
+
+<div class="callout callout-emerald">
+    <div class="callout-title"><span class="icon">✓</span>الحل النموذجي</div>
+    <p>(أ) الساعات الأسبوعية = 136 ÷ 17 = <strong>8 ساعات/أسبوع</strong>. (ب) عدد الأيام المكثّفة = 136 ÷ 6 = <strong>23 يوم تكويني</strong>. (ج) ساعات TP = 136 × 0.65 = <strong>88.4 ساعة</strong>، والباقي (47.6 ساعة) للنظري والتقييم.</p>
+</div>
+
+
+<div class="subsection">
+    <div class="subsection-title">تمرين 2: دراسة حالة — تصميم تشكيلة موسمية <span class="sub-fr">— Exercice 2: Étude de Cas — Collection Saisonnière</span></div>
+</div>
+
+
+<p><strong>السيناريو:</strong> طلب منك تقني سامي في مؤسسة <span class="fr">ETE Textile</span> تصميم تشكيلة من 5 نماذج لربيع 2026، كل نموذج في 5 مقاسات، بإجمالي 25 قطعة. كل نموذج يتطلّب: 4 ساعات تصميم، 6 ساعات بناء باترون، 3 ساعات تدريج، 8 ساعات قص وخياطة لكل مقاس. احسب إجمالي ساعات العمل المطلوبة.</p>
+
+
+<div class="callout ">
+    <div class="callout-title"><span class="icon">★</span>الحل النموذجي</div>
+    <p>زمن النموذج الواحد = 4 + 6 + 3 + (8 × 5) = <strong>53 ساعة</strong>. إجمالي ساعات التشكيلة = 53 × 5 = <strong>265 ساعة</strong>. مع إضافة 20% للمراجعة والتعديلات = <strong>318 ساعة إجمالية</strong>. إذا عمل فريق من 3 تقنيين، فإن المدة الزمنية المتوقّعة = 318 ÷ 3 ÷ 8 ساعات/يوم = <strong>13.25 يوم عمل</strong>.</p>
+</div>
+
+
+<div class="subsection">
+    <div class="subsection-title">تمرين 3: تحليل منحنى التعلم <span class="sub-fr">— Exercice 3: Analyse de la Courbe d'Apprentissage</span></div>
+</div>
+
+
+<p>تتبّع منحنى تعلّم متدرّب في وحدة <span class="fr">MQ2 — Construction des Patrons de Base</span> على مدى 8 أسابيع، بالأزمنة التالية (بالدقائق) لإنجاز بترون تنورة: الأسبوع 1: 240 دقيقة، الأسبوع 2: 180، الأسبوع 3: 130، الأسبوع 4: 95، الأسبوع 5: 75، الأسبوع 6: 62، الأسبوع 7: 55، الأسبوع 8: 50.</p>
+
+
+<div class="chart-card">
+    <div class="chart-title">منحنى تعلّم المتدرّب في وحدة بناء البترونات</div>
+    <div class="chart-subtitle">Courbe d'Apprentissage en Construction de Patrons</div>
+    <svg class="chart-svg" style="direction: ltr;" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+        <line x1="55" y1="25.0" x2="585" y2="25.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="28.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">288 د</text><line x1="55" y1="91.25" x2="585" y2="91.25" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="94.25" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">216 د</text><line x1="55" y1="157.5" x2="585" y2="157.5" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="160.5" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">144 د</text><line x1="55" y1="223.75" x2="585" y2="223.75" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="226.75" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">72 د</text><line x1="55" y1="290.0" x2="585" y2="290.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="293.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">0 د</text>
+        <line x1="55" y1="25" x2="55" y2="290" stroke="#1F2937" stroke-width="0.8"/><line x1="55" y1="290" x2="585" y2="290" stroke="#1F2937" stroke-width="0.8"/>
+        <text x="55.0" y="304" font-family="Cairo" font-size="8" fill="#1F2937" text-anchor="middle">س1</text><text x="130.71428571428572" y="304" font-family="Cairo" font-size="8" fill="#1F2937" text-anchor="middle">س2</text><text x="206.42857142857142" y="304" font-family="Cairo" font-size="8" fill="#1F2937" text-anchor="middle">س3</text><text x="282.1428571428571" y="304" font-family="Cairo" font-size="8" fill="#1F2937" text-anchor="middle">س4</text><text x="357.85714285714283" y="304" font-family="Cairo" font-size="8" fill="#1F2937" text-anchor="middle">س5</text><text x="433.57142857142856" y="304" font-family="Cairo" font-size="8" fill="#1F2937" text-anchor="middle">س6</text><text x="509.2857142857142" y="304" font-family="Cairo" font-size="8" fill="#1F2937" text-anchor="middle">س7</text><text x="585.0" y="304" font-family="Cairo" font-size="8" fill="#1F2937" text-anchor="middle">س8</text>
+        <circle cx="55.0" cy="69.16666666666666" r="3" fill="#1B6B52" stroke="#FFFFFF" stroke-width="1"/><circle cx="130.71428571428572" cy="124.375" r="3" fill="#1B6B52" stroke="#FFFFFF" stroke-width="1"/><circle cx="206.42857142857142" cy="170.38194444444446" r="3" fill="#1B6B52" stroke="#FFFFFF" stroke-width="1"/><circle cx="282.1428571428571" cy="202.58680555555554" r="3" fill="#1B6B52" stroke="#FFFFFF" stroke-width="1"/><circle cx="357.85714285714283" cy="220.98958333333331" r="3" fill="#1B6B52" stroke="#FFFFFF" stroke-width="1"/><circle cx="433.57142857142856" cy="232.95138888888889" r="3" fill="#1B6B52" stroke="#FFFFFF" stroke-width="1"/><circle cx="509.2857142857142" cy="239.39236111111111" r="3" fill="#1B6B52" stroke="#FFFFFF" stroke-width="1"/><circle cx="585.0" cy="243.99305555555554" r="3" fill="#1B6B52" stroke="#FFFFFF" stroke-width="1"/><polyline points="55.0,69.16666666666666 130.71428571428572,124.375 206.42857142857142,170.38194444444446 282.1428571428571,202.58680555555554 357.85714285714283,220.98958333333331 433.57142857142856,232.95138888888889 509.2857142857142,239.39236111111111 585.0,243.99305555555554" fill="none" stroke="#1B6B52" stroke-width="2"/>
+        <line x1="55" y1="318" x2="73" y2="318" stroke="#1B6B52" stroke-width="2.5"/><circle cx="64" cy="318" r="2.5" fill="#1B6B52"/><text x="77" y="321" font-family="Cairo" font-size="9" fill="#1F2937">زمن الإنجاز (دقيقة)</text>
+    </svg>
+    <div class="chart-caption">الشكل 4: منحنى التعلم يُظهر تحسّناً بنسبة 79% من الأسبوع 1 إلى الأسبوع 8 <span class="cap-fr">Figure 4: La courbe montre une amélioration de 79% de la semaine 1 à la semaine 8</span></div>
+</div>
+
+
+<p>يُظهر المنحنى تحسّناً ملحوظاً في زمن الإنجاز، حيث انخفض من 240 دقيقة في الأسبوع الأول إلى 50 دقيقة في الأسبوع الثامن، بنسبة تحسّن قدرها <strong>79.2%</strong>. هذا التحوّل يُمثّل الانتقال من مرحلة المبتدئ (يحتاج تفكيراً واعياً في كل خطوة) إلى مرحلة المتمرّس (الأداء أصبح آلياً وشبه لاشعوري). هذه الديناميكية هي ما يستهدفه التكوين المهني الجزائري: تحويل المعرفة النظرية إلى كفاءة عملية مُتقنة.</p>
+
+
+<div class="subsection">
+    <div class="subsection-title">تمرين 4: شبكة تقييم كفاءة <span class="sub-fr">— Exercice 4: Grille d'Évaluation de Compétence</span></div>
+</div>
+
+
+<p>ضع شبكة تقييم لكفاءة المتدرّب في وحدة <span class="fr">MQ9 — Fabrication Prototype Veste</span>، باستخدام أربعة معايير: (1) دقة البترون، (2) جودة الخياطة، (3) احترام المواصفات، (4) النظافة والتنظيم. كل معيار يُقيَّم من 5 نقاط.</p>
+
+
+<div class="chart-card">
+    <div class="chart-title">شبكة تقييم كفاءة المتدرّب (نموذجية)</div>
+    <div class="chart-subtitle">Grille d'Évaluation de Compétence (Modèle)</div>
+    <svg class="chart-svg" style="direction: ltr;" viewBox="0 0 580 216" xmlns="http://www.w3.org/2000/svg">
+        <text x="10" y="28" font-family="Cairo" font-size="9" fill="#1F2937">دقة البترون</text><text x="10" y="38" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Précision patron</text><rect x="220" y="24" width="310" height="16" fill="#F3F4F6" rx="2.5"/><rect x="220" y="24" width="248.0" height="16" fill="#0F4D3A" rx="2.5"/><text x="538" y="36" font-family="Inter" font-size="10" font-weight="700" fill="#022c22">4</text><text x="10" y="72" font-family="Cairo" font-size="9" fill="#1F2937">جودة الخياطة</text><text x="10" y="82" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Qualité couture</text><rect x="220" y="68" width="310" height="16" fill="#F3F4F6" rx="2.5"/><rect x="220" y="68" width="310.0" height="16" fill="#1B6B52" rx="2.5"/><text x="538" y="80" font-family="Inter" font-size="10" font-weight="700" fill="#022c22">5</text><text x="10" y="116" font-family="Cairo" font-size="9" fill="#1F2937">احترام المواصفات</text><text x="10" y="126" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Respect specs</text><rect x="220" y="112" width="310" height="16" fill="#F3F4F6" rx="2.5"/><rect x="220" y="112" width="248.0" height="16" fill="#C2932E" rx="2.5"/><text x="538" y="124" font-family="Inter" font-size="10" font-weight="700" fill="#022c22">4</text><text x="10" y="160" font-family="Cairo" font-size="9" fill="#1F2937">النظافة والتنظيم</text><text x="10" y="170" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Propreté et org.</text><rect x="220" y="156" width="310" height="16" fill="#F3F4F6" rx="2.5"/><rect x="220" y="156" width="186.0" height="16" fill="#7BA38A" rx="2.5"/><text x="538" y="168" font-family="Inter" font-size="10" font-weight="700" fill="#022c22">3</text>
+    </svg>
+    <div class="chart-caption">الشكل 5: نموذج شبكة تقييم كفاءة المتدرّب في وحدة تصنيع السترة (المجموع: 16/20) <span class="cap-fr">Figure 5: Modèle de grille d'évaluation (Total: 16/20)</span></div>
+</div>
+
+
+<p>تُظهر شبكة التقييم أن المتدرّب تحصّل على <strong>16/20</strong>، وهي علامة جيدة تُمكّنه من اجتياز الوحدة. لكن يلاحظ ضعف نسبي في معيار «النظافة والتنظيم» (3/5)، وهو معيار جوهري في صناعة الألبسة لأنه يؤثّر مباشرة على جودة المنتج النهائي. يُنصح المدرّب ببرمجة جلسات إضافية لتعزيز هذا الجانب عبر تمارين تنظيم ورشة العمل وتقنيات التنظيف أثناء الإنتاج.</p>
+</div>
+<!-- ============================ BACK COVER ============================ -->
+<div class="back-cover">
+    <div class="bc-top">
+        <div class="insfp-mark">INSFP</div>
+    </div>
+    <div class="bc-center">
+        <div class="closing-divider"></div>
+        <div class="closing-ar">إن إتقان الخياطة النسائية ليس مجرد حرفة، بل هو إحياء لتراث الجزائر العريق في صناعة الألبسة وإبداع لمستقبل يواكب التحولات الصناعية الرقمية.</div>
+        <div class="closing-fr">Maîtriser la couture dame, c'est préserver un héritage algérien et bâtir un avenir industriel durable, conforme aux exigences du marché national et international.</div>
+        <div class="closing-divider"></div>
+    </div>
+    <div class="bc-bottom">
+        <div class="closing-meta">
+            تم إعداد هذا التقرير وفق المنهاج المعتمد في معاهد التكوين المهني الجزائرية<br>
+            تحت رقم التخصص : التقني السامي في تصميم و صناعة الملابس — Tailleur Dames<br>
+            <span class="meta-year">2025 / 2026 • الجمهورية الجزائرية الديمقراطية الشعبية</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

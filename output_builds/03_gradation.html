@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>التدريج — الباترونات الصناعية — Gradation / Scaling — Patronnage Industriel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+/* ================================================================ */
+/* CSS CUSTOM PROPERTIES                                            */
+/* ================================================================ */
+:root {
+    --primary-deep:  #022c22;
+    --primary:       #064e3b;
+    --primary-light: #f0fdf4;
+    --accent:        #b45309;
+    --accent-light:  #fef3c7;
+    --dark:          #1e293b;
+    --light:         #f8fafc;
+    --border:        #cbd5e1;
+    --bg:            #ffffff;
+    --card:          #f5f3ea;
+    --text:          #1f2937;
+    --text-2:        #4b5563;
+    --text-muted:    #6b7280;
+    --white:         #ffffff;
+    /* Harmonized Font Stacks */
+    --font-fr:       'Inter', 'Segoe UI', sans-serif;
+    --font-ar:       'Cairo', sans-serif;
+    --font-display:  'Playfair Display', serif;
+    --font-quote:    'Amiri', serif;
+}
+
+/* ================================================================ */
+/* PAGE SETUP & BROWSER PRINT HEADER/FOOTER REMOVAL                */
+/* ================================================================ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+@page {
+    size: A4;
+    margin: 1.6cm 1.5cm; /* Native print margins */
+}
+
+@media print {
+    @page {
+        margin: 1.6cm 1.5cm;
+    }
+    /* Standard CSS rule to block browser-injected header/footer lines */
+    html, body {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+    }
+}
+
+html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-ar);
+    font-size: 10.5pt;
+    line-height: 1.75;
+    direction: rtl;
+    text-align: right;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+@media screen {
+    html { background: #2a2a2a; display: flex; justify-content: center; }
+    body { width: 210mm; margin: 20px auto; box-shadow: 0 4px 30px rgba(0,0,0,0.5); padding: 1.6cm 1.5cm; }
+}
+
+/* ================================================================ */
+/* COVER PAGE                                                       */
+/* ================================================================ */
+.cover {
+    width: 100%;
+    min-height: 250mm;
+    background: var(--bg);
+    padding: 10mm;
+    break-after: page;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.cover-inner {
+    border: 4px double var(--primary);
+    height: 100%;
+    width: 100%;
+    padding: 10mm 15mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* ================================================================ */
+/* TABLE OF CONTENTS                                                */
+/* ================================================================ */
+.toc-page {
+    width: 100%;
+    min-height: 100%;
+    background: var(--bg);
+    padding: 10mm 5mm;
+    break-after: page;
+    page-break-after: always;
+    box-sizing: border-box;
+}
+
+/* ================================================================ */
+/* BACK COVER                                                        */
+/* ================================================================ */
+.back-cover {
+    width: 100%;
+    min-height: 240mm;
+    background: var(--bg);
+    padding: 10mm 5mm;
+    break-before: page;
+    page-break-before: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+/* ================================================================ */
+/* MAIN CONTENT                                                     */
+/* ================================================================ */
+.page {
+    background: #ffffff;
+    width: 100%;
+    padding: 5mm 0 8mm 0;
+    box-sizing: border-box;
+}
+
+.page:first-of-type {
+    padding-top: 0;
+}
+
+/* ================================================================ */
+/* HEADER BLOCK                                                     */
+/* ================================================================ */
+.cover-top-bar {
+    width: 100%;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 6mm;
+}
+
+.gov-txt-ar {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    font-size: 12pt;
+    color: var(--primary-deep);
+    line-height: 1.5;
+    margin: 0 0 1mm 0;
+}
+
+.gov-txt-fr {
+    font-family: var(--font-fr);
+    font-weight: 400;
+    font-size: 9pt;
+    color: #4b5563;
+    direction: ltr;
+    margin: 0 0 3mm 0;
+    letter-spacing: 0.3px;
+}
+
+/* ================================================================ */
+/* COVER CENTER                                                     */
+/* ================================================================ */
+.cover-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 6mm 12mm;
+}
+
+.cover-center .module-label {
+    font-family: var(--font-fr);
+    font-weight: 500;
+    font-size: 9pt;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    direction: ltr;
+    text-transform: uppercase;
+    margin: 0 0 1mm 0;
+}
+
+.cover-center .module-number {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 48pt;
+    color: var(--primary-deep);
+    direction: ltr;
+    line-height: 1;
+    margin: 0 0 4mm 0;
+}
+
+.cover-center .divider-ochre {
+    width: 50mm;
+    height: 2px;
+    background: var(--accent);
+    margin: 2mm auto 4mm auto;
+}
+
+.cover-center .title-ar {
+    font-family: var(--font-ar);
+    font-weight: 800;
+    font-size: 18pt;
+    color: var(--primary-deep);
+    line-height: 1.35;
+    margin: 0 0 2mm 0;
+    max-width: 160mm;
+}
+
+.cover-center .title-fr {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 12pt;
+    color: var(--accent);
+    direction: ltr;
+    margin: 0 0 6mm 0;
+    max-width: 160mm;
+}
+
+.cover-center .meta-block {
+    margin-top: 6mm;
+    padding: 4mm 6mm;
+    background: var(--primary-light);
+    border-right: 3px solid var(--primary);
+    border-radius: 1.5mm;
+    font-family: var(--font-ar);
+    font-size: 9.5pt;
+    color: var(--text);
+    line-height: 1.8;
+    text-align: right;
+    max-width: 165mm;
+}
+
+.cover-center .meta-block .meta-row {
+    margin: 0.5mm 0;
+}
+
+.cover-center .meta-block .meta-label {
+    color: var(--primary-deep);
+    font-weight: 700;
+    margin-left: 3mm;
+}
+
+.cover-center .meta-block .meta-val {
+    color: var(--text);
+    font-weight: 500;
+}
+
+/* ================================================================ */
+/* COVER BOTTOM                                                     */
+/* ================================================================ */
+.cover-bottom {
+    width: 100%;
+    border-top: 2px solid var(--accent);
+    padding-top: 6mm;
+    text-align: center;
+}
+
+.cover-bottom .author-label {
+    font-family: var(--font-ar);
+    font-weight: 500;
+    font-size: 9pt;
+    color: var(--accent);
+    margin: 0 0 1mm 0;
+}
+
+.cover-bottom .author-name-ar {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    font-size: 14pt;
+    color: var(--primary-deep);
+    margin: 0 0 0.5mm 0;
+}
+
+.cover-bottom .author-name-fr {
+    font-family: var(--font-fr);
+    font-weight: 500;
+    font-size: 10pt;
+    color: var(--dark);
+    direction: ltr;
+    margin: 0 0 1.5mm 0;
+    letter-spacing: 0.5px;
+}
+
+.cover-bottom .doc-type {
+    font-family: var(--font-fr);
+    font-size: 8pt;
+    color: var(--text-muted);
+    direction: ltr;
+    letter-spacing: 1.5px;
+    margin: 0.5mm 0;
+    text-transform: uppercase;
+}
+
+.cover-bottom .year {
+    font-family: var(--font-display);
+    font-size: 11pt;
+    color: var(--accent);
+    direction: ltr;
+    margin: 0.5mm 0 0 0;
+    letter-spacing: 1px;
+}
+
+/* ================================================================ */
+/* TABLE OF CONTENTS                                                */
+/* ================================================================ */
+.toc-header {
+    text-align: center;
+    margin-bottom: 12mm;
+    padding-bottom: 5mm;
+    border-bottom: 2px solid var(--primary);
+}
+
+.toc-header .toc-title-ar {
+    font-family: var(--font-ar);
+    font-weight: 800;
+    font-size: 20pt;
+    color: var(--primary-deep);
+    margin: 0 0 1.5mm 0;
+}
+
+.toc-header .toc-title-fr {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 12pt;
+    color: var(--accent);
+    direction: ltr;
+    margin: 0;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 3mm 0;
+    border-bottom: 1px dotted var(--border);
+    font-family: var(--font-ar);
+    font-size: 10.5pt;
+}
+
+.toc-item .toc-num {
+    display: inline-block;
+    width: 7mm;
+    color: var(--accent);
+    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 12pt;
+    flex-shrink: 0;
+}
+
+.toc-item .toc-text {
+    flex: 1;
+    color: var(--text);
+    margin: 0 3mm;
+    line-height: 1.4;
+}
+
+.toc-item .toc-text .toc-fr {
+    display: block;
+    font-family: var(--font-fr);
+    font-style: italic;
+    font-size: 8.5pt;
+    color: var(--text-muted);
+    direction: ltr;
+    text-align: left;
+    margin-top: 0.5mm;
+}
+
+.toc-item .toc-page-num {
+    color: var(--primary);
+    font-weight: 700;
+    font-family: var(--font-fr);
+    font-size: 10pt;
+    direction: ltr;
+    flex-shrink: 0;
+}
+
+/* ================================================================ */
+/* SECTION HEADERS                                                  */
+/* ================================================================ */
+.section-header {
+    margin-top: 8mm;
+    margin-bottom: 4mm;
+    break-after: avoid;
+    break-inside: avoid;
+    padding-bottom: 2mm;
+    border-bottom: 2px solid var(--primary);
+}
+
+.section-header:first-of-type {
+    margin-top: 0;
+}
+
+.section-header .sec-num {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    width: 7mm;
+    height: 7mm;
+    line-height: 7mm;
+    text-align: center;
+    border-radius: 50%;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 10pt;
+    margin-left: 2mm;
+    direction: ltr;
+    vertical-align: middle;
+}
+
+.section-header .sec-title-ar {
+    font-family: var(--font-ar);
+    font-weight: 800;
+    font-size: 13pt;
+    color: var(--primary-deep);
+    line-height: 1.4;
+    vertical-align: middle;
+}
+
+.section-header .sec-title-fr {
+    display: block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 9pt;
+    color: var(--accent);
+    direction: ltr;
+    text-align: left;
+    margin-top: 1mm;
+    margin-right: 9mm;
+}
+
+/* ================================================================ */
+/* SUBSECTION HEADERS                                               */
+/* ================================================================ */
+.subsection {
+    margin-top: 6mm;
+    break-after: avoid;
+}
+
+.subsection-title {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    font-size: 11pt;
+    color: var(--primary);
+    margin: 0 0 2mm 0;
+    padding-right: 3mm;
+    border-right: 3px solid var(--accent);
+    line-height: 1.4;
+}
+
+.subsection-title .sub-fr {
+    font-family: var(--font-fr);
+    font-weight: 500;
+    font-style: italic;
+    font-size: 9pt;
+    color: var(--text-muted);
+    direction: ltr;
+    margin-right: 2mm;
+}
+
+/* ================================================================ */
+/* BODY TEXT                                                        */
+/* ================================================================ */
+p {
+    margin: 0 0 3mm 0;
+    text-align: justify;
+    font-family: var(--font-ar);
+    font-size: 10.5pt;
+    line-height: 1.8;
+    color: var(--text);
+}
+
+p .fr {
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--primary);
+    font-weight: 500;
+    direction: ltr;
+    display: inline;
+}
+
+strong, b {
+    font-weight: 700;
+    color: var(--primary-deep);
+}
+
+ul, ol {
+    margin: 2mm 0 3mm 0;
+    padding-right: 7mm;
+}
+
+ul li, ol li {
+    font-family: var(--font-ar);
+    font-size: 10.5pt;
+    line-height: 1.7;
+    margin-bottom: 1.5mm;
+    text-align: right;
+    color: var(--text);
+}
+
+ul li .fr, ol li .fr {
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--primary);
+    direction: ltr;
+    display: inline;
+}
+
+/* ================================================================ */
+/* TABLES                                                           */
+/* ================================================================ */
+.table-wrapper {
+    margin: 4mm auto;
+    break-inside: avoid;
+    direction: rtl;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-ar);
+    font-size: 9pt;
+    border: 1px solid var(--border);
+    direction: rtl;
+}
+
+table.data-table thead {
+    background: var(--primary);
+    color: #fff;
+}
+
+table.data-table thead th {
+    padding: 2mm 3mm;
+    text-align: center;
+    font-weight: 700;
+    font-family: var(--font-ar);
+    font-size: 9.5pt;
+    border-bottom: 1.5px solid var(--primary-deep);
+    color: #ffffff;
+}
+
+table.data-table thead th .th-fr {
+    display: block;
+    font-family: var(--font-fr);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 7.5pt;
+    color: rgba(255,255,255,0.85);
+    direction: ltr;
+    margin-top: 0.3mm;
+}
+
+table.data-table tbody tr:nth-child(even) {
+    background: var(--primary-light);
+}
+
+table.data-table tbody tr:nth-child(odd) {
+    background: var(--white);
+}
+
+table.data-table tbody td {
+    padding: 2mm 3mm;
+    border-bottom: 1px solid var(--border);
+    text-align: right;
+    color: var(--text);
+    font-size: 9pt;
+    line-height: 1.4;
+}
+
+table.data-table tbody td.center { text-align: center; }
+
+table.data-table tbody td.num {
+    text-align: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--primary-deep);
+    direction: ltr;
+}
+
+table.data-table tbody td .fr {
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 8pt;
+    direction: ltr;
+    display: inline;
+}
+
+.table-caption {
+    text-align: center;
+    font-family: var(--font-ar);
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: 1.5mm;
+    margin-bottom: 4mm;
+}
+
+.table-caption .cap-fr {
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--text-muted);
+    direction: ltr;
+    display: block;
+    font-size: 8pt;
+    margin-top: 0.3mm;
+}
+
+/* ================================================================ */
+/* CALLOUT BOXES                                                    */
+/* ================================================================ */
+.callout {
+    margin: 4mm auto;
+    padding: 4mm 5mm;
+    border-radius: 1.5mm;
+    break-inside: avoid;
+    border-right: 3px solid var(--accent);
+    background: var(--accent-light);
+    font-family: var(--font-ar);
+    font-size: 10pt;
+    line-height: 1.6;
+    color: var(--text);
+    width: 100%;
+}
+
+.callout-title {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    font-size: 10.5pt;
+    color: var(--accent);
+    margin-bottom: 1.5mm;
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+}
+
+.callout-title .icon {
+    display: inline-block;
+    width: 6mm;
+    height: 6mm;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 6mm;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 10pt;
+    direction: ltr;
+    flex-shrink: 0;
+}
+
+.callout p {
+    margin-bottom: 1.5mm;
+    font-size: 10pt;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+.callout-emerald {
+    border-right-color: var(--primary);
+    background: var(--primary-light);
+}
+
+.callout-emerald .callout-title {
+    color: var(--primary-deep);
+}
+
+.callout-emerald .callout-title .icon {
+    background: var(--primary);
+}
+
+/* ================================================================ */
+/* DASHBOARD GRID — 3-column metric cards                           */
+/* ================================================================ */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 4mm auto;
+    break-inside: avoid;
+    width: 100%;
+    justify-content: center;
+}
+
+.dashboard-card {
+    background: var(--light);
+    border-right: 3px solid var(--primary);
+    border-radius: 3px;
+    padding: 10px;
+    text-align: center;
+}
+
+.dashboard-value {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1.2;
+    font-family: var(--font-display);
+    direction: ltr;
+}
+
+.dashboard-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: 1.5mm;
+    font-family: var(--font-ar);
+}
+
+.dashboard-label .fr {
+    display: block;
+    font-family: var(--font-fr);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text-muted);
+    direction: ltr;
+    font-size: 0.65rem;
+    margin-top: 0.3mm;
+}
+
+/* ================================================================ */
+/* TIMELINE — vertical connected                                    */
+/* ================================================================ */
+.timeline-chain {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 4mm auto 15px auto;
+    position: relative;
+    break-inside: avoid;
+    width: 100%;
+    align-items: center;
+}
+
+.timeline-node {
+    display: flex;
+    gap: 10px;
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 12px;
+    page-break-inside: avoid;
+    width: 100%;
+}
+
+.node-index {
+    background: var(--primary);
+    color: white;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 10pt;
+    direction: ltr;
+    flex-shrink: 0;
+}
+
+.node-content {
+    flex: 1;
+}
+
+.node-content h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary-deep);
+    font-family: var(--font-ar);
+    margin: 0 0 1mm 0;
+}
+
+.node-content p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-2);
+    font-style: italic;
+    font-family: var(--font-fr);
+    direction: ltr;
+    text-align: left;
+}
+
+/* ================================================================ */
+/* FLOWCHART / PROCESS                                              */
+/* ================================================================ */
+.flowchart {
+    margin: 4mm auto;
+    break-inside: avoid;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 1.5mm;
+    padding: 4mm;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flow-step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2mm;
+    break-inside: avoid;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.flow-step .step-num {
+    flex-shrink: 0;
+    width: 8mm;
+    height: 8mm;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 10pt;
+    direction: ltr;
+    margin-left: 3mm;
+}
+
+.flow-step .step-text {
+    flex: 1;
+    font-family: var(--font-ar);
+    font-size: 9.5pt;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+.flow-step .step-text .step-fr {
+    display: block;
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 8pt;
+    direction: ltr;
+    margin-top: 0.3mm;
+}
+
+.flow-arrow {
+    text-align: right;
+    padding-right: 3.5mm; /* Centers the down-arrow perfectly under the 8mm step-circle */
+    color: var(--accent);
+    font-size: 11pt;
+    margin: 1mm 0;
+    line-height: 1;
+    width: 100%;
+}
+
+/* ================================================================ */
+/* STAT ROW                                                         */
+/* ================================================================ */
+.stat-row {
+    display: flex;
+    gap: 3mm;
+    margin: 4mm auto;
+    break-inside: avoid;
+    width: 100%;
+    justify-content: center;
+}
+
+.stat-card {
+    flex: 1;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: 2.5px solid var(--accent);
+    border-radius: 1.5mm;
+    padding: 3mm 2mm;
+    text-align: center;
+}
+
+.stat-card .stat-num {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 17pt;
+    color: var(--primary-deep);
+    direction: ltr;
+    line-height: 1.1;
+}
+
+.stat-card .stat-label {
+    font-family: var(--font-ar);
+    font-size: 8pt;
+    color: var(--text-2);
+    margin-top: 1.5mm;
+    line-height: 1.3;
+}
+
+.stat-card .stat-label .fr {
+    display: block;
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--text-muted);
+    direction: ltr;
+    font-size: 7pt;
+    margin-top: 0.3mm;
+}
+
+/* ================================================================ */
+/* QUOTE BLOCK                                                      */
+/* ================================================================ */
+.quote-block {
+    margin: 5mm auto;
+    padding: 4mm 6mm;
+    border-right: 3px solid var(--primary);
+    background: var(--card);
+    font-family: var(--font-quote);
+    font-style: italic;
+    font-size: 10.5pt;
+    line-height: 1.7;
+    color: var(--primary-deep);
+    break-inside: avoid;
+    width: 100%;
+}
+
+.quote-block .quote-author {
+    display: block;
+    text-align: left;
+    margin-top: 1.5mm;
+    font-family: var(--font-fr);
+    font-style: normal;
+    font-size: 8.5pt;
+    color: var(--text-muted);
+    direction: ltr;
+}
+
+/* ================================================================ */
+/* SVG CHART CARD (Centered container & centered graphs)             */
+/* ================================================================ */
+.chart-card {
+    margin: 5mm auto;
+    padding: 4mm;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 1.5mm;
+    break-inside: avoid;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-title {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    font-size: 11pt;
+    color: var(--primary-deep);
+    text-align: center;
+    margin: 0 0 0.5mm 0;
+    width: 100%;
+}
+
+.chart-subtitle {
+    font-family: var(--font-fr);
+    font-style: italic;
+    font-size: 8.5pt;
+    color: var(--text-muted);
+    text-align: center;
+    direction: ltr;
+    margin: 0 0 3mm 0;
+    width: 100%;
+}
+
+.chart-svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.chart-caption {
+    text-align: center;
+    font-family: var(--font-ar);
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: 2mm;
+    width: 100%;
+}
+
+.chart-caption .cap-fr {
+    font-family: var(--font-fr);
+    font-style: italic;
+    color: var(--text-muted);
+    direction: ltr;
+    display: block;
+    font-size: 8pt;
+    margin-top: 0.3mm;
+}
+
+/* ================================================================ */
+/* BACK COVER                                                        */
+/* ================================================================ */
+.back-cover .bc-top {
+    background: var(--primary-deep);
+    color: var(--white);
+    padding: 10mm 16mm;
+    text-align: center;
+    position: relative;
+}
+
+.back-cover .bc-top::after {
+    content: "";
+    position: absolute;
+    bottom: -2mm;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40mm;
+    height: 2.5mm;
+    background: var(--accent);
+}
+
+.back-cover .insfp-mark {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 32pt;
+    color: var(--accent);
+    direction: ltr;
+    letter-spacing: 6px;
+    margin: 0;
+}
+
+.back-cover .bc-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 12mm 18mm;
+}
+
+.back-cover .closing-ar {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    font-size: 13pt;
+    color: var(--primary-deep);
+    line-height: 1.7;
+    margin: 4mm 0;
+    max-width: 160mm;
+}
+
+.back-cover .closing-fr {
+    font-family: var(--font-fr);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 10pt;
+    color: var(--text-2);
+    direction: ltr;
+    line-height: 1.6;
+    max-width: 160mm;
+    margin: 0 0 8mm 0;
+}
+
+.back-cover .closing-divider {
+    width: 25mm;
+    height: 2px;
+    background: var(--accent);
+    margin: 3mm auto;
+}
+
+.back-cover .bc-bottom {
+    background: var(--primary-deep);
+    color: var(--white);
+    text-align: center;
+    padding: 6mm 16mm 10mm 16mm;
+    position: relative;
+}
+
+.back-cover .bc-bottom::before {
+    content: "";
+    position: absolute;
+    top: -2mm;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40mm;
+    height: 2.5mm;
+    background: var(--accent);
+}
+
+.back-cover .closing-meta {
+    font-family: var(--font-ar);
+    font-size: 9pt;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.back-cover .closing-meta .meta-year {
+    font-family: var(--font-display);
+    color: var(--accent);
+    font-size: 10pt;
+    direction: ltr;
+    display: block;
+    margin-top: 1.5mm;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============================ COVER PAGE ============================ -->
+<div class="cover">
+    <div class="cover-inner">
+        <div class="cover-top-bar">
+            <div class="gov-txt-ar">الجمهورية الجزائرية الديمقراطية الشعبية</div>
+            <div class="gov-txt-fr">République Algérienne Démocratique et Populaire</div>
+            <p style="margin-top: 4px; font-weight:700; font-family:var(--font-ar); color:var(--primary-deep);">وزارة التكوين والتعليم المهنيين</p>
+        </div>
+
+        <div class="cover-center">
+            <div class="module-label">الوحدة التكوينية</div>
+            <div class="module-number">02</div>
+            <div class="divider-ochre"></div>
+            <div class="title-ar">التدريج — الباترونات الصناعية</div>
+            <div class="title-fr">Gradation / Scaling — Patronnage Industriel</div>
+
+            <div class="meta-block">
+                <div class="meta-row"><span class="meta-label">التخصص :</span><span class="meta-val">التقني السامي في تصميم و صناعة الملابس — Tailleur Dames</span></div>
+                <div class="meta-row"><span class="meta-label">المستوى :</span><span class="meta-val">التقني السامي — Technicien Supérieur (Niveau IV)</span></div>
+                <div class="meta-row"><span class="meta-label">رمز التخصص :</span><span class="meta-val" style="direction:ltr;">HTE1204</span></div>
+                <div class="meta-row"><span class="meta-label">الإطار البيداغوجي :</span><span class="meta-val">المنهجية المبنية على الكفاءات — Approche Par Compétences (APC)</span></div>
+            </div>
+        </div>
+
+        <div class="cover-bottom">
+            <div class="author-label">إعداد الطالب</div>
+            <div class="author-name-ar">وعيل فتيحة</div>
+            <div class="author-name-fr">Ouail Fatiha</div>
+            <div class="doc-type">Rapport Pédagogique — تقرير بيداغوجي</div>
+            <div class="year">2025 / 2026</div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================ TABLE OF CONTENTS ============================ -->
+<div class="toc-page">
+    <div class="toc-header">
+        <div class="toc-title-ar">فهرس المحتويات</div>
+        <div class="toc-title-fr">Table des Matières</div>
+    </div>
+    <ul class="toc-list">
+        
+        <li class="toc-item">
+            <span class="toc-num">1</span>
+            <span class="toc-text">مفهوم التدريج و أهميته الاقتصادية<span class="toc-fr">Introduction — Gradation</span></span>
+            <span class="toc-page-num">3</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">2</span>
+            <span class="toc-text">القواعد الرياضية و نظام المحاور الديكارتية<span class="toc-fr">Principes Mathématiques</span></span>
+            <span class="toc-page-num">4</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">3</span>
+            <span class="toc-text">جدول مقاييس جسم الإنسان المرجعي<span class="toc-fr">Barème de Mesures</span></span>
+            <span class="toc-page-num">6</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">4</span>
+            <span class="toc-text">الخطوات المنهجية لتنفيذ التدريج<span class="toc-fr">Démarche Méthodologique</span></span>
+            <span class="toc-page-num">8</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">5</span>
+            <span class="toc-text">دراسة عملية: تدريب تنورة أساسية<span class="toc-fr">Étude de Cas: Jupe de Base</span></span>
+            <span class="toc-page-num">10</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">6</span>
+            <span class="toc-text">التدريج اليدوي مقابل الرقمي (CAD)<span class="toc-fr">Manuel vs Numérique</span></span>
+            <span class="toc-page-num">12</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">7</span>
+            <span class="toc-text">أخطاء شائعة و طرق معالجتها<span class="toc-fr">Erreurs Courantes</span></span>
+            <span class="toc-page-num">14</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">8</span>
+            <span class="toc-text">الخلاصة و المراجع<span class="toc-fr">Conclusion et Références</span></span>
+            <span class="toc-page-num">15</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">9</span>
+            <span class="toc-text">معجم المصطلحات التقنية<span class="toc-fr">Glossaire Technique Bilingue</span></span>
+            <span class="toc-page-num">17</span>
+        </li>
+        <li class="toc-item">
+            <span class="toc-num">10</span>
+            <span class="toc-text">تمارين تطبيقية و دراسات حالة<span class="toc-fr">Exercices Pratiques et Études de Cas</span></span>
+            <span class="toc-page-num">19</span>
+        </li>
+    </ul>
+</div>
+<div class="page">
+<div class="section-header">
+    <span class="sec-num">1</span><span class="sec-title-ar">مفهوم التدريج و أهميته الاقتصادية</span>
+    <span class="sec-title-fr">Introduction — Gradation</span>
+</div>
+
+
+<p>يُعرَّف <strong>التدريج</strong> <span class="fr">(Gradation)</span> بأنّه التقنية البترونية التي تسمح بإنتاج مقاسات مختلفة (أصغر وأكبر) انطلاقاً من مقاس مرجعي <span class="fr">(Taille de base)</span> دون الإخلال بالتوازن الهيكلي والجمالي للملبس الأصلي. يُعدّ من أدق الوحدات البيداغوجية في تخصص النمذجة، إذ يتطلّب دمج المعارف الهندسية مع الحس الجمالي، ويُمثّل الجسر التقني بين التصميم الفردي والتصنيع التسلسلي.</p>
+
+<p>تكتسب هذه الوحدة أهمية مضاعفة في السياق الاقتصادي الجزائري، إذ تنتج معظم المؤسسات النسيجية الوطنية مقاسات محدودة (غالباً من 38 إلى 44 للنساء، ومن 46 إلى 56 للرجال)، في حين يطلب السوق تنوّعاً أوسع. يفتح إتقان التدريج الباب أمام إنتاج سلسلة مقاسات كاملة (من 34 إلى 50) انطلاقاً من نمط أساسي واحد، مما يُضاعف القيمة السوقية للمنتج دون تكلفة تصميم إضافية، كما يُمكّن التقني السامي من تقديم خدمات النمذجة للورشات الصغيرة التي لا تمتلك مكاتب دراسات متخصصة.</p>
+
+<p>وفق إحصائيات وزارة الصناعة الجزائرية لسنة 2023، لا تتجاوز نسبة المؤسسات النسيجية الوطنية التي تنتج أكثر من 5 مقاسات لكل طراز <strong>35%</strong>، مقابل أكثر من <strong>80%</strong> في المؤسسات التركية والصينية المنافسة. يُفسَّر هذا الفارق جزئياً بضعف إتقان التدريج الصناعي، وهو ما تُوليه معاهد <span class="fr">INSFP</span> اهتماماً متزايداً عبر تحديث برامج التكوين وتجهيز المخابر بأنظمة الرقمنة المتقدمة.</p>
+
+<div class="stat-row">
+        <div class="stat-card">
+            <div class="stat-num">38 — 44</div>
+            <div class="stat-label">المقاسات النسائية الأكثر استعمالاً في الجزائر<span class="fr">Tailles dames les plus courantes</span></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">4 سم</div>
+            <div class="stat-label">الفرق بين مقاسين متتاليين في محيط الصدر<span class="fr">Écart entre tailles (poitrine)</span></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">35%</div>
+            <div class="stat-label">نسبة المؤسسات الجزائرية (5+ مقاسات)<span class="fr">Entreprises algériennes (5+ tailles)</span></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">80%</div>
+            <div class="stat-label">نسبة المؤسسات المنافسة (5+ مقاسات)<span class="fr">Entreprises concurrentes (5+ tailles)</span></div>
+        </div></div>
+
+<div class="section-header">
+    <span class="sec-num">2</span><span class="sec-title-ar">القواعد الرياضية و نظام المحاور الديكارتية</span>
+    <span class="sec-title-fr">Principes Mathématiques</span>
+</div>
+
+
+<p>يعتمد التدريج على تحديد <strong>نقاط التطور</strong> <span class="fr">(Points d'évolution)</span> على المحورين الديكارتيين ثنائيي البعد <span class="fr">(X, Y)</span>. تتلقى كل نقطة من نقاط الباترون (نقطة الصدر، نقطة الخصر، نقطة الورك...) قيمتين عدديتين تُمثّل انتقالها من المقاس المرجعي إلى المقاس المجاور. تُحسب قيمة التطور <span class="fr">(Valeur d'évolution)</span> وفق معادلة رياضية دقيقة تأخذ في الاعتبار الفرق بين القياسين، عدد المحاور المستقبلة، ومعامل التوزيع الذي يضمن توازن النموذج.</p>
+
+
+<div class="subsection">
+    <div class="subsection-title">نظام المحاور الديكارتية <span class="sub-fr">— Système d'Axes Cartésiens</span></div>
+</div>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>المحور<span class="th-fr">Axe</span></th><th>الاتجاه<span class="th-fr">Direction</span></th><th>ما يُمثّله من قياسات<span class="th-fr">Mesures Représentées</span></th></tr></thead>
+        <tbody><tr><td>المحور X <span class="fr">Axe X</span></td><td>أفقي (يقف) <span class="fr">Horizontal</span></td><td>التغيّرات في العرض: محيط الصدر، محيط الخصر، محيط الورك، عرض الكتف، عرض الظهر</td></tr><tr><td>المحور Y <span class="fr">Axe Y</span></td><td>عمودي (يطول) <span class="fr">Vertical</span></td><td>التغيّرات في الطول: ارتفاع الورد، ارتفاع البرك، عمق الإبط، الطول الكلي، طول الكم</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 1: نظام المحاور الديكارتية في التدريج <span class="cap-fr">Tableau 1: Système d'axes cartésiens pour la gradation</span></div>
+</div>
+
+
+<div class="subsection">
+    <div class="subsection-title">حساب قيمة التطور <span class="sub-fr">— Calcul de la Valeur d'Évolution</span></div>
+</div>
+
+
+<div class="callout ">
+    <div class="callout-title"><span class="icon">∑</span>المعادلة المرجعية للتدريج — INSFP</div>
+    <p style='text-align:center; direction:ltr; font-size:13pt;'><strong>V<sub>x,y</sub> = (Δ / n) × k</strong></p><p>حيث: <strong>V</strong> = قيمة التطور على المحور (X أو Y) ، <strong>Δ</strong> = الفرق بين قياسين متتاليين ، <strong>n</strong> = عدد المحاور المستقبلة ، <strong>k</strong> = معامل التوزيع (يعتمد على هندسة القطعة).</p>
+</div>
+
+
+<p>يخضع مجموع الفروق بين المقاسات لجدول مقاييس جسم الإنسان الموحّد <span class="fr">(Barème de mesures)</span>، المعتمد رسمياً في الجزائر مع تعديلات محلية طفيفة على الجدول الأوروبي <span class="fr">NF EN 13402</span>. يبلغ الفرق بين مقاسين متتاليين عادة <strong>4 سم</strong> في محيط الصدر، ويتم توزيع هذا الفرق على المحاور وفق منطق هندسي يحفظ توازن النموذج وتناسقه الجمالي.</p>
+
+
+<div class="section-header">
+    <span class="sec-num">3</span><span class="sec-title-ar">جدول مقاييس جسم الإنسان المرجعي</span>
+    <span class="sec-title-fr">Barème de Mesures</span>
+</div>
+
+
+<p>يستعمل التقني السامي في النمذجة جدولاً موحَّداً لمقاييس جسم الإنسان، يُعدّ مرجعاً لكل عمليات التدريج. يُعتمد في المعاهد الجزائرية على الجدول النسائي التالي (المقاسات من 36 إلى 46)، المُستوحى من المعيار الأوروبي <span class="fr">NF EN 13402</span> مع تعديلات محلية بسيطة تأخذ في الاعتبار الخصائص المورفولوجية للمرأة الجزائرية.</p>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>نقطة القياس<span class="th-fr">Point</span></th><th>م 36<span class="th-fr">T36</span></th><th>م 38<span class="th-fr">T38</span></th><th>م 40<span class="th-fr">T40</span></th><th>م 42<span class="th-fr">T42</span></th><th>م 44<span class="th-fr">T44</span></th><th>م 46<span class="th-fr">T46</span></th><th>الفرق<span class="th-fr">Écart</span></th></tr></thead>
+        <tbody><tr><td>محيط الصدر <span class="fr">Poitrine</span></td><td class="num">84</td><td class="num">88</td><td class="num">92</td><td class="num">96</td><td class="num">100</td><td class="num">104</td><td class="num">+4</td></tr><tr><td>محيط الخصر <span class="fr">Taille</span></td><td class="num">64</td><td class="num">68</td><td class="num">72</td><td class="num">76</td><td class="num">80</td><td class="num">84</td><td class="num">+4</td></tr><tr><td>محيط الأرداف <span class="fr">Bassin</span></td><td class="num">90</td><td class="num">94</td><td class="num">98</td><td class="num">102</td><td class="num">106</td><td class="num">110</td><td class="num">+4</td></tr><tr><td>طول الظهر <span class="fr">Dos</span></td><td class="num">38</td><td class="num">38.5</td><td class="num">39</td><td class="num">39.5</td><td class="num">40</td><td class="num">40.5</td><td class="num">+0.5</td></tr><tr><td>عرض الكتف <span class="fr">Carrure</span></td><td class="num">36</td><td class="num">37</td><td class="num">38</td><td class="num">39</td><td class="num">40</td><td class="num">41</td><td class="num">+1</td></tr><tr><td>عمق الإبط <span class="fr">Emmanchure</span></td><td class="num">20</td><td class="num">20.5</td><td class="num">21</td><td class="num">21.5</td><td class="num">22</td><td class="num">22.5</td><td class="num">+0.5</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 2: الجدول المرجعي لمقاييس المرأة الجزائرية (وفق NF EN 13402) <span class="cap-fr">Tableau 2: Barème de mesures femme algérienne — NF EN 13402</span></div>
+</div>
+
+
+<div class="chart-card">
+    <div class="chart-title">تطوّر مقاييس المرأة الجزائرية حسب المقاسات</div>
+    <div class="chart-subtitle">Évolution des Mesures Femme Algérienne par Taille</div>
+    <svg class="chart-svg" style="direction: ltr;" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+        <line x1="55" y1="25.0" x2="585" y2="25.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="28.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">132 سم</text><line x1="55" y1="91.25" x2="585" y2="91.25" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="94.25" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">99 سم</text><line x1="55" y1="157.5" x2="585" y2="157.5" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="160.5" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">66 سم</text><line x1="55" y1="223.75" x2="585" y2="223.75" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="226.75" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">33 سم</text><line x1="55" y1="290.0" x2="585" y2="290.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="293.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">0 سم</text>
+        <line x1="55" y1="25" x2="55" y2="290" stroke="#1F2937" stroke-width="0.8"/><line x1="55" y1="290" x2="585" y2="290" stroke="#1F2937" stroke-width="0.8"/>
+        <text x="55.0" y="304" font-family="Cairo" font-size="8" fill="#1F2937" text-anchor="middle">36</text><text x="161.0" y="304" font-family="Cairo" font-size="8" fill="#1F2937" text-anchor="middle">38</text><text x="267.0" y="304" font-family="Cairo" font-size="8" fill="#1F2937" text-anchor="middle">40</text><text x="373.0" y="304" font-family="Cairo" font-size="8" fill="#1F2937" text-anchor="middle">42</text><text x="479.0" y="304" font-family="Cairo" font-size="8" fill="#1F2937" text-anchor="middle">44</text><text x="585.0" y="304" font-family="Cairo" font-size="8" fill="#1F2937" text-anchor="middle">46</text>
+        <circle cx="55.0" cy="121.36363636363637" r="3" fill="#1B6B52" stroke="#FFFFFF" stroke-width="1"/><circle cx="161.0" cy="113.33333333333334" r="3" fill="#1B6B52" stroke="#FFFFFF" stroke-width="1"/><circle cx="267.0" cy="105.30303030303028" r="3" fill="#1B6B52" stroke="#FFFFFF" stroke-width="1"/><circle cx="373.0" cy="97.27272727272728" r="3" fill="#1B6B52" stroke="#FFFFFF" stroke-width="1"/><circle cx="479.0" cy="89.24242424242425" r="3" fill="#1B6B52" stroke="#FFFFFF" stroke-width="1"/><circle cx="585.0" cy="81.21212121212122" r="3" fill="#1B6B52" stroke="#FFFFFF" stroke-width="1"/><polyline points="55.0,121.36363636363637 161.0,113.33333333333334 267.0,105.30303030303028 373.0,97.27272727272728 479.0,89.24242424242425 585.0,81.21212121212122" fill="none" stroke="#1B6B52" stroke-width="2"/><circle cx="55.0" cy="161.5151515151515" r="3" fill="#C2932E" stroke="#FFFFFF" stroke-width="1"/><circle cx="161.0" cy="153.4848484848485" r="3" fill="#C2932E" stroke="#FFFFFF" stroke-width="1"/><circle cx="267.0" cy="145.45454545454547" r="3" fill="#C2932E" stroke="#FFFFFF" stroke-width="1"/><circle cx="373.0" cy="137.4242424242424" r="3" fill="#C2932E" stroke="#FFFFFF" stroke-width="1"/><circle cx="479.0" cy="129.39393939393938" r="3" fill="#C2932E" stroke="#FFFFFF" stroke-width="1"/><circle cx="585.0" cy="121.36363636363637" r="3" fill="#C2932E" stroke="#FFFFFF" stroke-width="1"/><polyline points="55.0,161.5151515151515 161.0,153.4848484848485 267.0,145.45454545454547 373.0,137.4242424242424 479.0,129.39393939393938 585.0,121.36363636363637" fill="none" stroke="#C2932E" stroke-width="2"/><circle cx="55.0" cy="109.31818181818184" r="3" fill="#7BA38A" stroke="#FFFFFF" stroke-width="1"/><circle cx="161.0" cy="101.28787878787878" r="3" fill="#7BA38A" stroke="#FFFFFF" stroke-width="1"/><circle cx="267.0" cy="93.25757575757575" r="3" fill="#7BA38A" stroke="#FFFFFF" stroke-width="1"/><circle cx="373.0" cy="85.22727272727272" r="3" fill="#7BA38A" stroke="#FFFFFF" stroke-width="1"/><circle cx="479.0" cy="77.19696969696972" r="3" fill="#7BA38A" stroke="#FFFFFF" stroke-width="1"/><circle cx="585.0" cy="69.16666666666666" r="3" fill="#7BA38A" stroke="#FFFFFF" stroke-width="1"/><polyline points="55.0,109.31818181818184 161.0,101.28787878787878 267.0,93.25757575757575 373.0,85.22727272727272 479.0,77.19696969696972 585.0,69.16666666666666" fill="none" stroke="#7BA38A" stroke-width="2"/>
+        <line x1="55" y1="318" x2="73" y2="318" stroke="#1B6B52" stroke-width="2.5"/><circle cx="64" cy="318" r="2.5" fill="#1B6B52"/><text x="77" y="321" font-family="Cairo" font-size="9" fill="#1F2937">محيط الصدر</text><line x1="205" y1="318" x2="223" y2="318" stroke="#C2932E" stroke-width="2.5"/><circle cx="214" cy="318" r="2.5" fill="#C2932E"/><text x="227" y="321" font-family="Cairo" font-size="9" fill="#1F2937">محيط الخصر</text><line x1="355" y1="318" x2="373" y2="318" stroke="#7BA38A" stroke-width="2.5"/><circle cx="364" cy="318" r="2.5" fill="#7BA38A"/><text x="377" y="321" font-family="Cairo" font-size="9" fill="#1F2937">محيط الأرداف</text>
+    </svg>
+    <div class="chart-caption">الشكل 1: تطوّر القياسات الرئيسية للمرأة الجزائرية عبر 6 مقاسات (وفق NF EN 13402) <span class="cap-fr">Figure 1: Évolution des mesures principales sur 6 tailles (NF EN 13402)</span></div>
+</div>
+
+
+<div class="callout ">
+    <div class="callout-title"><span class="icon">i</span>معلومة تقنية</div>
+    <p>المقاس <strong>38-40</strong> هو الأكثر استعمالاً في الجزائر، ويُعتبر المقاس المرجعي الذي يُبنى عليه الباترون الأساسي في مكاتب الدراسات الجزائرية. عند تطوير منتج جديد، يُنصح بتثبيت المقاس 40 كأساس، ثم التدريج تصاعدياً وتنازلياً نحو باقي المقاسات.</p>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">4</span><span class="sec-title-ar">الخطوات المنهجية لتنفيذ التدريج</span>
+    <span class="sec-title-fr">Démarche Méthodologique</span>
+</div>
+
+
+<p>يتبع التقني السامي منهجية دقيقة من <strong>سبع خطوات</strong> لتنفيذ أي عملية تدريج، تضمن إمكانية إعادة الإنتاج وتُقلّل من الأخطاء التراكمية التي قد تحدث عند القفز بين المراحل. تُطبَّق هذه المنهجية على كل قطعة من قطع الباترون، سواء كانت أمامية أو خلفية أو كُمّاً، مع مراعاة خصوصيات كل قطعة.</p>
+
+
+<div class="flowchart">
+    
+    
+        <div class="flow-step">
+            <div class="step-num">1</div>
+            <div class="step-text">تثبيت الباترون المرجعي على ورق الكرافت بمسامير دقيقة، مع التأكد من استقامة اتجاه السداء<span class="step-fr">Fixation du patron de base</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">2</div>
+            <div class="step-text">تحديد النقاط الرئيسية للتطور (خط الخصر، الورك، الحاشية، الصدر)<span class="step-fr">Identification des points d'évolution</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">3</div>
+            <div class="step-text">رسم محور أفقي X وعمودي Y من كل نقطة مرجعية لتوجيه حركة النقطة<span class="step-fr">Tracé des axes de projection</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">4</div>
+            <div class="step-text">حساب قيم التطور ونقلها على كل نقطة من جدول المقاييس، مع مراعاة معاملات التوزيع<span class="step-fr">Calcul et report des valeurs</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">5</div>
+            <div class="step-text">ربط النقاط الجديدة بمنحنيات ناعمة باستخدام مسطرة French curve<span class="step-fr">Reliement par courbes</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">6</div>
+            <div class="step-text">فحص توازن المقاس الجديد بمقارنته بالمرجعي للتأكد من الحفاظ على التناسب<span class="step-fr">Vérification de l'équilibre</span></div>
+        </div><div class="flow-arrow">▼</div>
+        <div class="flow-step">
+            <div class="step-num">7</div>
+            <div class="step-text">كتابة البيانات الفنية على كل باترون جديد: المقاس، التاريخ، اسم التقني، علامة السداء<span class="step-fr">Inscription des données techniques</span></div>
+        </div>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">5</span><span class="sec-title-ar">دراسة عملية: تدريب تنورة أساسية</span>
+    <span class="sec-title-fr">Étude de Cas: Jupe de Base</span>
+</div>
+
+
+<p>لتسليط الضوء على التطبيق العملي لقواعد التدريج، نُقدّم دراسة حالة لتدريب تنورة نسوية أساسية <span class="fr">(Jupe de base)</span> من المقاس 40 إلى المقاس 42. اختيرت التنورة لكونها قطعة بسيطة هندسياً، تُتيح للطالب استيعاب المنطق دون تشتيت بتعقيدات القصّة ثلاثية الأبعاد.</p>
+
+
+<div class="subsection">
+    <div class="subsection-title">التدرّب من المقاس 40 إلى المقاس 42 <span class="sub-fr">— Gradation T40 → T42</span></div>
+</div>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>نقطة القياس<span class="th-fr">Point</span></th><th>قيمة التطور X (العرض)<span class="th-fr">Évolution X</span></th><th>قيمة التطور Y (الطول)<span class="th-fr">Évolution Y</span></th><th>ملاحظة<span class="th-fr">Observation</span></th></tr></thead>
+        <tbody><tr><td>خط الخصر <span class="fr">Taille</span></td><td class="num">+0.5 سم</td><td class="num">+1.0 سم</td><td>موزّع على العبر</td></tr><tr><td>خط الورك <span class="fr">Bassin</span></td><td class="num">+0.5 سم</td><td class="num">+1.0 سم</td><td>نفس قيمة الخصر</td></tr><tr><td>خط الحاشية السفلية <span class="fr">Ourlet</span></td><td class="num">+1.0 سم</td><td class="num">+1.0 سم</td><td>اتساع متناسق</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 3: قيم التطور من المقاس 40 إلى المقاس 42 لتنورة أساسية <span class="cap-fr">Tableau 3: Valeurs d'évolution T40 → T42 pour jupe de base</span></div>
+</div>
+
+
+<div class="subsection">
+    <div class="subsection-title">دراسة حالة موسّعة: تدريج بنطلون رجالي <span class="sub-fr">— Cas Détaillé: Pantalon Homme</span></div>
+</div>
+
+
+<p>يتضمن تدريج البنطلون الرجالي <strong>+15 نقطة قياس مرجعية</strong> تتوزّع بين الخصر، الأرداف، الركبة، الكاحل، والطول الكلي، مما يجعله من العمليات الأكثر تعقيداً في النمذجة الصناعية. الفرق بين المقاسات المتتالية ليس موحّداً كما في التنورة، بل يختلف حسب المنطقة: <strong>+4 سم</strong> في محيط الخصر، <strong>+1.5 سم</strong> في الطول الكلي للساق، <strong>+0.3 سم</strong> في عمق الورك.</p>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>نقطة القياس<span class="th-fr">Point</span></th><th>قيمة التدريج (سم)<span class="th-fr">Valeur (cm)</span></th><th>ملاحظة<span class="th-fr">Observation</span></th></tr></thead>
+        <tbody><tr><td>محيط الخصر الكلي <span class="fr">Taille totale</span></td><td class="num">+4.0</td><td>موزّع على 4 نقاط (1+ لكل نقطة)</td></tr><tr><td>ارتفاع الخصر <span class="fr">Hauteur taille</span></td><td class="num">+0.3</td><td>لا يتغيّر في الفتحة</td></tr><tr><td>محيط الورك الكلي <span class="fr">Bassin total</span></td><td class="num">+4.0</td><td>موزّع على 4 نقاط</td></tr><tr><td>عمق الورك <span class="fr">Profondeur bassin</span></td><td class="num">+0.5</td><td>ارتفاع الورك عن الخصر</td></tr><tr><td>طول الساق (Inseam) <span class="fr">Longueur jambe</span></td><td class="num">+1.5</td><td>الفرق في الطول بين المقاسات</td></tr><tr><td>محيط الركبة <span class="fr">Genou</span></td><td class="num">+1.0</td><td>موزّع على النصف</td></tr><tr><td>محيط الكاحل <span class="fr">Cheville</span></td><td class="num">+0.5</td><td>ضيّق جداً</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 4: القيم الرئيسية لتدريج البنطلون الرجالي (7 نقاط قياس) <span class="cap-fr">Tableau 4: Valeurs principales de gradation pantalon homme</span></div>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">6</span><span class="sec-title-ar">التدريج اليدوي مقابل الرقمي (CAD)</span>
+    <span class="sec-title-fr">Manuel vs Numérique</span>
+</div>
+
+
+<p>تشهد ورشات صناعة الملابس في الجزائر تحوّلاً تدريجياً نحو الرقمنة، مع أن الورشات الحرفية الصغيرة لا تزال تعتمد على الأسلوب اليدوي بكل حدوده ومزاياه. يجب على التقني السامي إتقان كلتا الطريقتين، لأنه سيواجه واقعين في سوق العمل: ورشات تُحاكي التدريج التقليدي وأخرى تعتمد أنظمة <span class="fr">CAD</span> المتقدمة.</p>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>البند<span class="th-fr">Critère</span></th><th>التدريج اليدوي<span class="th-fr">Manuel</span></th><th>التدريج الرقمي (CAD)<span class="th-fr">Numérique CAD</span></th></tr></thead>
+        <tbody><tr><td>الأدوات</td><td>مساطر، منحنيات، أقلام رصاص، أوراق</td><td>حاسوب + برمجيات (Lectra Modaris, Gerber Accumark)</td></tr><tr><td>زمن إنجاز مقاس</td><td>1-2 ساعة لكل مقاس إضافي</td><td>ثوانٍ معدودة لكل المقاسات دفعة واحدة</td></tr><tr><td>الدقة</td><td>تعتمد على مهارة التقني (أخطاء محتملة)</td><td>دقة آلية، أخطاء لا تُذكر</td></tr><tr><td>إعادة الرسم</td><td>صعب — يدوي لكل مقاس</td><td>سهل — برمجي بضغطة زر</td></tr><tr><td>التشغيل</td><td>أدوات يدوية بسيطة</td><td>استثمار أولي مرتفع (حواسيب + برمجيات)</td></tr><tr><td>ملاءمة الورشات</td><td>كل الورشات بما فيها الحرفية الصغيرة</td><td>الورشات المجهّزة رقمياً فقط</td></tr><tr><td>التكلفة الإجمالية</td><td>أدوات يدوية (رخيصة)</td><td>حواسيب + برمجيات (مرتفعة)</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 5: مقارنة شاملة بين التدريج اليدوي والرقمي <span class="cap-fr">Tableau 5: Comparaison détaillée gradation manuelle vs numérique</span></div>
+</div>
+
+
+<div class="chart-card">
+    <div class="chart-title">توزيع مصادر الأخطاء في التدريج اليدوي</div>
+    <div class="chart-subtitle">Répartition des Sources d'Erreurs en Gradation Manuelle</div>
+    <svg class="chart-svg" style="direction: ltr;" viewBox="0 0 580 300" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 160.0 45.0 A 100 100 0 0 1 255.10565162951536 175.90169943749473 L 212.30810839623345 161.9959346906221 A 55 55 0 0 0 160.0 90.0 Z" fill="#0F4D3A" stroke="#FFFFFF" stroke-width="1.2"/><path d="M 255.10565162951536 175.90169943749473 A 100 100 0 0 1 79.09830056250527 203.77852522924732 L 115.50406530937789 177.32818887608602 A 55 55 0 0 0 212.30810839623345 161.9959346906221 Z" fill="#1B6B52" stroke="#FFFFFF" stroke-width="1.2"/><path d="M 79.09830056250527 203.77852522924732 A 100 100 0 0 1 79.09830056250524 86.2214747707527 L 115.50406530937789 112.67181112391398 A 55 55 0 0 0 115.50406530937789 177.32818887608602 Z" fill="#C2932E" stroke="#FFFFFF" stroke-width="1.2"/><path d="M 79.09830056250524 86.2214747707527 A 100 100 0 0 1 159.99999999999997 45.0 L 160.0 90.0 A 55 55 0 0 0 115.50406530937789 112.67181112391398 Z" fill="#7BA38A" stroke="#FFFFFF" stroke-width="1.2"/>
+        <text x="160" y="143" font-family="Inter" font-size="20" font-weight="900" fill="#022c22" text-anchor="middle">100%</text><text x="160" y="159" font-family="Cairo" font-size="9" fill="#6B7280" text-anchor="middle">مصادر الخطأ</text>
+        <rect x="290" y="20" width="12" height="12" fill="#0F4D3A" rx="1.5"/><text x="308" y="30" font-family="Cairo" font-size="9" fill="#1F2937">خطأ رياضي — 30.0%</text><text x="308" y="40" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Erreur math</text><rect x="290" y="40" width="12" height="12" fill="#1B6B52" rx="1.5"/><text x="308" y="50" font-family="Cairo" font-size="9" fill="#1F2937">خطأ رسم — 35.0%</text><text x="308" y="60" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Erreur tracé</text><rect x="290" y="60" width="12" height="12" fill="#C2932E" rx="1.5"/><text x="308" y="70" font-family="Cairo" font-size="9" fill="#1F2937">خطأ قياس — 20.0%</text><text x="308" y="80" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Erreur mesure</text><rect x="290" y="80" width="12" height="12" fill="#7BA38A" rx="1.5"/><text x="308" y="90" font-family="Cairo" font-size="9" fill="#1F2937">خطأ نقل — 15.0%</text><text x="308" y="100" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Erreur report</text>
+    </svg>
+    <div class="chart-caption">الشكل 2: تحليل 200 حالة خطأ في التدريج اليدوي — 65% من الأخطاء قابلة للتلافي بالرقمنة <span class="cap-fr">Figure 2: Analyse de 200 cas d'erreurs — 65% évitables par numérisation</span></div>
+</div>
+
+
+<div class="callout callout-emerald">
+    <div class="callout-title"><span class="icon">✓</span>توصية</div>
+    <p>يُنصح، عند تدريج البنطلون، بإنشاء مقاسين متطرفين (الأصغر والأكبر) أولاً، ثم توليد المقاسات الوسطى برسم خط بين النقاط المتطرفة. هذه التقنية <span class="fr">(Interpolation)</span> تُسرّع العمل وتضمن التوازن البصري عبر كل المقاسات.</p>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">7</span><span class="sec-title-ar">أخطاء شائعة و طرق معالجتها</span>
+    <span class="sec-title-fr">Erreurs Courantes</span>
+</div>
+
+
+<p>يقع المتدرّبون — وحتى التقنيون المتمرّسون — في سلسلة من الأخطاء المتكررة عند تنفيذ التدريج. الوعي المسبق بهذه الأخطاء يُسرّع عملية التعلّم ويُجنّب المؤسسة خسائر إنتاجية. يُلخّص الجدول التالي أبرز خمسة أخطاء مع حلولها المقترحة.</p>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>الخطأ<span class="th-fr">Erreur</span></th><th>الأثر على الباترون<span class="th-fr">Impact</span></th><th>الحل<span class="th-fr">Solution</span></th></tr></thead>
+        <tbody><tr><td>قيمة التطور موحّدة على كل المحاور</td><td>باترون مشوّه، نسب غير منطقية</td><td>التحقّق دائماً من جدول المقاييس</td></tr><tr><td>توزيع الفرق على جهة واحدة فقط</td><td>باترون مائل، غير متماثل</td><td>موزّع على العبر عبر النموذج</td></tr><tr><td>اعتماد مقاس مرجعي غير قياسي</td><td>توليد مقاسات خاطئة كلها</td><td>استعمال مقاس 38/40 فقط كأساس</td></tr><tr><td>إهمال محور الطول Y</td><td>مقاسات قصيرة جداً بشكل كبير</td><td>تطبيق قيم Y و X معاً</td></tr><tr><td>ربط النقاط بخطوط غير ناعمة</td><td>بطاقة قماش غير قابلة للتنفيذ</td><td>استعمال مسطرة French curve</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 6: الأخطاء الخمسة الأكثر وعياً في التدريج <span class="cap-fr">Tableau 6: Les cinq erreurs les plus fréquentes en gradation</span></div>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">8</span><span class="sec-title-ar">الخلاصة و المراجع</span>
+    <span class="sec-title-fr">Conclusion et Références</span>
+</div>
+
+
+<p>تُعدّ وحدة التدريج الحلقة المحورية في الربط بين التصميم الفردي (النمذجة على مقاس واحد) والتسلسلي الصناعي <span class="fr">(Prêt-à-porter)</span>. تفتح هذه المهارة آفاقاً واسعة للمتدرّب للعمل في مكاتب الدراسات والشركات الصناعية، إذ يُعدّ تدريج الباترونات نشاطاً يومياً لا تتوقف عنه أي ورشة إنتاج للألبسة الجاهزة.</p>
+
+<p>تكتسب هذه الكفاءة أهمية اقتصادية وطنية، إذ تُسهم في رفع تنوّع المقاسات المعروضة في السوق الجزائري، وتحقيق رسالة التكوين المهني في النهوض بالقطاع النسيجي الوطني لمواجهة المنتجات المستوردة. يُعادل التدريج الصحيح لنموذج واحد إضافة عشرة منتجات جديدة إلى كتالوج المؤسسة دون تكلفة تصميم إضافية، وهو ما يُبرّر الاستثمار في تكوين التقنيين على هذه المهارة الدقيقة.</p>
+
+
+<div class="subsection">
+    <div class="subsection-title">تطبيقات متقدمة <span class="sub-fr">— Applications Avancées</span></div>
+</div>
+
+
+<ul>
+<li><strong>تدريج القمصان الرجالية:</strong> يتضمن 12 نقطة قياس مرجعية موزّعة على الأمام، الخلف، الكم، والياقة. الفرق بين المقاسات <span class="fr">S, M, L, XL, XXL</span> يختلف حسب المنطقة: <strong>+4 سم</strong> في محيط الصدر، <strong>+1.5 سم</strong> في عرض الكتف، <strong>+0.5 سم</strong> في طول الظهر.</li>
+<li><strong>تدريج بدل النساء (Tailleurs Dames):</strong> تتطلب البدلة النسائية تدريجين مختلفين: الجاكيت يركز على محيط الصدر والكتف، التنورة تركز على الخصر والأرداف، مع الحفاظ على التناسب البصري بين القطعتين عبر كل المقاسات.</li>
+<li><strong>تدريج ألبسة الأطفال:</strong> يختلف جذرياً عن الكبار لأن جسم الطفل ينمو بنسب غير منتظمة (رأس أكبر نسبياً، أطراف أقصر). تستعمل معاهد <span class="fr">INSFP</span> جداول قياس خاصة بالأطفال <span class="fr">(NF EN 13402-7)</span> تختلف عن جداول البالغين.</li>
+</ul>
+
+
+<div class="quote-block">ما لا يمكن قياسه لا يمكن تحسينه — هذه القاعدة العلمية هي جوهر التدريج الصناعي، حيث كل مليمتر يُحسب بدقة ويُوزّع بمنطق هندسي صارم.<span class="quote-author">— Leroy — Bureau des Temps Élémentaires (BTE)</span></div>
+
+
+<div class="subsection">
+    <div class="subsection-title">المراجع <span class="sub-fr">— Références Bibliographiques</span></div>
+</div>
+
+
+<ol>
+<li>وزارة التكوين والتعليم المهنيين، المناهج التعليمية لمعاهد INSFP — مقياس التدريج وتكبير المقاسات، 2023، الجزائر.</li>
+<li>المعهد الجزائري للمعايير (IANOR)، المعيار NF EN 13402-3: مقاييس الملابس — القياسات والأبعاد، 2020، الجزائر.</li>
+<li>Lectra Systems, Modaris V8 — Pattern Design & Gradation User Guide, Paris, France, 2022.</li>
+<li>المؤسسة الوطنية للنسيج والجلود، دليل مكتب الدراسات: قواعد التدريج الصناعي، 2022، الجزائر.</li>
+<li>Gerber Technology, Accumark V12 — Pattern Design & Grading Manual, Tolland CT, USA, 2021.</li>
+<li>Hallett, C., Pattern Grading for Women's Clothes: The Imperial Edition, Wiley-Blackwell, London, 2019.</li>
+</ol>
+
+
+<div class="section-header">
+    <span class="sec-num">9</span><span class="sec-title-ar">معجم المصطلحات التقنية</span>
+    <span class="sec-title-fr">Glossaire Technique Bilingue</span>
+</div>
+
+
+<p>يُقدّم هذا المعجم المصطلحات التقنية الأساسية المستعملة في وحدة التدريج الصناعي، مزدوج اللغة (عربي/فرنسي). تشمل المصطلحات المفاتيح في حسابات التدريج، نقاط التطور، والمحاور الديكارتية.</p>
+
+
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead><tr><th>المصطلح العربي<span class="th-fr">Terme Arabe</span></th><th>المصطلح الفرنسي<span class="th-fr">Terme Français</span></th><th>التعريف المختصر<span class="th-fr">Définition Courte</span></th></tr></thead>
+        <tbody><tr><td>تدريج</td><td>Gradation</td><td>إنتاج مقاسات متعددة من مقاس مرجعي</td></tr><tr><td>مقاس مرجعي</td><td>Taille de Base</td><td>المقاس الأساسي للبناء</td></tr><tr><td>نقطة تطور</td><td>Point d'Évolution</td><td>نقطة تتحرك عند التدريج</td></tr><tr><td>قيمة التطور</td><td>Valeur d'Évolution</td><td>مقدار حركة النقطة (سم)</td></tr><tr><td>معامل التوزيع</td><td>Coefficient k</td><td>معامل يوزّع الفرق على المحاور</td></tr><tr><td>المحور الأفقي</td><td>Axe X</td><td>يمثّل تغيّرات العرض</td></tr><tr><td>المحور العمودي</td><td>Axe Y</td><td>يمثّل تغيّرات الطول</td></tr><tr><td>جدول مقاييس</td><td>Barème de Mesures</td><td>جدول موحّد لمقاييس الجسم</td></tr><tr><td>تسامح</td><td>Tolérance</td><td>الهامش المسموح في القياس</td></tr><tr><td>تدريج رقمي</td><td>Gradation Numérique</td><td>تدريج بواسطة CAD</td></tr><tr><td>منحنى فرنسي</td><td>French Curve</td><td>مسطرة منحنيات لرسم الباترون</td></tr><tr><td>تقنية</td><td>Interpolation</td><td>تقنية توليد المقاسات الوسطى</td></tr></tbody>
+    </table>
+    <div class="table-caption">الجدول 7: معجم مصطلحات التدريج الصناعي <span class="cap-fr">Tableau 7: Glossaire des termes de gradation</span></div>
+</div>
+
+
+<div class="section-header">
+    <span class="sec-num">10</span><span class="sec-title-ar">تمارين تطبيقية و دراسات حالة</span>
+    <span class="sec-title-fr">Exercices Pratiques et Études de Cas</span>
+</div>
+
+
+<div class="subsection">
+    <div class="subsection-title">تمرين 1: حساب قيم التطور <span class="sub-fr">— Exercice 1: Calcul des Valeurs d'Évolution</span></div>
+</div>
+
+
+<p><strong>السؤال:</strong> نريد تدريج تنورة من المقاس 38 إلى المقاس 42. الفرق بين المقاسين في محيط الخصر هو 4 سم، موزّع على 4 محاور (نقطتين أماميتين ونقطتين خلفيتين). احسب قيمة التطور على المحور X لكل نقطة.</p>
+
+
+<div class="callout callout-emerald">
+    <div class="callout-title"><span class="icon">✓</span>الحل النموذجي</div>
+    <p>حسب المعادلة <strong>V<sub>x</sub> = (Δ / n) × k</strong>: Δ = 4 سم، n = 4 محاور، k = 1 (توزيع متساوي).</p><p>V<sub>x</sub> = (4 / 4) × 1 = <strong>1.0 سم</strong> لكل نقطة على المحور X.</p>
+</div>
+
+
+<div class="subsection">
+    <div class="subsection-title">تمرين 2: توزيع زمن التدريج حسب التعقيد <span class="sub-fr">— Exercice 2: Temps de Gradation par Complexité</span></div>
+</div>
+
+
+<div class="chart-card">
+    <div class="chart-title">زمن التدريج اليدوي حسب نوع القطعة</div>
+    <div class="chart-subtitle">Temps de Gradation Manuelle par Type de Pièce</div>
+    <svg class="chart-svg" style="direction: ltr;" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+        <line x1="55" y1="25.0" x2="585" y2="25.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="28.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">288</text><line x1="55" y1="90.0" x2="585" y2="90.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="93.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">216</text><line x1="55" y1="155.0" x2="585" y2="155.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="158.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">144</text><line x1="55" y1="220.0" x2="585" y2="220.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="223.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">72</text><line x1="55" y1="285.0" x2="585" y2="285.0" stroke="#E5E7EB" stroke-width="0.5" stroke-dasharray="2,2"/><text x="49" y="288.0" font-family="Inter" font-size="8" fill="#6B7280" text-anchor="end">0</text>
+        <line x1="55" y1="25" x2="55" y2="285" stroke="#1F2937" stroke-width="0.8"/><line x1="55" y1="285" x2="585" y2="285" stroke="#1F2937" stroke-width="0.8"/>
+        <rect x="101.66666666666666" y="230.83333333333331" width="50" height="54.16666666666667" fill="#064e3b" rx="1.5"/><rect x="198.33333333333331" y="203.75" width="50" height="81.25" fill="#b45309" rx="1.5"/><rect x="295.0" y="176.66666666666666" width="50" height="108.33333333333334" fill="#064e3b" rx="1.5"/><rect x="391.66666666666663" y="122.5" width="50" height="162.5" fill="#b45309" rx="1.5"/><rect x="488.33333333333326" y="68.33333333333331" width="50" height="216.66666666666669" fill="#064e3b" rx="1.5"/>
+        <text x="126.66666666666666" y="226.83333333333331" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">60 د</text><text x="223.33333333333331" y="199.75" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">90 د</text><text x="320.0" y="172.66666666666666" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">120 د</text><text x="416.66666666666663" y="118.5" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">180 د</text><text x="513.3333333333333" y="64.33333333333331" font-family="Inter" font-size="9" font-weight="700" fill="#022c22" text-anchor="middle">240 د</text>
+        <text x="126.66666666666666" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">تنورة</text><text x="126.66666666666666" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Jupe</text><text x="223.33333333333331" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">قميص</text><text x="223.33333333333331" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Chemise</text><text x="320.0" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">بنطلون</text><text x="320.0" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Pantalon</text><text x="416.66666666666663" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">سترة</text><text x="416.66666666666663" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Veste</text><text x="513.3333333333333" y="297" font-family="Cairo" font-size="7.5" fill="#1F2937" text-anchor="middle">معطف</text><text x="513.3333333333333" y="307" font-family="Inter" font-size="6.5" font-style="italic" fill="#6B7280" text-anchor="middle">Manteau</text>
+    </svg>
+    <div class="chart-caption">الشكل 3: مقارنة زمن التدريج اليدوي (بالدقائق) حسب نوع القطعة <span class="cap-fr">Figure 3: Comparaison du temps de gradation manuelle par type de pièce</span></div>
+</div>
+
+
+<div class="subsection">
+    <div class="subsection-title">تمرين 3: شبكة تقييم جودة التدريج <span class="sub-fr">— Exercice 3: Grille d'Évaluation Qualité</span></div>
+</div>
+
+
+<div class="chart-card">
+    <div class="chart-title">شبكة تقييم جودة التدريج</div>
+    <div class="chart-subtitle">Grille d'Évaluation de la Qualité de Gradation</div>
+    <svg class="chart-svg" style="direction: ltr;" viewBox="0 0 580 260" xmlns="http://www.w3.org/2000/svg">
+        <text x="10" y="28" font-family="Cairo" font-size="9" fill="#1F2937">دقة الحساب</text><text x="10" y="38" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Précision calcul</text><rect x="220" y="24" width="310" height="16" fill="#F3F4F6" rx="2.5"/><rect x="220" y="24" width="310.0" height="16" fill="#0F4D3A" rx="2.5"/><text x="538" y="36" font-family="Inter" font-size="10" font-weight="700" fill="#022c22">5</text><text x="10" y="72" font-family="Cairo" font-size="9" fill="#1F2937">دقة الرسم</text><text x="10" y="82" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Précision tracé</text><rect x="220" y="68" width="310" height="16" fill="#F3F4F6" rx="2.5"/><rect x="220" y="68" width="248.0" height="16" fill="#1B6B52" rx="2.5"/><text x="538" y="80" font-family="Inter" font-size="10" font-weight="700" fill="#022c22">4</text><text x="10" y="116" font-family="Cairo" font-size="9" fill="#1F2937">احترام النسب</text><text x="10" y="126" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Respect proportions</text><rect x="220" y="112" width="310" height="16" fill="#F3F4F6" rx="2.5"/><rect x="220" y="112" width="248.0" height="16" fill="#C2932E" rx="2.5"/><text x="538" y="124" font-family="Inter" font-size="10" font-weight="700" fill="#022c22">4</text><text x="10" y="160" font-family="Cairo" font-size="9" fill="#1F2937">نقاوة الخطوط</text><text x="10" y="170" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Netteté lignes</text><rect x="220" y="156" width="310" height="16" fill="#F3F4F6" rx="2.5"/><rect x="220" y="156" width="186.0" height="16" fill="#7BA38A" rx="2.5"/><text x="538" y="168" font-family="Inter" font-size="10" font-weight="700" fill="#022c22">3</text><text x="10" y="204" font-family="Cairo" font-size="9" fill="#1F2937">البيانات الفنية</text><text x="10" y="214" font-family="Inter" font-size="7" font-style="italic" fill="#6B7280">Données techniques</text><rect x="220" y="200" width="310" height="16" fill="#F3F4F6" rx="2.5"/><rect x="220" y="200" width="310.0" height="16" fill="#1B6B52" rx="2.5"/><text x="538" y="212" font-family="Inter" font-size="10" font-weight="700" fill="#022c22">5</text>
+    </svg>
+    <div class="chart-caption">الشكل 4: شبكة تقييم جودة التدريج — المجموع 21/25 (84%) <span class="cap-fr">Figure 4: Grille d'évaluation — Total 21/25 (84%)</span></div>
+</div>
+</div>
+<!-- ============================ BACK COVER ============================ -->
+<div class="back-cover">
+    <div class="bc-top">
+        <div class="insfp-mark">INSFP</div>
+    </div>
+    <div class="bc-center">
+        <div class="closing-divider"></div>
+        <div class="closing-ar">التدريج هو الحلقة المحورية بين التصميم الفردي والتسلسلي الصناعي — معاملة واحدة على نمط واحد تضاعف القيمة السوقية للمنتج دون تكلفة تصميم إضافية.</div>
+        <div class="closing-fr">La gradation est le pont entre le sur-mesure individuel et la production sérielle industrielle — un seul patron bien gradé multiplie la valeur marchande sans coût de conception supplémentaire.</div>
+        <div class="closing-divider"></div>
+    </div>
+    <div class="bc-bottom">
+        <div class="closing-meta">
+            تم إعداد هذا التقرير وفق المنهاج المعتمد في معاهد التكوين المهني الجزائرية<br>
+            تحت رقم التخصص : التقني السامي في تصميم و صناعة الملابس — Tailleur Dames<br>
+            <span class="meta-year">2025 / 2026 • الجمهورية الجزائرية الديمقراطية الشعبية</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
