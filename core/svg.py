@@ -25,7 +25,7 @@ def label_parts(value: Any) -> tuple[str, str]:
 
 def chart_frame(spec: Mapping[str, Any], body: str, design: DesignSystem, width: int, height: int) -> str:
     title = esc(spec.get("title", ""))
-    subtitle = esc(spec.get("subtitle", ""))
+    subtitle = esc(spec.get("subtitle", spec.get("subtitle_fr", "")))
     caption = (
         f'<div class="caption">{esc(spec["caption"])}</div>'
         if "caption" in spec
@@ -38,6 +38,7 @@ def chart_frame(spec: Mapping[str, Any], body: str, design: DesignSystem, width:
         <p>{subtitle}</p>
       </div>
       <svg viewBox="0 0 {width} {height}" class="svg-viewport"
+           style="direction:ltr !important; unicode-bidi:isolate;"
            xmlns="http://www.w3.org/2000/svg" role="img"
            aria-label="{title}">{body}</svg>
       {caption}
@@ -106,16 +107,27 @@ def bar_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
 
 def line_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
     width, height = 640, 280
-    ml, mr, mt, mb = 54, 24, 28, 48
+    ml, mr, mt, mb = 54, 28, 30, 54
     plot_w, plot_h = width - ml - mr, height - mt - mb
-    values = [float(value) for value in spec["values"]]
     labels = spec["labels"]
-    maximum = max((abs(value) for value in values), default=1.0) * 1.2 or 1.0
-    minimum = min((min(values, default=0), 0))
-    span = max(maximum - minimum, 1.0)
     axis = design.palette
+    colors = axis.series or (axis.primary,)
+    series_data = spec.get("series")
+    if not series_data:
+        series_data = [{
+            "label": "",
+            "values": spec.get("values", []),
+            "color": axis.primary,
+        }]
+
+    all_values = [float(value) for series in series_data for value in series["values"]]
+    maximum = max(all_values, default=1.0) * 1.2 or 1.0
+    minimum = min(0.0, min(all_values, default=0.0))
+    span = max(maximum - minimum, 1.0)
+    count = len(labels)
 
     parts: list[str] = []
+
     for i in range(5):
         ratio = i / 4
         y = mt + plot_h * ratio
@@ -129,38 +141,76 @@ def line_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
             f'text-anchor="end">{value:g}</text>'
         )
 
-    count = len(values)
-    points: list[tuple[float, float]] = []
-    for index, value in enumerate(values):
+    def point_xy(index: int, value: float) -> tuple[float, float]:
         x = ml + (plot_w / max(1, count - 1)) * index
         y = mt + (maximum - value) / span * plot_h
-        points.append((x, y))
-        label = labels[index]
+        return x, y
+
+    for index, label in enumerate(labels):
+        x = ml + (plot_w / max(1, count - 1)) * index
+        primary_label, secondary_label = label_parts(label)
         parts.append(
-            f'<text x="{x:.1f}" y="{mt + plot_h + 18:.1f}" font-size="8" '
-            f'fill="{axis.text}" text-anchor="middle">{esc(label_parts(label)[0])}</text>'
+            f'<text x="{x:.1f}" y="{mt + plot_h + 18:.1f}" font-size="8.5" '
+            f'font-weight="600" fill="{axis.text}" text-anchor="middle">'
+            f'{esc(primary_label)}</text>'
         )
-        if label_parts(label)[1]:
+        if secondary_label:
             parts.append(
-                f'<text x="{x:.1f}" y="{mt + plot_h + 29:.1f}" font-size="7" '
+                f'<text x="{x:.1f}" y="{mt + plot_h + 30:.1f}" font-size="7" '
                 f'font-style="italic" fill="{axis.muted}" text-anchor="middle">'
-                f'{esc(label_parts(label)[1])}</text>'
+                f'{esc(secondary_label)}</text>'
             )
 
-    if len(points) >= 2:
-        polyline = " ".join(f"{x:.1f},{y:.1f}" for x, y in points)
-        parts.insert(
-            0,
-            f'<polyline points="{polyline}" fill="none" stroke="{axis.primary}" stroke-width="2.5"/>',
-        )
+    legend_items: list[str] = []
+    for series_index, series in enumerate(series_data):
+        vals = [float(value) for value in series["values"]]
+        color = esc(series.get("color", colors[series_index % len(colors)]))
+        points = [point_xy(i, value) for i, value in enumerate(vals)]
 
-    for x, y in points:
-        parts.append(
-            f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.5" fill="{axis.accent}" '
-            f'stroke="{axis.surface}" stroke-width="1.5"/>'
-        )
+        if len(points) >= 2:
+            polyline = " ".join(f"{x:.1f},{y:.1f}" for x, y in points)
+            parts.append(
+                f'<polyline points="{polyline}" fill="none" stroke="{color}" '
+                f'stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>'
+            )
 
-    return chart_frame(spec, "".join(parts), design, width, height)
+        for x, y in points:
+            parts.append(
+                f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.5" fill="{color}" '
+                f'stroke="{axis.surface}" stroke-width="1.5"/>'
+            )
+            # Keep value annotations attached to their series without affecting RTL layout.
+            parts.append(
+                f'<text x="{x:.1f}" y="{y - 7:.1f}" font-size="7.5" font-weight="700" '
+                f'fill="{color}" text-anchor="middle">{float(vals[len([p for p in points if p == (x, y)]) - 1]) if False else ""}</text>'
+            )
+
+        label = str(series.get("label", "")).strip()
+        if label:
+            lx = 150 + series_index * 145
+            if lx > width - 90:
+                lx = 150 + (series_index % 3) * 145
+                ly = height - 22 - (series_index // 3) * 14
+            else:
+                ly = height - 10
+            legend_items.append(
+                f'<circle cx="{lx}" cy="{ly - 3}" r="4" fill="{color}"/>'
+                f'<text x="{lx + 10}" y="{ly}" font-size="8" fill="{axis.text}" '
+                f'text-anchor="start">{esc(label)}</text>'
+            )
+
+    # Render numeric annotations in a second pass so each annotation uses its own source value.
+    annotations: list[str] = []
+    for series_index, series in enumerate(series_data):
+        color = esc(series.get("color", colors[series_index % len(colors)]))
+        for index, raw_value in enumerate(series["values"]):
+            x, y = point_xy(index, float(raw_value))
+            annotations.append(
+                f'<text x="{x:.1f}" y="{y - 8:.1f}" font-size="7.5" font-weight="700" '
+                f'fill="{color}" text-anchor="middle">{float(raw_value):g}</text>'
+            )
+
+    return chart_frame(spec, "".join(parts) + "".join(annotations) + "".join(legend_items), design, width, height)
 
 
 def donut_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
