@@ -1,6 +1,3 @@
-# ========================================================================
-# FILE: core/svg.py
-# ========================================================================
 """
 core/svg.py — Deterministic, Domain-Agnostic Vector Graphics Engine (Pure SVG)
 Generates high-fidelity vector charts and diagrams directly using DesignSystem tokens.
@@ -90,7 +87,7 @@ def bar_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
         primary_label, secondary_label = label_parts(label)
         color = colors[index % len(colors)]
 
-        val_display = f"{unit} {value:g}" if unit else f"{value:g}"
+        val_display = f"{value:g} {unit}" if unit else f"{value:g}"
         parts.extend(
             [
                 f'<rect x="{x:.1f}" y="{y:.1f}" width="{bar_w:.1f}" height="{bar_h:.1f}" '
@@ -250,7 +247,7 @@ def donut_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
         legends.append(
             f'<rect x="312" y="{y}" width="12" height="12" rx="2" fill="{esc(color)}"/>'
             f'<text x="332" y="{y + 10}" font-size="8.5" font-weight="700" '
-            f'fill="{axis.text_dark}">{esc(primary_label)} — {percentage:.1f}%</text>'
+            f'fill="{axis.text_dark}">{percentage:.1f}% — {esc(primary_label)}</text>'
         )
         if secondary_label:
             legends.append(

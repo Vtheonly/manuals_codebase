@@ -1,6 +1,3 @@
-# ========================================================================
-# FILE: core/components.py
-# ========================================================================
 """
 core/components.py — Generic Semantic Component Renderers
 Pure domain-agnostic components mapping generic data models to presentation markup.
@@ -8,6 +5,7 @@ Pure domain-agnostic components mapping generic data models to presentation mark
 from __future__ import annotations
 
 import html
+import re
 from collections.abc import Mapping
 from typing import Any
 
@@ -28,6 +26,8 @@ def label_parts(value: Any) -> tuple[str, str]:
 
 def clean_html(value: Any, mode: str = "auto") -> str:
     content = str(value or "")
+    # Strip any stray page-break / block sentinels generically
+    content = re.sub(r'PGB[SA][a-zA-Z0-9]+', '', content)
     if mode == "html":
         return content
     if mode == "text":
@@ -39,7 +39,7 @@ def clean_html(value: Any, mode: str = "auto") -> str:
 
 def render_heading(block: Mapping[str, Any], design: DesignSystem) -> str:
     level = min(6, max(1, int(block.get("level", 2))))
-    badge_val = str(block.get("badge", "")).strip()
+    badge_val = clean_html(str(block.get("badge", "")).strip())
     badge_html = ""
     if badge_val:
         is_appendix = (
@@ -90,7 +90,7 @@ def render_formula(block: Mapping[str, Any], design: DesignSystem) -> str:
     expression = block.get("html_expression", block.get("expression", ""))
     return (
         f'<aside class="formula-box">{title}'
-        f'<div class="formula-math">{clean_html(expression)}</div>'
+        f'<div class="formula-math" dir="ltr">{clean_html(expression)}</div>'
         f'{description}</aside>'
     )
 
@@ -249,14 +249,7 @@ def render_toc(block: Mapping[str, Any], design: DesignSystem) -> str:
         sub = f'<span class="toc-sub">{clean_html(subtitle)}</span>' if subtitle else ""
         badge_val = str(item.get("badge", "")).strip()
         is_appendix = item.get("appendix", False) or badge_val in [
-            "أ",
-            "ب",
-            "ج",
-            "د",
-            "A",
-            "B",
-            "C",
-            "D",
+            "أ", "ب", "ج", "د", "A", "B", "C", "D"
         ]
         badge_cls = " appendix-badge" if is_appendix else ""
         items.append(

@@ -1,6 +1,3 @@
-# ========================================================================
-# FILE: generators/html.py
-# ========================================================================
 """
 generators/html.py — Precision Document & Print Layout Engine
 Produces exact, high-fidelity A4 pages matching the reference documents.
@@ -93,7 +90,7 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       gap: 10px;
     }}
 
-    /* Cover Page Framing — Double Border */
+    /* Cover Page Framing — Double Border Frame */
     .layout-framed {{
       padding: 8mm;
     }}
@@ -117,7 +114,7 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       box-sizing: border-box;
     }}
 
-    /* Back Cover Dark Theme with Inner Accent Frame */
+    /* Back Cover Dark Theme with Inner Gold Frame */
     .layout-dark {{
       background: {p.primary_deep};
       color: #ffffff;
@@ -183,7 +180,7 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     }}
 
     .circle-badge.appendix-badge {{
-      background: {p.accent};
+      background: {p.accent} !important;
     }}
 
     .sub-label {{
@@ -727,9 +724,6 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     .footer-right {{ text-align: right; }}
     """
 
-# ========================================================================
-# FILE: generators/html.py (continued)
-# ========================================================================
 
 def render_page(
     page: Mapping[str, Any],
