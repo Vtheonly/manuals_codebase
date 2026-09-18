@@ -6,6 +6,8 @@ from typing import Any
 
 BLOCK_TYPES = {
     "heading",
+    "subsection",
+    "formula",
     "text",
     "badge",
     "card",
@@ -76,11 +78,28 @@ def _validate_artifact(artifact: Mapping[str, Any]) -> None:
         kind = artifact["kind"]
         if kind not in CHART_KINDS:
             raise ValueError(f"Unsupported chart kind: {kind}")
+
+        if kind == "progress":
+            _require_list(artifact, "items", "chart")
+            return
+
+        _require_list(artifact, "labels", "chart")
+        if kind == "line" and artifact.get("series") is not None:
+            series = _require_list(artifact, "series", "chart")
+            for index, item in enumerate(series, start=1):
+                if not isinstance(item, Mapping):
+                    raise ValueError(f"chart series item {index} must be an object")
+                _require_list(item, "values", f"chart series item {index}")
+            lengths = {len(item["values"]) for item in series}
+            if len(lengths) > 1:
+                raise ValueError("All line chart series must have the same number of values")
+            if lengths and next(iter(lengths)) != len(artifact["labels"]):
+                raise ValueError("Line chart series values must match the labels length")
+            return
+
         _require_list(artifact, "values", "chart")
-        if kind != "progress":
-            _require_list(artifact, "labels", "chart")
-            if len(artifact["labels"]) != len(artifact["values"]):
-                raise ValueError("Chart labels and values must have the same length")
+        if len(artifact["labels"]) != len(artifact["values"]):
+            raise ValueError("Chart labels and values must have the same length")
     elif artifact_type == "diagram":
         _require_string(artifact, "kind", "diagram")
         if artifact["kind"] not in DIAGRAM_KINDS:
@@ -107,6 +126,13 @@ def _validate_block(block: Any, context: str) -> list[str]:
         _require_string(block, "title" if kind != "quote" else "text", context)
     if kind == "badge":
         _require_string(block, "text", context)
+    if kind == "subsection":
+        _require_string(block, "title", context)
+    if kind == "formula":
+        if "expression" not in block and "html_expression" not in block:
+            raise ValueError(f"{context}: missing 'expression' or 'html_expression'")
+        if "title" in block and not isinstance(block["title"], str):
+            raise ValueError(f"{context}: 'title' must be a string")
     if kind == "text":
         if "content" not in block:
             raise ValueError(f"{context}: missing 'content'")
