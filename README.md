@@ -54,11 +54,14 @@ A caller supplies the input:
 python build.py path/to/document.json
 ~~~
 
-Batch mode accepts a directory of JSON documents:
+Batch mode accepts either a directory of JSON documents or a **single batch JSON file**:
 
 ~~~bash
 python build.py --batch path/to/json-directory
+python build.py --batch path/to/batch.json
 ~~~
+
+A batch JSON file can be either an array of document objects or an object containing a `documents` array.
 
 Output can be redirected:
 
@@ -116,6 +119,31 @@ A document is assembled from generic pages and blocks:
       "title": "Caller-defined chart",
       "labels": ["A", "B", "C"],
       "values": [10, 20, 15]
+    }
+  ]
+}
+~~~
+
+A batch file can use:
+
+~~~json
+{
+  "documents": [
+    {
+      "id": "document-001",
+      "title": "First document",
+      "language": "en",
+      "direction": "ltr",
+      "pages": [],
+      "artifacts": []
+    },
+    {
+      "id": "document-002",
+      "title": "Second document",
+      "language": "en",
+      "direction": "ltr",
+      "pages": [],
+      "artifacts": []
     }
   ]
 }
