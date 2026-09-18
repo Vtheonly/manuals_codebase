@@ -1,56 +1,68 @@
-"""Data-driven design tokens for the artifact engine."""
+"""Data-driven, domain-agnostic design tokens with JSON theme overrides."""
 from dataclasses import asdict, dataclass, field
 from typing import Any, Mapping
 
 
 @dataclass(frozen=True)
 class Palette:
-    primary_deep: str = "#17324d"
-    primary: str = "#2c5f85"
-    primary_light: str = "#eef5fa"
-    accent: str = "#b1782f"
-    accent_light: str = "#fbf1df"
-    banner_start: str = "#dbeafe"
-    banner_end: str = "#f8fafc"
-    banner_border: str = "#93c5fd"
-    banner_text: str = "#17324d"
-    text_dark: str = "#17212b"
-    text: str = "#334155"
+    primary: str = "#1e4b7a"
+    primary_deep: str = "#0c2340"
+    primary_light: str = "#eef4fb"
+    accent: str = "#c28b2e"
+    accent_light: str = "#fef9ed"
+    text_dark: str = "#0f172a"
+    text: str = "#1e293b"
     muted: str = "#64748b"
     surface: str = "#ffffff"
     surface_alt: str = "#f8fafc"
     border: str = "#94a3b8"
     border_light: str = "#e2e8f0"
+    banner_start: str = "#8cbbe8"
+    banner_end: str = "#a4cdfa"
+    banner_border: str = "#6ba3dc"
+    banner_text: str = "#0c2d48"
     series: tuple[str, ...] = (
-        "#2c5f85",
-        "#b1782f",
-        "#3f7d5c",
+        "#1e4b7a",
+        "#c28b2e",
+        "#2b7a5a",
         "#8a4f6e",
-        "#6b7280",
+        "#475569",
     )
 
 
 @dataclass(frozen=True)
 class Typography:
-    primary: str = "Arial, sans-serif"
-    secondary: str = "Segoe UI, sans-serif"
-    mono: str = "Consolas, monospace"
+    font_arabic: str = "'Cairo', sans-serif"
+    font_latin: str = "'Inter', 'Segoe UI', sans-serif"
+    font_math: str = "'Cambria Math', 'Times New Roman', serif"
     sizes: dict[str, str] = field(default_factory=lambda: {
-        "xs": "7.5pt", "sm": "8.5pt", "base": "10pt", "md": "11pt",
-        "lg": "13pt", "xl": "16pt", "2xl": "20pt", "3xl": "26pt",
+        "xs": "7.5pt",
+        "sm": "8.5pt",
+        "base": "9.5pt",
+        "md": "11pt",
+        "lg": "13pt",
+        "xl": "15pt",
+        "2xl": "17pt",
+        "3xl": "22pt",
     })
     weights: dict[str, int] = field(default_factory=lambda: {
-        "regular": 400, "medium": 500, "bold": 700, "heavy": 800, "black": 900,
+        "regular": 400,
+        "medium": 500,
+        "bold": 700,
+        "heavy": 800,
+        "black": 900,
     })
     line_height: dict[str, float] = field(default_factory=lambda: {
-        "tight": 1.2, "normal": 1.55, "relaxed": 1.8,
+        "tight": 1.2,
+        "normal": 1.55,
+        "relaxed": 1.8,
     })
 
 
 @dataclass(frozen=True)
 class Spacing:
-    page_x: str = "12mm"
-    page_y: str = "10mm"
+    page_x: str = "14mm"
+    page_y: str = "12mm"
     xs: str = "4px"
     sm: str = "8px"
     md: str = "12px"
@@ -59,7 +71,7 @@ class Spacing:
     card: str = "14px 18px"
     cell: str = "6px 10px"
     gap: str = "10px"
-    frame_padding: str = "12mm"
+    frame_padding: str = "10mm 12mm"
 
 
 @dataclass(frozen=True)
@@ -69,7 +81,7 @@ class Borders:
     thick: str = "2.5px"
     radius_sm: str = "4px"
     radius_md: str = "8px"
-    radius_lg: str = "14px"
+    radius_lg: str = "12px"
     pill: str = "999px"
 
 
