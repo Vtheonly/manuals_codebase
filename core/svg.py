@@ -1,3 +1,6 @@
+# ========================================================================
+# FILE: core/svg.py
+# ========================================================================
 """
 core/svg.py — Deterministic, Domain-Agnostic Vector Graphics Engine (Pure SVG)
 Generates high-fidelity vector charts and diagrams directly using DesignSystem tokens.
@@ -29,22 +32,24 @@ def label_parts(value: Any) -> tuple[str, str]:
 def chart_frame(spec: Mapping[str, Any], body: str, design: DesignSystem, width: int, height: int) -> str:
     title = esc(spec.get("title", ""))
     subtitle = esc(spec.get("subtitle", spec.get("subtitle_fr", "")))
-    caption = (
-        f'<div class="caption">{esc(spec["caption"])}</div>'
-        if "caption" in spec
-        else ""
-    )
+    subtitle_html = f'<p class="chart-subtitle">{subtitle}</p>' if subtitle else ""
+    caption_html = ""
+    if "caption" in spec:
+        c_main, c_sub = label_parts(spec["caption"])
+        sub_part = f'<div class="caption-sub">{esc(c_sub)}</div>' if c_sub else ""
+        caption_html = f'<div class="caption"><div class="caption-main">{esc(c_main)}</div>{sub_part}</div>'
+
     return f"""
     <section class="artifact chart-container">
       <div class="chart-header">
         <h4>{title}</h4>
-        <p>{subtitle}</p>
+        {subtitle_html}
       </div>
       <svg viewBox="0 0 {width} {height}" class="svg-viewport"
            style="direction: ltr !important; unicode-bidi: isolate;"
            xmlns="http://www.w3.org/2000/svg" role="img"
            aria-label="{title}">{body}</svg>
-      {caption}
+      {caption_html}
     </section>
     """
 
@@ -85,13 +90,14 @@ def bar_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
         primary_label, secondary_label = label_parts(label)
         color = colors[index % len(colors)]
 
+        val_display = f"{unit} {value:g}" if unit else f"{value:g}"
         parts.extend(
             [
                 f'<rect x="{x:.1f}" y="{y:.1f}" width="{bar_w:.1f}" height="{bar_h:.1f}" '
                 f'rx="2" fill="{esc(color)}"/>',
                 f'<text x="{x + bar_w / 2:.1f}" y="{y - 5:.1f}" '
                 f'font-family="{esc(text_font)}" font-size="8.5" font-weight="700" '
-                f'fill="{axis.text_dark}" text-anchor="middle">{unit} {value:g}</text>',
+                f'fill="{axis.text_dark}" text-anchor="middle">{val_display}</text>',
                 f'<text x="{x + bar_w / 2:.1f}" y="{mt + plot_h + 17:.1f}" '
                 f'font-family="{esc(text_font)}" font-size="8" font-weight="600" '
                 f'fill="{axis.text}" text-anchor="middle">{esc(primary_label)}</text>',
@@ -109,7 +115,7 @@ def bar_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
 
 def line_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
     width, height = 640, 280
-    ml, mr, mt, mb = 54, 28, 30, 54
+    ml, mr, mt, mb = 60, 28, 30, 54
     plot_w, plot_h = width - ml - mr, height - mt - mb
     labels = spec["labels"]
     axis = design.palette
@@ -121,6 +127,9 @@ def line_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
             "values": spec.get("values", []),
             "color": axis.primary,
         }]
+
+    unit = str(spec.get("unit", "")).strip()
+    unit_prefix = f"{unit} " if unit else ""
 
     all_values = [float(v) for s in series_data for v in s["values"]]
     maximum = max(all_values, default=1.0) * 1.2 or 1.0
@@ -140,7 +149,7 @@ def line_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
         )
         parts.append(
             f'<text x="{ml - 8}" y="{y + 4:.1f}" font-size="8" fill="{axis.muted}" '
-            f'text-anchor="end">{val:g}</text>'
+            f'text-anchor="end">{unit_prefix}{val:g}</text>'
         )
 
     def point_xy(idx: int, val: float) -> tuple[float, float]:
@@ -198,7 +207,13 @@ def line_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
                 f'text-anchor="start">{esc(label)}</text>'
             )
 
-    return chart_frame(spec, "".join(parts) + "".join(annotations) + "".join(legend_items), design, width, height)
+    return chart_frame(
+        spec,
+        "".join(parts) + "".join(annotations) + "".join(legend_items),
+        design,
+        width,
+        height,
+    )
 
 
 def donut_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
@@ -261,16 +276,24 @@ def progress_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
     height = max(70, 34 + len(items) * 38)
     axis = design.palette
     parts: list[str] = []
+    series_colors = axis.series or (axis.primary,)
+    spec_color = spec.get("color")
 
     for index, item in enumerate(items):
-        label, secondary = label_parts(item.get("label", ""))
+        label_val = item.get("label", "")
+        sub_val = item.get("sublabel", "")
+        if sub_val:
+            label = str(label_val)
+            secondary = str(sub_val)
+        else:
+            label, secondary = label_parts(label_val)
+
         y = 20 + index * 38
         value = float(item["value"])
         maximum = float(item.get("max", 1.0)) or 1.0
         fill_w = max(0.0, min(1.0, value / maximum)) * 320
-        color = (axis.series or (axis.primary,))[index % len(axis.series or (axis.primary,))]
+        color = item.get("color") or spec_color or series_colors[index % len(series_colors)]
 
-        # النصوص على اليسار ثابتة بمحاذاة start لمنع قص النصوص العربية
         parts.append(
             f'<text x="25" y="{y + 9}" font-size="8.5" font-weight="700" '
             f'fill="{axis.text_dark}" text-anchor="start">{esc(label)}</text>'
