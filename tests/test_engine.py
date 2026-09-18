@@ -58,6 +58,53 @@ def test_same_engine_compiles_different_inputs(tmp_path):
         assert not (output / "report_data.py").exists()
 
 
+
+def test_high_fidelity_components_and_multi_series_chart(tmp_path):
+    source_document = document("Styled", "ar", "rtl")
+    source_document["pages"][0]["blocks"].extend([
+        {"type": "subsection", "title": "Secondary Section", "subtitle": "Sous-section"},
+        {
+            "type": "formula",
+            "title": "Reference Formula",
+            "html_expression": "V<sub>x</sub> = (Δ / n) × k",
+            "description": "Uses <strong>inline emphasis</strong> without escaping the markup.",
+        },
+        {"type": "text", "content": "A <strong>formatted</strong> sentence and <small>small text</small>."},
+    ])
+    source_document["artifacts"].append({
+        "id": "multi",
+        "type": "chart",
+        "kind": "line",
+        "title": "Multi-Series",
+        "labels": ["A", "B", "C"],
+        "series": [
+            {"label": "First", "values": [1, 2, 3]},
+            {"label": "Second", "values": [3, 2, 1]},
+            {"label": "Third", "values": [2, 3, 2]},
+        ],
+    })
+    source_document["pages"][0]["blocks"].append(
+        {"type": "artifact_ref", "artifact_id": "multi"}
+    )
+
+    source = tmp_path / "styled.json"
+    output = tmp_path / "styled-output"
+    source.write_text(json.dumps(source_document, ensure_ascii=False), encoding="utf-8")
+    manifest = build(source, output)
+
+    rendered = (output / "styled.html").read_text(encoding="utf-8")
+    assert "<strong>formatted</strong>" in rendered
+    assert "<small>small text</small>" in rendered
+    assert 'class="formula-math"' in rendered
+    assert 'class="subsection-header"' in rendered
+
+    svg = (output / "artifacts" / "multi.svg").read_text(encoding="utf-8")
+    assert svg.count("<polyline") == 3
+    assert svg.count('class="svg-viewport"') == 1
+    assert 'direction:ltr !important' in svg
+
+    assert manifest["outputs"]["html"]["path"] == "styled.html"
+
 def test_batch_build(tmp_path, monkeypatch):
     from build import main
     input_dir = tmp_path / "inputs"
