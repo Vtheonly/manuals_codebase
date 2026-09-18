@@ -1,221 +1,362 @@
-"""
-core/svg.py — Deterministic Vector Graphics Generator (Pure SVG)
-"""
+"""Deterministic, domain-agnostic SVG generators."""
+from __future__ import annotations
+
 import html
 import math
-from core.design import DESIGN
+from collections.abc import Mapping, Sequence
+from typing import Any
 
-def esc(v: object) -> str:
-    return html.escape(str(v), quote=True)
+from core.design import DesignSystem
 
-def bar_chart(a: dict) -> str:
-    p = DESIGN.palette; ty = DESIGN.typography
-    w, h = 620, 280
-    ml, mr, mt, mb = 50, 20, 30, 45
-    pw, ph = w - ml - mr, h - mt - mb
-    
-    vals = [float(x) for x in a["values"]]
-    mx = max(vals, default=1.0) * 1.2 or 1.0
-    n = max(1, len(vals))
-    bw = max(16.0, (pw / n) * 0.48)
-    gap = (pw - (bw * n)) / (n + 1)
-    unit = a.get("unit", "")
-    
-    parts = []
-    # خطوط الشبكة والمحور
-    for i in range(5):
-        y = mt + ph * i / 4
-        val = mx * (1 - i / 4)
-        parts.append(f'<line x1="{ml}" y1="{y:.1f}" x2="{w - mr}" y2="{y:.1f}" stroke="{p.border_light}" stroke-dasharray="2,2"/>')
-        parts.append(f'<text x="{ml - 8}" y="{y + 4:.1f}" font-family="{ty.latin}" font-size="8.5" fill="{p.muted}" text-anchor="end">{int(val)}</text>')
-        
-    for i, (lbl, val) in enumerate(zip(a["labels"], vals)):
-        x = ml + gap + i * (bw + gap)
-        bh = (val / mx) * ph
-        y = mt + ph - bh
-        color = p.primary if i % 2 == 0 else p.accent
-        
-        lbl_ar = lbl[0] if isinstance(lbl, list) else str(lbl)
-        lbl_fr = lbl[1] if isinstance(lbl, list) and len(lbl) > 1 else ""
-        
-        parts.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{bw:.1f}" height="{bh:.1f}" rx="2" fill="{color}"/>')
-        parts.append(f'<text x="{x + bw/2:.1f}" y="{y - 5:.1f}" font-family="{ty.arabic}" font-size="9" font-weight="700" fill="{p.text_dark}" text-anchor="middle">{unit} {int(val)}</text>')
-        parts.append(f'<text x="{x + bw/2:.1f}" y="{mt + ph + 16:.1f}" font-family="{ty.arabic}" font-size="8.5" font-weight="600" fill="{p.text}" text-anchor="middle">{esc(lbl_ar)}</text>')
-        if lbl_fr:
-            parts.append(f'<text x="{x + bw/2:.1f}" y="{mt + ph + 28:.1f}" font-family="{ty.latin}" font-style="italic" font-size="7" fill="{p.muted}" text-anchor="middle">{esc(lbl_fr)}</text>')
 
-    caption_html = f'<div class="chart-caption"><span>{esc(a.get("caption_ar", ""))}</span> — <span class="fr">{esc(a.get("caption_fr", ""))}</span></div>' if "caption_ar" in a else ""
+def esc(value: object) -> str:
+    return html.escape(str(value), quote=True)
+
+
+def label_parts(value: Any) -> tuple[str, str]:
+    if isinstance(value, Mapping):
+        return str(value.get("text", "")), str(value.get("subtext", ""))
+    if isinstance(value, Sequence) and not isinstance(value, (str, bytes)):
+        primary = str(value[0]) if value else ""
+        secondary = str(value[1]) if len(value) > 1 else ""
+        return primary, secondary
+    return str(value), ""
+
+
+def chart_frame(spec: Mapping[str, Any], body: str, design: DesignSystem, width: int, height: int) -> str:
+    title = esc(spec.get("title", ""))
+    subtitle = esc(spec.get("subtitle", ""))
+    caption = (
+        f'<div class="caption">{esc(spec["caption"])}</div>'
+        if "caption" in spec
+        else ""
+    )
     return f"""
-    <div class="artifact chart-container">
-        <div class="chart-header">
-            <h4 class="chart-title-ar">{esc(a["title"])}</h4>
-            <p class="chart-title-fr">{esc(a.get("subtitle_fr", ""))}</p>
-        </div>
-        <svg viewBox="0 0 {w} {h}" class="svg-viewport" xmlns="http://www.w3.org/2000/svg">{''.join(parts)}</svg>
-        {caption_html}
-    </div>
+    <section class="artifact chart-container">
+      <div class="chart-header">
+        <h4>{title}</h4>
+        <p>{subtitle}</p>
+      </div>
+      <svg viewBox="0 0 {width} {height}" class="svg-viewport"
+           xmlns="http://www.w3.org/2000/svg" role="img"
+           aria-label="{title}">{body}</svg>
+      {caption}
+    </section>
     """
 
-def donut_chart(a: dict) -> str:
-    p = DESIGN.palette; ty = DESIGN.typography
-    w, h = 580, 250
-    cx, cy, r_out, r_in = 160, 125, 90, 52
-    
-    vals = [float(x) for x in a["values"]]
-    total = sum(vals) or 1.0
+
+def bar_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
+    width, height = 640, 290
+    ml, mr, mt, mb = 52, 22, 28, 52
+    plot_w, plot_h = width - ml - mr, height - mt - mb
+    values = [float(value) for value in spec["values"]]
+    labels = spec["labels"]
+    maximum = max((abs(value) for value in values), default=1.0)
+    maximum = maximum * 1.2 or 1.0
+    count = max(1, len(values))
+    bar_w = max(14.0, (plot_w / count) * 0.55)
+    gap = (plot_w - bar_w * count) / (count + 1)
+    axis = design.palette
+    text_font = design.typography.primary
+    unit = esc(spec.get("unit", ""))
+
+    parts: list[str] = []
+    for i in range(5):
+        y = mt + plot_h * i / 4
+        value = maximum * (1 - i / 4)
+        parts.append(
+            f'<line x1="{ml}" y1="{y:.1f}" x2="{width - mr}" y2="{y:.1f}" '
+            f'stroke="{axis.border_light}" stroke-dasharray="2,2"/>'
+        )
+        parts.append(
+            f'<text x="{ml - 8}" y="{y + 4:.1f}" font-family="{esc(text_font)}" '
+            f'font-size="8" fill="{axis.muted}" text-anchor="end">{value:.0f}</text>'
+        )
+
+    colors = axis.series or (axis.primary,)
+    for index, (label, value) in enumerate(zip(labels, values)):
+        x = ml + gap + index * (bar_w + gap)
+        magnitude = abs(value)
+        bar_h = (magnitude / maximum) * plot_h
+        y = mt + plot_h - bar_h
+        primary_label, secondary_label = label_parts(label)
+        color = colors[index % len(colors)]
+
+        parts.extend(
+            [
+                f'<rect x="{x:.1f}" y="{y:.1f}" width="{bar_w:.1f}" height="{bar_h:.1f}" '
+                f'rx="2" fill="{esc(color)}"/>',
+                f'<text x="{x + bar_w / 2:.1f}" y="{y - 5:.1f}" '
+                f'font-family="{esc(text_font)}" font-size="8.5" font-weight="700" '
+                f'fill="{axis.text_dark}" text-anchor="middle">{unit} {value:g}</text>',
+                f'<text x="{x + bar_w / 2:.1f}" y="{mt + plot_h + 17:.1f}" '
+                f'font-family="{esc(text_font)}" font-size="8" font-weight="600" '
+                f'fill="{axis.text}" text-anchor="middle">{esc(primary_label)}</text>',
+            ]
+        )
+        if secondary_label:
+            parts.append(
+                f'<text x="{x + bar_w / 2:.1f}" y="{mt + plot_h + 29:.1f}" '
+                f'font-family="{esc(design.typography.secondary)}" font-size="7" '
+                f'font-style="italic" fill="{axis.muted}" text-anchor="middle">{esc(secondary_label)}</text>'
+            )
+
+    return chart_frame(spec, "".join(parts), design, width, height)
+
+
+def line_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
+    width, height = 640, 280
+    ml, mr, mt, mb = 54, 24, 28, 48
+    plot_w, plot_h = width - ml - mr, height - mt - mb
+    values = [float(value) for value in spec["values"]]
+    labels = spec["labels"]
+    maximum = max((abs(value) for value in values), default=1.0) * 1.2 or 1.0
+    minimum = min((min(values, default=0), 0))
+    span = max(maximum - minimum, 1.0)
+    axis = design.palette
+
+    parts: list[str] = []
+    for i in range(5):
+        ratio = i / 4
+        y = mt + plot_h * ratio
+        value = maximum - span * ratio
+        parts.append(
+            f'<line x1="{ml}" y1="{y:.1f}" x2="{width - mr}" y2="{y:.1f}" '
+            f'stroke="{axis.border_light}" stroke-dasharray="2,2"/>'
+        )
+        parts.append(
+            f'<text x="{ml - 8}" y="{y + 4:.1f}" font-size="8" fill="{axis.muted}" '
+            f'text-anchor="end">{value:g}</text>'
+        )
+
+    count = len(values)
+    points: list[tuple[float, float]] = []
+    for index, value in enumerate(values):
+        x = ml + (plot_w / max(1, count - 1)) * index
+        y = mt + (maximum - value) / span * plot_h
+        points.append((x, y))
+        label = labels[index]
+        parts.append(
+            f'<text x="{x:.1f}" y="{mt + plot_h + 18:.1f}" font-size="8" '
+            f'fill="{axis.text}" text-anchor="middle">{esc(label_parts(label)[0])}</text>'
+        )
+        if label_parts(label)[1]:
+            parts.append(
+                f'<text x="{x:.1f}" y="{mt + plot_h + 29:.1f}" font-size="7" '
+                f'font-style="italic" fill="{axis.muted}" text-anchor="middle">'
+                f'{esc(label_parts(label)[1])}</text>'
+            )
+
+    if len(points) >= 2:
+        polyline = " ".join(f"{x:.1f},{y:.1f}" for x, y in points)
+        parts.insert(
+            0,
+            f'<polyline points="{polyline}" fill="none" stroke="{axis.primary}" stroke-width="2.5"/>',
+        )
+
+    for x, y in points:
+        parts.append(
+            f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.5" fill="{axis.accent}" '
+            f'stroke="{axis.surface}" stroke-width="1.5"/>'
+        )
+
+    return chart_frame(spec, "".join(parts), design, width, height)
+
+
+def donut_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
+    width, height = 600, 260
+    cx, cy, outer, inner = 160, 130, 92, 53
+    values = [max(0.0, float(value)) for value in spec["values"]]
+    total = sum(values) or 1.0
+    axis = design.palette
     start = -math.pi / 2
-    parts, legends = [], []
-    
-    for i, (lbl, val) in enumerate(zip(a["labels"], vals)):
-        sweep = 2 * math.pi * val / total
+    parts: list[str] = []
+    legends: list[str] = []
+    colors = axis.series or (axis.primary,)
+
+    for index, (label, value) in enumerate(zip(spec["labels"], values)):
+        sweep = 2 * math.pi * value / total
         end = start + sweep
-        large = int(sweep > math.pi)
-        
-        x1, y1 = cx + r_out * math.cos(start), cy + r_out * math.sin(start)
-        x2, y2 = cx + r_out * math.cos(end), cy + r_out * math.sin(end)
-        x3, y3 = cx + r_in * math.cos(end), cy + r_in * math.sin(end)
-        x4, y4 = cx + r_in * math.cos(start), cy + r_in * math.sin(start)
-        color = p.series[i % len(p.series)]
-        
-        d = f"M {x1:.2f} {y1:.2f} A {r_out} {r_out} 0 {large} 1 {x2:.2f} {y2:.2f} L {x3:.2f} {y3:.2f} A {r_in} {r_in} 0 {large} 0 {x4:.2f} {y4:.2f} Z"
-        parts.append(f'<path d="{d}" fill="{color}" stroke="#fff" stroke-width="1.5"/>')
-        
-        pct = val / total * 100
-        ly = 45 + i * 36
-        lbl_ar = lbl[0] if isinstance(lbl, list) else str(lbl)
-        lbl_fr = lbl[1] if isinstance(lbl, list) and len(lbl) > 1 else ""
-        
-        legends.append(f'<rect x="310" y="{ly}" width="12" height="12" rx="2" fill="{color}"/>')
-        legends.append(f'<text x="330" y="{ly + 10}" font-family="{ty.arabic}" font-size="9" font-weight="700" fill="{p.text_dark}">{esc(lbl_ar)} — {pct:.1f}%</text>')
-        if lbl_fr:
-            legends.append(f'<text x="330" y="{ly + 22}" font-family="{ty.latin}" font-style="italic" font-size="7.5" fill="{p.muted}">{esc(lbl_fr)}</text>')
+        large = 1 if sweep > math.pi else 0
+        x1, y1 = cx + outer * math.cos(start), cy + outer * math.sin(start)
+        x2, y2 = cx + outer * math.cos(end), cy + outer * math.sin(end)
+        x3, y3 = cx + inner * math.cos(end), cy + inner * math.sin(end)
+        x4, y4 = cx + inner * math.cos(start), cy + inner * math.sin(start)
+        color = colors[index % len(colors)]
+        path = (
+            f"M {x1:.2f} {y1:.2f} A {outer} {outer} 0 {large} 1 {x2:.2f} {y2:.2f} "
+            f"L {x3:.2f} {y3:.2f} A {inner} {inner} 0 {large} 0 {x4:.2f} {y4:.2f} Z"
+        )
+        parts.append(
+            f'<path d="{path}" fill="{esc(color)}" stroke="{axis.surface}" stroke-width="1.5"/>'
+        )
+
+        primary_label, secondary_label = label_parts(label)
+        y = 42 + index * 38
+        percentage = value / total * 100
+        legends.append(
+            f'<rect x="312" y="{y}" width="12" height="12" rx="2" fill="{esc(color)}"/>'
+            f'<text x="332" y="{y + 10}" font-size="8.5" font-weight="700" '
+            f'fill="{axis.text_dark}">{esc(primary_label)} — {percentage:.1f}%</text>'
+        )
+        if secondary_label:
+            legends.append(
+                f'<text x="332" y="{y + 22}" font-size="7" font-style="italic" '
+                f'fill="{axis.muted}">{esc(secondary_label)}</text>'
+            )
         start = end
 
-    center_badge = f"""
-    <text x="{cx}" y="{cy - 2}" font-family="{ty.latin}" font-size="16" font-weight="900" fill="{p.primary_deep}" text-anchor="middle">{esc(a.get("center_val", "100%"))}</text>
-    <text x="{cx}" y="{cy + 14}" font-family="{ty.latin}" font-size="8" fill="{p.muted}" text-anchor="middle">{esc(a.get("center_lbl", "CAD/FAO"))}</text>
-    """
-    caption_html = f'<div class="chart-caption"><span>{esc(a.get("caption_ar", ""))}</span> — <span class="fr">{esc(a.get("caption_fr", ""))}</span></div>' if "caption_ar" in a else ""
+    center_value = esc(spec.get("center_value", ""))
+    center_label = esc(spec.get("center_label", ""))
+    center = (
+        f'<text x="{cx}" y="{cy - 2}" font-size="16" font-weight="900" '
+        f'fill="{axis.primary_deep}" text-anchor="middle">{center_value}</text>'
+        f'<text x="{cx}" y="{cy + 14}" font-size="8" fill="{axis.muted}" '
+        f'text-anchor="middle">{center_label}</text>'
+    )
+    return chart_frame(spec, "".join(parts) + center + "".join(legends), design, width, height)
 
-    return f"""
-    <div class="artifact chart-container">
-        <div class="chart-header">
-            <h4 class="chart-title-ar">{esc(a["title"])}</h4>
-            <p class="chart-title-fr">{esc(a.get("subtitle_fr", ""))}</p>
-        </div>
-        <svg viewBox="0 0 {w} {h}" class="svg-viewport" xmlns="http://www.w3.org/2000/svg">{''.join(parts)}{center_badge}{''.join(legends)}</svg>
-        {caption_html}
-    </div>
-    """
 
-def line_chart(a: dict) -> str:
-    p = DESIGN.palette; ty = DESIGN.typography
-    w, h = 620, 270
-    ml, mr, mt, mb = 55, 25, 30, 40
-    pw, ph = w - ml - mr, h - mt - mb
-    
-    vals = [float(x) for x in a["values"]]
-    mx = max(vals, default=1.0) * 1.2 or 1.0
-    n = len(vals)
-    unit = a.get("unit", "")
-    
-    parts = []
-    for i in range(5):
-        y = mt + ph * i / 4
-        val = mx * (1 - i / 4)
-        parts.append(f'<line x1="{ml}" y1="{y:.1f}" x2="{w - mr}" y2="{y:.1f}" stroke="{p.border_light}" stroke-dasharray="2,2"/>')
-        parts.append(f'<text x="{ml - 8}" y="{y + 4:.1f}" font-family="{ty.latin}" font-size="8.5" fill="{p.muted}" text-anchor="end">{int(val)} {unit}</text>')
-        
-    for i, lbl in enumerate(a["labels"]):
-        x = ml + (pw / max(1, n - 1)) * i
-        parts.append(f'<text x="{x:.1f}" y="{mt + ph + 18:.1f}" font-family="{ty.arabic}" font-size="8.5" fill="{p.text}" text-anchor="middle">{esc(lbl)}</text>')
-        
-    pts = []
-    for i, val in enumerate(vals):
-        x = ml + (pw / max(1, n - 1)) * i
-        y = mt + ph - (val / mx) * ph
-        pts.append((x, y))
-        parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.5" fill="{p.accent}" stroke="#fff" stroke-width="1.5"/>')
-        parts.append(f'<text x="{x:.1f}" y="{y - 8:.1f}" font-family="{ty.latin}" font-size="8.5" font-weight="700" fill="{p.primary}" text-anchor="middle">{int(val)}</text>')
-        
-    poly = " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
-    parts.insert(0, f'<polyline points="{poly}" fill="none" stroke="{p.primary}" stroke-width="2.5"/>')
-    caption_html = f'<div class="chart-caption"><span>{esc(a.get("caption_ar", ""))}</span> — <span class="fr">{esc(a.get("caption_fr", ""))}</span></div>' if "caption_ar" in a else ""
+def progress_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
+    items = spec["items"]
+    width = 620
+    height = max(70, 34 + len(items) * 38)
+    axis = design.palette
+    parts: list[str] = []
 
-    return f"""
-    <div class="artifact chart-container">
-        <div class="chart-header">
-            <h4 class="chart-title-ar">{esc(a["title"])}</h4>
-            <p class="chart-title-fr">{esc(a.get("subtitle_fr", ""))}</p>
-        </div>
-        <svg viewBox="0 0 {w} {h}" class="svg-viewport" xmlns="http://www.w3.org/2000/svg">{''.join(parts)}</svg>
-        {caption_html}
-    </div>
-    """
+    for index, item in enumerate(items):
+        label, secondary = label_parts(item.get("label", ""))
+        y = 22 + index * 38
+        value = float(item["value"])
+        maximum = float(item.get("max", 1.0)) or 1.0
+        fill_w = max(0.0, min(1.0, value / maximum)) * 330
+        color = (axis.series or (axis.primary,))[index % len(axis.series or (axis.primary,))]
 
-def progress_chart(a: dict) -> str:
-    p = DESIGN.palette; ty = DESIGN.typography
-    items = a["items"]
-    bar_h, row_h = 14, 38
-    w, h = 600, 25 + len(items) * row_h
-    parts = []
-    
-    for i, item in enumerate(items):
-        y = 20 + i * row_h
-        lbl_ar = item["label_ar"]
-        lbl_fr = item.get("label_fr", "")
-        val, mx = float(item["value"]), float(item.get("max", 5.0))
-        color = p.primary if i % 2 == 0 else p.accent
-        
-        parts.append(f'<text x="10" y="{y + 8}" font-family="{ty.arabic}" font-size="9" font-weight="700" fill="{p.text_dark}">{esc(lbl_ar)}</text>')
-        if lbl_fr:
-            parts.append(f'<text x="10" y="{y + 19}" font-family="{ty.latin}" font-style="italic" font-size="7.5" fill="{p.muted}">{esc(lbl_fr)}</text>')
-            
-        bx, max_bw = 210, 320
-        fw = (val / mx) * max_bw if mx else 0
-        parts.append(f'<rect x="{bx}" y="{y}" width="{max_bw}" height="{bar_h}" rx="3" fill="{p.surface_alt}" stroke="{p.border_light}"/>')
-        parts.append(f'<rect x="{bx}" y="{y}" width="{fw:.1f}" height="{bar_h}" rx="3" fill="{color}"/>')
-        parts.append(f'<text x="{bx + max_bw + 14}" y="{y + 11}" font-family="{ty.latin}" font-size="9.5" font-weight="800" fill="{p.text_dark}">{val:g}</text>')
+        parts.append(
+            f'<text x="10" y="{y + 8}" font-size="8.5" font-weight="700" '
+            f'fill="{axis.text_dark}">{esc(label)}</text>'
+        )
+        if secondary:
+            parts.append(
+                f'<text x="10" y="{y + 19}" font-size="7" font-style="italic" '
+                f'fill="{axis.muted}">{esc(secondary)}</text>'
+            )
+        parts.extend(
+            [
+                f'<rect x="200" y="{y}" width="330" height="14" rx="4" '
+                f'fill="{axis.surface_alt}" stroke="{axis.border_light}"/>',
+                f'<rect x="200" y="{y}" width="{fill_w:.1f}" height="14" rx="4" '
+                f'fill="{esc(color)}"/>',
+                f'<text x="546" y="{y + 11}" font-size="9" font-weight="800" '
+                f'fill="{axis.text_dark}">{value:g}</text>',
+            ]
+        )
 
-    caption_html = f'<div class="chart-caption"><span>{esc(a.get("caption_ar", ""))}</span> — <span class="fr">{esc(a.get("caption_fr", ""))}</span></div>' if "caption_ar" in a else ""
-    return f"""
-    <div class="artifact chart-container">
-        <div class="chart-header">
-            <h4 class="chart-title-ar">{esc(a["title"])}</h4>
-            <p class="chart-title-fr">{esc(a.get("subtitle_fr", ""))}</p>
-        </div>
-        <svg viewBox="0 0 {w} {h}" class="svg-viewport" xmlns="http://www.w3.org/2000/svg">{''.join(parts)}</svg>
-        {caption_html}
-    </div>
-    """
+    return chart_frame(spec, "".join(parts), design, width, height)
 
-def diagram(a: dict) -> str:
-    # مخطط المسار الرأسي للعمليات (Vertical Step Flowchart)
-    steps = a.get("steps", [])
-    parts = []
-    for i, step in enumerate(steps):
-        parts.append(f"""
-        <div class="flow-step-node">
-            <div class="step-circle">{step["index"]}</div>
-            <div class="step-desc">
-                <p class="step-text-ar">{esc(step["title_ar"])}</p>
-                <p class="step-text-fr">{esc(step.get("subtitle_fr", ""))}</p>
-            </div>
-        </div>
-        """)
-        if i < len(steps) - 1:
-            parts.append('<div class="flow-step-arrow">▼</div>')
-            
-    header_html = f"""
-    <div class="section-sub-header">
-        <h4 class="sub-title-ar">{esc(a["title"])}</h4>
-        <span class="sub-title-fr">— {esc(a.get("subtitle_fr", ""))}</span>
-    </div>
-    """ if "title" in a else ""
 
-    return f"""
-    <div class="artifact flowchart-container">
-        {header_html}
-        <div class="flow-sequence">{''.join(parts)}</div>
-    </div>
-    """
+def flow_diagram(spec: Mapping[str, Any], design: DesignSystem) -> str:
+    steps = spec.get("steps", [])
+    node_w, node_h, gap = 460, 46, 22
+    width = 520
+    height = max(100, 26 + len(steps) * (node_h + gap))
+    axis = design.palette
+    parts: list[str] = []
+
+    for index, step in enumerate(steps):
+        label, secondary = label_parts(step.get("label", step.get("title", "")))
+        y = 18 + index * (node_h + gap)
+        parts.append(
+            f'<rect x="30" y="{y}" width="{node_w}" height="{node_h}" rx="8" '
+            f'fill="{axis.surface}" stroke="{axis.border}" stroke-width="1.2"/>'
+            f'<circle cx="54" cy="{y + 23}" r="13" fill="{axis.primary}"/>'
+            f'<text x="54" y="{y + 27}" text-anchor="middle" font-size="8" '
+            f'font-weight="700" fill="{axis.surface}">{esc(step.get("badge", index + 1))}</text>'
+            f'<text x="78" y="{y + 21}" font-size="9" font-weight="700" '
+            f'fill="{axis.text_dark}">{esc(label)}</text>'
+        )
+        if secondary:
+            parts.append(
+                f'<text x="78" y="{y + 34}" font-size="7" font-style="italic" '
+                f'fill="{axis.muted}">{esc(secondary)}</text>'
+            )
+        if index < len(steps) - 1:
+            parts.append(
+                f'<line x1="50" y1="{y + node_h}" x2="50" y2="{y + node_h + gap - 4}" '
+                f'stroke="{axis.accent}" stroke-width="2"/>'
+            )
+            parts.append(
+                f'<polygon points="44,{y + node_h + gap - 7} 56,{y + node_h + gap - 7} '
+                f'50,{y + node_h + gap - 1}" fill="{axis.accent}"/>'
+            )
+
+    return chart_frame(spec, "".join(parts), design, width, height)
+
+
+def graph_diagram(spec: Mapping[str, Any], design: DesignSystem) -> str:
+    nodes = spec.get("nodes", [])
+    edges = spec.get("edges", [])
+    width, height = 680, 360
+    axis = design.palette
+    node_w, node_h = 150, 52
+    positions: dict[str, tuple[float, float]] = {}
+
+    for index, node in enumerate(nodes):
+        if isinstance(node, Mapping):
+            node_id = str(node.get("id", index))
+            x = float(node.get("x", 40 + (index % 4) * 165))
+            y = float(node.get("y", 40 + (index // 4) * 110))
+        else:
+            node_id = str(index)
+            x = 40 + (index % 4) * 165
+            y = 40 + (index // 4) * 110
+        positions[node_id] = (x, y)
+
+    parts: list[str] = []
+    for edge in edges:
+        if not isinstance(edge, (list, tuple)) or len(edge) != 2:
+            continue
+        source, target = str(edge[0]), str(edge[1])
+        if source not in positions or target not in positions:
+            continue
+        sx, sy = positions[source]
+        tx, ty = positions[target]
+        parts.append(
+            f'<line x1="{sx + node_w}" y1="{sy + node_h / 2}" x2="{tx}" y2="{ty + node_h / 2}" '
+            f'stroke="{axis.border}" stroke-width="1.5" marker-end="url(#arrow)"/>'
+        )
+
+    for index, node in enumerate(nodes):
+        if isinstance(node, Mapping):
+            node_id = str(node.get("id", index))
+            label, secondary = label_parts(node.get("label", node.get("title", "")))
+        else:
+            node_id = str(index)
+            label, secondary = label_parts(node)
+        x, y = positions[node_id]
+        parts.append(
+            f'<rect x="{x}" y="{y}" width="{node_w}" height="{node_h}" rx="8" '
+            f'fill="{axis.surface}" stroke="{axis.primary}" stroke-width="1.2"/>'
+            f'<text x="{x + node_w / 2}" y="{y + 22}" text-anchor="middle" '
+            f'font-size="8.5" font-weight="700" fill="{axis.text_dark}">{esc(label)}</text>'
+        )
+        if secondary:
+            parts.append(
+                f'<text x="{x + node_w / 2}" y="{y + 37}" text-anchor="middle" '
+                f'font-size="7" font-style="italic" fill="{axis.muted}">{esc(secondary)}</text>'
+            )
+
+    defs = (
+        f'<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3.5" '
+        f'orient="auto"><polygon points="0 0, 8 3.5, 0 7" fill="{axis.border}"/></marker></defs>'
+    )
+    return chart_frame(spec, defs + "".join(parts), design, width, height)
+
+
+def diagram(spec: Mapping[str, Any], design: DesignSystem) -> str:
+    kind = spec.get("kind", "flow")
+    if kind == "flow":
+        return flow_diagram(spec, design)
+    if kind == "graph":
+        return graph_diagram(spec, design)
+    raise ValueError(f"Unsupported diagram kind: {kind}")

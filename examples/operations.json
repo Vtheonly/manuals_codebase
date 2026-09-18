@@ -1,0 +1,51 @@
+{
+  "id": "operations-example",
+  "title": "Equipment Maintenance Procedure",
+  "language": "en",
+  "direction": "ltr",
+  "pages": [
+    {
+      "id": "procedure",
+      "layout": "framed",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 1,
+          "title": "Maintenance Procedure"
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "title": "Safety condition",
+          "content": "Stop the machine before removing guards or starting inspection."
+        },
+        {
+          "type": "flow_steps",
+          "title": "Procedure",
+          "steps": [
+            {"badge": "1", "title": "Isolate"},
+            {"badge": "2", "title": "Inspect", "subtitle": "Record observations"},
+            {"badge": "3", "title": "Service"},
+            {"badge": "4", "title": "Verify"}
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inspection checklist",
+          "columns": ["Item", "Status", "Notes"],
+          "rows": [
+            ["Guarding", "OK", "No damage"],
+            ["Lubrication", "Pending", "Add before restart"],
+            ["Controls", "OK", "Tested"]
+          ]
+        }
+      ],
+      "footer": {
+        "left": "Operations",
+        "center": "{page}/{pages}",
+        "right": "Procedure"
+      }
+    }
+  ],
+  "artifacts": []
+}

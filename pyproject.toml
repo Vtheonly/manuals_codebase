@@ -1,8 +1,9 @@
 [project]
 name = "manuals-artifact-engine"
-version = "1.0.0"
+version = "2.0.0"
+description = "Domain-agnostic JSON-driven artifact generation engine"
 requires-python = ">=3.10"
-dependencies = ["reportlab>=4.2,<5"]
+dependencies = []
 
 [tool.pytest.ini_options]
 pythonpath = ["."]

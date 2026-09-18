@@ -1,187 +1,202 @@
+"""Generic semantic component renderers.
+
+Components know visual semantics only. They never know the document domain.
 """
-core/components.py — Semantic HTML Component Renderer
-"""
+from __future__ import annotations
+
 import html
-from core.design import DESIGN
+from collections.abc import Mapping
+from typing import Any
+
+from core.design import DesignSystem
+
 
 def esc(value: object) -> str:
     return html.escape(str(value), quote=True)
 
-def cover_page(meta: dict) -> str:
-    return f"""
-    <div class="document-page cover-page-wrapper">
-        <div class="border-outer-frame">
-            <header class="admin-header-block">
-                <h2 class="gov-title">{esc(meta.get("republic_ar", "الجمهورية الجزائرية الديمقراطية الشعبية"))}</h2>
-                <h3 class="ministry-title">{esc(meta.get("ministry_ar", "وزارة التكــــوين والتعليـــم المهنـيين"))}</h3>
-                <p class="institute-line">{esc(meta.get("center_1", ""))}</p>
-                <p class="institute-line">{esc(meta.get("center_2", ""))}</p>
-            </header>
 
-            <div class="report-title-banner-area">
-                <p class="purpose-title">{esc(meta.get("purpose", "- تقرير التربص للتكوين التكميلي ما قبل الترقية -"))}</p>
-                <div class="rank-qualification-badge">{esc(meta.get("rank_title", "لرتبة: أستاذ متخصص في التكوين والتعليم المهنيين من الدرجة الأولى"))}</div>
-                
-                <div class="main-topic-gradient-card">
-                    <p class="topic-pre-title">{esc(meta.get("topic_label", "تقرير التربص حول:"))}</p>
-                    <h1 class="topic-headline-ar">{esc(meta.get("topic_title_ar", ""))}</h1>
-                    <h2 class="topic-subline-fr">{esc(meta.get("topic_title_fr", ""))}</h2>
-                    <div class="module-code-pill">الغلاف الساعي {esc(meta.get("volume_hours", ""))} — {esc(meta.get("module_code", ""))}</div>
-                </div>
-            </div>
+def label_parts(value: Any) -> tuple[str, str]:
+    if isinstance(value, Mapping):
+        return str(value.get("text", "")), str(value.get("subtext", ""))
+    if isinstance(value, (list, tuple)):
+        return (str(value[0]) if value else "", str(value[1]) if len(value) > 1 else "")
+    return str(value), ""
 
-            <div class="trainee-info-card">
-                <div class="trainee-info-row"><span class="field-label">الاســــم واللقــــب</span><span class="field-separator">:</span><span class="field-value trainee-name">{esc(meta.get("trainee_name", ""))}</span></div>
-                <div class="trainee-info-row"><span class="field-label">الشعـــــــــبة</span><span class="field-separator">:</span><span class="field-value">{esc(meta.get("branch", ""))}</span></div>
-                <div class="trainee-info-row"><span class="field-label">التخصـــــــص</span><span class="field-separator">:</span><span class="field-value">{esc(meta.get("specialty", ""))}</span></div>
-                <div class="trainee-info-row"><span class="field-label">المؤسســــــــة</span><span class="field-separator">:</span><span class="field-value">{esc(meta.get("institution", ""))} <small>({esc(meta.get("institution_sub", ""))})</small></span></div>
-                <div class="trainee-info-row"><span class="field-label">الولايـــــــــة</span><span class="field-separator">:</span><span class="field-value">{esc(meta.get("wilaya", ""))}</span></div>
-                <div class="trainee-info-row"><span class="field-label">المعهد صاحب الاختصاص</span><span class="field-separator">:</span><span class="field-value">{esc(meta.get("accredited_institute", ""))}</span></div>
-            </div>
 
-            <footer class="cover-footer-block">
-                <div class="promo-batch-badge">الـدفـعـــــــــــــــة : {esc(meta.get("batch_number", "12"))}</div>
-                <p class="season-text">الموسم التكويني: {esc(meta.get("training_season", "2025/2026"))}</p>
-            </footer>
-        </div>
-    </div>
-    """
+def render_content(value: Any, mode: str = "text") -> str:
+    content = str(value or "")
+    return content if mode == "html" else esc(content)
 
-def table_of_contents(toc_items: list, appendix_items: list, module_code: str, season: str) -> str:
+
+def render_heading(block: Mapping[str, Any], design: DesignSystem) -> str:
+    level = min(6, max(1, int(block.get("level", 2))))
+    badge = f'<span class="circle-badge">{esc(block["badge"])}</span>' if "badge" in block else ""
+    subtitle = f'<span class="sub-label">{esc(block["subtitle"])}</span>' if "subtitle" in block else ""
+    return f'<div class="block-heading level-{level}">{badge}<div><h{level}>{esc(block["title"])}</h{level}>{subtitle}</div></div>'
+
+
+def render_text(block: Mapping[str, Any], design: DesignSystem) -> str:
+    role = esc(block.get("role", "body"))
+    align = esc(block.get("align", "justify"))
+    content = render_content(block.get("content", ""), block.get("format", "text"))
+    return f'<div class="block-text role-{role} align-{align}">{content}</div>'
+
+
+def render_badge(block: Mapping[str, Any], design: DesignSystem) -> str:
+    variant = esc(block.get("variant", "default"))
+    align = esc(block.get("align", "center"))
+    return f'<div class="badge-wrapper align-{align}"><span class="badge badge-{variant}">{esc(block["text"])}</span></div>'
+
+
+def render_card(block: Mapping[str, Any], design: DesignSystem) -> str:
+    label = f'<div class="card-label">{esc(block["label"])}</div>' if "label" in block else ""
+    subtitle = f'<div class="card-subtitle">{esc(block["subtitle"])}</div>' if "subtitle" in block else ""
+    pill = f'<div class="card-pill">{esc(block["pill"])}</div>' if "pill" in block else ""
+    content = f'<div class="card-content">{render_content(block["content"], block.get("format", "text"))}</div>' if "content" in block else ""
+    return f'<section class="card">{label}<h2 class="card-title">{esc(block["title"])}</h2>{subtitle}{content}{pill}</section>'
+
+
+def render_info_card(block: Mapping[str, Any], design: DesignSystem) -> str:
     rows = []
-    for it in toc_items:
-        rows.append(f"""
-        <li class="toc-entry">
-            <span class="toc-badge-num">{it["num"]}</span>
-            <div class="toc-text-wrap">
-                <span class="toc-ar-title">{esc(it["title_ar"])}</span>
-                <span class="toc-fr-title">{esc(it.get("title_fr", ""))}</span>
-            </div>
-            <span class="toc-dotted-leader"></span>
-            <span class="toc-page-target">{it["page"]}</span>
-        </li>
-        """)
-        
-    appendix = []
-    for it in appendix_items:
-        appendix.append(f"""
-        <li class="toc-entry appendix-entry">
-            <span class="toc-badge-num appendix-badge">{esc(it["char"])}</span>
-            <div class="toc-text-wrap">
-                <span class="toc-ar-title">{esc(it["title_ar"])}</span>
-                <span class="toc-fr-title">{esc(it.get("title_fr", ""))}</span>
-            </div>
-            <span class="toc-dotted-leader"></span>
-            <span class="toc-page-target">{it["page"]}</span>
-        </li>
-        """)
+    for row in block.get("rows", []):
+        if not isinstance(row, Mapping):
+            raise ValueError("info_card rows must be objects")
+        highlight = " highlight" if row.get("highlight") else ""
+        rows.append(
+            f'<div class="info-row{highlight}"><span class="info-label">{esc(row.get("label", ""))}</span>'
+            f'<span class="info-sep">:</span><span class="info-value">{esc(row.get("value", ""))}</span></div>'
+        )
+    return f'<section class="info-card">{"".join(rows)}</section>'
 
-    return f"""
-    <div class="document-page content-page">
-        <header class="toc-header-area">
-            <h2 class="toc-main-title">فهرس المحتويات</h2>
-            <p class="toc-subtitle-fr">Table des Matières</p>
-        </header>
-        <ul class="toc-list">{''.join(rows)}</ul>
-        <div class="toc-divider"></div>
-        <ul class="toc-list">{''.join(appendix)}</ul>
-        <footer class="running-footer">
-            <span class="footer-season">الموسم التكويني {esc(season)}</span>
-            <span class="footer-page">2</span>
-            <span class="footer-module">{esc(module_code)}</span>
-        </footer>
-    </div>
-    """
 
-def back_cover(meta: dict) -> str:
-    return f"""
-    <div class="document-page back-cover-page">
-        <header class="bc-header">
-            <h2 class="bc-ministry-ar">{esc(meta.get("ministry_ar", "وزارة التكوين والتعليم المهنيين"))}</h2>
-            <p class="bc-ministry-fr">MINISTÈRE DE LA FORMATION ET DE L'ENSEIGNEMENT PROFESSIONNELS</p>
-        </header>
-        <main class="bc-quote-block">
-            <div class="bc-gold-rule"></div>
-            <p class="bc-quote-ar">{esc(meta.get("closing_quote_ar", ""))}</p>
-            <p class="bc-quote-fr">{esc(meta.get("closing_quote_fr", ""))}</p>
-            <div class="bc-gold-rule"></div>
-        </main>
-        <footer class="bc-meta-block">
-            <p class="bc-meta-statement">أُنجز هذا التقرير في إطار التربص للتكوين التكميلي ما قبل الترقية</p>
-            <p class="bc-meta-details">الشعبة: {esc(meta.get("branch", ""))} — التخصص: {esc(meta.get("specialty", ""))} — المعهد صاحب الاختصاص: {esc(meta.get("accredited_institute", ""))}</p>
-            <p class="bc-meta-legal">المرجعية: المعايير الجزائرية IANOR والقوانين المنشورة في الجريدة الرسمية JORADP ومرجعيات MFEP / INFEP</p>
-            <p class="bc-meta-batch">الموسم التكويني: {esc(meta.get("training_season", "2025/2026"))} • الدفعة {esc(meta.get("batch_number", "12"))}</p>
-        </footer>
-    </div>
-    """
+def render_callout(block: Mapping[str, Any], design: DesignSystem) -> str:
+    variant = esc(block.get("variant", "accent"))
+    icon = f'<span class="callout-icon">{esc(block["icon"])}</span>' if "icon" in block else ""
+    content = render_content(block.get("content", ""), block.get("format", "html"))
+    return f'<aside class="callout callout-{variant}"><div class="callout-header">{icon}<strong>{esc(block["title"])}</strong></div><div class="callout-content">{content}</div></aside>'
 
-def table(block: dict) -> str:
-    head = "".join(f"<th>{esc(x[0])}<span class='th-sub'>{esc(x[1]) if len(x)>1 else ''}</span></th>" if isinstance(x, list) else f"<th>{esc(x)}</th>" for x in block["columns"])
-    rows = []
-    for r in block["rows"]:
-        tds = []
-        for cell in r:
-            if isinstance(cell, dict):
-                cls = "num-cell" if cell.get("numeric") else "text-cell"
-                sub = f'<span class="td-sub">{esc(cell["sub"])}</span>' if "sub" in cell else ""
-                tds.append(f'<td class="{cls}">{esc(cell.get("text", ""))} {sub}</td>')
-            else:
-                tds.append(f'<td>{esc(cell)}</td>')
-        rows.append(f"<tr>{''.join(tds)}</tr>")
-        
-    sub_hdr = f"""<div class="section-sub-header"><h4 class="sub-title-ar">{esc(block["title"])}</h4><span class="sub-title-fr">— {esc(block.get("subtitle_fr", ""))}</span></div>""" if "title" in block else ""
-    caption_html = f'<div class="chart-caption"><span>{esc(block.get("caption_ar", ""))}</span> — <span class="fr">{esc(block.get("caption_fr", ""))}</span></div>' if "caption_ar" in block else ""
 
-    return f"""
-    <section class="artifact table-artifact-container">
-        {sub_hdr}
-        <table class="standard-data-table">
-            <thead><tr>{head}</tr></thead>
-            <tbody>{''.join(rows)}</tbody>
-        </table>
-        {caption_html}
-    </section>
-    """
-
-def callout(block: dict) -> str:
-    variant = block.get("variant", "accent")
-    icon = block.get("icon", "★")
-    cls = "callout-primary" if variant == "primary" else "callout-accent"
-    return f"""
-    <aside class="artifact callout-box {cls}">
-        <div class="callout-badge-header">
-            <span class="callout-icon">{icon}</span>
-            <span class="callout-title">{esc(block["title"])}</span>
-        </div>
-        <div class="callout-body">{block.get("content", "")}</div>
-    </aside>
-    """
-
-def stat_row(block: dict) -> str:
+def render_stats(block: Mapping[str, Any], design: DesignSystem) -> str:
     cards = []
-    for it in block.get("items", []):
-        cards.append(f"""
-        <div class="stat-card">
-            <div class="stat-number">{esc(it["number"])}</div>
-            <div class="stat-label-ar">{esc(it["label_ar"])}</div>
-            <div class="stat-label-fr">{esc(it.get("label_fr", ""))}</div>
-        </div>
-        """)
-    return f'<div class="stat-row-grid">{"".join(cards)}</div>'
+    for item in block.get("items", []):
+        if not isinstance(item, Mapping):
+            raise ValueError("stats items must be objects")
+        sub = f'<span class="stat-sub">{esc(item["sublabel"])}</span>' if "sublabel" in item else ""
+        cards.append(f'<div class="stat-card"><div class="stat-value">{esc(item.get("value", ""))}</div><div class="stat-label">{esc(item.get("label", ""))}</div>{sub}</div>')
+    columns = max(1, min(6, int(block.get("columns", len(cards) or 1))))
+    return f'<div class="stats-grid cols-{columns}">{"".join(cards)}</div>'
 
-def text_block(block: dict) -> str:
-    role = block.get("role", "body")
-    if role == "subsection":
-        return f'<div class="section-sub-header"><h4 class="sub-title-ar">{esc(block["text"])}</h4><span class="sub-title-fr">— {esc(block.get("subtitle_fr", ""))}</span></div>'
-    if role == "quote":
-        author = f'<span class="quote-author">— {esc(block["author"])}</span>' if "author" in block else ""
-        return f'<blockquote class="quote-block-content">{esc(block["text"])}{author}</blockquote>'
-    return f'<p class="body-text">{block.get("text", "")}</p>'
 
-def render_block(block: dict) -> str:
+def render_table(block: Mapping[str, Any], design: DesignSystem) -> str:
+    headers = []
+    for column in block["columns"]:
+        primary, secondary = label_parts(column)
+        sub = f'<span class="th-sub">{esc(secondary)}</span>' if secondary else ""
+        headers.append(f"<th>{esc(primary)}{sub}</th>")
+
+    rows = []
+    for row in block.get("rows", []):
+        cells = []
+        for cell in row:
+            if isinstance(cell, Mapping):
+                value = cell.get("text", "")
+                secondary = cell.get("subtext")
+                cls = "num" if cell.get("numeric") else "txt"
+                sub = f'<span class="td-sub">{esc(secondary)}</span>' if secondary is not None else ""
+            else:
+                value, cls, sub = cell, "txt", ""
+            cells.append(f'<td class="{cls}">{esc(value)}{sub}</td>')
+        rows.append(f"<tr>{''.join(cells)}</tr>")
+
+    title = f'<div class="table-header"><h4>{esc(block["title"])}</h4><span>{esc(block.get("subtitle", ""))}</span></div>' if "title" in block else ""
+    caption = f'<div class="caption">{esc(block["caption"])}</div>' if "caption" in block else ""
+    return f'<section class="table-wrapper">{title}<table class="standard-table"><thead><tr>{"".join(headers)}</tr></thead><tbody>{"".join(rows)}</tbody></table>{caption}</section>'
+
+
+def render_flow_steps(block: Mapping[str, Any], design: DesignSystem) -> str:
+    parts = []
+    steps = block.get("steps", [])
+    for index, step in enumerate(steps):
+        if not isinstance(step, Mapping):
+            raise ValueError("flow_steps entries must be objects")
+        title, fallback_subtitle = label_parts(step.get("title", step.get("label", "")))
+        subtitle = step.get("subtitle", fallback_subtitle)
+        sub = f'<p class="step-sub">{esc(subtitle)}</p>' if subtitle else ""
+        parts.append(f'<div class="step-node"><span class="step-num">{esc(step.get("badge", index + 1))}</span><div><p class="step-title">{esc(title)}</p>{sub}</div></div>')
+        if index < len(steps) - 1:
+            parts.append('<div class="step-arrow">▼</div>')
+    title = f'<div class="flow-title">{esc(block["title"])}</div>' if "title" in block else ""
+    return f'<section class="flow-steps">{title}{"".join(parts)}</section>'
+
+
+def render_toc(block: Mapping[str, Any], design: DesignSystem) -> str:
+    items = []
+    for item in block.get("items", []):
+        title, fallback_subtitle = label_parts(item.get("title", ""))
+        subtitle = item.get("subtitle", fallback_subtitle)
+        sub = f'<span class="toc-sub">{esc(subtitle)}</span>' if subtitle else ""
+        items.append(f'<li class="toc-row"><span class="toc-badge">{esc(item.get("badge", ""))}</span><span class="toc-title"><strong>{esc(title)}</strong>{sub}</span><span class="toc-dots"></span><span class="toc-page">{esc(item.get("page", ""))}</span></li>')
+    return f'<section class="toc"><h2>{esc(block["title"])}</h2><p class="toc-subtitle">{esc(block.get("subtitle", ""))}</p><ul>{"".join(items)}</ul></section>'
+
+
+def render_quote(block: Mapping[str, Any], design: DesignSystem) -> str:
+    author = f'<span class="quote-author">— {esc(block["author"])}</span>' if "author" in block else ""
+    return f'<blockquote class="quote"><span class="quote-rule"></span><p>{esc(block["text"])}</p>{author}</blockquote>'
+
+
+def render_list(block: Mapping[str, Any], design: DesignSystem) -> str:
+    tag = "ol" if block.get("ordered") else "ul"
+    mode = block.get("format", "text")
+    items = "".join(f"<li>{render_content(item, mode)}</li>" for item in block.get("items", []))
+    return f'<{tag} class="content-list">{items}</{tag}>'
+
+
+def render_spacer(block: Mapping[str, Any], design: DesignSystem) -> str:
+    return f'<div class="spacer spacer-{esc(block.get("size", "md"))}" aria-hidden="true"></div>'
+
+
+def render_group(block: Mapping[str, Any], design: DesignSystem) -> str:
+    rendered_children = block.get("_rendered_children")
+    if rendered_children is None:
+        rendered_children = [render_block(child, design) for child in block.get("children", [])]
+    layout = "row" if block.get("layout") == "row" else "column"
+    align = esc(block.get("align", "stretch"))
+    justify = esc(block.get("justify", "flex-start"))
+    gap = esc(block.get("gap", "md"))
+    return f'<div class="content-group group-{layout} align-{align} justify-{justify} gap-{gap}">{"".join(rendered_children)}</div>'
+
+
+def render_image(block: Mapping[str, Any], design: DesignSystem) -> str:
+    src, alt = esc(block["src"]), esc(block.get("alt", ""))
+    width = esc(block.get("width", "100%"))
+    caption = f'<figcaption>{esc(block["caption"])}</figcaption>' if "caption" in block else ""
+    return f'<figure class="image-block"><img src="{src}" alt="{alt}" style="max-width:{width};">{caption}</figure>'
+
+
+RENDERERS = {
+    "heading": render_heading,
+    "text": render_text,
+    "badge": render_badge,
+    "card": render_card,
+    "info_card": render_info_card,
+    "callout": render_callout,
+    "stats": render_stats,
+    "table": render_table,
+    "flow_steps": render_flow_steps,
+    "toc": render_toc,
+    "quote": render_quote,
+    "list": render_list,
+    "spacer": render_spacer,
+    "group": render_group,
+    "image": render_image,
+}
+
+
+def render_block(block: Mapping[str, Any], design: DesignSystem) -> str:
     kind = block.get("type")
-    if kind == "text": return text_block(block)
-    if kind == "table": return table(block)
-    if kind == "callout": return callout(block)
-    if kind == "stats": return stat_row(block)
-    raise ValueError(f"Unsupported block type: {kind}")
+    if kind == "artifact_ref":
+        raise ValueError("artifact_ref must be resolved by the compiler")
+    renderer = RENDERERS.get(kind)
+    if renderer is None:
+        raise ValueError(f"Unsupported component type: {kind}")
+    return renderer(block, design)

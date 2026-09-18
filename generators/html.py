@@ -1,167 +1,117 @@
-"""
-generators/html.py — Complete Document Assembly & CSS
-"""
-from core.design import DESIGN
-from core.components import cover_page, table_of_contents, back_cover
+"""HTML document renderer driven by the JSON document and design tokens."""
+from __future__ import annotations
 
-def stylesheet() -> str:
-    d = DESIGN; p = d.palette; ty = d.typography; s = d.spacing; b = d.borders
+import html
+from collections.abc import Mapping
+from typing import Any
+
+from core.design import DesignSystem
+
+
+def esc(value: object) -> str:
+    return html.escape(str(value), quote=True)
+
+
+def build_stylesheet(design: DesignSystem, direction: str) -> str:
+    p, t, s, b = design.palette, design.typography, design.spacing, design.borders
+    align_default = "right" if direction == "rtl" else "left"
     return f"""
-    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:ital,wght@0,400;0,600;0,700;1,400&display=swap');
-    *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
-    @page {{ size: A4 portrait; margin: 0; }}
+    *, *::before, *::after {{ box-sizing:border-box; }}
+    html, body {{ margin:0; padding:0; }}
+    @page {{ size:{design.page.width} {design.page.height}; margin:0; }}
     @media print {{
-        body {{ background: transparent !important; margin: 0 !important; }}
-        .document-page {{ box-shadow: none !important; margin: 0 !important; page-break-after: always !important; break-after: page !important; }}
+      body {{ background:transparent !important; }}
+      .page-sheet {{ box-shadow:none !important; margin:0 !important; break-after:page; page-break-after:always; }}
     }}
-    body {{ background: #e2e8f0; font-family: {ty.arabic}; color: {p.text}; direction: rtl; text-align: right; display: flex; flex-direction: column; align-items: center; -webkit-print-color-adjust: exact; print-color-adjust: exact; }}
-    .document-page {{ width: {d.page.width}; height: {d.page.height}; background: {p.surface}; padding: {s.page_y} {s.page_x}; box-shadow: 0 4px 20px rgba(0,0,0,0.08); position: relative; display: flex; flex-direction: column; justify-content: space-between; margin-bottom: 20px; }}
-    .cover-page-wrapper {{ padding: 10mm; }}
-    .border-outer-frame {{ border: {b.frame_width} solid {p.primary}; border-radius: {b.radius_sm}; height: 100%; padding: 10mm 12mm; display: flex; flex-direction: column; justify-content: space-between; }}
-    .admin-header-block {{ text-align: center; }}
-    .gov-title {{ font-size: {ty.sizes["xl"]}; font-weight: {ty.weights["heavy"]}; color: {p.primary_deep}; margin-bottom: 2px; }}
-    .ministry-title {{ font-size: {ty.sizes["lg"]}; font-weight: {ty.weights["bold"]}; color: {p.primary}; margin-bottom: 4px; }}
-    .institute-line {{ font-size: {ty.sizes["base"]}; font-weight: {ty.weights["medium"]}; color: {p.muted}; }}
-    .report-title-banner-area {{ text-align: center; margin: 8px 0; }}
-    .purpose-title {{ font-size: {ty.sizes["md"]}; font-weight: {ty.weights["bold"]}; color: {p.text_dark}; margin-bottom: 6px; }}
-    .rank-qualification-badge {{ display: inline-block; background: {p.surface_alt}; border: 1px dashed {p.primary}; padding: 4px 18px; border-radius: {b.pill}; font-size: {ty.sizes["sm"]}; font-weight: {ty.weights["bold"]}; color: {p.primary}; margin-bottom: 10px; }}
-    .main-topic-gradient-card {{ background: linear-gradient(135deg, {p.banner_start} 0%, {p.banner_end} 100%); border: 1.5px solid {p.banner_border}; border-radius: {b.radius_lg}; padding: {s.card}; }}
-    .topic-pre-title {{ font-size: {ty.sizes["md"]}; font-weight: {ty.weights["bold"]}; color: {p.banner_text}; margin-bottom: 4px; }}
-    .topic-headline-ar {{ font-size: {ty.sizes["2xl"]}; font-weight: {ty.weights["black"]}; color: {p.banner_text}; line-height: 1.25; margin-bottom: 4px; }}
-    .topic-subline-fr {{ font-family: {ty.latin}; font-size: {ty.sizes["sm"]}; font-style: italic; color: {p.primary}; direction: ltr; margin-bottom: 8px; }}
-    .module-code-pill {{ display: inline-block; background: {p.surface}; color: {p.primary_deep}; padding: 3px 14px; border-radius: {b.pill}; font-size: {ty.sizes["xs"]}; font-weight: {ty.weights["bold"]}; }}
-    .trainee-info-card {{ border: 1.5px solid {p.border}; border-radius: {b.radius_lg}; padding: 16px 22px; background: {p.surface}; display: flex; flex-direction: column; gap: 9px; }}
-    .trainee-info-row {{ display: flex; align-items: baseline; font-size: {ty.sizes["base"]}; }}
-    .field-label {{ width: 190px; font-weight: {ty.weights["bold"]}; color: {p.primary}; flex-shrink: 0; }}
-    .field-separator {{ width: 20px; text-align: center; font-weight: {ty.weights["bold"]}; color: {p.primary}; }}
-    .field-value {{ flex-grow: 1; font-weight: {ty.weights["medium"]}; }}
-    .trainee-name {{ font-weight: {ty.weights["heavy"]}; color: {p.primary_deep}; font-size: {ty.sizes["md"]}; }}
-    .cover-footer-block {{ text-align: center; }}
-    .promo-batch-badge {{ display: inline-block; background: linear-gradient(135deg, {p.banner_start} 0%, {p.banner_end} 100%); border: 1px solid {p.banner_border}; padding: 5px 35px; border-radius: {b.radius_sm}; font-size: {ty.sizes["md"]}; font-weight: {ty.weights["heavy"]}; color: {p.banner_text}; margin-bottom: 6px; }}
-    .season-text {{ font-size: {ty.sizes["xs"]}; font-weight: 600; color: {p.muted}; }}
-    .toc-header-area {{ text-align: center; border-bottom: 2px solid {p.primary}; padding-bottom: 8px; margin-bottom: 16px; }}
-    .toc-main-title {{ font-size: {ty.sizes["2xl"]}; font-weight: {ty.weights["black"]}; color: {p.primary_deep}; }}
-    .toc-subtitle-fr {{ font-family: {ty.latin}; font-style: italic; font-size: {ty.sizes["sm"]}; color: {p.accent}; direction: ltr; }}
-    .toc-list {{ list-style: none; display: flex; flex-direction: column; gap: 11px; }}
-    .toc-entry {{ display: flex; align-items: center; font-size: {ty.sizes["base"]}; }}
-    .toc-badge-num {{ background: {p.primary}; color: #fff; width: 22px; height: 22px; line-height: 22px; border-radius: 50%; text-align: center; font-family: {ty.latin}; font-weight: {ty.weights["bold"]}; font-size: {ty.sizes["xs"]}; margin-left: 10px; flex-shrink: 0; }}
-    .appendix-badge {{ background: {p.accent}; }}
-    .toc-text-wrap {{ display: flex; flex-direction: column; }}
-    .toc-ar-title {{ font-weight: {ty.weights["bold"]}; color: {p.text_dark}; }}
-    .toc-fr-title {{ font-family: {ty.latin}; font-style: italic; font-size: 7.5pt; color: {p.muted}; direction: ltr; text-align: right; }}
-    .toc-dotted-leader {{ flex-grow: 1; border-bottom: 1px dotted {p.border}; margin: 0 10px; height: 1px; }}
-    .toc-page-target {{ font-family: {ty.latin}; font-weight: {ty.weights["bold"]}; color: {p.primary}; font-size: {ty.sizes["base"]}; }}
-    .toc-divider {{ height: 1px; background: {p.border_light}; margin: 12px 0; }}
-    .running-footer {{ display: flex; justify-content: space-between; align-items: center; border-top: 1px solid {p.border_light}; padding-top: 6px; font-size: {ty.sizes["xs"]}; color: {p.muted}; font-family: {ty.latin}; direction: ltr; }}
-    .footer-season {{ direction: rtl; font-family: {ty.arabic}; }}
-    .footer-page {{ font-weight: {ty.weights["bold"]}; color: {p.text_dark}; }}
-    .section-main-header {{ display: flex; align-items: center; margin-bottom: 12px; border-bottom: 2px solid {p.primary}; padding-bottom: 6px; }}
-    .section-circle-badge {{ background: {p.primary}; color: #fff; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: {ty.weights["bold"]}; font-family: {ty.latin}; margin-left: 10px; }}
-    .section-headline-ar {{ font-size: {ty.sizes["lg"]}; font-weight: {ty.weights["heavy"]}; color: {p.primary_deep}; }}
-    .section-sub-fr {{ display: block; font-family: {ty.latin}; font-style: italic; font-size: {ty.sizes["xs"]}; color: {p.accent}; direction: ltr; text-align: right; }}
-    .section-sub-header {{ display: flex; align-items: baseline; gap: 8px; border-right: 3.5px solid {p.accent}; padding-right: 8px; margin: 12px 0 8px 0; }}
-    .sub-title-ar {{ font-size: {ty.sizes["md"]}; font-weight: {ty.weights["bold"]}; color: {p.primary_deep}; }}
-    .sub-title-fr {{ font-family: {ty.latin}; font-style: italic; font-size: {ty.sizes["xs"]}; color: {p.muted}; direction: ltr; }}
-    p.body-text {{ font-size: {ty.sizes["base"]}; line-height: {ty.line_height["normal"]}; text-align: justify; margin-bottom: 10px; }}
-    table.standard-data-table {{ width: 100%; border-collapse: collapse; font-size: {ty.sizes["sm"]}; border: 1px solid {p.border}; margin: 8px 0; }}
-    table.standard-data-table thead {{ background: {p.primary}; color: #fff; }}
-    table.standard-data-table th {{ padding: {s.cell}; font-weight: {ty.weights["bold"]}; text-align: right; border: 1px solid {p.primary_deep}; }}
-    table.standard-data-table th .th-sub {{ display: block; font-family: {ty.latin}; font-style: italic; font-size: 7pt; opacity: 0.85; direction: ltr; }}
-    table.standard-data-table td {{ padding: {s.cell}; border: 1px solid {p.border_light}; line-height: 1.4; }}
-    table.standard-data-table tbody tr:nth-child(even) {{ background: {p.surface_alt}; }}
-    td.num-cell {{ text-align: center; font-family: {ty.latin}; font-weight: {ty.weights["bold"]}; color: {p.primary_deep}; direction: ltr; }}
-    td .td-sub {{ display: block; font-family: {ty.latin}; font-size: 7.5pt; color: {p.muted}; direction: ltr; }}
-    .callout-box {{ padding: 12px 16px; border-radius: {b.radius_md}; margin: 12px 0; border-right: 4px solid; }}
-    .callout-accent {{ background: {p.accent_light}; border-color: {p.accent}; }}
-    .callout-primary {{ background: {p.primary_light}; border-color: {p.primary}; }}
-    .callout-badge-header {{ display: flex; align-items: center; gap: 8px; font-weight: {ty.weights["bold"]}; font-size: {ty.sizes["base"]}; margin-bottom: 6px; }}
-    .callout-accent .callout-badge-header {{ color: {p.accent}; }}
-    .callout-primary .callout-badge-header {{ color: {p.primary_deep}; }}
-    .callout-body {{ font-size: {ty.sizes["sm"]}; line-height: {ty.line_height["normal"]}; }}
-    .flowchart-container {{ margin: 12px 0; background: {p.surface_alt}; border: 1px solid {p.border_light}; padding: 14px; border-radius: {b.radius_md}; }}
-    .flow-step-node {{ display: flex; align-items: center; gap: 12px; }}
-    .step-circle {{ width: 24px; height: 24px; background: {p.primary}; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: {ty.latin}; font-weight: {ty.weights["bold"]}; font-size: {ty.sizes["xs"]}; flex-shrink: 0; }}
-    .step-text-ar {{ font-size: {ty.sizes["sm"]}; font-weight: {ty.weights["bold"]}; color: {p.text_dark}; }}
-    .step-text-fr {{ font-family: {ty.latin}; font-style: italic; font-size: 7.5pt; color: {p.muted}; direction: ltr; text-align: right; }}
-    .flow-step-arrow {{ text-align: right; padding-right: 7px; color: {p.accent}; font-size: 9pt; margin: 2px 0; }}
-    .stat-row-grid {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 12px 0; }}
-    .stat-card {{ background: {p.surface}; border: 1px solid {p.border_light}; border-top: 3px solid {p.accent}; padding: 10px; text-align: center; border-radius: {b.radius_sm}; }}
-    .stat-number {{ font-size: {ty.sizes["xl"]}; font-weight: {ty.weights["black"]}; color: {p.primary_deep}; font-family: {ty.latin}; direction: ltr; }}
-    .stat-label-ar {{ font-size: {ty.sizes["xs"]}; font-weight: {ty.weights["bold"]}; color: {p.text}; margin-top: 2px; }}
-    .stat-label-fr {{ font-size: 6.5pt; font-family: {ty.latin}; font-style: italic; color: {p.muted}; direction: ltr; }}
-    .chart-container {{ margin: 12px 0; padding: 10px; border: 1px solid {p.border_light}; border-radius: {b.radius_md}; background: {p.surface}; }}
-    .chart-header {{ text-align: center; margin-bottom: 6px; }}
-    .chart-title-ar {{ font-size: {ty.sizes["base"]}; font-weight: {ty.weights["bold"]}; color: {p.primary_deep}; }}
-    .chart-title-fr {{ font-family: {ty.latin}; font-style: italic; font-size: {ty.sizes["xs"]}; color: {p.muted}; direction: ltr; }}
-    .svg-viewport {{ width: 100%; max-height: 240px; display: block; margin: 0 auto; }}
-    .chart-caption {{ text-align: center; font-size: 7.5pt; font-weight: {ty.weights["bold"]}; color: {p.primary}; margin-top: 6px; }}
-    .chart-caption .fr {{ font-family: {ty.latin}; font-style: italic; font-weight: normal; color: {p.muted}; direction: ltr; }}
-    .back-cover-page {{ background: {p.primary_deep}; color: #fff; padding: 18mm 16mm; display: flex; flex-direction: column; justify-content: space-between; text-align: center; }}
-    .bc-header {{ border-bottom: 1.5px solid {p.accent}; padding-bottom: 12px; }}
-    .bc-ministry-ar {{ font-size: {ty.sizes["xl"]}; font-weight: {ty.weights["heavy"]}; color: #fff; }}
-    .bc-ministry-fr {{ font-family: {ty.latin}; font-size: 8pt; letter-spacing: 1.5px; color: {p.banner_start}; margin-top: 4px; direction: ltr; }}
-    .bc-quote-block {{ max-width: 155mm; margin: 0 auto; }}
-    .bc-gold-rule {{ width: 45mm; height: 2px; background: {p.accent}; margin: 16px auto; }}
-    .bc-quote-ar {{ font-size: {ty.sizes["lg"]}; font-weight: {ty.weights["bold"]}; line-height: {ty.line_height["relaxed"]}; margin-bottom: 10px; color: #f8fafc; }}
-    .bc-quote-fr {{ font-family: {ty.latin}; font-style: italic; font-size: {ty.sizes["sm"]}; color: #cbd5e1; direction: ltr; line-height: 1.5; }}
-    .bc-meta-block {{ border-top: 1.5px solid {p.accent}; padding-top: 12px; font-size: {ty.sizes["xs"]}; color: #94a3b8; line-height: 1.6; }}
-    .bc-meta-batch {{ color: {p.accent}; font-weight: {ty.weights["bold"]}; margin-top: 6px; }}
+    body {{
+      background:{p.surface_alt}; color:{p.text}; font-family:{t.primary};
+      direction:{esc(direction)}; text-align:{align_default};
+      -webkit-print-color-adjust:exact; print-color-adjust:exact;
+      display:flex; flex-direction:column; align-items:center;
+    }}
+    .page-sheet {{
+      width:{design.page.width}; height:{design.page.height};
+      background:{p.surface}; color:{p.text}; padding:{s.page_y} {s.page_x};
+      margin-bottom:20px; position:relative; display:flex; flex-direction:column;
+      gap:{s.md}; box-shadow:0 4px 18px rgba(0,0,0,.08); overflow:hidden;
+    }}
+    .page-content {{ flex:1; min-height:0; }}
+    .layout-framed {{ padding:8mm; }}
+    .layout-framed .page-frame {{
+      height:100%; border:{b.thick} solid {p.primary}; border-radius:{b.radius_sm};
+      padding:{s.frame_padding}; overflow:hidden; display:flex; flex-direction:column; gap:{s.md};
+    }}
+    .layout-dark {{ background:{p.primary_deep}; color:{p.surface}; }}
+    .layout-dark .block-text, .layout-dark .quote {{ color:{p.surface}; }}
+    .layout-dark .block-heading h1, .layout-dark .block-heading h2, .layout-dark .block-heading h3,
+    .layout-dark .block-heading h4, .layout-dark .block-heading h5, .layout-dark .block-heading h6 {{ color:{p.surface}; }}
+    h1,h2,h3,h4,h5,h6,p,ul,ol,figure {{ margin:0; }}
+    .block-heading {{ display:flex; align-items:center; gap:{s.sm}; border-bottom:2px solid {p.primary}; padding-bottom:{s.xs}; margin-bottom:{s.sm}; }}
+    .block-heading h1 {{ font-size:{t.sizes["3xl"]}; }} .block-heading h2 {{ font-size:{t.sizes["2xl"]}; }}
+    .block-heading h3 {{ font-size:{t.sizes["xl"]}; }} .block-heading h4 {{ font-size:{t.sizes["lg"]}; }}
+    .block-heading h5,.block-heading h6 {{ font-size:{t.sizes["md"]}; }}
+    .circle-badge {{ width:26px; height:26px; flex:0 0 26px; border-radius:50%; background:{p.primary}; color:{p.surface}; display:inline-flex; align-items:center; justify-content:center; font-weight:{t.weights["bold"]}; }}
+    .sub-label {{ display:block; color:{p.accent}; font-family:{t.secondary}; font-style:italic; font-size:{t.sizes["xs"]}; margin-top:2px; }}
+    .block-text {{ font-size:{t.sizes["base"]}; line-height:{t.line_height["normal"]}; margin-bottom:{s.sm}; }}
+    .align-left {{ text-align:left; }} .align-right {{ text-align:right; }} .align-center {{ text-align:center; }} .align-justify {{ text-align:justify; }}
+    .badge-wrapper {{ margin:{s.sm} 0; }} .badge {{ display:inline-block; padding:4px 16px; border-radius:{b.pill}; font-size:{t.sizes["sm"]}; font-weight:{t.weights["bold"]}; }}
+    .badge-default,.badge-solid {{ background:{p.primary}; color:{p.surface}; }} .badge-dashed {{ background:{p.surface_alt}; color:{p.primary}; border:1px dashed {p.primary}; }}
+    .badge-gradient {{ background:linear-gradient(135deg,{p.banner_start},{p.banner_end}); color:{p.banner_text}; border:1px solid {p.banner_border}; }}
+    .card {{ border:1px solid {p.border}; border-radius:{b.radius_lg}; padding:{s.card}; margin:{s.sm} 0; background:linear-gradient(135deg,{p.primary_light},{p.surface}); }}
+    .card-label {{ color:{p.accent}; font-weight:{t.weights["bold"]}; font-size:{t.sizes["sm"]}; }} .card-title {{ color:{p.primary_deep}; font-size:{t.sizes["2xl"]}; font-weight:{t.weights["black"]}; }}
+    .card-subtitle {{ color:{p.muted}; font-style:italic; font-family:{t.secondary}; font-size:{t.sizes["sm"]}; }} .card-content {{ margin-top:{s.sm}; line-height:{t.line_height["normal"]}; }}
+    .card-pill {{ display:inline-block; margin-top:{s.sm}; padding:3px 12px; border-radius:{b.pill}; background:{p.surface}; color:{p.primary_deep}; border:1px solid {p.border_light}; font-size:{t.sizes["xs"]}; }}
+    .info-card {{ border:1px solid {p.border}; border-radius:{b.radius_lg}; padding:{s.md}; margin:{s.sm} 0; }} .info-row {{ display:flex; gap:{s.xs}; align-items:baseline; padding:4px 0; font-size:{t.sizes["base"]}; }}
+    .info-label {{ min-width:28%; font-weight:{t.weights["bold"]}; color:{p.primary}; }} .info-sep {{ color:{p.primary}; font-weight:{t.weights["bold"]}; }} .info-value {{ flex:1; }} .info-row.highlight .info-value {{ color:{p.primary_deep}; font-weight:{t.weights["heavy"]}; }}
+    .callout {{ border-inline-end:4px solid {p.accent}; border-radius:{b.radius_md}; background:{p.accent_light}; padding:{s.sm} {s.md}; margin:{s.sm} 0; }} .callout-primary {{ border-color:{p.primary}; background:{p.primary_light}; }} .callout-warning {{ border-color:{p.accent}; }} .callout-neutral {{ border-color:{p.border}; background:{p.surface_alt}; }}
+    .callout-header {{ display:flex; align-items:center; gap:{s.xs}; margin-bottom:{s.xs}; }} .callout-icon {{ color:{p.accent}; }} .callout-content {{ line-height:{t.line_height["normal"]}; font-size:{t.sizes["sm"]}; }}
+    .stats-grid {{ display:grid; gap:{s.gap}; margin:{s.sm} 0; }} .cols-1 {{ grid-template-columns:repeat(1,1fr); }} .cols-2 {{ grid-template-columns:repeat(2,1fr); }} .cols-3 {{ grid-template-columns:repeat(3,1fr); }} .cols-4 {{ grid-template-columns:repeat(4,1fr); }} .cols-5 {{ grid-template-columns:repeat(5,1fr); }} .cols-6 {{ grid-template-columns:repeat(6,1fr); }}
+    .stat-card {{ border:1px solid {p.border_light}; border-top:3px solid {p.accent}; border-radius:{b.radius_sm}; padding:{s.sm}; text-align:center; background:{p.surface}; }} .stat-value {{ font-size:{t.sizes["xl"]}; font-weight:{t.weights["black"]}; color:{p.primary_deep}; font-family:{t.secondary}; }} .stat-label {{ font-size:{t.sizes["xs"]}; font-weight:{t.weights["bold"]}; }} .stat-sub {{ display:block; margin-top:2px; font-size:6.5pt; color:{p.muted}; font-style:italic; }}
+    .table-wrapper {{ margin:{s.sm} 0; }} .table-header {{ display:flex; gap:{s.xs}; align-items:baseline; border-inline-end:4px solid {p.accent}; padding-inline-end:{s.xs}; margin-bottom:{s.xs}; }} .table-header h4 {{ color:{p.primary_deep}; }} .table-header span {{ color:{p.muted}; font-size:{t.sizes["xs"]}; }}
+    .standard-table {{ width:100%; border-collapse:collapse; font-size:{t.sizes["sm"]}; }} .standard-table th {{ background:{p.primary}; color:{p.surface}; border:1px solid {p.primary_deep}; padding:{s.cell}; text-align:inherit; }} .standard-table td {{ border:1px solid {p.border_light}; padding:{s.cell}; }} .standard-table tbody tr:nth-child(even) {{ background:{p.surface_alt}; }}
+    .standard-table td.num {{ text-align:center; font-family:{t.secondary}; font-weight:{t.weights["bold"]}; }} .th-sub,.td-sub {{ display:block; color:{p.muted}; font-style:italic; font-size:7pt; }} .caption {{ text-align:center; color:{p.muted}; font-size:{t.sizes["xs"]}; margin-top:{s.xs}; }}
+    .flow-steps {{ border:1px solid {p.border_light}; background:{p.surface_alt}; border-radius:{b.radius_md}; padding:{s.md}; }} .flow-title {{ font-weight:{t.weights["bold"]}; color:{p.primary_deep}; margin-bottom:{s.sm}; }}
+    .step-node {{ display:flex; align-items:center; gap:{s.sm}; }} .step-num {{ width:24px; height:24px; border-radius:50%; background:{p.primary}; color:{p.surface}; display:inline-flex; align-items:center; justify-content:center; font-size:{t.sizes["xs"]}; font-weight:{t.weights["bold"]}; flex:0 0 24px; }} .step-title {{ font-weight:{t.weights["bold"]}; font-size:{t.sizes["sm"]}; }} .step-sub {{ color:{p.muted}; font-family:{t.secondary}; font-style:italic; font-size:7.5pt; }} .step-arrow {{ color:{p.accent}; margin:2px 0; }}
+    .toc {{ margin:{s.md} 0; }} .toc h2 {{ color:{p.primary_deep}; text-align:center; font-size:{t.sizes["2xl"]}; }} .toc-subtitle {{ text-align:center; color:{p.accent}; font-style:italic; margin-bottom:{s.md}; }} .toc ul {{ list-style:none; padding:0; display:flex; flex-direction:column; gap:{s.sm}; }} .toc-row {{ display:flex; align-items:center; gap:{s.xs}; }} .toc-badge {{ width:22px; height:22px; flex:0 0 22px; border-radius:50%; background:{p.primary}; color:{p.surface}; display:inline-flex; align-items:center; justify-content:center; font-size:{t.sizes["xs"]}; font-weight:{t.weights["bold"]}; }} .toc-title {{ display:flex; flex-direction:column; }} .toc-sub {{ color:{p.muted}; font-size:7.5pt; font-style:italic; }} .toc-dots {{ flex:1; border-bottom:1px dotted {p.border}; }} .toc-page {{ font-family:{t.secondary}; font-weight:{t.weights["bold"]}; color:{p.primary}; }}
+    .quote {{ max-width:165mm; margin:{s.xl} auto; text-align:center; }} .quote-rule {{ display:block; width:45mm; height:2px; background:{p.accent}; margin:{s.md} auto; }} .quote p {{ font-size:{t.sizes["lg"]}; font-weight:{t.weights["bold"]}; line-height:{t.line_height["relaxed"]}; }} .quote-author {{ display:block; margin-top:{s.sm}; color:{p.muted}; font-size:{t.sizes["xs"]}; }}
+    .content-list {{ margin:{s.sm} 0; padding-inline-start:1.5em; line-height:{t.line_height["normal"]}; }} .content-group {{ display:flex; }} .group-column {{ flex-direction:column; }} .group-row {{ flex-direction:row; }} .group-row > * {{ flex:1; min-width:0; }}
+    .justify-flex-start {{ justify-content:flex-start; }} .justify-center {{ justify-content:center; }} .justify-space-between {{ justify-content:space-between; }} .align-stretch {{ align-items:stretch; }} .align-start {{ align-items:flex-start; }} .align-end {{ align-items:flex-end; }} .align-center {{ align-items:center; }}
+    .gap-xs {{ gap:{s.xs}; }} .gap-sm {{ gap:{s.sm}; }} .gap-md {{ gap:{s.md}; }} .gap-lg {{ gap:{s.lg}; }} .image-block {{ text-align:center; margin:{s.sm} 0; }} .image-block img {{ display:inline-block; height:auto; }} .image-block figcaption {{ color:{p.muted}; font-size:{t.sizes["xs"]}; margin-top:{s.xs}; }}
+    .spacer-xs {{ height:{s.xs}; }} .spacer-sm {{ height:{s.sm}; }} .spacer-md {{ height:{s.md}; }} .spacer-lg {{ height:{s.lg}; }} .spacer-xl {{ height:{s.xl}; }}
+    .running-footer {{ display:flex; justify-content:space-between; gap:{s.sm}; border-top:1px solid {p.border_light}; padding-top:{s.xs}; color:{p.muted}; font-size:{t.sizes["xs"]}; }}
     """
 
-def render(report: dict, artifact_html: dict) -> str:
-    meta = report.get("metadata", {})
-    code = meta.get("module_code", "")
-    season = meta.get("training_season", "")
 
-    pages = [cover_page(meta)]
-    pages.append(table_of_contents(report.get("toc", []), report.get("appendix_toc", []), code, season))
+def footer_value(value: Any, page_number: int, page_count: int) -> str:
+    return str(value).replace("{page}", str(page_number)).replace("{pages}", str(page_count))
 
-    page_counter = 3
-    for s in report["sections"]:
-        body = []
-        # ترويسة القسم الرئيسي
-        body.append(f"""
-        <div class="section-main-header">
-            <div class="section-circle-badge">{s.get("num", "")}</div>
-            <div>
-                <h3 class="section-headline-ar">{s["title"]}</h3>
-                <span class="section-sub-fr">{s.get("subtitle_fr", "")}</span>
-            </div>
-        </div>
-        """)
 
-        for index, block in enumerate(s.get("blocks", []), 1):
-            if block.get("type") == "artifact_ref":
-                body.append(artifact_html[block["artifact_id"]])
-            else:
-                body.append(artifact_html[f'{s["id"]}-block-{index}'])
+def render_page(page: Mapping[str, Any], page_number: int, page_count: int, block_html: Mapping[str, str], artifact_html: Mapping[str, str]) -> str:
+    page_token = str(page.get("id", page_number))
+    content_parts: list[str] = []
+    for index, block in enumerate(page.get("blocks", []), start=1):
+        if block.get("type") == "artifact_ref":
+            content_parts.append(artifact_html[block["artifact_id"]])
+        else:
+            content_parts.append(block_html[f"page-{page_token}-block-{index}"])
 
-        footer = f"""
-        <footer class="running-footer">
-            <span class="footer-season">الموسم التكويني {season}</span>
-            <span class="footer-page">{page_counter}</span>
-            <span class="footer-module">{code}</span>
-        </footer>
-        """
-        page_counter += 1
+    footer_html = ""
+    footer = page.get("footer")
+    if isinstance(footer, Mapping):
+        values = [footer_value(footer.get(key, ""), page_number, page_count) for key in ("left", "center", "right")]
+        footer_html = '<footer class="running-footer">' + "".join(f"<span>{esc(value)}</span>" for value in values) + "</footer>"
 
-        pages.append(f"""
-        <main class="document-page content-page">
-            <div class="page-content-wrapper">{''.join(body)}</div>
-            {footer}
-        </main>
-        """)
+    layout = esc(page.get("layout", "standard"))
+    content = "".join(content_parts)
+    if layout == "framed":
+        return f'<main class="page-sheet layout-framed"><div class="page-frame"><div class="page-content">{content}</div>{footer_html}</div></main>'
+    return f'<main class="page-sheet layout-{layout}"><div class="page-content">{content}</div>{footer_html}</main>'
 
-    pages.append(back_cover(meta))
-    return f"""<!doctype html>
-<html lang="{report.get('language', 'ar')}" dir="rtl">
-<head>
-    <meta charset="utf-8">
-    <title>{report['title']}</title>
-    <style>{stylesheet()}</style>
-</head>
-<body>
-    {''.join(pages)}
-</body>
-</html>
-"""
+
+def render(document: Mapping[str, Any], artifact_html: Mapping[str, str], block_html: Mapping[str, str], design: DesignSystem) -> str:
+    direction = str(document.get("direction", "ltr"))
+    language = esc(document.get("language", ""))
+    title = esc(document.get("title", "Document"))
+    pages = document["pages"]
+    rendered_pages = [render_page(page, index, len(pages), block_html, artifact_html) for index, page in enumerate(pages, start=1)]
+    return "<!doctype html>" + f'<html lang="{language}" dir="{esc(direction)}"><head><meta charset="utf-8"><title>{title}</title><style>{build_stylesheet(design, direction)}</style></head><body>{"".join(rendered_pages)}</body></html>'

@@ -1,55 +1,160 @@
-# Manuals Codebase — Centralized Artifact Engine
+# Manuals Codebase — Generic JSON Artifact Engine
 
-A from-scratch, deterministic artifact/document generation system.
+This repository is an **artifact-generation engine**, not a report implementation.
 
-## Architecture
+The central contract is:
 
-`Source Data → Validated Structured Model → Semantic Components → Artifact Generators → Manifested Outputs`
+**Python code = reusable tools, semantic components, renderers, design tokens, validation, and compilation infrastructure.**
 
-The source describes **what** exists. Design tokens describe **how** it looks. Semantic components describe **what kind of artifact** it is. Generators decide **how to render it** for a target format.
+**JSON input = the actual document content, data, structure, page composition, artifact specifications, language, direction, and optional theme overrides.**
 
-## Guarantees
+The engine has no knowledge of a particular organization, report subject, person, industry, language, or expected final document.
 
-- One canonical JSON source per report.
-- One centralized design system consumed by every renderer.
-- Every artifact has a stable ID and is generated independently.
-- SVG charts/diagrams are deterministic and dependency-free.
-- HTML is always generated; PDF is generated when ReportLab is installed.
-- A manifest records every output, SHA-256 hash, source hash, and generator version.
-- Validation happens before rendering.
-- No generator is allowed to invent report content.
+## Pipeline
 
-## Layout
+~~~text
+JSON input
+   ↓
+validation
+   ↓
+design system
+   ↓
+semantic component tree
+   ↓
+visual artifacts
+   ↓
+HTML
+   ↓
+optional PDF
+   ↓
+manifest
+~~~
 
-```text
-manuals_codebase/
-├── core/
-│   ├── design.py
-│   ├── model.py
-│   ├── validate.py
-│   ├── svg.py
-│   └── components.py
-├── generators/
-│   ├── html.py
-│   └── pdf.py
-├── source/
-│   └── report.json
-├── output/
-├── compiler.py
-├── build.py
-├── requirements.txt
-└── tests/
-    └── test_engine.py
-```
+The engine does not invent missing report facts. It renders what the input specifies.
 
-## Run
+## What belongs where
 
-```bash
-python build.py
-```
+| Layer | Owns | Must not own |
+| --- | --- | --- |
+| JSON input | Text, numbers, tables, labels, pages, ordering, layout choices, artifact specs, metadata | — |
+| core/design.py | Generic visual defaults and JSON theme overrides | Domain facts |
+| core/components.py | Reusable semantic blocks | Document-specific fields |
+| core/svg.py | Generic charts and diagrams | Domain interpretation |
+| generators/ | Target-format rendering | Report content |
+| compiler.py | Loading, validation, orchestration, hashing, output manifests | A default report |
+| build.py | CLI and batch execution | A default source path |
 
-The build creates one output directory containing the final HTML, PDF when available, individual SVG artifacts, generated Python source representation, and a deterministic manifest.
+## No hidden default document
 
-## Design principle
+There is deliberately no default source file, no hardcoded cover page, no hardcoded table of contents, no domain-specific metadata model, and no generated Python copy of the input.
 
-Never style an artifact directly inside a generator. Renderers consume semantic components and design tokens. This makes a visual change a single-source change instead of a project-wide patch.
+A caller supplies the input:
+
+~~~bash
+python build.py path/to/document.json
+~~~
+
+Batch mode accepts a directory of JSON documents:
+
+~~~bash
+python build.py --batch path/to/json-directory
+~~~
+
+Output can be redirected:
+
+~~~bash
+python build.py path/to/document.json --output output/my-document
+~~~
+
+## JSON structure
+
+A document is assembled from generic pages and blocks:
+
+~~~json
+{
+  "id": "document-001",
+  "title": "A title supplied by the caller",
+  "language": "en",
+  "direction": "ltr",
+  "theme": {
+    "palette": {
+      "primary": "#22577a",
+      "accent": "#e09f3e"
+    }
+  },
+  "pages": [
+    {
+      "id": "page-1",
+      "layout": "standard",
+      "footer": {
+        "left": "Caller data",
+        "center": "{page}/{pages}",
+        "right": "Caller data"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 1,
+          "title": "Caller-defined heading"
+        },
+        {
+          "type": "text",
+          "content": "Caller-defined text"
+        },
+        {
+          "type": "artifact_ref",
+          "artifact_id": "chart-1"
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "chart-1",
+      "type": "chart",
+      "kind": "bar",
+      "title": "Caller-defined chart",
+      "labels": ["A", "B", "C"],
+      "values": [10, 20, 15]
+    }
+  ]
+}
+~~~
+
+Supported generic block primitives include headings, text, badges, cards, key/value cards, callouts, statistics, tables, flow steps, tables of contents, quotes, lists, groups, images, spacers, and artifact references.
+
+Supported visual artifacts include bar, line, donut, and progress charts plus flow and graph diagrams.
+
+Nested groups make page structure declarative. The input decides which components exist and in what order; the engine only supplies their reusable rendering behavior.
+
+## Examples
+
+The examples directory contains **non-runtime demonstration inputs only**. They exist to prove that materially different JSON documents can use the same engine.
+
+They are never imported by the compiler and never determine engine defaults.
+
+## Determinism and provenance
+
+The compiler records:
+
+- input filename
+- input SHA-256
+- engine version
+- every generated artifact ID
+- every generated artifact hash
+- HTML output hash
+- optional PDF status/hash
+
+Visual artifacts are generated independently before the document is assembled.
+
+## PDF
+
+HTML is the primary guaranteed output. PDF generation is opportunistic through WeasyPrint, Chromium, or Playwright when one is available in the environment.
+
+No PDF backend is allowed to invent or substitute document content.
+
+## Design overrides
+
+All design defaults are generic. A caller may override palette, typography, spacing, borders, or page dimensions in JSON.
+
+Unknown design token names are rejected so spelling mistakes do not silently change rendering.
