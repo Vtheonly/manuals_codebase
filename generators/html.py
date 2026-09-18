@@ -1,6 +1,10 @@
 """
 generators/html.py — Precision Document & Print Layout Engine
-Produces exact, high-fidelity A4 pages matching the reference documents.
+Produces exact, high-fidelity A4 pages driven entirely by DesignSystem tokens.
+
+Fonts are resolved through local @font-face declarations pointing at the
+bundled `assets/fonts` directory (copied next to the output by the compiler),
+so rendering is deterministic and identical across machines and PDF backends.
 """
 from __future__ import annotations
 
@@ -16,12 +20,60 @@ def esc(value: object) -> str:
     return html.escape(str(value), quote=True)
 
 
+# Bundled font faces: family -> list of (weight, style, filename)
+FONT_FACES: dict[str, list[tuple[str, str, str]]] = {
+    "Noto Kufi Arabic": [
+        ("400", "normal", "NotoKufiArabic-400.ttf"),
+        ("600", "normal", "NotoKufiArabic-600.ttf"),
+        ("700", "normal", "NotoKufiArabic-700.ttf"),
+        ("800", "normal", "NotoKufiArabic-800.ttf"),
+        ("900", "normal", "NotoKufiArabic-900.ttf"),
+    ],
+    "Arimo": [
+        ("400", "normal", "Arimo-400.ttf"),
+        ("700", "normal", "Arimo-700.ttf"),
+        ("400", "italic", "Arimo-Italic-400.ttf"),
+        ("700", "italic", "Arimo-Italic-700.ttf"),
+    ],
+    "Amiri": [
+        ("400", "normal", "Amiri-400.ttf"),
+        ("700", "normal", "Amiri-700.ttf"),
+    ],
+    "Tinos": [
+        ("400", "normal", "Tinos-400.ttf"),
+        ("700", "normal", "Tinos-700.ttf"),
+        ("400", "italic", "Tinos-Italic-400.ttf"),
+        ("700", "italic", "Tinos-Italic-700.ttf"),
+    ],
+    "Noto Sans Arabic UI": [
+        ("400", "normal", "NotoSansArabicUI-400.ttf"),
+        ("700", "normal", "NotoSansArabicUI-700.ttf"),
+    ],
+}
+
+
+def build_font_faces(base_path: str = "fonts") -> str:
+    """Emit @font-face rules for every bundled font."""
+    rules = []
+    for family, faces in FONT_FACES.items():
+        for weight, style, filename in faces:
+            rules.append(
+                f"@font-face {{ font-family: '{family}'; font-style: {style}; "
+                f"font-weight: {weight}; font-display: block; "
+                f"src: local('{family}'), url('{base_path}/{filename}') format('truetype'); }}"
+            )
+    return "\n    ".join(rules)
+
+
 def build_stylesheet(design: DesignSystem, direction: str) -> str:
     p = design.palette
     t = design.typography
+    s = design.spacing
+    b = design.borders
+    fonts = t.families
 
     return f"""
-    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+    {build_font_faces()}
 
     *, *::before, *::after {{
       box-sizing: border-box;
@@ -35,7 +87,7 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     }}
 
     @page {{
-      size: 210mm 297mm;
+      size: {design.page.width} {design.page.height};
       margin: 0;
     }}
 
@@ -55,7 +107,7 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     body {{
       background: #475569;
       color: {p.text};
-      font-family: 'Cairo', 'Amiri', 'Traditional Arabic', 'Scheherazade New', 'Segoe UI', Tahoma, sans-serif;
+      font-family: {fonts['arabic']};
       direction: {esc(direction)};
       text-align: right;
       -webkit-print-color-adjust: exact;
@@ -67,50 +119,85 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
 
     /* Standard A4 Container */
     .page-sheet {{
-      width: 210mm;
-      height: 297mm;
-      min-height: 297mm;
-      max-height: 297mm;
+      width: {design.page.width};
+      height: {design.page.height};
+      min-height: {design.page.height};
+      max-height: {design.page.height};
       background: {p.surface};
       color: {p.text};
-      padding: 14mm 16mm 10mm 16mm;
+      padding: {s.page_y} {s.page_x} 9mm {s.page_x};
       margin-bottom: 24px;
       position: relative;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       box-shadow: 0 8px 24px rgba(0,0,0,0.18);
       overflow: hidden;
-      box-sizing: border-box;
     }}
 
     .page-content {{
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 11px;
+      gap: 9.5pt;
+      min-height: 0;
     }}
 
-    /* Cover Page Framing — Double Border Frame */
+    /* ============ Decorative Dividers (generic rule component) ============ */
+    .divider {{
+      border: none;
+      background: none;
+      height: 0;
+    }}
+    .divider-margin-sm {{ margin: 3pt 0; }}
+    .divider-margin-md {{ margin: 5pt 0 7pt 0; }}
+    .divider-margin-lg {{ margin: 10pt 0 12pt 0; }}
+    .divider-width-full {{ width: 100%; align-self: stretch; }}
+    .divider-width-content {{ width: 100%; }}
+    .divider-width-sub {{ width: 96pt; }}
+    .divider-thickness-thin {{ --rule: 0.75pt; }}
+    .divider-thickness-medium {{ --rule: 1pt; }}
+    .divider-thickness-thick {{ --rule: 1.5pt; }}
+    .divider-thickness-heavy {{ --rule: 2.25pt; }}
+    .divider-solid {{ border-top: var(--rule) solid currentColor; }}
+    .divider-dotted {{ border-top: 2pt dotted currentColor; }}
+    .divider-double {{ border-top: var(--rule) double currentColor; }}
+    .divider-gradient {{ height: var(--rule, 1.5pt); border: none; }}
+    /* Compound section rule: full-width primary line with a gold segment at
+       the logical start side (used under section headings). */
+    .divider-section {{
+      border: none;
+      height: 1.5pt;
+      background: {p.primary};
+      position: relative;
+    }}
+    .divider-section::after {{
+      content: '';
+      position: absolute;
+      top: 0;
+      inset-inline-start: 0;
+      width: {b.rule_overlay};
+      height: 1.5pt;
+      background: {p.accent};
+    }}
+
+    /* Cover Page Framing — Heavy Outer + Light Inner Frame */
     .layout-framed {{
-      padding: 9mm;
+      padding: 11.5mm;
     }}
 
     .layout-framed .page-frame-outer {{
       height: 100%;
-      border: 1.5px solid {p.primary};
-      padding: 3mm;
+      border: 2.25pt solid {p.primary};
+      padding: 2.9mm;
       box-sizing: border-box;
     }}
 
     .layout-framed .page-frame {{
       height: 100%;
-      border: 2px solid {p.primary};
-      border-radius: 2px;
-      padding: 12mm 14mm;
+      border: 0.75pt solid {p.frame_inner};
+      padding: 5.65mm;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       align-items: stretch;
       box-sizing: border-box;
       text-align: center;
@@ -118,7 +205,7 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
 
     /* Back Cover Dark Theme with Inner Gold Frame */
     .layout-dark {{
-      background: {p.primary_deep};
+      background: {p.back_cover};
       color: #ffffff;
       padding: 9mm;
       display: flex;
@@ -129,7 +216,7 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
 
     .layout-dark .dark-frame {{
       height: 100%;
-      border: 1px solid {p.accent_gold};
+      border: 0.75pt solid {p.back_frame};
       padding: 18mm 16mm;
       display: flex;
       flex-direction: column;
@@ -145,13 +232,13 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
 
     h1, h2, h3, h4, h5, h6, p, ul, ol, figure {{ margin: 0; }}
 
-    /* Section Headings with Structured Sub-Label */
+    /* ============ Section Headings with Gold Sub-Label and Rule ============ */
     .block-heading {{
       display: flex;
       align-items: flex-start;
-      gap: 10px;
-      margin-bottom: 6px;
-      margin-top: 4px;
+      gap: 8pt;
+      margin-bottom: 4pt;
+      margin-top: 2pt;
     }}
 
     .block-heading .heading-content {{
@@ -163,14 +250,14 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     .block-heading h2 {{
       font-size: 13.5pt;
       font-weight: 800;
-      color: {p.primary_deep};
+      color: {p.text_dark};
       margin: 0;
-      line-height: 1.3;
+      line-height: 1.32;
     }}
 
     .circle-badge {{
-      width: 26px;
-      height: 26px;
+      width: 22.5pt;
+      height: 22.5pt;
       border-radius: 50%;
       background: {p.primary};
       color: #ffffff;
@@ -178,10 +265,9 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 9pt;
-      font-family: 'Inter', sans-serif;
+      font-size: 10.5pt;
+      font-family: {fonts['latin']};
       flex-shrink: 0;
-      margin-top: 2px;
     }}
 
     .circle-badge.appendix-badge {{
@@ -189,124 +275,182 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     }}
 
     .sub-label {{
-      font-family: 'Inter', sans-serif;
+      font-family: {fonts['latin']};
       font-style: italic;
-      font-size: 8pt;
-      color: {p.muted};
+      font-size: 9pt;
+      color: {p.accent_text};
       direction: ltr;
-      text-align: right;
-      margin-top: 2px;
+      text-align: left;
+      display: block;
+      margin-top: 2.5pt;
     }}
     [dir="ltr"] .sub-label {{
-      text-align: left;
+      text-align: right;
     }}
 
-    /* Subsections with Vertical Accent Bar */
+    .block-heading + .divider-section {{
+      margin-top: 4pt;
+    }}
+
+    /* ============ Subsections with configurable accent ============ */
     .subsection-header {{
       display: flex;
-      align-items: center;
-      gap: 8px;
-      border-right: 3.5px solid {p.primary};
-      padding-right: 8px;
-      margin: 10px 0 6px 0;
-    }}
-    [dir="ltr"] .subsection-header {{
-      border-right: none;
-      border-left: 3.5px solid {p.primary};
+      align-items: baseline;
+      gap: 6pt;
+      position: relative;
       padding-right: 0;
-      padding-left: 8px;
+      margin: 8pt 0 5pt 0;
+      min-height: 17pt;
+    }}
+    .subsection-header.sub-accent-bar::after {{
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2.25pt;
+      height: 16.5pt;
+      background: var(--subsection-accent, {p.accent});
+    }}
+    [dir="ltr"] .subsection-header.sub-accent-bar::after {{
+      right: auto;
+      left: 0;
+    }}
+    .subsection-header.sub-accent-rule {{
+      border-bottom: 0.75pt solid {p.divider_strong};
+      padding-bottom: 5.5pt;
     }}
     .sub-title-primary {{
-      font-size: 11pt;
+      font-size: 11.5pt;
       font-weight: 700;
-      color: {p.primary_deep};
+      color: {p.primary};
+      line-height: 1.4;
     }}
     .sub-title-secondary {{
-      font-family: 'Inter', sans-serif;
+      font-family: {fonts['latin']};
       font-style: italic;
-      font-size: 8pt;
+      font-size: 9pt;
       color: {p.muted};
       direction: ltr;
+      unicode-bidi: isolate;
+      white-space: nowrap;
+    }}
+    .sub-dash {{
+      font-family: {fonts['latin']};
+      font-weight: 400;
+      color: {p.muted};
+      margin-inline-end: 4pt;
     }}
 
-    /* Text Paragraphs */
+    /* ============ Text Paragraphs ============ */
     .block-text {{
-      font-size: 9.75pt;
-      line-height: 1.75;
+      font-size: 10.5pt;
+      line-height: 1.88;
       text-align: justify;
       color: {p.text};
-      margin-bottom: 3px;
+      margin-bottom: 2pt;
     }}
-    .block-text p + p {{ margin-top: 6px; }}
+    .block-text.lead-normal {{ line-height: 1.65; }}
+    .block-text.lead-relaxed {{ line-height: 1.75; }}
+    .block-text p + p {{ margin-top: 5pt; }}
+    .block-text strong {{ color: {p.text_dark}; font-weight: 700; }}
+    /* Inline pill badge used inside flowing text */
+    .inline-pill {{
+      display: inline-block;
+      background: {p.primary_light};
+      border: 0.75pt solid {p.divider_strong};
+      border-radius: 8pt;
+      padding: 0.5pt 6pt;
+      font-size: 8pt;
+      font-weight: 700;
+      color: {p.text_dark};
+      font-family: {fonts['latin']};
+      white-space: nowrap;
+      vertical-align: baseline;
+    }}
     .align-left {{ text-align: left; }}
     .align-right {{ text-align: right; }}
     .align-center {{ text-align: center; }}
     .align-justify {{ text-align: justify; }}
 
-    /* Badges */
-    .badge-wrapper {{ margin: 6px 0; text-align: center; }}
+    /* ============ Badges ============ */
+    .badge-wrapper {{ margin: 5pt 0; text-align: center; }}
     .badge {{
       display: inline-block;
-      padding: 4px 18px;
-      border-radius: 30px;
+      padding: 4pt 18pt;
+      border-radius: 30pt;
       font-size: 9pt;
       font-weight: 700;
+      line-height: 1.5;
     }}
+    .badge.size-lg {{ font-size: 11.5pt; padding: 5pt 22pt; }}
     .badge-default, .badge-solid {{ background: {p.primary}; color: #ffffff; }}
     .badge-plain {{
       background: transparent;
       color: {p.text_dark};
-      font-size: 11pt;
+      font-size: 12.5pt;
       font-weight: 700;
     }}
     .badge-dashed {{
-      background: #f0f4f8;
+      background: #f8fafc;
       color: {p.primary};
-      border: 1.5px dashed {p.banner_border};
-      border-radius: 20px;
-      padding: 6px 22px;
-      font-size: 9.5pt;
+      border: 1pt dashed {p.banner_border};
+      border-radius: 14pt;
+      padding: 5pt 20pt;
+      font-size: 10pt;
     }}
     .badge-gradient {{
-      background: #a9cce3;
-      color: {p.primary_deep};
-      padding: 6px 36px;
-      border-radius: 6px;
+      background: linear-gradient(135deg, {p.banner_start} 0%, {p.banner_end} 100%);
+      color: {p.banner_text};
+      padding: 6pt 26pt;
+      border-radius: 6pt;
       font-size: 10pt;
       font-weight: 800;
     }}
+    .badge-pill {{
+      background: linear-gradient(135deg, {p.banner_start} 0%, {p.banner_end} 100%);
+      color: {p.banner_text};
+      padding: 5pt 22pt;
+      border-radius: 999pt;
+      border: 0.75pt solid {p.frame_inner};
+      font-size: 12pt;
+      font-weight: 800;
+    }}
 
-    /* Topic Banner Card */
+    /* ============ Topic Banner Card (light gradient, dark text) ============ */
     .card {{
-      border-radius: 12px;
-      padding: 18px 24px;
-      margin: 10px auto;
+      border-radius: 8pt;
+      padding: 14pt 18pt;
+      margin: 8pt auto;
       width: 100%;
       text-align: center;
       background: linear-gradient(135deg, {p.banner_start} 0%, {p.banner_end} 100%);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-      color: #ffffff;
+      box-shadow: 0 2pt 6pt rgba(0,0,0,0.06);
+      color: {p.banner_text};
     }}
-    .card-label {{ color: #ffffff; font-weight: 600; font-size: 10pt; margin-bottom: 4px; }}
-    .card-title {{ color: #ffffff; font-size: 17pt; font-weight: 900; line-height: 1.35; margin-bottom: 4px; }}
-    .card-subtitle {{ color: #eef4fb; font-style: italic; font-family: 'Inter', sans-serif; font-size: 8.5pt; margin-bottom: 10px; direction: ltr; }}
+    .card-label {{ color: {p.banner_text}; font-weight: 700; font-size: 11.5pt; margin-bottom: 3pt; }}
+    .card-title {{ color: {p.banner_text}; font-size: 15.5pt; font-weight: 900; line-height: 1.5; margin-bottom: 2pt; }}
+    .card-subtitle {{ color: {p.primary_deep}; font-style: italic; font-family: {fonts['latin']}; font-size: 10pt; margin-bottom: 8pt; direction: ltr; }}
     .card-pill {{
       display: inline-block;
-      padding: 4px 18px;
-      border-radius: 999px;
+      padding: 3pt 14pt;
+      border-radius: 999pt;
       background: #ffffff;
-      color: {p.primary_deep};
-      font-size: 8pt;
+      border: 0.75pt solid {p.banner_border};
+      color: {p.text_dark};
+      font-size: 8.5pt;
       font-weight: 700;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      font-family: {fonts['latin']};
+      box-shadow: 0 1pt 2pt rgba(0,0,0,0.05);
     }}
+    .card-content {{ color: {p.banner_text}; font-size: 9.5pt; margin-top: 4pt; }}
 
-    /* Trainee Info Card with Table Layout */
+    /* ============ Info Card ============ */
     .info-card {{
-      border: 1px solid {p.border};
-      border-radius: 10px;
-      padding: 14px 20px;
-      margin: 10px auto;
+      border: 0.75pt solid {p.muted_light};
+      border-radius: 10pt;
+      padding: 12pt 16pt;
+      margin: 8pt auto;
       width: 100%;
       background: {p.surface};
     }}
@@ -316,14 +460,14 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       text-align: right;
     }}
     .info-row td {{
-      padding: 5px 0;
-      font-size: 9.5pt;
+      padding: 4.5pt 0;
+      font-size: 11pt;
       vertical-align: baseline;
     }}
     .info-label {{
-      width: 28%;
+      width: 30%;
       font-weight: 700;
-      color: {p.primary};
+      color: {p.text_dark};
       white-space: nowrap;
     }}
     .info-sep {{
@@ -331,341 +475,456 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       text-align: center;
       font-weight: 700;
       color: {p.primary};
+      font-family: {fonts['latin']};
     }}
     .info-value {{
-      width: 68%;
-      font-weight: 500;
+      width: 66%;
+      font-weight: 600;
       color: {p.text};
-      line-height: 1.4;
-      padding-right: 4px;
+      line-height: 1.75;
+      padding-right: 4pt;
     }}
     .info-row.highlight .info-value {{
-      color: {p.primary_deep};
+      color: {p.text_dark};
       font-weight: 800;
     }}
 
-    /* Formula Block */
+    /* ============ Formula Block (gold theme) ============ */
     .formula-container {{
-      border: 1px solid {p.border};
-      border-radius: 8px;
-      background: #fdfefe;
-      padding: 14px 18px;
-      margin: 12px 0;
+      border: none;
+      border-right: 4.5pt solid {p.accent};
+      border-radius: 0;
+      background: {p.accent_light};
+      padding: 10pt 12pt;
+      margin: 10pt 0;
       text-align: center;
+    }}
+    [dir="ltr"] .formula-container {{
+      border-right: none;
+      border-left: 4.5pt solid {p.accent};
     }}
     .formula-badge {{
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: #fef5e7;
-      border: 1px solid #fad7a0;
-      color: {p.accent};
-      font-size: 8pt;
+      gap: 6pt;
+      color: {p.accent_text};
+      font-size: 10.5pt;
       font-weight: 700;
-      padding: 3px 14px;
-      border-radius: 999px;
-      margin-bottom: 8px;
+      margin-bottom: 6pt;
+      direction: rtl;
     }}
     .formula-icon-circle {{
-      font-family: {t.font_math};
-      font-size: 9pt;
-      font-weight: bold;
-    }}
-    .formula-math {{
-      text-align: center;
-      font-family: {t.font_math};
-      font-size: 16pt;
-      font-weight: bold;
-      color: {p.primary_deep};
-      margin: 8px 0;
-      direction: ltr;
-      unicode-bidi: isolate;
-    }}
-    .formula-desc {{
-      font-size: 8.5pt;
-      line-height: 1.6;
-      color: #4a5568;
-    }}
-
-    /* Callouts */
-    .callout {{
-      border-radius: 8px;
-      padding: 12px 16px;
-      margin: 12px 0;
-      font-size: 9pt;
-      line-height: 1.6;
-    }}
-    .callout-accent {{
-      background: #fff9e6;
-      border: 1px solid #f9e79f;
-      border-right: 4px solid #d4ac0d;
-    }}
-    [dir="ltr"] .callout-accent {{
-      border-right: 1px solid #f9e79f;
-      border-left: 4px solid #d4ac0d;
-    }}
-    .callout-accent .callout-header {{ color: #d4ac0d; }}
-    .callout-primary {{
-      background: #ebf5fb;
-      border: 1px solid #aed6f1;
-      border-right: 4px solid {p.primary};
-    }}
-    [dir="ltr"] .callout-primary {{
-      border-right: 1px solid #aed6f1;
-      border-left: 4px solid {p.primary};
-    }}
-    .callout-primary .callout-header {{ color: {p.primary}; }}
-    .callout-header {{
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 700;
-      font-size: 9.5pt;
-      margin-bottom: 4px;
-    }}
-    .callout-icon-circle {{ font-size: 9.5pt; font-weight: bold; }}
-    .callout-content {{ font-size: 9pt; line-height: 1.6; }}
-
-    /* Stat Cards */
-    .stats-grid {{
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin: 14px 0;
-    }}
-    .stat-card {{
-      flex: 1 1 0;
-      background: #ffffff;
-      border: 1px solid {p.border_light};
-      border-radius: 8px;
-      padding: 10px 8px;
-      text-align: center;
-    }}
-    .stat-value {{
-      font-size: 16pt;
-      font-weight: 800;
-      color: {p.primary_deep};
-      font-family: {t.font_latin};
-      direction: ltr;
-    }}
-    .stat-label {{
-      font-size: 8pt;
-      font-weight: 700;
-      color: #2d3748;
-      margin-top: 4px;
-      line-height: 1.35;
-    }}
-    .stat-sub {{
-      display: block;
-      font-size: 6.5pt;
-      color: {p.muted};
-      font-style: italic;
-      font-family: {t.font_latin};
-      margin-top: 2px;
-      direction: ltr;
-    }}
-
-    /* Data Tables */
-    .table-wrapper {{ margin: 10px 0; }}
-    .standard-table {{
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 8.5pt;
-      border: 1px solid {p.primary};
-    }}
-    .standard-table th {{
-      background: {p.primary};
-      color: #ffffff;
-      padding: 7px 10px;
-      text-align: center;
-      border: 1px solid {p.primary};
-      font-weight: 700;
-    }}
-    .standard-table th .th-sub {{
-      display: block;
-      color: #cbd5e1;
-      font-style: italic;
-      font-size: 7pt;
-      font-weight: 400;
-      direction: ltr;
-    }}
-    .standard-table td {{
-      border: 1px solid {p.border_light};
-      padding: 6px 10px;
-      line-height: 1.45;
-    }}
-    .standard-table tbody tr:nth-child(even) {{ background: {p.surface_alt}; }}
-    td.num {{ text-align: center; font-family: {t.font_latin}; font-weight: 700; }}
-    td.txt {{ text-align: right; }}
-    [dir="ltr"] td.txt {{ text-align: left; }}
-
-    /* Captions */
-    .caption {{
-      text-align: center;
-      margin-top: 6px;
-    }}
-    .caption-main {{
-      color: #4a5568;
-      font-weight: 700;
-      font-size: 8pt;
-    }}
-    .caption-sub {{
-      font-family: {t.font_latin};
-      font-style: italic;
-      font-size: 7pt;
-      color: {p.muted};
-      direction: ltr;
-      margin-top: 1px;
-    }}
-
-    /* Flow Steps — Unified Card */
-    .flow-steps {{
-      background: {p.surface_alt};
-      border: 1px solid {p.border_light};
-      border-radius: 8px;
-      padding: 14px 18px;
-      margin: 12px 0;
-    }}
-    .step-node {{ display: flex; align-items: flex-start; gap: 12px; }}
-    .step-content {{ flex: 1; }}
-    .step-num {{
-      width: 22px;
-      height: 22px;
+      width: 17.25pt;
+      height: 17.25pt;
       border-radius: 50%;
-      background: {p.series[0]};
+      background: {p.accent};
       color: #ffffff;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 8.5pt;
+      font-family: {fonts['math']};
+      font-size: 10pt;
       font-weight: 700;
       flex-shrink: 0;
-      font-family: {t.font_latin};
-      margin-top: 1px;
     }}
-    .step-title {{ font-weight: 700; font-size: 9pt; color: #2d3748; line-height: 1.4; }}
-    .step-sub {{ color: {p.muted}; font-family: {t.font_latin}; font-style: italic; font-size: 7.5pt; margin-top: 2px; direction: ltr; text-align: right; }}
-    .step-arrow {{
-      color: {p.series[0]};
+    .formula-math {{
       text-align: center;
-      padding-right: 25px;
-      font-size: 8pt;
-      margin: 2px 0;
+      font-family: {fonts['math']};
+      font-size: 13pt;
+      font-weight: 700;
+      color: {p.text_dark};
+      margin: 6pt 0;
+      direction: ltr;
+      unicode-bidi: isolate;
+    }}
+    .formula-math sub, .formula-math sup {{ font-size: 68%; }}
+    .formula-desc {{
+      font-size: 10pt;
+      line-height: 1.85;
+      color: {p.text};
+      text-align: justify;
     }}
 
-    /* Table of Contents */
+    /* ============ Callouts (gold theme) ============ */
+    .callout {{
+      background: {p.accent_light};
+      border: none;
+      border-right: 4.5pt solid {p.accent};
+      padding: 10pt 12pt;
+      margin: 10pt 0;
+      font-size: 10pt;
+      line-height: 1.85;
+    }}
+    [dir="ltr"] .callout {{
+      border-right: none;
+      border-left: 4.5pt solid {p.accent};
+    }}
+    .callout-primary {{
+      background: {p.primary_light};
+      border-right-color: {p.primary};
+    }}
+    [dir="ltr"] .callout-primary {{
+      border-right: none;
+      border-left: 4.5pt solid {p.primary};
+    }}
+    .callout-primary .callout-header {{ color: {p.text_dark}; }}
+    .callout-header {{
+      display: flex;
+      align-items: center;
+      gap: 6pt;
+      font-weight: 700;
+      font-size: 10.5pt;
+      margin-bottom: 4pt;
+      color: {p.accent_text};
+    }}
+    .callout-icon-circle {{
+      width: 17.25pt;
+      height: 17.25pt;
+      border-radius: 50%;
+      background: {p.accent};
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: {fonts['latin']};
+      font-size: 10pt;
+      font-weight: 700;
+      flex-shrink: 0;
+    }}
+    .callout-primary .callout-icon-circle {{ background: {p.primary}; }}
+    .callout-content {{ font-size: 10pt; line-height: 1.85; color: {p.text}; }}
+
+    /* ============ Stat Cards (gold top accent) ============ */
+    .stats-grid {{
+      display: flex;
+      justify-content: space-between;
+      gap: 8pt;
+      margin: 12pt 0;
+    }}
+    .stat-card {{
+      flex: 1 1 0;
+      background: {p.surface};
+      border: 0.75pt solid {p.border};
+      border-top: 2.25pt solid {p.accent};
+      border-radius: 6pt;
+      padding: 9pt 8pt;
+      text-align: center;
+    }}
+    .stat-value {{
+      font-size: 15.5pt;
+      font-weight: 700;
+      color: {p.text_dark};
+      font-family: {fonts['latin']};
+      direction: ltr;
+      line-height: 1.1;
+    }}
+    .stat-label {{
+      font-size: 8pt;
+      font-weight: 400;
+      color: #4b5563;
+      margin-top: 3pt;
+      line-height: 1.45;
+    }}
+    .stat-sub {{
+      display: block;
+      font-size: 7pt;
+      color: {p.muted};
+      font-style: italic;
+      font-family: {fonts['latin']};
+      margin-top: 2pt;
+      direction: ltr;
+      line-height: 1.35;
+    }}
+
+    /* ============ Data Tables ============ */
+    .table-wrapper {{ margin: 8pt 0; }}
+    .table-header {{
+      margin-bottom: 4pt;
+    }}
+    .table-header h4 {{
+      font-size: 11pt;
+      font-weight: 700;
+      color: {p.text_dark};
+      display: inline;
+    }}
+    .table-header span {{
+      font-family: {fonts['latin']};
+      font-style: italic;
+      font-size: 8.5pt;
+      color: {p.muted};
+      direction: ltr;
+      unicode-bidi: isolate;
+    }}
+    .standard-table {{
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9pt;
+      border: 0.75pt solid {p.border_table_strong};
+    }}
+    .standard-table th {{
+      background: {p.primary};
+      color: #ffffff;
+      padding: 8pt 8pt;
+      text-align: center;
+      border: 0.75pt solid {p.border_table};
+      font-weight: 700;
+      font-size: 9.5pt;
+      line-height: 1.35;
+      vertical-align: middle;
+    }}
+    .standard-table th .th-sub {{
+      display: block;
+      color: rgba(255,255,255,0.85);
+      font-style: italic;
+      font-size: 7.5pt;
+      font-weight: 400;
+      font-family: {fonts['latin']};
+      direction: ltr;
+    }}
+    .standard-table td {{
+      border: 0.75pt solid {p.border_table};
+      padding: 6pt 8pt;
+      line-height: 1.55;
+      vertical-align: middle;
+    }}
+    .standard-table tbody tr:nth-child(even) {{ background: {p.surface_alt}; }}
+    td.num {{ text-align: center; font-family: {fonts['latin']}; font-weight: 700; direction: ltr; color: {p.text_dark}; }}
+    td.txt {{ text-align: right; }}
+    td.strong {{ font-weight: 700; color: {p.text_dark}; }}
+    [dir="ltr"] td.txt {{ text-align: left; }}
+    .td-sub {{
+      display: inline;
+      font-size: 8pt;
+      color: {p.muted};
+      font-weight: 400;
+      font-family: {fonts['latin']};
+      font-style: italic;
+      direction: ltr;
+      unicode-bidi: isolate;
+    }}
+
+    /* ============ Captions ============ */
+    .caption {{
+      text-align: center;
+      margin-top: 5pt;
+    }}
+    .caption-main {{
+      color: {p.primary};
+      font-weight: 600;
+      font-size: 8.5pt;
+    }}
+    .caption-sub {{
+      font-family: {fonts['latin']};
+      font-style: italic;
+      font-size: 7.5pt;
+      color: {p.muted};
+      direction: ltr;
+      margin-top: 1pt;
+    }}
+
+    /* ============ Flow Steps (unified card, gold arrows) ============ */
+    .flow-steps {{
+      background: {p.surface};
+      border: 0.75pt solid {p.border};
+      border-radius: 8pt;
+      padding: 10pt 16pt;
+      margin: 10pt 0;
+    }}
+    .flow-title {{
+      font-size: 11pt;
+      font-weight: 700;
+      color: {p.text_dark};
+      margin-bottom: 6pt;
+    }}
+    .step-node {{ display: flex; align-items: flex-start; gap: 10pt; }}
+    .step-content {{ flex: 1; }}
+    .step-num {{
+      width: 22.5pt;
+      height: 22.5pt;
+      border-radius: 50%;
+      background: {p.primary};
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10pt;
+      font-weight: 700;
+      flex-shrink: 0;
+      font-family: {fonts['latin']};
+    }}
+    .step-title {{ font-weight: 400; font-size: 9.5pt; color: {p.text}; line-height: 1.5; margin-top: 1.5pt; }}
+    .step-title strong {{ color: {p.text_dark}; }}
+    .step-sub {{ color: {p.muted}; font-family: {fonts['latin']}; font-style: italic; font-size: 8pt; margin-top: 0; direction: ltr; text-align: right; }}
+    [dir="ltr"] .step-sub {{ text-align: left; }}
+    .step-arrow {{
+      color: {p.accent};
+      text-align: center;
+      padding-right: 24pt;
+      font-size: 9pt;
+      line-height: 1;
+      margin: 5pt 0;
+    }}
+    [dir="ltr"] .step-arrow {{ padding-right: 0; padding-left: 24pt; }}
+
+    /* ============ Table of Contents ============ */
     .toc {{
       display: flex;
       flex-direction: column;
       height: 100%;
     }}
     .toc h2 {{
-      font-size: 18pt;
+      font-size: 17pt;
       font-weight: 900;
       text-align: center;
-      color: {p.primary};
-      margin-bottom: 2px;
+      color: {p.text_dark};
+      margin-bottom: 1pt;
     }}
     .toc-subtitle {{
       text-align: center;
-      font-family: {t.font_latin};
+      font-family: {fonts['latin']};
       font-style: italic;
-      color: {p.muted};
-      margin-bottom: 6px;
-      font-size: 8.5pt;
+      color: {p.accent_text};
+      margin-bottom: 6pt;
+      font-size: 11pt;
       direction: ltr;
     }}
     .toc-divider-line {{
       width: 100%;
-      height: 2px;
+      height: 1.5pt;
       background: {p.primary};
-      margin: 6px 0 20px 0;
+      margin: 4pt 0 18pt 0;
     }}
     .toc ul {{
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 21pt;
       padding: 0;
       flex: 1;
     }}
     .toc-row {{
       display: flex;
       align-items: center;
-      font-size: 9.5pt;
+      font-size: 10.5pt;
     }}
     .toc-badge {{
-      width: 22px;
-      height: 22px;
+      width: 22.5pt;
+      height: 22.5pt;
       border-radius: 50%;
       background: {p.primary};
       color: #ffffff;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 8.5pt;
+      font-size: 10pt;
       font-weight: 700;
       flex-shrink: 0;
-      margin-left: 10px;
-      font-family: {t.font_latin};
+      margin-left: 9pt;
+      font-family: {fonts['latin']};
     }}
-    .appendix-badge {{ background: {p.accent} !important; }}
-    .toc-title {{ display: flex; flex-direction: column; }}
-    .toc-title strong {{ font-weight: 700; color: #2d3748; }}
-    .toc-sub {{ font-family: {t.font_latin}; font-size: 7.5pt; color: {p.muted}; font-style: italic; direction: ltr; text-align: right; }}
+    .appendix-badge {{ background: {p.accent_text} !important; }}
+    .toc-title {{ display: flex; flex-direction: column; font-weight: 400; }}
+    .toc-title strong {{ font-weight: 400; color: {p.text}; }}
+    .toc-sub {{ font-family: {fonts['latin']}; font-size: 8pt; color: {p.muted}; font-style: italic; direction: ltr; text-align: right; }}
     .toc-dots {{
       flex: 1;
-      border-bottom: 1.5px dotted {p.border};
-      margin: 0 10px;
-      height: 12px;
+      border-bottom: 1.5pt dotted {p.dots};
+      margin: 0 9pt;
+      height: 11pt;
     }}
     .toc-page {{
-      font-family: {t.font_latin};
+      font-family: {fonts['latin']};
       font-weight: 700;
       color: {p.primary};
-      font-size: 10pt;
-      width: 25px;
+      font-size: 10.5pt;
+      width: 24pt;
       text-align: left;
     }}
 
-    /* Quotes */
-    .quote {{ max-width: 160mm; margin: 12px auto; text-align: center; }}
-    .quote-rule {{ display: block; width: 60px; height: 1.5px; background: {p.accent_gold}; margin: 16px auto; }}
-    .quote p {{ font-size: 12.5pt; font-weight: 700; line-height: 1.85; color: {p.text_dark}; }}
+    /* ============ Quotes (serif, boxed) ============ */
+    .quote {{
+      max-width: 490pt;
+      margin: 10pt auto;
+      text-align: center;
+      padding: 0 22pt;
+    }}
+    .quote-box {{
+      background: {p.surface_warm};
+      border: none;
+      border-right: 3.5pt solid {p.primary};
+      padding: 12pt 18pt;
+      border-radius: 0;
+      max-width: none;
+      margin: 10pt 0;
+    }}
+    [dir="ltr"] .quote-box {{
+      border-right: none;
+      border-left: 3.5pt solid {p.primary};
+    }}
+    .quote-box .quote-rule {{ display: none; }}
+    .layout-dark .quote-box {{
+      background: transparent;
+      border-color: {p.back_frame};
+    }}
+    .quote-rule {{ display: block; width: 60pt; height: 1.5pt; background: {p.accent}; margin: 12pt auto; }}
+    .quote p {{
+      font-size: 11.5pt;
+      font-weight: 400;
+      line-height: 1.75;
+      color: {p.text_dark};
+      font-family: {fonts['quote']};
+    }}
     .layout-dark .quote p {{ color: #ffffff; }}
-    .quote-sub {{ font-family: {t.font_latin}; font-style: italic; font-size: 8.5pt; color: {p.muted}; margin-top: 8px; direction: ltr; line-height: 1.6; }}
+    .quote-sub {{
+      font-family: {fonts['latin']};
+      font-style: italic;
+      font-size: 8.5pt;
+      color: {p.muted};
+      margin-top: 7pt;
+      direction: ltr;
+      line-height: 1.6;
+    }}
     .layout-dark .quote-sub {{ color: #e2e8f0; }}
-    .quote-author {{ display: block; font-size: 8pt; color: {p.muted}; margin-top: 8px; }}
+    .quote-author {{
+      display: block;
+      font-size: 8.5pt;
+      color: {p.muted};
+      margin-top: 7pt;
+      direction: ltr;
+      text-align: left;
+      font-family: {fonts['latin']};
+    }}
+    [dir="ltr"] .quote-author {{ text-align: right; }}
 
-    /* Lists */
-    .content-list {{ margin: 6px 0; padding-right: 22px; line-height: 1.7; font-size: 9.5pt; }}
-    [dir="ltr"] .content-list {{ padding-right: 0; padding-left: 22px; }}
+    /* ============ Lists ============ */
+    .content-list {{ margin: 5pt 0; padding-right: 20pt; line-height: 1.7; font-size: 10.5pt; }}
+    [dir="ltr"] .content-list {{ padding-right: 0; padding-left: 20pt; }}
 
-    /* Structured Card Lists (Page 16) */
+    /* Card-variant lists */
     .list-cards {{
       list-style: none;
       padding: 0 !important;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      margin: 8px 0;
+      gap: 6pt;
+      margin: 7pt 0;
     }}
     .list-item-card {{
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border: 1px solid {p.border_light};
-      border-radius: 6px;
+      border: 0.75pt solid {p.border_light};
+      border-radius: 5pt;
       background: {p.surface};
-      padding: 7px 12px;
-      gap: 12px;
+      padding: 6pt 10pt;
+      gap: 10pt;
     }}
     .list-item-badge {{
       font-size: 8.5pt;
       font-weight: 700;
       color: {p.muted};
       flex-shrink: 0;
-      width: 16px;
+      width: 16pt;
       text-align: center;
     }}
     .list-item-content {{
@@ -673,61 +932,124 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      gap: 9pt;
     }}
     .list-item-title {{
-      font-size: 8.5pt;
-      font-weight: 600;
+      font-size: 9.5pt;
+      font-weight: 700;
       color: {p.text_dark};
-      line-height: 1.4;
+      line-height: 1.45;
     }}
     .list-item-tag {{
-      font-family: {t.font_latin};
+      font-family: {fonts['arabic']};
       font-size: 7.5pt;
       color: {p.muted};
       white-space: nowrap;
       flex-shrink: 0;
       background: {p.surface_alt};
-      border: 1px solid {p.border_light};
-      padding: 2px 8px;
-      border-radius: 4px;
+      border: 0.75pt solid {p.border_light};
+      padding: 1.5pt 7pt;
+      border-radius: 4pt;
+    }}
+    .list-item-sub {{
+      display: block;
+      font-size: 8pt;
+      color: {p.muted};
+      font-weight: 400;
+      line-height: 1.5;
     }}
 
-    /* Layout Spacers */
-    .spacer-sm {{ height: 8px; }}
-    .spacer-md {{ height: 14px; }}
-    .spacer-lg {{ height: 22px; }}
+    /* Row-variant lists (dotted dividers, light badges) */
+    .list-rows {{
+      list-style: none;
+      padding: 0 !important;
+      margin: 4pt 0;
+    }}
+    .list-row {{
+      display: flex;
+      align-items: flex-start;
+      gap: 9pt;
+      padding: 6pt 0;
+      border-bottom: 1.5pt dotted {p.dots};
+    }}
+    .list-rows .list-row:last-child {{ border-bottom: none; }}
+    .list-rows .list-item-badge {{
+      width: 18pt;
+      height: 18pt;
+      border-radius: 50%;
+      background: {p.surface_alt};
+      color: {p.primary};
+      font-family: {fonts['latin']};
+      font-size: 9.5pt;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1pt;
+    }}
+    .list-row-content {{ flex: 1; }}
+    .list-rows .list-item-title {{ font-size: 9.5pt; font-weight: 700; }}
+    .list-rows .list-item-sub {{
+      font-size: 8pt;
+      color: {p.muted};
+      margin-top: 1.5pt;
+    }}
 
-    /* Vector Chart Container Card */
+    /* ============ Layout Spacers ============ */
+    .spacer-xs {{ height: 4pt; }}
+    .spacer-sm {{ height: 8pt; }}
+    .spacer-md {{ height: 14pt; }}
+    .spacer-lg {{ height: 22pt; }}
+    .spacer-xl {{ height: 32pt; }}
+    .spacer-2xl {{ height: 48pt; }}
+
+    /* ============ Vector Chart Container Card ============ */
     .chart-container {{
-      margin: 10px 0;
-      padding: 12px 16px;
-      border: 1px solid {p.border_light};
-      border-radius: 8px;
-      background: #ffffff;
+      margin: 9pt 0;
+      padding: 9pt 12pt 7pt 12pt;
+      border: 0.75pt solid {p.border};
+      border-radius: 8pt;
+      background: {p.surface};
       text-align: center;
     }}
-    .chart-header {{ text-align: center; margin-bottom: 8px; }}
-    .chart-header h4 {{ font-size: 10pt; font-weight: 700; color: {p.primary}; }}
-    .chart-header .chart-subtitle {{ font-family: {t.font_latin}; font-style: italic; font-size: 7.5pt; color: {p.muted}; margin-top: 1px; direction: ltr; }}
-    .svg-viewport {{ width: 100%; max-height: 250px; display: block; margin: 0 auto; }}
+    .chart-header {{ text-align: center; margin-bottom: 5pt; }}
+    .chart-header h4 {{ font-size: 11pt; font-weight: 700; color: {p.text_dark}; line-height: 1.6; }}
+    .chart-header .chart-subtitle {{
+      font-family: {fonts['latin']};
+      font-style: italic;
+      font-size: 8.5pt;
+      color: {p.muted};
+      margin-top: 1pt;
+      direction: ltr;
+    }}
+    .svg-viewport {{ width: 100%; max-height: 250pt; display: block; margin: 0 auto; }}
 
-    /* Running Footer */
+    /* ============ Running Footer (no rule, navy page pill) ============ */
     .running-footer {{
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid {p.border_light};
-      padding-top: 6px;
+      margin-top: 14pt;
       font-size: 7.5pt;
-      color: {p.muted};
-      font-family: {t.font_latin};
+      color: {p.muted_light};
+      font-family: {fonts['arabic']};
       direction: ltr !important;
       unicode-bidi: isolate;
     }}
-    .footer-left {{ text-align: left; }}
-    .footer-center {{ font-weight: 700; color: {p.text_dark}; font-size: 8.5pt; text-align: center; }}
-    .footer-right {{ text-align: right; }}
+    .footer-left {{ text-align: left; direction: rtl; unicode-bidi: isolate; }}
+    .footer-right {{ text-align: right; direction: ltr; font-family: {fonts['latin']}; }}
+    .footer-center {{
+      background: {p.primary};
+      color: #ffffff;
+      font-family: {fonts['latin']};
+      font-weight: 700;
+      font-size: 9pt;
+      line-height: 1;
+      padding: 2pt 4.5pt;
+      border-radius: 3pt;
+      min-width: 13.5pt;
+      text-align: center;
+    }}
     """
 
 
@@ -752,10 +1074,14 @@ def render_page(
         left = str(footer.get("left", "")).replace("{page}", str(page_number)).replace("{pages}", str(page_count))
         center = str(footer.get("center", "")).replace("{page}", str(page_number)).replace("{pages}", str(page_count))
         right = str(footer.get("right", "")).replace("{page}", str(page_number)).replace("{pages}", str(page_count))
+        center_style = esc(footer.get("center_style", "pill"))
+        center_cls = f"footer-center footer-center-{center_style}"
+        if center_style not in ("pill", "plain"):
+            center_cls = "footer-center"
         footer_html = (
             f'<footer class="running-footer">'
             f'<span class="footer-left">{esc(left)}</span>'
-            f'<span class="footer-center">{esc(center)}</span>'
+            f'<span class="{center_cls}">{esc(center)}</span>'
             f'<span class="footer-right">{esc(right)}</span>'
             f'</footer>'
         )
@@ -776,7 +1102,7 @@ def render_page(
             f'</main>'
         )
     return (
-        f'<main class="page-sheet layout-{layout}">'
+        f'<main class="page-sheet layout-{esc(layout)}">'
         f'<div class="page-content">{content}</div>{footer_html}'
         f'</main>'
     )

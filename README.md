@@ -149,9 +149,9 @@ A batch file can use:
 }
 ~~~
 
-Supported generic block primitives include headings, text, badges, cards, key/value cards, callouts, statistics, tables, flow steps, tables of contents, quotes, lists, groups, images, spacers, and artifact references.
+Supported generic block primitives include headings (with compound section rules), subsections (bar / rule / no accent variants), text (with inline HTML and pill badges), badges (solid, plain, dashed, gradient, pill), cards, key/value cards, callouts (accent and primary), statistics (gold top accent), tables, flow steps, tables of contents, quotes (serif, boxed), lists (card and row variants), images, spacers (named or custom heights), dividers (solid, dotted, double, gradient, and compound section rules with a two-tone accent overlay), groups, and artifact references.
 
-Supported visual artifacts include bar, line, donut, and progress charts plus flow and graph diagrams.
+Supported visual artifacts include bar, line, donut, and progress charts plus flow and graph diagrams. Charts resolve colors from the design palette, an explicit per-chart `colors` list, or an interpolated `color_scale` ramp; donut legends support bilingual two-line entries; progress fills anchor to the logical end side for RTL documents.
 
 Nested groups make page structure declarative. The input decides which components exist and in what order; the engine only supplies their reusable rendering behavior.
 
@@ -177,12 +177,14 @@ Visual artifacts are generated independently before the document is assembled.
 
 ## PDF
 
-HTML is the primary guaranteed output. PDF generation is opportunistic through WeasyPrint, Chromium, or Playwright when one is available in the environment.
+HTML is the primary guaranteed output. PDF generation prefers a Playwright-driven Chromium (best font and CSS fidelity), falls back to standalone Chromium/Chrome, and finally to WeasyPrint. Document-level metadata (`metadata.Title`, `Author`, `Subject`, ...) from the JSON input is stamped onto the PDF generically with pypdf.
 
-No PDF backend is allowed to invent or substitute document content.
+## Bundled fonts
+
+The repository bundles an open-licensed font library under `assets/fonts` (Noto Kufi Arabic, Noto Sans Arabic UI, Arimo, Amiri, Tinos). At build time the compiler copies it next to the generated HTML and the stylesheet emits local `@font-face` rules, so HTML and PDF rendering is deterministic and identical on every machine with no network access required.
 
 ## Design overrides
 
-All design defaults are generic. A caller may override palette, typography, spacing, borders, or page dimensions in JSON.
+All design defaults are generic. A caller may override palette, typography (font families, sizes, weights, line heights), spacing, borders (including the section-rule accent overlay width), or page dimensions in JSON.
 
 Unknown design token names are rejected so spelling mistakes do not silently change rendering.

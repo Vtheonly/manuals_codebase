@@ -58,7 +58,6 @@ def test_same_engine_compiles_different_inputs(tmp_path):
         assert not (output / "report_data.py").exists()
 
 
-
 def test_high_fidelity_components_and_multi_series_chart(tmp_path):
     source_document = document("Styled", "ar", "rtl")
     source_document["pages"][0]["blocks"].extend([
@@ -96,7 +95,7 @@ def test_high_fidelity_components_and_multi_series_chart(tmp_path):
     assert "<strong>formatted</strong>" in rendered
     assert "<small>small text</small>" in rendered
     assert 'class="formula-math"' in rendered
-    assert 'class="subsection-header"' in rendered
+    assert 'class="subsection-header sub-accent-bar"' in rendered
 
     svg = (output / "artifacts" / "multi.svg").read_text(encoding="utf-8")
     assert svg.count("<polyline") == 3
@@ -104,6 +103,131 @@ def test_high_fidelity_components_and_multi_series_chart(tmp_path):
     assert 'direction:ltr !important' in svg
 
     assert manifest["outputs"]["html"]["path"] == "styled.html"
+
+
+def test_divider_component_and_heading_rule(tmp_path):
+    source_document = document("Rules", "ar", "rtl")
+    source_document["pages"][0]["blocks"].extend([
+        {"type": "divider", "variant": "section"},
+        {"type": "divider", "variant": "dotted", "color": "accent", "margin": "lg"},
+        {"type": "divider", "variant": "gradient", "start": "primary", "end": "accent"},
+        {"type": "heading", "level": 2, "title": "No rule", "rule": False},
+    ])
+    source = tmp_path / "rules.json"
+    output = tmp_path / "rules-out"
+    source.write_text(json.dumps(source_document, ensure_ascii=False), encoding="utf-8")
+    build(source, output)
+    rendered = (output / "rules.html").read_text(encoding="utf-8")
+
+    assert 'class="divider divider-section' in rendered
+    assert 'class="divider divider-dotted' in rendered
+    assert 'class="divider divider-gradient' in rendered
+    # heading with rule disabled must not emit a divider
+    no_rule_heading = rendered.split("No rule")[1][:400]
+    assert "divider-section" not in no_rule_heading
+
+
+def test_list_rows_variant_and_custom_spacer(tmp_path):
+    source_document = document("Rows", "ar", "rtl")
+    source_document["pages"][0]["blocks"].extend([
+        {"type": "spacer", "height": "18pt"},
+        {
+            "type": "list",
+            "variant": "rows",
+            "items": [
+                {"title": "One", "subtitle": "First item", "tag": "REF-1"},
+                {"title": "Two", "subtitle": "Second item"},
+            ],
+        },
+    ])
+    source = tmp_path / "rows.json"
+    output = tmp_path / "rows-out"
+    source.write_text(json.dumps(source_document, ensure_ascii=False), encoding="utf-8")
+    build(source, output)
+    rendered = (output / "rows.html").read_text(encoding="utf-8")
+
+    assert 'class="content-list list-rows"' in rendered
+    assert 'class="list-row"' in rendered
+    assert 'style="height:18pt"' in rendered
+
+
+def test_color_scale_and_series_override(tmp_path):
+    source_document = document("Scaled", "en", "ltr")
+    source_document["artifacts"].extend([
+        {
+            "id": "scaled",
+            "type": "chart",
+            "kind": "progress",
+            "title": "Ramp",
+            "color_scale": ["#111111", "#eeeeee"],
+            "items": [
+                {"label": "A", "value": 1, "max": 4},
+                {"label": "B", "value": 2, "max": 4},
+                {"label": "C", "value": 3, "max": 4},
+                {"label": "D", "value": 4, "max": 4},
+            ],
+        },
+        {
+            "id": "custom_colors",
+            "type": "chart",
+            "kind": "bar",
+            "title": "Custom",
+            "labels": ["X", "Y", "Z"],
+            "values": [1, 2, 3],
+            "colors": ["#123456", "#654321"],
+        },
+    ])
+    source_document["pages"][0]["blocks"].extend([
+        {"type": "artifact_ref", "artifact_id": "scaled"},
+        {"type": "artifact_ref", "artifact_id": "custom_colors"},
+    ])
+    source = tmp_path / "scaled.json"
+    output = tmp_path / "scaled-out"
+    source.write_text(json.dumps(source_document, ensure_ascii=False), encoding="utf-8")
+    build(source, output)
+
+    scaled = (output / "artifacts" / "scaled.svg").read_text(encoding="utf-8")
+    assert "#111111" in scaled and "#eeeeee" in scaled
+    assert "#5b5b5b" in scaled  # interpolated middle color
+
+    bars = (output / "artifacts" / "custom_colors.svg").read_text(encoding="utf-8")
+    assert bars.count("#123456") >= 2  # cycles through the override list
+    assert "#654321" in bars
+
+
+def test_bundled_fonts_are_copied_and_referenced(tmp_path):
+    source = tmp_path / "fonts.json"
+    output = tmp_path / "fonts-out"
+    source.write_text(json.dumps(document("Fonts", "ar", "rtl")), encoding="utf-8")
+    build(source, output)
+    html = (output / "fonts.html").read_text(encoding="utf-8")
+
+    assert (output / "fonts" / "NotoKufiArabic-700.ttf").exists()
+    assert "@font-face" in html
+    assert "url('fonts/NotoKufiArabic-700.ttf')" in html
+    assert "fonts.googleapis.com" not in html
+
+
+def test_pdf_metadata_from_document(tmp_path):
+    source_document = document("Meta", "ar", "rtl")
+    source_document["metadata"] = {
+        "Title": "Meta Report",
+        "Author": "Engine Test",
+        "Subject": "Metadata stamping",
+    }
+    source = tmp_path / "meta.json"
+    output = tmp_path / "meta-out"
+    source.write_text(json.dumps(source_document, ensure_ascii=False), encoding="utf-8")
+    build(source, output)
+
+    import fitz
+
+    pdf_path = output / "meta.pdf"
+    if pdf_path.exists():
+        doc = fitz.open(pdf_path)
+        assert doc.metadata.get("title") == "Meta Report"
+        assert doc.metadata.get("author") == "Engine Test"
+
 
 def test_batch_build(tmp_path, monkeypatch):
     from build import main

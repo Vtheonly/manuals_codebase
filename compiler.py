@@ -12,15 +12,29 @@ from core import svg
 from core.components import render_block
 from core.design import DesignSystem
 from core.validate import validate
-from generators.html import render as render_html
+from generators.html import FONT_FACES, render as render_html
 from generators.pdf import render_pdf
 
 
-ENGINE_VERSION = "2.0.0"
+ENGINE_VERSION = "3.0.0"
+ASSETS_DIR = Path(__file__).resolve().parent / "assets"
 
 
 def sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+def copy_font_assets(output_dir: Path) -> bool:
+    """Copy the bundled font library next to the generated HTML so that
+    @font-face relative URLs resolve identically for every PDF backend."""
+    source = ASSETS_DIR / "fonts"
+    if not source.is_dir():
+        return False
+    target = output_dir / "fonts"
+    if target.exists():
+        shutil.rmtree(target)
+    shutil.copytree(source, target)
+    return True
 
 
 def load_source(path: str | Path) -> dict[str, Any]:
@@ -76,6 +90,7 @@ def build(source_path: str | Path, output_dir: str | Path) -> dict[str, Any]:
         shutil.rmtree(output_dir)
     artifact_dir = output_dir / "artifacts"
     artifact_dir.mkdir(parents=True)
+    copy_font_assets(output_dir)
 
     artifact_html: dict[str, str] = {}
     block_html: dict[str, str] = {}
@@ -131,7 +146,8 @@ def build(source_path: str | Path, output_dir: str | Path) -> dict[str, Any]:
     }
 
     pdf_path = output_dir / f"{source_path.stem}.pdf"
-    generated = render_pdf(html_path, pdf_path)
+    metadata = document.get("metadata") if isinstance(document.get("metadata"), dict) else {}
+    generated = render_pdf(html_path, pdf_path, metadata)
     manifest["outputs"]["pdf"] = {
         "path": str(pdf_path.relative_to(output_dir)),
         "generated": generated,

@@ -3,18 +3,7 @@
   "title": "النمذجة وإعداد الباترونات الصناعية والتدريج",
   "language": "ar",
   "direction": "rtl",
-  "theme": {
-    "palette": {
-      "primary": "#1a3a5f",
-      "primary_deep": "#0d2238",
-      "accent": "#d35400",
-      "accent_gold": "#c5a059",
-      "banner_start": "#72a4d4",
-      "banner_end": "#5b92e5",
-      "banner_border": "#4a7bb0",
-      "banner_text": "#ffffff"
-    }
-  },
+  "theme": {},
   "pages": [
     {
       "id": "page-1",
@@ -23,7 +12,11 @@
         {
           "type": "text",
           "align": "center",
-          "content": "<p style='font-size:13pt; font-weight:800; color:#0d2238; margin-bottom:4px;'>الجمهورية الجزائرية الديمقراطية الشعبية</p><p style='font-size:11pt; font-weight:700; color:#1a3a5f; margin-bottom:8px;'>وزارة التكوين والتعليم المهنيين</p><p style='font-size:8.5pt; color:#4a5568; margin:2px 0;'>معهد التكوين والتعليم المهنيين الشهيد محمد مختيش المدية</p><p style='font-size:8.5pt; color:#4a5568; margin:2px 0;'>المعهد الوطني المتخصص في التكوين المهني سي امحمد بوقرة خميس مليانة</p>"
+          "content": "<p style='font-size:15pt; font-weight:800; color:#0f2d4a; margin-bottom:2pt;'>الجمهورية الجزائرية الديمقراطية الشعبية</p><p style='font-size:13pt; font-weight:700; color:#1e3a5f; margin-bottom:4pt;'>وزارة التكــــوين والتعليـــم المهنـيين</p><p style='font-size:10.5pt; font-weight:600; color:#334155; margin:2pt 0;'>معهد التكوين والتعليم المهنيين الشهيد محمد مختيش المدية</p><p style='font-size:10.5pt; font-weight:600; color:#334155; margin:2pt 0;'>المعهد الوطني المتخصص في التكوين المهني سي امحمد بوقرة خميس مليانة</p>"
+        },
+        {
+          "type": "spacer",
+          "height": "52pt"
         },
         {
           "type": "badge",
@@ -36,6 +29,10 @@
           "text": "لرتبة: أستاذ متخصص في التكوين والتعليم المهنيين من الدرجة الأولى"
         },
         {
+          "type": "spacer",
+          "height": "17pt"
+        },
+        {
           "type": "card",
           "label": "تقرير التربص حول:",
           "title": "النمذجة وإعداد الباترونات الصناعية والتدريج",
@@ -43,25 +40,52 @@
           "pill": "الغلاف الساعي 112 سا — HTE1204 / MQ3"
         },
         {
+          "type": "spacer",
+          "height": "30pt"
+        },
+        {
           "type": "info_card",
           "rows": [
-            {"label": "الاسم واللقب", "value": "وعيل فتيحة", "highlight": true},
-            {"label": "الشعبة", "value": "النسيج والألبسة"},
-            {"label": "التخصص", "value": "تصميم أزياء"},
-            {"label": "المؤسسة", "value": "مركز التكوين المهني والتمهين بئر ولد خليفة (المرحوم سلامي بغدادي)"},
-            {"label": "الولاية", "value": "عين الدفلى"},
-            {"label": "المعهد صاحب الاختصاص", "value": "معهد التكوين والتعليم المهنيين بئر خادم"}
+            {
+              "label": "الاســــم واللقــــب",
+              "value": "وعيل فتيحة",
+              "highlight": true
+            },
+            {
+              "label": "الشعـــــــــبة",
+              "value": "النسيج والألبسة"
+            },
+            {
+              "label": "التخصـــــــص",
+              "value": "تصميم أزياء"
+            },
+            {
+              "label": "المؤسســــــــة",
+              "value": "مركز التكوين المهني والتمهين بئر ولد خليفة (المرحوم سالمي بغدادي)"
+            },
+            {
+              "label": "الولايـــــــــة",
+              "value": "عين الدفلى"
+            },
+            {
+              "label": "المعهد صاحب الاختصاص",
+              "value": "معهد التكوين والتعليم المهنيين بئر خادم"
+            }
           ]
         },
         {
+          "type": "spacer",
+          "height": "31pt"
+        },
+        {
           "type": "badge",
-          "variant": "gradient",
-          "text": "الدفعة : 12"
+          "variant": "pill",
+          "text": "الـدفـعـــــــــــــــة : 12"
         },
         {
           "type": "text",
           "align": "center",
-          "content": "<p style='font-size:7.5pt; color:#718096;'>الموسم التكويني: 2025/2026</p>"
+          "content": "<p style='font-size:9.5pt; font-weight:600; color:#475569;'>الموسم التكويني: 2025/2026</p>"
         }
       ]
     },
@@ -79,19 +103,87 @@
           "title": "فهرس المحتويات",
           "subtitle": "Table des Matières",
           "items": [
-            {"badge": "1", "title": "مفهوم التدريج و أهميته الاقتصادية", "subtitle": "Introduction — Gradation", "page": "3"},
-            {"badge": "2", "title": "القواعد الرياضية و نظام المحاور الديكارتية", "subtitle": "Principes Mathématiques", "page": "3"},
-            {"badge": "3", "title": "جدول مقاييس جسم الإنسان المرجعي", "subtitle": "Barème de Mesures", "page": "4"},
-            {"badge": "4", "title": "الخطوات المنهجية لتنفيذ التدريج", "subtitle": "Démarche Méthodologique", "page": "5"},
-            {"badge": "5", "title": "دراسة عملية: تدريب تنورة أساسية", "subtitle": "Étude de Cas: Jupe de Base", "page": "6"},
-            {"badge": "6", "title": "التدريج اليدوي مقابل الرقمي (CAD)", "subtitle": "Manuel vs Numérique", "page": "7"},
-            {"badge": "7", "title": "أخطاء شائعة و طرق معالجتها", "subtitle": "Erreurs Courantes", "page": "8"},
-            {"badge": "8", "title": "الخلاصة و المراجع", "subtitle": "Conclusion et Références", "page": "9"},
-            {"badge": "9", "title": "معجم المصطلحات التقنية", "subtitle": "Glossaire Technique Bilingue", "page": "10"},
-            {"badge": "10", "title": "تمارين تطبيقية و دراسات حالة", "subtitle": "Exercices Pratiques et Études de Cas", "page": "11"},
-            {"badge": "أ", "title": "المرجعية الجزائرية الرسمية والإطار المعياري", "subtitle": "Référentiel Officiel & Normatif Algérien", "page": "12"},
-            {"badge": "ب", "title": "دراسات حالة وبيانات من الصناعة الجزائرية", "subtitle": "Études de Cas & Données Industrielles", "page": "13"},
-            {"badge": "ج", "title": "المراجع والوثائق المعتمدة", "subtitle": "Bibliographie & Documents Officiels", "page": "15"}
+            {
+              "badge": "1",
+              "title": "مفهوم التدريج و أهميته الاقتصادية",
+              "subtitle": "Introduction — Gradation",
+              "page": "3"
+            },
+            {
+              "badge": "2",
+              "title": "القواعد الرياضية و نظام المحاور الديكارتية",
+              "subtitle": "Principes Mathématiques",
+              "page": "3"
+            },
+            {
+              "badge": "3",
+              "title": "جدول مقاييس جسم الإنسان المرجعي",
+              "subtitle": "Barème de Mesures",
+              "page": "4"
+            },
+            {
+              "badge": "4",
+              "title": "الخطوات المنهجية لتنفيذ التدريج",
+              "subtitle": "Démarche Méthodologique",
+              "page": "5"
+            },
+            {
+              "badge": "5",
+              "title": "دراسة عملية: تدريب تنورة أساسية",
+              "subtitle": "Étude de Cas: Jupe de Base",
+              "page": "6"
+            },
+            {
+              "badge": "6",
+              "title": "التدريج اليدوي مقابل الرقمي (CAD)",
+              "subtitle": "Manuel vs Numérique",
+              "page": "7"
+            },
+            {
+              "badge": "7",
+              "title": "أخطاء شائعة و طرق معالجتها",
+              "subtitle": "Erreurs Courantes",
+              "page": "8"
+            },
+            {
+              "badge": "8",
+              "title": "الخلاصة و المراجع",
+              "subtitle": "Conclusion et Références",
+              "page": "9"
+            },
+            {
+              "badge": "9",
+              "title": "معجم المصطلحات التقنية",
+              "subtitle": "Glossaire Technique Bilingue",
+              "page": "10"
+            },
+            {
+              "badge": "10",
+              "title": "تمارين تطبيقية و دراسات حالة",
+              "subtitle": "Exercices Pratiques et Études de Cas",
+              "page": "11"
+            },
+            {
+              "badge": "أ",
+              "title": "المرجعية الجزائرية الرسمية والإطار المعياري",
+              "subtitle": "Référentiel Officiel & Normatif Algérien",
+              "page": "12",
+              "appendix": true
+            },
+            {
+              "badge": "ب",
+              "title": "دراسات حالة وبيانات من الصناعة الجزائرية",
+              "subtitle": "Études de Cas & Données Industrielles",
+              "page": "13",
+              "appendix": true
+            },
+            {
+              "badge": "ج",
+              "title": "المراجع والوثائق المعتمدة",
+              "subtitle": "Bibliographie & Documents Officiels",
+              "page": "15",
+              "appendix": true
+            }
           ]
         }
       ]
@@ -128,10 +220,26 @@
           "type": "stats",
           "columns": 4,
           "items": [
-            {"value": "44 — 38", "label": "المقاسات النسائية الأكثر استعمالاً في الجزائر", "sublabel": "Tailles dames les plus courantes"},
-            {"value": "4 سم", "label": "الفرق بين مقاسين متتاليين في محيط الصدر", "sublabel": "Écart entre tailles (poitrine)"},
-            {"value": "35%", "label": "نسبة المؤسسات الجزائرية (+5 مقاسات)", "sublabel": "Entreprises algériennes (5+ tailles)"},
-            {"value": "80%", "label": "نسبة المؤسسات المنافسة (+5 مقاسات)", "sublabel": "Entreprises concurrentes (5+ tailles)"}
+            {
+              "value": "38 — 44",
+              "label": "المقاسات النسائية الأكثر استعمالاً في الجزائر",
+              "sublabel": "Tailles dames les plus courantes"
+            },
+            {
+              "value": "4 سم",
+              "label": "الفرق بين مقاسين متتاليين في محيط الصدر",
+              "sublabel": "Écart entre tailles (poitrine)"
+            },
+            {
+              "value": "35%",
+              "label": "نسبة المؤسسات الجزائرية (+5 مقاسات)",
+              "sublabel": "Entreprises algériennes (5+ tailles)"
+            },
+            {
+              "value": "80%",
+              "label": "نسبة المؤسسات المنافسة (+5 مقاسات)",
+              "sublabel": "Entreprises concurrentes (5+ tailles)"
+            }
           ]
         },
         {
@@ -164,13 +272,30 @@
         {
           "type": "table",
           "columns": [
-            ["المحور", "Axe"],
-            ["الاتجاه", "Direction"],
-            ["ما يُمثّله من قياسات", "Mesures Représentées"]
+            [
+              "المحور",
+              "Axe"
+            ],
+            [
+              "الاتجاه",
+              "Direction"
+            ],
+            [
+              "ما يُمثّله من قياسات",
+              "Mesures Représentées"
+            ]
           ],
           "rows": [
-            ["المحور X (Axe X)", "أفقي (يعرض) Horizontal", "التغيّرات في العرض: محيط الصدر، محيط الخصر، محيط الورك، عرض الكتف، عرض الظهر"],
-            ["المحور Y (Axe Y)", "عمودي (يطول) Vertical", "التغيّرات في الطول: ارتفاع الصدر، ارتفاع الورك، عمق الإبط، الطول الكلي، طول الكم"]
+            [
+              "المحور X (Axe X)",
+              "أفقي (يعرض) Horizontal",
+              "التغيّرات في العرض: محيط الصدر، محيط الخصر، محيط الورك، عرض الكتف، عرض الظهر"
+            ],
+            [
+              "المحور Y (Axe Y)",
+              "عمودي (يطول) Vertical",
+              "التغيّرات في الطول: ارتفاع الصدر، ارتفاع الورك، عمق الإبط، الطول الكلي، طول الكم"
+            ]
           ],
           "caption": [
             "الجدول 1: نظام المحاور الديكارتية في التدريج",
@@ -217,22 +342,244 @@
         {
           "type": "table",
           "columns": [
-            ["نقطة القياس", "Point"],
-            ["م 36", "T36"],
-            ["م 38", "T38"],
-            ["م 40", "T40"],
-            ["م 42", "T42"],
-            ["م 44", "T44"],
-            ["م 46", "T46"],
-            ["الفرق", "Écart"]
+            [
+              "نقطة القياس",
+              "Point"
+            ],
+            [
+              "م 36",
+              "T36"
+            ],
+            [
+              "م 38",
+              "T38"
+            ],
+            [
+              "م 40",
+              "T40"
+            ],
+            [
+              "م 42",
+              "T42"
+            ],
+            [
+              "م 44",
+              "T44"
+            ],
+            [
+              "م 46",
+              "T46"
+            ],
+            [
+              "الفرق",
+              "Écart"
+            ]
           ],
           "rows": [
-            ["محيط الصدر Poitrine", {"text": "84", "numeric": true}, {"text": "88", "numeric": true}, {"text": "92", "numeric": true}, {"text": "96", "numeric": true}, {"text": "100", "numeric": true}, {"text": "104", "numeric": true}, {"text": "+4", "numeric": true}],
-            ["محيط الخصر Taille", {"text": "64", "numeric": true}, {"text": "68", "numeric": true}, {"text": "72", "numeric": true}, {"text": "76", "numeric": true}, {"text": "80", "numeric": true}, {"text": "84", "numeric": true}, {"text": "+4", "numeric": true}],
-            ["محيط الأرداف Bassin", {"text": "90", "numeric": true}, {"text": "94", "numeric": true}, {"text": "98", "numeric": true}, {"text": "102", "numeric": true}, {"text": "106", "numeric": true}, {"text": "110", "numeric": true}, {"text": "+4", "numeric": true}],
-            ["طول الظهر Dos", {"text": "38", "numeric": true}, {"text": "38.5", "numeric": true}, {"text": "39", "numeric": true}, {"text": "39.5", "numeric": true}, {"text": "40", "numeric": true}, {"text": "40.5", "numeric": true}, {"text": "+0.5", "numeric": true}],
-            ["عرض الكتف Carrure", {"text": "36", "numeric": true}, {"text": "37", "numeric": true}, {"text": "38", "numeric": true}, {"text": "39", "numeric": true}, {"text": "40", "numeric": true}, {"text": "41", "numeric": true}, {"text": "+1", "numeric": true}],
-            ["عمق الإبط Emmanchure", {"text": "20", "numeric": true}, {"text": "20.5", "numeric": true}, {"text": "21", "numeric": true}, {"text": "21.5", "numeric": true}, {"text": "22", "numeric": true}, {"text": "22.5", "numeric": true}, {"text": "+0.5", "numeric": true}]
+            [
+              {
+                "text": "محيط الصدر",
+                "subtext": "Poitrine"
+              },
+              {
+                "text": "84",
+                "numeric": true
+              },
+              {
+                "text": "88",
+                "numeric": true
+              },
+              {
+                "text": "92",
+                "numeric": true
+              },
+              {
+                "text": "96",
+                "numeric": true
+              },
+              {
+                "text": "100",
+                "numeric": true
+              },
+              {
+                "text": "104",
+                "numeric": true
+              },
+              {
+                "text": "+4",
+                "numeric": true
+              }
+            ],
+            [
+              {
+                "text": "محيط الخصر",
+                "subtext": "Taille"
+              },
+              {
+                "text": "64",
+                "numeric": true
+              },
+              {
+                "text": "68",
+                "numeric": true
+              },
+              {
+                "text": "72",
+                "numeric": true
+              },
+              {
+                "text": "76",
+                "numeric": true
+              },
+              {
+                "text": "80",
+                "numeric": true
+              },
+              {
+                "text": "84",
+                "numeric": true
+              },
+              {
+                "text": "+4",
+                "numeric": true
+              }
+            ],
+            [
+              {
+                "text": "محيط الأرداف",
+                "subtext": "Bassin"
+              },
+              {
+                "text": "90",
+                "numeric": true
+              },
+              {
+                "text": "94",
+                "numeric": true
+              },
+              {
+                "text": "98",
+                "numeric": true
+              },
+              {
+                "text": "102",
+                "numeric": true
+              },
+              {
+                "text": "106",
+                "numeric": true
+              },
+              {
+                "text": "110",
+                "numeric": true
+              },
+              {
+                "text": "+4",
+                "numeric": true
+              }
+            ],
+            [
+              {
+                "text": "طول الظهر",
+                "subtext": "Dos"
+              },
+              {
+                "text": "38",
+                "numeric": true
+              },
+              {
+                "text": "38.5",
+                "numeric": true
+              },
+              {
+                "text": "39",
+                "numeric": true
+              },
+              {
+                "text": "39.5",
+                "numeric": true
+              },
+              {
+                "text": "40",
+                "numeric": true
+              },
+              {
+                "text": "40.5",
+                "numeric": true
+              },
+              {
+                "text": "+0.5",
+                "numeric": true
+              }
+            ],
+            [
+              {
+                "text": "عرض الكتف",
+                "subtext": "Carrure"
+              },
+              {
+                "text": "36",
+                "numeric": true
+              },
+              {
+                "text": "37",
+                "numeric": true
+              },
+              {
+                "text": "38",
+                "numeric": true
+              },
+              {
+                "text": "39",
+                "numeric": true
+              },
+              {
+                "text": "40",
+                "numeric": true
+              },
+              {
+                "text": "41",
+                "numeric": true
+              },
+              {
+                "text": "+1",
+                "numeric": true
+              }
+            ],
+            [
+              {
+                "text": "عمق الإبط",
+                "subtext": "Emmanchure"
+              },
+              {
+                "text": "20",
+                "numeric": true
+              },
+              {
+                "text": "20.5",
+                "numeric": true
+              },
+              {
+                "text": "21",
+                "numeric": true
+              },
+              {
+                "text": "21.5",
+                "numeric": true
+              },
+              {
+                "text": "22",
+                "numeric": true
+              },
+              {
+                "text": "22.5",
+                "numeric": true
+              },
+              {
+                "text": "+0.5",
+                "numeric": true
+              }
+            ]
           ],
           "caption": [
             "الجدول 2: الجدول المرجعي لمقاييس المرأة الجزائرية (وفق NF EN 13402)",
@@ -275,13 +622,41 @@
         {
           "type": "flow_steps",
           "steps": [
-            {"badge": "1", "title": "تثبيت الباترون المرجعي على ورق الكرافت بمسامير دقيقة، مع التأكد من استقامة اتجاه السداء", "subtitle": "Fixation du patron de base"},
-            {"badge": "2", "title": "تحديد النقاط الرئيسية للتطور (خط الخصر، الورك، الحاشية، الصدر)", "subtitle": "Identification des points d'évolution"},
-            {"badge": "3", "title": "رسم محور أفقي X وعمودي Y من كل نقطة مرجعية لتوجيه حركة النقطة", "subtitle": "Tracé des axes de projection"},
-            {"badge": "4", "title": "حساب قيم التطور ونقلها على كل نقطة من جدول المقاييس، مع مراعاة معاملات التوزيع", "subtitle": "Calcul et report des valeurs"},
-            {"badge": "5", "title": "ربط النقاط الجديدة بمنحنيات ناعمة باستخدام مسطرة French curve", "subtitle": "Reliement par courbes"},
-            {"badge": "6", "title": "فحص توازن المقاس الجديد بمقارنته بالمرجعي للتأكد من الحفاظ على التناسب", "subtitle": "Vérification de l'équilibre"},
-            {"badge": "7", "title": "كتابة البيانات الفنية على كل باترون جديد: المقاس، التاريخ، اسم التقني، علامة السداء", "subtitle": "Inscription des données techniques"}
+            {
+              "badge": "1",
+              "title": "تثبيت الباترون المرجعي على ورق الكرافت بمسامير دقيقة، مع التأكد من استقامة اتجاه السداء",
+              "subtitle": "Fixation du patron de base"
+            },
+            {
+              "badge": "2",
+              "title": "تحديد النقاط الرئيسية للتطور (خط الخصر، الورك، الحاشية، الصدر)",
+              "subtitle": "Identification des points d'évolution"
+            },
+            {
+              "badge": "3",
+              "title": "رسم محور أفقي X وعمودي Y من كل نقطة مرجعية لتوجيه حركة النقطة",
+              "subtitle": "Tracé des axes de projection"
+            },
+            {
+              "badge": "4",
+              "title": "حساب قيم التطور ونقلها على كل نقطة من جدول المقاييس، مع مراعاة معاملات التوزيع",
+              "subtitle": "Calcul et report des valeurs"
+            },
+            {
+              "badge": "5",
+              "title": "ربط النقاط الجديدة بمنحنيات ناعمة باستخدام مسطرة French curve",
+              "subtitle": "Reliement par courbes"
+            },
+            {
+              "badge": "6",
+              "title": "فحص توازن المقاس الجديد بمقارنته بالمرجعي للتأكد من الحفاظ على التناسب",
+              "subtitle": "Vérification de l'équilibre"
+            },
+            {
+              "badge": "7",
+              "title": "كتابة البيانات الفنية على كل باترون جديد: المقاس، التاريخ، اسم التقني، علامة السداء",
+              "subtitle": "Inscription des données techniques"
+            }
           ]
         },
         {
@@ -314,15 +689,60 @@
         {
           "type": "table",
           "columns": [
-            ["نقطة القياس", "Point"],
-            ["قيمة التطور X (العرض)", "Évolution X"],
-            ["قيمة التطور Y (الطول)", "Évolution Y"],
-            ["ملاحظة", "Observation"]
+            [
+              "نقطة القياس",
+              "Point"
+            ],
+            [
+              "قيمة التطور X (العرض)",
+              "Évolution X"
+            ],
+            [
+              "قيمة التطور Y (الطول)",
+              "Évolution Y"
+            ],
+            [
+              "ملاحظة",
+              "Observation"
+            ]
           ],
           "rows": [
-            ["خط الخصر Taille", {"text": "+0.5 سم", "numeric": true}, {"text": "+1.0 سم", "numeric": true}, "موزّع على العبر"],
-            ["خط الورك Bassin", {"text": "+0.5 سم", "numeric": true}, {"text": "+1.0 سم", "numeric": true}, "نفس قيمة الخصر"],
-            ["خط الحاشية السفلية Ourlet", {"text": "+1.0 سم", "numeric": true}, {"text": "+1.0 سم", "numeric": true}, "اتساع متناسق"]
+            [
+              "خط الخصر Taille",
+              {
+                "text": "+0.5 سم",
+                "numeric": true
+              },
+              {
+                "text": "+1.0 سم",
+                "numeric": true
+              },
+              "موزّع على العبر"
+            ],
+            [
+              "خط الورك Bassin",
+              {
+                "text": "+0.5 سم",
+                "numeric": true
+              },
+              {
+                "text": "+1.0 سم",
+                "numeric": true
+              },
+              "نفس قيمة الخصر"
+            ],
+            [
+              "خط الحاشية السفلية Ourlet",
+              {
+                "text": "+1.0 سم",
+                "numeric": true
+              },
+              {
+                "text": "+1.0 سم",
+                "numeric": true
+              },
+              "اتساع متناسق"
+            ]
           ],
           "caption": [
             "الجدول 3: قيم التطور من المقاس 40 إلى المقاس 42 لتنورة أساسية",
@@ -341,18 +761,76 @@
         {
           "type": "table",
           "columns": [
-            ["نقطة القياس", "Point"],
-            ["قيمة التدريج (سم)", "Valeur (cm)"],
-            ["ملاحظة", "Observation"]
+            [
+              "نقطة القياس",
+              "Point"
+            ],
+            [
+              "قيمة التدريج (سم)",
+              "Valeur (cm)"
+            ],
+            [
+              "ملاحظة",
+              "Observation"
+            ]
           ],
           "rows": [
-            ["محيط الخصر الكلي Taille totale", {"text": "+4.0", "numeric": true}, "موزّع على 4 نقاط (+1 لكل نقطة)"],
-            ["ارتفاع الخصر Hauteur taille", {"text": "+0.3", "numeric": true}, "لا يتغيّر في الفتحة"],
-            ["محيط الورك الكلي Bassin total", {"text": "+4.0", "numeric": true}, "موزّع على 4 نقاط"],
-            ["عمق الورك Profondeur bassin", {"text": "+0.5", "numeric": true}, "ارتفاع الورك عن الخصر"],
-            ["طول الساق (Inseam) Longueur jambe", {"text": "+1.5", "numeric": true}, "الفرق في الطول بين المقاسات"],
-            ["محيط الركبة Genou", {"text": "+1.0", "numeric": true}, "موزّع على النصف"],
-            ["محيط الكاحل Cheville", {"text": "+0.5", "numeric": true}, "ضيّق جداً"]
+            [
+              "محيط الخصر الكلي Taille totale",
+              {
+                "text": "+4.0",
+                "numeric": true
+              },
+              "موزّع على 4 نقاط (+1 لكل نقطة)"
+            ],
+            [
+              "ارتفاع الخصر Hauteur taille",
+              {
+                "text": "+0.3",
+                "numeric": true
+              },
+              "لا يتغيّر في الفتحة"
+            ],
+            [
+              "محيط الورك الكلي Bassin total",
+              {
+                "text": "+4.0",
+                "numeric": true
+              },
+              "موزّع على 4 نقاط"
+            ],
+            [
+              "عمق الورك Profondeur bassin",
+              {
+                "text": "+0.5",
+                "numeric": true
+              },
+              "ارتفاع الورك عن الخصر"
+            ],
+            [
+              "طول الساق (Inseam) Longueur jambe",
+              {
+                "text": "+1.5",
+                "numeric": true
+              },
+              "الفرق في الطول بين المقاسات"
+            ],
+            [
+              "محيط الركبة Genou",
+              {
+                "text": "+1.0",
+                "numeric": true
+              },
+              "موزّع على النصف"
+            ],
+            [
+              "محيط الكاحل Cheville",
+              {
+                "text": "+0.5",
+                "numeric": true
+              },
+              "ضيّق جداً"
+            ]
           ],
           "caption": [
             "الجدول 4: القيم الرئيسية لتدريج البنطلون الرجالي (7 نقاط قياس)",
@@ -384,18 +862,55 @@
         {
           "type": "table",
           "columns": [
-            ["البند", "Critère"],
-            ["التدريج اليدوي", "Manuel"],
-            ["التدريج الرقمي (CAD)", "Numérique CAD"]
+            [
+              "البند",
+              "Critère"
+            ],
+            [
+              "التدريج اليدوي",
+              "Manuel"
+            ],
+            [
+              "التدريج الرقمي (CAD)",
+              "Numérique CAD"
+            ]
           ],
           "rows": [
-            ["الأدوات", "مساطر، منحنيات، أقلام رصاص، أوراق", "حاسوب + برمجيات (Lectra Modaris, Gerber Accumark)"],
-            ["زمن إنجاز مقاس", "1-2 ساعة لكل مقاس إضافي", "ثوانٍ معدودة لكل المقاسات دفعة واحدة"],
-            ["الدقة", "تعتمد على مهارة التقني (أخطاء محتملة)", "دقة آلية، أخطاء لا تُذكر"],
-            ["إعادة الرسم", "صعب — يدوي لكل مقاس", "سهل — برمجي بضغطة زر"],
-            ["التشغيل", "أدوات يدوية بسيطة", "استثمار أولي مرتفع (حواسيب + برمجيات)"],
-            ["ملاءمة الورشات", "كل الورشات بما فيها الحرفية الصغيرة", "الورشات المجهّزة رقمياً فقط"],
-            ["التكلفة الإجمالية", "أدوات يدوية (رخيصة)", "حواسيب + برمجيات (مرتفعة)"]
+            [
+              "الأدوات",
+              "مساطر، منحنيات، أقلام رصاص، أوراق",
+              "حاسوب + برمجيات (Lectra Modaris, Gerber Accumark)"
+            ],
+            [
+              "زمن إنجاز مقاس",
+              "1-2 ساعة لكل مقاس إضافي",
+              "ثوانٍ معدودة لكل المقاسات دفعة واحدة"
+            ],
+            [
+              "الدقة",
+              "تعتمد على مهارة التقني (أخطاء محتملة)",
+              "دقة آلية، أخطاء لا تُذكر"
+            ],
+            [
+              "إعادة الرسم",
+              "صعب — يدوي لكل مقاس",
+              "سهل — برمجي بضغطة زر"
+            ],
+            [
+              "التشغيل",
+              "أدوات يدوية بسيطة",
+              "استثمار أولي مرتفع (حواسيب + برمجيات)"
+            ],
+            [
+              "ملاءمة الورشات",
+              "كل الورشات بما فيها الحرفية الصغيرة",
+              "الورشات المجهّزة رقمياً فقط"
+            ],
+            [
+              "التكلفة الإجمالية",
+              "أدوات يدوية (رخيصة)",
+              "حواسيب + برمجيات (مرتفعة)"
+            ]
           ],
           "caption": [
             "الجدول 5: مقارنة شاملة بين التدريج اليدوي والرقمي",
@@ -438,16 +953,45 @@
         {
           "type": "table",
           "columns": [
-            ["الخطأ", "Erreur"],
-            ["الأثر على الباترون", "Impact"],
-            ["الحل", "Solution"]
+            [
+              "الخطأ",
+              "Erreur"
+            ],
+            [
+              "الأثر على الباترون",
+              "Impact"
+            ],
+            [
+              "الحل",
+              "Solution"
+            ]
           ],
           "rows": [
-            ["قيمة التطور موحّدة على كل المحاور", "باترون مشوّه، نسب غير منطقية", "التحقّق دائماً من جدول المقاييس"],
-            ["توزيع الفرق على جهة واحدة فقط", "باترون مائل، غير متماثل", "موزّع على العبر عبر النموذج"],
-            ["اعتماد مقاس مرجعي غير قياسي", "توليد مقاسات خاطئة كلها", "استعمال مقاس 38/40 فقط كأساس"],
-            ["إهمال محور الطول Y", "مقاسات قصيرة جداً بشكل كبير", "تطبيق قيم Y و X معاً"],
-            ["ربط النقاط بخطوط غير ناعمة", "بطاقة قماش غير قابلة للتنفيذ", "استعمال مسطرة French curve"]
+            [
+              "قيمة التطور موحّدة على كل المحاور",
+              "باترون مشوّه، نسب غير منطقية",
+              "التحقّق دائماً من جدول المقاييس"
+            ],
+            [
+              "توزيع الفرق على جهة واحدة فقط",
+              "باترون مائل، غير متماثل",
+              "موزّع على العبر عبر النموذج"
+            ],
+            [
+              "اعتماد مقاس مرجعي غير قياسي",
+              "توليد مقاسات خاطئة كلها",
+              "استعمال مقاس 38/40 فقط كأساس"
+            ],
+            [
+              "إهمال محور الطول Y",
+              "مقاسات قصيرة جداً بشكل كبير",
+              "تطبيق قيم Y و X معاً"
+            ],
+            [
+              "ربط النقاط بخطوط غير ناعمة",
+              "بطاقة قماش غير قابلة للتنفيذ",
+              "استعمال مسطرة French curve"
+            ]
           ],
           "caption": [
             "الجدول 6: الأخطاء الخمسة الأكثر وعياً في التدريج",
@@ -493,10 +1037,8 @@
       },
       "blocks": [
         {
-          "type": "list",
-          "items": [
-            "<strong>تدريج ألبسة الأطفال:</strong> يختلف جذرياً عن الكبار لأن جسم الطفل ينمو بنسب غير منتظمة (رأس أكبر نسبياً، أطراف أقصر). تستعمل معاهد INSFP جداول قياس خاصة بالأطفال (NF EN 13402-7) تختلف عن جداول البالغين."
-          ]
+          "type": "text",
+          "content": "<strong>تدريج ألبسة الأطفال:</strong> يختلف جذرياً عن الكبار لأن جسم الطفل ينمو بنسب غير منتظمة (رأس أكبر نسبياً، أطراف أقصر). تستعمل معاهد INSFP جداول قياس خاصة بالأطفال (NF EN 13402-7) تختلف عن جداول البالغين."
         },
         {
           "type": "quote",
@@ -518,7 +1060,8 @@
             "المؤسسة الوطنية للنسيج والجلود، دليل مكتب الدراسات: قواعد التدريج الصناعي، 2022، الجزائر.",
             "Gerber Technology, Accumark V12 — Pattern Design & Grading Manual, Tolland CT, USA, 2021.",
             "Hallett, C., Pattern Grading for Women's Clothes: The Imperial Edition, Wiley-Blackwell, London, 2019."
-          ]
+          ],
+          "variant": "rows"
         },
         {
           "type": "heading",
@@ -534,18 +1077,55 @@
         {
           "type": "table",
           "columns": [
-            ["المصطلح العربي", "Terme Arabe"],
-            ["المصطلح الفرنسي", "Terme Français"],
-            ["التعريف المختصر", "Définition Courte"]
+            [
+              "المصطلح العربي",
+              "Terme Arabe"
+            ],
+            [
+              "المصطلح الفرنسي",
+              "Terme Français"
+            ],
+            [
+              "التعريف المختصر",
+              "Définition Courte"
+            ]
           ],
           "rows": [
-            ["تدريج", "Gradation", "إنتاج مقاسات متعددة من مقاس مرجعي"],
-            ["مقاس مرجعي", "Taille de Base", "المقاس الأساسي للبناء"],
-            ["نقطة تطور", "Point d'Évolution", "نقطة تتحرك عند التدريج"],
-            ["قيمة التطور", "Valeur d'Évolution", "مقدار حركة النقطة (سم)"],
-            ["معامل التوزيع", "Coefficient k", "معامل يوزّع الفرق على المحاور"],
-            ["المحور الأفقي", "Axe X", "يمثّل تغيّرات العرض"],
-            ["المحور العمودي", "Axe Y", "يمثّل تغيّرات الطول"]
+            [
+              "تدريج",
+              "Gradation",
+              "إنتاج مقاسات متعددة من مقاس مرجعي"
+            ],
+            [
+              "مقاس مرجعي",
+              "Taille de Base",
+              "المقاس الأساسي للبناء"
+            ],
+            [
+              "نقطة تطور",
+              "Point d'Évolution",
+              "نقطة تتحرك عند التدريج"
+            ],
+            [
+              "قيمة التطور",
+              "Valeur d'Évolution",
+              "مقدار حركة النقطة (سم)"
+            ],
+            [
+              "معامل التوزيع",
+              "Coefficient k",
+              "معامل يوزّع الفرق على المحاور"
+            ],
+            [
+              "المحور الأفقي",
+              "Axe X",
+              "يمثّل تغيّرات العرض"
+            ],
+            [
+              "المحور العمودي",
+              "Axe Y",
+              "يمثّل تغيّرات الطول"
+            ]
           ]
         }
       ]
@@ -562,16 +1142,45 @@
         {
           "type": "table",
           "columns": [
-            ["المصطلح العربي", "Terme Arabe"],
-            ["المصطلح الفرنسي", "Terme Français"],
-            ["التعريف المختصر", "Définition Courte"]
+            [
+              "المصطلح العربي",
+              "Terme Arabe"
+            ],
+            [
+              "المصطلح الفرنسي",
+              "Terme Français"
+            ],
+            [
+              "التعريف المختصر",
+              "Définition Courte"
+            ]
           ],
           "rows": [
-            ["جدول مقاييس", "Barème de Mesures", "جدول موحّد لمقاييس الجسم"],
-            ["تسامح", "Tolérance", "الهامش المسموح في القياس"],
-            ["تدريج رقمي", "Gradation Numérique", "تدريج بواسطة CAD"],
-            ["منحنى فرنسي", "French Curve", "مسطرة منحنيات لرسم الباترون"],
-            ["تقنية الاستيفاء", "Interpolation", "تقنية توليد المقاسات الوسطى"]
+            [
+              "جدول مقاييس",
+              "Barème de Mesures",
+              "جدول موحّد لمقاييس الجسم"
+            ],
+            [
+              "تسامح",
+              "Tolérance",
+              "الهامش المسموح في القياس"
+            ],
+            [
+              "تدريج رقمي",
+              "Gradation Numérique",
+              "تدريج بواسطة CAD"
+            ],
+            [
+              "منحنى فرنسي",
+              "French Curve",
+              "مسطرة منحنيات لرسم الباترون"
+            ],
+            [
+              "تقنية الاستيفاء",
+              "Interpolation",
+              "تقنية توليد المقاسات الوسطى"
+            ]
           ],
           "caption": [
             "الجدول 7: معجم مصطلحات التدريج الصناعي",
@@ -650,7 +1259,7 @@
         },
         {
           "type": "text",
-          "content": "يعتمد التدريج الصناعي في الجزائر مرجعياً مزدوجاً: المعيار الجزائري المعتمد على النموذج الأوروبي NA EN 13402 في أجزائه الثلاثة (تسمية المقاسات، قياسات الجسم، الفواصل بين المقاسات) NA EN 13402 — IANOR، والمرجع البيداغوجي الوزاري THC1801 الخاص بتدريج الباترونات في صناعة الألبسة INFEP — THC1801 الذي يُفصّل قواعد التدريج التفاضلي الشعاعي على المستوي الديكارتي (X, Y) لكل نقطة تشريحية من الباترون."
+          "content": "يعتمد التدريج الصناعي في الجزائر مرجعيًا مزدوجًا: المعيار الجزائري المعتمد على النموذج الأوروبي <strong>NA EN 13402</strong> في أجزائه الثالثة (تسمية المقاسات، قياسات الجسم، الفواصل بين المقاسات) <span class=\"inline-pill\">IANOR — NA EN 13402</span>، والمرجع البيداغوجي الوزاري <strong>THC1801</strong> الخاص بتدريج الباترونات في صناعة الألبسة <span class=\"inline-pill\">INFEP — THC1801</span> الذي يُفصّل قواعد التدريج التفاضلي الشعاعي على المستوي الديكارتي (X, Y) لكل نقطة تشريحية من الباترون."
         },
         {
           "type": "text",
@@ -670,17 +1279,89 @@
         {
           "type": "table",
           "columns": [
-            ["فئة القطعة", "Catégorie"],
-            ["فاصل الصدر لكل مقاس", "Pas de tour de poitrine"],
-            ["فاصل الخصر", "Pas de taille"],
-            ["فاصل الورك", "Pas de bassin"],
-            ["المرجع", "Référence"]
+            [
+              "فئة القطعة",
+              "Catégorie"
+            ],
+            [
+              "فاصل الصدر لكل مقاس",
+              "Pas de tour de poitrine"
+            ],
+            [
+              "فاصل الخصر",
+              "Pas de taille"
+            ],
+            [
+              "فاصل الورك",
+              "Pas de bassin"
+            ],
+            [
+              "المرجع",
+              "Référence"
+            ]
           ],
           "rows": [
-            ["القميص والبلوزة (قريبة) Chemisier près du corps", {"text": "4 سم", "numeric": true}, {"text": "4 سم", "numeric": true}, {"text": "4 سم", "numeric": true}, "NA EN 13402-3"],
-            ["البنطلون الُمنّسج Pantalon tailleur", {"text": "4 سم", "numeric": true}, {"text": "4 سم", "numeric": true}, {"text": "4 سم", "numeric": true}, "THC1801"],
-            ["التنورة الأساسية Jupe de base", "—", {"text": "4 سم", "numeric": true}, {"text": "4 سم", "numeric": true}, "THC1801"],
-            ["السترة والمعطف Veste & manteau", {"text": "6 سم", "numeric": true}, {"text": "6 سم", "numeric": true}, {"text": "6 سم", "numeric": true}, "THC1801"]
+            [
+              "القميص والبلوزة (قريبة) Chemisier près du corps",
+              {
+                "text": "4 سم",
+                "numeric": true
+              },
+              {
+                "text": "4 سم",
+                "numeric": true
+              },
+              {
+                "text": "4 سم",
+                "numeric": true
+              },
+              "NA EN 13402-3"
+            ],
+            [
+              "البنطلون الُمنّسج Pantalon tailleur",
+              {
+                "text": "4 سم",
+                "numeric": true
+              },
+              {
+                "text": "4 سم",
+                "numeric": true
+              },
+              {
+                "text": "4 سم",
+                "numeric": true
+              },
+              "THC1801"
+            ],
+            [
+              "التنورة الأساسية Jupe de base",
+              "—",
+              {
+                "text": "4 سم",
+                "numeric": true
+              },
+              {
+                "text": "4 سم",
+                "numeric": true
+              },
+              "THC1801"
+            ],
+            [
+              "السترة والمعطف Veste & manteau",
+              {
+                "text": "6 سم",
+                "numeric": true
+              },
+              {
+                "text": "6 سم",
+                "numeric": true
+              },
+              {
+                "text": "6 سم",
+                "numeric": true
+              },
+              "THC1801"
+            ]
           ],
           "caption": [
             "الجدول أ.1: فواصل المقاسات الرسمية حسب فئات القطع (سلسلة 36 → 48)",
@@ -719,18 +1400,78 @@
         {
           "type": "table",
           "columns": [
-            ["النقطة / القياس", "Point / Mesure"],
-            ["التطور لكل مقاس (Δ)", "Évolution par taille"],
-            ["اتجاه المحاور", "Axes X, Y"],
-            ["ملاحظة تقنية", "Note"]
+            [
+              "النقطة / القياس",
+              "Point / Mesure"
+            ],
+            [
+              "التطور لكل مقاس (Δ)",
+              "Évolution par taille"
+            ],
+            [
+              "اتجاه المحاور",
+              "Axes X, Y"
+            ],
+            [
+              "ملاحظة تقنية",
+              "Note"
+            ]
           ],
           "rows": [
-            ["محيط الصدر Tour de poitrine", {"text": "+4.0 سم", "numeric": true}, "أفقي مزدوج", "نصف الزيادة لكل من الأمام والخلف"],
-            ["محيط الخصر Tour de taille", {"text": "+4.0 سم", "numeric": true}, "أفقي مزدوج", "مع تعديل البنسات بنسبة 40%"],
-            ["محيط الورك Tour de bassin", {"text": "+4.0 سم", "numeric": true}, "أفقي مزدوج", "يُقاس أسفل خط الخصر بـ 18-20 سم"],
-            ["عرض الكتف Largeur épaule", {"text": "+0.8 سم", "numeric": true}, "أفقي", "نصف القيمة لكل جانب"],
-            ["عمق الثقب Profondeur d'emmanchure", {"text": "+0.6 سم", "numeric": true}, "عمودي", "يتناسب مع محيط الصدر"],
-            ["طول الترمة (للأكمام) Longueur de manche", {"text": "+1.0 سم", "numeric": true}, "عمودي", "يرافق تمدد الكتف"]
+            [
+              "محيط الصدر Tour de poitrine",
+              {
+                "text": "+4.0 سم",
+                "numeric": true
+              },
+              "أفقي مزدوج",
+              "نصف الزيادة لكل من الأمام والخلف"
+            ],
+            [
+              "محيط الخصر Tour de taille",
+              {
+                "text": "+4.0 سم",
+                "numeric": true
+              },
+              "أفقي مزدوج",
+              "مع تعديل البنسات بنسبة 40%"
+            ],
+            [
+              "محيط الورك Tour de bassin",
+              {
+                "text": "+4.0 سم",
+                "numeric": true
+              },
+              "أفقي مزدوج",
+              "يُقاس أسفل خط الخصر بـ 18-20 سم"
+            ],
+            [
+              "عرض الكتف Largeur épaule",
+              {
+                "text": "+0.8 سم",
+                "numeric": true
+              },
+              "أفقي",
+              "نصف القيمة لكل جانب"
+            ],
+            [
+              "عمق الثقب Profondeur d'emmanchure",
+              {
+                "text": "+0.6 سم",
+                "numeric": true
+              },
+              "عمودي",
+              "يتناسب مع محيط الصدر"
+            ],
+            [
+              "طول الترمة (للأكمام) Longueur de manche",
+              {
+                "text": "+1.0 سم",
+                "numeric": true
+              },
+              "عمودي",
+              "يرافق تمدد الكتف"
+            ]
           ],
           "caption": [
             "الجدول ب.1: القيم التفاضلية المرجعية لتدريج قالب الجسم — سلسلة 36 → 48",
@@ -770,11 +1511,12 @@
         {
           "type": "subsection",
           "title": "المعايير الوطنية",
-          "subtitle": "Normes nationales"
+          "subtitle": "Normes nationales",
+          "accent": "rule"
         },
         {
           "type": "list",
-          "variant": "cards",
+          "variant": "rows",
           "items": [
             {
               "badge": "1",
@@ -791,11 +1533,12 @@
         {
           "type": "subsection",
           "title": "الوثائق البيداغوجية الرسمية",
-          "subtitle": "Documents pédagogiques"
+          "subtitle": "Documents pédagogiques",
+          "accent": "rule"
         },
         {
           "type": "list",
-          "variant": "cards",
+          "variant": "rows",
           "items": [
             {
               "badge": "3",
@@ -817,11 +1560,12 @@
         {
           "type": "subsection",
           "title": "الدراسات الأكاديمية الداعمة",
-          "subtitle": "Études académiques"
+          "subtitle": "Études académiques",
+          "accent": "rule"
         },
         {
           "type": "list",
-          "variant": "cards",
+          "variant": "rows",
           "items": [
             {
               "badge": "6",
@@ -839,7 +1583,7 @@
         {
           "type": "text",
           "align": "center",
-          "content": "<p style='font-size:13pt; font-weight:800; color:#dfb76c; margin-bottom:6px;'>وزارة التكوين والتعليم المهنيين</p><p style='font-family:Inter, sans-serif; font-size:7.5pt; letter-spacing:1.5px; color:#cbd5e1;'>MINISTÈRE DE LA FORMATION ET DE L'ENSEIGNEMENT PROFESSIONNELS</p>"
+          "content": "<p style='font-size:14pt; font-weight:800; color:#d4b36a; margin-bottom:8pt;'>وزارة التكوين والتعليم المهنيين</p><p style='font-size:8.5pt; letter-spacing:2px; color:#cbd5e1;'>MINISTÈRE DE LA FORMATION ET DE L'ENSEIGNEMENT PROFESSIONNELS</p>"
         },
         {
           "type": "quote",
@@ -849,7 +1593,7 @@
         {
           "type": "text",
           "align": "center",
-          "content": "<p style='font-size:7.5pt; line-height:1.6; color:#94a3b8;'>أُنجز هذا التقرير في إطار التربص للتكوين التكميلي ما قبل الترقية<br>الشعبة: النسيج والألبسة — التخصص: تصميم أزياء — المعهد صاحب الاختصاص: معهد التكوين والتعليم المهنيين بئر خادم<br>المرجعية: المعايير الجزائرية IANOR والقوانين المنشورة في الجريدة الرسمية JORADP ومرجعيات MFEP / INFEP<br><span style='color:#dfb76c; font-weight:bold; display:block; margin-top:6px;' dir='ltr'>2025/2026 • الدفعة 12</span></p>"
+          "content": "<p style='font-size:8.8pt; line-height:1.7; color:#cbd5e1;'>أُنجز هذا التقرير في إطار التربص للتكوين التكميلي ما قبل الترقية</p><p style='font-size:8.8pt; line-height:1.7; color:#cbd5e1; margin-top:6pt;'>الشعبة: النسيج والألبسة — التخصص: تصميم أزياء — المعهد صاحب الاختصاص: معهد التكوين والتعليم المهنيين بئر خادم</p><p style='font-size:8.8pt; line-height:1.7; color:#cbd5e1; margin-top:6pt;'>المرجعية: المعايير الجزائرية IANOR والقوانين المنشورة في الجريدة الرسمية JORADP ومرجعيات INFEP / MFEP</p><p style='font-size:9.5pt; color:#d4b36a; margin-top:14pt;'>الدفعة 12 • 2025 / 2026</p>"
         }
       ]
     }
@@ -862,11 +1606,51 @@
       "title": "تطوّر مقاييس المرأة الجزائرية حسب المقاسات",
       "subtitle": "Évolution des Mesures Femme Algérienne par Taille",
       "unit": "سم",
-      "labels": ["36", "38", "40", "42", "44", "46"],
+      "labels": [
+        "36",
+        "38",
+        "40",
+        "42",
+        "44",
+        "46"
+      ],
       "series": [
-        {"label": "محيط الأرداف", "values": [90, 94, 98, 102, 106, 110], "color": "#16a085"},
-        {"label": "محيط الصدر", "values": [84, 88, 92, 96, 100, 104], "color": "#2980b9"},
-        {"label": "محيط الخصر", "values": [64, 68, 72, 76, 80, 84], "color": "#d35400"}
+        {
+          "label": "محيط الأرداف",
+          "values": [
+            90,
+            94,
+            98,
+            102,
+            106,
+            110
+          ],
+          "color": "#7ba3c4"
+        },
+        {
+          "label": "محيط الخصر",
+          "values": [
+            64,
+            68,
+            72,
+            76,
+            80,
+            84
+          ],
+          "color": "#c2932e"
+        },
+        {
+          "label": "محيط الصدر",
+          "values": [
+            84,
+            88,
+            92,
+            96,
+            100,
+            104
+          ],
+          "color": "#2d6494"
+        }
       ],
       "caption": [
         "الشكل 1: تطوّر القياسات الرئيسية للمرأة الجزائرية عبر 6 مقاسات (وفق NF EN 13402)",
@@ -880,17 +1664,40 @@
       "title": "توزيع مصادر الأخطاء في التدريج اليدوي",
       "subtitle": "Répartition des Sources d'Erreurs en Gradation Manuelle",
       "labels": [
-        ["خطأ رياضي", "Erreur math"],
-        ["خطأ رسم", "Erreur tracé"],
-        ["خطأ قياس", "Erreur mesure"],
-        ["خطأ نقل", "Erreur report"]
+        [
+          "خطأ رياضي",
+          "Erreur math"
+        ],
+        [
+          "خطأ رسم",
+          "Erreur tracé"
+        ],
+        [
+          "خطأ قياس",
+          "Erreur mesure"
+        ],
+        [
+          "خطأ نقل",
+          "Erreur report"
+        ]
       ],
-      "values": [30, 35, 20, 15],
+      "values": [
+        30,
+        35,
+        20,
+        15
+      ],
       "center_val": "100%",
       "center_lbl": "مصادر الخطأ",
       "caption": [
         "الشكل 2: تحليل 200 حالة خطأ في التدريج اليدوي — 65% من الأخطاء قابلة للتلافي بالرقمنة",
         "Figure 2: Analyse de 200 cas d'erreurs — 65% évitables par numérisation"
+      ],
+      "colors": [
+        "#0f2d4a",
+        "#2d6494",
+        "#c2932e",
+        "#7ba3c4"
       ]
     },
     {
@@ -900,17 +1707,42 @@
       "title": "زمن التدريج اليدوي حسب نوع القطعة",
       "subtitle": "Temps de Gradation Manuelle par Type de Pièce",
       "labels": [
-        ["تنورة", "Jupe"],
-        ["قميص", "Chemise"],
-        ["بنطلون", "Pantalon"],
-        ["سترة", "Veste"],
-        ["معطف", "Manteau"]
+        [
+          "تنورة",
+          "Jupe"
+        ],
+        [
+          "قميص",
+          "Chemise"
+        ],
+        [
+          "بنطلون",
+          "Pantalon"
+        ],
+        [
+          "سترة",
+          "Veste"
+        ],
+        [
+          "معطف",
+          "Manteau"
+        ]
       ],
-      "values": [60, 90, 120, 180, 240],
+      "values": [
+        60,
+        90,
+        120,
+        180,
+        240
+      ],
       "unit": "د",
       "caption": [
         "الشكل 3: مقارنة زمن التدريج اليدوي (بالدقائق) حسب نوع القطعة",
         "Figure 3: Comparaison du temps de gradation manuelle par type de pièce"
+      ],
+      "colors": [
+        "#2d6494",
+        "#c2932e"
       ]
     },
     {
@@ -921,15 +1753,47 @@
       "subtitle": "Grille d'Évaluation de la Qualité de Gradation",
       "values": [],
       "items": [
-        {"label": "دقة الحساب", "sublabel": "Précision calcul", "value": 5, "max": 5},
-        {"label": "دقة الرسم", "sublabel": "Précision tracé", "value": 4, "max": 5},
-        {"label": "احترام النسب", "sublabel": "Respect proportions", "value": 4, "max": 5},
-        {"label": "نقاوة الخطوط", "sublabel": "Netteté lignes", "value": 3, "max": 5},
-        {"label": "البيانات الفنية", "sublabel": "Données techniques", "value": 5, "max": 5}
+        {
+          "label": "دقة الحساب",
+          "sublabel": "Précision calcul",
+          "value": 5,
+          "max": 5
+        },
+        {
+          "label": "دقة الرسم",
+          "sublabel": "Précision tracé",
+          "value": 4,
+          "max": 5
+        },
+        {
+          "label": "احترام النسب",
+          "sublabel": "Respect proportions",
+          "value": 4,
+          "max": 5
+        },
+        {
+          "label": "نقاوة الخطوط",
+          "sublabel": "Netteté lignes",
+          "value": 3,
+          "max": 5
+        },
+        {
+          "label": "البيانات الفنية",
+          "sublabel": "Données techniques",
+          "value": 5,
+          "max": 5
+        }
       ],
       "caption": [
         "الشكل 4: شبكة تقييم جودة التدريج — المجموع 21/25 (84%)",
         "Figure 4: Grille d'évaluation — Total 21/25 (84%)"
+      ],
+      "colors": [
+        "#0f2d4a",
+        "#2d6494",
+        "#c2932e",
+        "#7ba3c4",
+        "#2d6494"
       ]
     },
     {
@@ -938,18 +1802,46 @@
       "kind": "progress",
       "title": "نمو محيط الصدر عبر سلسلة المقاسات",
       "subtitle": "Croissance du tour de poitrine (36 → 48)",
-      "color": "#1a3a5f",
       "values": [],
       "items": [
-        {"label": "مقاس 36", "sublabel": "Taille 36", "value": 84, "max": 120},
-        {"label": "مقاس 40", "sublabel": "Taille 40", "value": 92, "max": 120},
-        {"label": "مقاس 44", "sublabel": "Taille 44", "value": 100, "max": 120},
-        {"label": "مقاس 48", "sublabel": "Taille 48", "value": 108, "max": 120}
+        {
+          "label": "مقاس 36",
+          "sublabel": "Taille 36",
+          "value": 84,
+          "max": 120
+        },
+        {
+          "label": "مقاس 40",
+          "sublabel": "Taille 40",
+          "value": 92,
+          "max": 120
+        },
+        {
+          "label": "مقاس 44",
+          "sublabel": "Taille 44",
+          "value": 100,
+          "max": 120
+        },
+        {
+          "label": "مقاس 48",
+          "sublabel": "Taille 48",
+          "value": 108,
+          "max": 120
+        }
       ],
       "caption": [
         "الشكل ب.1: تطور محيط الصدر بفاصل 4 سم عبر السلسلة القياسية",
         "Fig. B.1: Évolution du tour de poitrine, pas de 4 cm"
+      ],
+      "color_scale": [
+        "#7ba3c4",
+        "#0f2d4a"
       ]
     }
-  ]
+  ],
+  "metadata": {
+    "Title": "النمذجة وإعداد الباترونات الصناعية والتدريج — تقرير التربص (وعيل فتيحة)",
+    "Subject": "تقرير التربص للتكوين التكميلي ما قبل الترقية — رتبة أستاذ متخصص من الدرجة الأولى (وزارة التكوين والتعليم المهنيين — الجزائر)",
+    "Author": "وعيل فتيحة — Ouail Fatiha"
+  }
 }

@@ -1,6 +1,11 @@
 """
 core/components.py — Generic Semantic Component Renderers
 Pure domain-agnostic components mapping generic data models to presentation markup.
+
+Every component reads its visual values from the DesignSystem tokens so that a
+JSON theme override changes all documents at once. Components accept optional
+generic style hints (variant names, token color references, sizes) but never
+document-specific data.
 """
 from __future__ import annotations
 
@@ -37,15 +42,67 @@ def clean_html(value: Any, mode: str = "auto") -> str:
     return esc(content)
 
 
+PALETTE_TOKENS = (
+    "primary", "primary_deep", "primary_light", "accent", "accent_text", "accent_light",
+    "banner_start", "banner_end", "banner_border", "banner_text", "text_dark", "text",
+    "muted", "muted_light", "surface", "surface_alt", "surface_warm", "border",
+    "border_light", "border_table", "border_table_strong", "dots", "divider_strong",
+    "frame_inner", "back_cover", "back_frame", "chart_axis", "chart_track",
+    "chart_track_border", "gold",
+)
+
+
+def resolve_color(value: Any, design: DesignSystem, default: str | None = None) -> str | None:
+    """Resolve a color hint: a palette token name, a 'series.N' reference, or a literal."""
+    if value is None:
+        return default
+    p = design.palette
+    name = str(value).strip()
+    if name == "gold":
+        return p.accent
+    if hasattr(p, name) and name in PALETTE_TOKENS:
+        return getattr(p, name)
+    if name.startswith("series."):
+        try:
+            index = int(name.split(".", 1)[1])
+            return p.series[index % len(p.series)]
+        except (ValueError, IndexError):
+            pass
+    return name
+
+
+def render_divider(block: Mapping[str, Any], design: DesignSystem) -> str:
+    """Generic decorative rule component.
+
+    Variants: solid | dotted | double | gradient | heavy-thin
+    Options: color (token/hex), thickness, width (full|content|<len>), margin (sm|md|lg)
+    """
+    variant = esc(block.get("variant", "solid"))
+    color = resolve_color(block.get("color"), design, design.palette.primary)
+    thickness = esc(block.get("thickness", "thick"))
+    width = esc(block.get("width", "full"))
+    margin = esc(block.get("margin", "md"))
+    extra_style = ""
+    if variant == "gradient":
+        base = resolve_color(block.get("start"), design, color) or color
+        end = resolve_color(block.get("end"), design, design.palette.accent)
+        extra_style = (
+            f'background: linear-gradient(90deg, {base}, {end});'
+            if design and base and end
+            else ""
+        )
+    return (
+        f'<hr class="divider divider-{variant} thickness-{thickness} width-{width} '
+        f'margin-{margin}" style="{extra_style}" aria-hidden="true">'
+    )
+
+
 def render_heading(block: Mapping[str, Any], design: DesignSystem) -> str:
     level = min(6, max(1, int(block.get("level", 2))))
     badge_val = clean_html(str(block.get("badge", "")).strip())
     badge_html = ""
     if badge_val:
-        is_appendix = (
-            block.get("badge_variant") == "accent"
-            or badge_val in ["أ", "ب", "ج", "د", "A", "B", "C", "D"]
-        )
+        is_appendix = block.get("badge_variant") == "accent"
         badge_cls = "circle-badge appendix-badge" if is_appendix else "circle-badge"
         badge_html = f'<span class="{badge_cls}">{esc(badge_val)}</span>'
 
@@ -54,22 +111,38 @@ def render_heading(block: Mapping[str, Any], design: DesignSystem) -> str:
         if "subtitle" in block
         else ""
     )
+    rule = block.get("rule", True)
+    rule_html = ""
+    if rule:
+        if isinstance(rule, Mapping):
+            rule_block = {"type": "divider", **rule}
+        else:
+            rule_block = {"type": "divider", "variant": "section"}
+        rule_html = render_divider(rule_block, design)
     title = clean_html(block["title"])
     return (
         f'<div class="block-heading level-{level}">{badge_html}'
         f'<div class="heading-content"><h{level}>{title}</h{level}>{subtitle_html}</div></div>'
+        f'{rule_html}'
     )
 
 
 def render_subsection(block: Mapping[str, Any], design: DesignSystem) -> str:
     subtitle = (
-        f'<span class="sub-title-secondary">— {clean_html(block["subtitle"])}</span>'
+        f'<span class="sub-title-secondary">{clean_html(block["subtitle"])}</span>'
         if "subtitle" in block
         else ""
     )
+    accent = esc(block.get("accent", "bar"))
+    accent_color = resolve_color(block.get("accent_color"), design, design.palette.accent)
+    style = f' style="--subsection-accent:{accent_color}"' if accent_color else ""
+    # The dash lives inside the RTL title element so it stays adjacent to the
+    # Arabic text regardless of document direction.
+    dash = '<span class="sub-dash">—</span>' if subtitle else ""
     return (
-        f'<div class="subsection-header"><h4 class="sub-title-primary">'
-        f'{clean_html(block["title"])}</h4>{subtitle}</div>'
+        f'<div class="subsection-header sub-accent-{accent}"{style}>'
+        f'<h4 class="sub-title-primary">'
+        f'{clean_html(block["title"])}{dash}</h4>{subtitle}</div>'
     )
 
 
@@ -98,16 +171,18 @@ def render_formula(block: Mapping[str, Any], design: DesignSystem) -> str:
 def render_text(block: Mapping[str, Any], design: DesignSystem) -> str:
     role = esc(block.get("role", "body"))
     align = esc(block.get("align", "justify"))
+    lead = esc(block.get("lead", "loose"))
     content = clean_html(block.get("content", block.get("text", "")), block.get("format", "auto"))
-    return f'<div class="block-text role-{role} align-{align}">{content}</div>'
+    return f'<div class="block-text role-{role} align-{align} lead-{lead}">{content}</div>'
 
 
 def render_badge(block: Mapping[str, Any], design: DesignSystem) -> str:
     variant = esc(block.get("variant", "default"))
     align = esc(block.get("align", "center"))
+    size = esc(block.get("size", "md"))
     return (
         f'<div class="badge-wrapper align-{align}">'
-        f'<span class="badge badge-{variant}">{clean_html(block["text"])}</span></div>'
+        f'<span class="badge badge-{variant} size-{size}">{clean_html(block["text"])}</span></div>'
     )
 
 
@@ -195,6 +270,8 @@ def render_table(block: Mapping[str, Any], design: DesignSystem) -> str:
                 secondary = cell.get("subtext")
                 cls = "num" if cell.get("numeric") else "txt"
                 sub = f'<span class="td-sub">{clean_html(secondary)}</span>' if secondary is not None else ""
+                if cell.get("strong"):
+                    cls += " strong"
             else:
                 value, cls, sub = cell, "txt", ""
             cells.append(f'<td class="{cls}">{clean_html(value)}{sub}</td>')
@@ -246,9 +323,7 @@ def render_toc(block: Mapping[str, Any], design: DesignSystem) -> str:
         subtitle = item.get("subtitle", fallback_subtitle)
         sub = f'<span class="toc-sub">{clean_html(subtitle)}</span>' if subtitle else ""
         badge_val = str(item.get("badge", "")).strip()
-        is_appendix = item.get("appendix", False) or badge_val in [
-            "أ", "ب", "ج", "د", "A", "B", "C", "D"
-        ]
+        is_appendix = item.get("appendix", False) or item.get("badge_variant") == "accent"
         badge_cls = " appendix-badge" if is_appendix else ""
         # Correct RTL order: Badge on the right, title next to it, dots in middle, page on left
         items.append(
@@ -274,37 +349,55 @@ def render_toc(block: Mapping[str, Any], design: DesignSystem) -> str:
 def render_quote(block: Mapping[str, Any], design: DesignSystem) -> str:
     subtext = f'<p class="quote-sub">{clean_html(block["subtext"])}</p>' if "subtext" in block else ""
     author = f'<span class="quote-author">— {clean_html(block["author"])}</span>' if "author" in block else ""
+    box_cls = " quote-box" if block.get("box", True) else ""
     return (
-        f'<blockquote class="quote"><span class="quote-rule"></span>'
+        f'<blockquote class="quote{box_cls}"><span class="quote-rule"></span>'
         f'<p>{clean_html(block["text"])}</p>{subtext}{author}'
         f'<span class="quote-rule"></span></blockquote>'
     )
 
 
 def render_list(block: Mapping[str, Any], design: DesignSystem) -> str:
-    tag = "ol" if block.get("ordered") else "ul"
-    variant = esc(block.get("variant", "default"))
+    variant = esc(block.get("variant", "cards"))
+    ordered = bool(block.get("ordered"))
+    tag = "ol" if ordered else "ul"
     mode = block.get("format", "auto")
     items = []
     for index, item in enumerate(block.get("items", []), start=1):
         if isinstance(item, Mapping):
-            badge = item.get("badge", str(index) if block.get("ordered") else "")
+            badge = item.get("badge", str(index) if ordered else "")
             title = clean_html(item.get("title", item.get("text", "")), mode)
             subtitle = clean_html(item.get("subtitle", ""))
             tag_txt = clean_html(item.get("tag", ""))
             badge_html = f'<span class="list-item-badge">{esc(badge)}</span>' if badge else ""
             tag_html = f'<span class="list-item-tag">{tag_txt}</span>' if tag_txt else ""
             sub_html = f'<span class="list-item-sub">{subtitle}</span>' if subtitle else ""
-            items.append(
-                f'<li class="list-item-card">{badge_html}<div class="list-item-content">'
-                f'<div class="list-item-title">{title}</div>{sub_html}{tag_html}</div></li>'
-            )
+            if variant == "rows":
+                items.append(
+                    f'<li class="list-row">{badge_html}<div class="list-row-content">'
+                    f'<div class="list-item-title">{title}</div>{sub_html}{tag_html}</div></li>'
+                )
+            else:
+                items.append(
+                    f'<li class="list-item-card">{badge_html}<div class="list-item-content">'
+                    f'<div class="list-item-title">{title}</div>{sub_html}{tag_html}</div></li>'
+                )
         else:
-            items.append(f"<li>{clean_html(item, mode)}</li>")
+            if variant == "rows":
+                items.append(
+                    f'<li class="list-row"><span class="list-item-badge">{index}</span>'
+                    f'<div class="list-row-content"><div class="list-item-title">'
+                    f'{clean_html(item, mode)}</div></div></li>'
+                )
+            else:
+                items.append(f"<li>{clean_html(item, mode)}</li>")
     return f'<{tag} class="content-list list-{variant}">{"".join(items)}</{tag}>'
 
 
 def render_spacer(block: Mapping[str, Any], design: DesignSystem) -> str:
+    height = block.get("height")
+    if height:
+        return f'<div class="spacer spacer-custom" style="height:{esc(height)}" aria-hidden="true"></div>'
     return f'<div class="spacer spacer-{esc(block.get("size", "md"))}" aria-hidden="true"></div>'
 
 
@@ -347,6 +440,7 @@ RENDERERS = {
     "spacer": render_spacer,
     "group": render_group,
     "image": render_image,
+    "divider": render_divider,
 }
 
 

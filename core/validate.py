@@ -25,6 +25,7 @@ BLOCK_TYPES = {
     "spacer",
     "group",
     "image",
+    "divider",
     "artifact_ref",
 }
 CHART_KINDS = {"bar", "line", "donut", "progress"}
