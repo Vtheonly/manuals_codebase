@@ -1,58 +1,56 @@
-"""
-generators/pdf.py — High-Fidelity PDF Exporter
-Uses Headless Chromium / Playwright or WeasyPrint to guarantee exact A4 CSS rendering.
-"""
-import subprocess
+"""Optional HTML-to-PDF adapters."""
+from __future__ import annotations
+
 import shutil
+import subprocess
 from pathlib import Path
+
 
 def render_pdf(html_path: Path, pdf_path: Path) -> bool:
     html_path = Path(html_path).resolve()
     pdf_path = Path(pdf_path).resolve()
+    pdf_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # الخيار 1: استخدام WeasyPrint إذا كان مثبتاً
     try:
         from weasyprint import HTML
         HTML(filename=str(html_path)).write_pdf(str(pdf_path))
-        return True
+        return pdf_path.exists()
     except ImportError:
         pass
-    except Exception as e:
-        print(f"WeasyPrint error: {e}")
+    except Exception as exc:
+        print(f"WeasyPrint error: {exc}")
 
-    # الخيار 2: استخدام متصفح Chrome / Chromium المدمج (طباعة مطبعية نقية بدون هوامش متصفح)
-    browsers = ["google-chrome", "chromium", "chromium-browser", "msedge"]
-    chrome_bin = next((shutil.which(b) for b in browsers if shutil.which(b)), None)
-    
-    if chrome_bin:
-        cmd = [
-            chrome_bin,
+    browsers = ("google-chrome", "chromium", "chromium-browser", "msedge")
+    browser = next((shutil.which(name) for name in browsers if shutil.which(name)), None)
+    if browser:
+        command = [
+            browser,
             "--headless",
             "--disable-gpu",
             "--no-pdf-header-footer",
             f"--print-to-pdf={pdf_path}",
-            str(html_path)
+            str(html_path),
         ]
-        res = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        if res.returncode == 0 and pdf_path.exists():
-            return True
+        try:
+            result = subprocess.run(command, capture_output=True, text=True, check=False)
+            if result.returncode == 0 and pdf_path.exists():
+                return True
+        except OSError:
+            pass
 
-    # الخيار 3: استخدام Playwright عبر Node.js
     try:
         from playwright.sync_api import sync_playwright
-        with sync_playwright() as p:
-            browser = p.chromium.launch()
-            page = browser.new_page()
+        with sync_playwright() as playwright:
+            browser_instance = playwright.chromium.launch()
+            page = browser_instance.new_page()
             page.goto(html_path.as_uri(), wait_until="networkidle")
             page.pdf(
                 path=str(pdf_path),
                 format="A4",
                 print_background=True,
-                margin={"top": "0", "bottom": "0", "left": "0", "right": "0"}
+                margin={"top": "0", "bottom": "0", "left": "0", "right": "0"},
             )
-            browser.close()
-            return True
+            browser_instance.close()
+            return pdf_path.exists()
     except Exception:
-        pass
-
-    return False
+        return False

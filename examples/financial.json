@@ -1,0 +1,52 @@
+{
+  "id": "financial-example",
+  "title": "Quarterly Financial Summary",
+  "language": "en",
+  "direction": "ltr",
+  "theme": {
+    "palette": {
+      "primary": "#0f766e",
+      "accent": "#d97706"
+    }
+  },
+  "pages": [
+    {
+      "id": "overview",
+      "layout": "standard",
+      "footer": {
+        "left": "Finance",
+        "center": "{page}/{pages}",
+        "right": "Example"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 1,
+          "title": "Quarterly Performance",
+          "subtitle": "All values supplied by input JSON"
+        },
+        {
+          "type": "stats",
+          "columns": 3,
+          "items": [
+            {"value": "$4.2M", "label": "Revenue", "sublabel": "+14% YoY"},
+            {"value": "89%", "label": "Retention", "sublabel": "Target 85%"},
+            {"value": "$1.1M", "label": "Net Profit", "sublabel": "26.2% margin"}
+          ]
+        },
+        {"type": "artifact_ref", "artifact_id": "monthly-revenue"}
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "monthly-revenue",
+      "type": "chart",
+      "kind": "bar",
+      "title": "Monthly Revenue",
+      "labels": ["July", "August", "September"],
+      "values": [1200, 1450, 1550],
+      "unit": "$k"
+    }
+  ]
+}

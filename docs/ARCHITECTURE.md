@@ -1,39 +1,129 @@
 # Architecture
 
-## Canonical pipeline
+## Boundary
 
-`Source Data → Validated Model → Semantic Components → Artifact Generators → Final Outputs`
+This repository implements a **domain-agnostic renderer**.
 
-1. Load the single source document.
-2. Validate schema and artifact IDs.
-3. Resolve semantic components.
-4. Render every visual artifact independently.
-5. Render every content block independently.
-6. Compose the independently generated pieces into HTML.
-7. Convert the composed HTML to PDF.
-8. Emit a generated Python representation of the source.
-9. Hash every generated artifact and write a manifest.
+The source/content boundary is intentionally strict:
 
-## Separation of concerns
+~~~text
+                  EXTERNAL INPUT
+                        |
+                        v
+                   document.json
+                        |
+                        v
+                    validation
+                        |
+                        v
+                  design tokens
+                        |
+                        v
+               semantic component tree
+                        |
+              +---------+---------+
+              |                   |
+              v                   v
+        SVG artifacts         HTML document
+                                  |
+                                  v
+                            optional PDF
+                                  |
+                                  v
+                               manifest
+~~~
 
-- **Source:** facts, text, labels, values, relationships and ordering.
-- **Design:** typography, font fallback, weights, italics, underline semantics, spacing, borders, radius, palette, semantic colors, page geometry and visual rules.
-- **Components:** semantic concepts such as heading, body, quote, table and callout.
-- **Generators:** format-specific rendering adapters.
-- **Compiler:** orchestration, validation, regeneration and provenance.
+The JSON document is the only source of actual content. The engine may provide visual defaults, but it cannot provide defaults for what the document means.
 
-No renderer should contain report-specific facts.
+## Responsibilities
 
-## Centralized design domains
+### JSON input
 
-Typography, spacing, borders, colors, numbers, quotes, lists, tables, callouts, code, diagrams, charts, images/illustrations, page/layout, hierarchy and accessibility metadata should be represented as design tokens or semantic component rules.
+Owns all facts and composition:
 
-## Determinism
+- title and metadata
+- language and direction
+- pages and page ordering
+- block ordering and nesting
+- text, labels, numbers, table data
+- chart and diagram data
+- footer values
+- optional design overrides
 
-The source is hashed before generation. Every generated artifact is hashed after generation. The manifest records the source hash, generator version, artifact IDs, output paths and output hashes.
+### Design system
 
-Fonts should be bundled in production when byte-level cross-machine visual consistency is required. The current sample deliberately avoids runtime font downloads.
+core/design.py provides generic defaults for:
 
-## Extension path
+- palette
+- typography
+- spacing
+- borders
+- page dimensions
 
-The architecture is intentionally renderer-neutral. Future targets can add DOCX, Markdown, PNG, presentation slides or web output without changing the source model.
+Overrides are read from the input JSON. Design tokens have no document-specific vocabulary.
+
+### Components
+
+core/components.py maps generic component types to HTML fragments.
+
+A component may understand a semantic concept such as a table, quote, or callout. It may not assume that a table is about finance, education, manufacturing, medicine, or any other domain.
+
+The group component allows nested component trees, so layout structure is also supplied by JSON.
+
+### Visual artifacts
+
+core/svg.py renders generic visual primitives.
+
+Charts consume labels and numeric values. Labels can be simple strings or generic objects containing text and subtext. There are no language-specific field names such as title_ar or title_fr.
+
+Diagrams support generic flow steps and generic node/edge graphs.
+
+### HTML generator
+
+generators/html.py is a format renderer. It:
+
+1. reads direction and language from the input
+2. turns design tokens into CSS
+3. resolves page blocks
+4. resolves artifact references
+5. applies the requested page layout
+6. emits one HTML document
+
+It does not decide what the document says.
+
+### PDF generator
+
+generators/pdf.py attempts available HTML-to-PDF adapters. It is content-blind and does not contain report facts.
+
+### Compiler
+
+compiler.py owns:
+
+- loading a caller-supplied JSON path
+- validation
+- design-system creation
+- independent artifact generation
+- block materialization
+- HTML assembly
+- optional PDF generation
+- provenance and SHA-256 manifest generation
+
+It has no default source file and no report-specific metadata.
+
+### CLI
+
+build.py provides single-file and batch execution. Both modes use the same compiler.
+
+## Extensibility
+
+New output targets should consume the same validated document model.
+
+DOCX, Markdown, PNG, presentation, and other renderers can be added without changing the source/content contract.
+
+New semantic components can be added as reusable primitives without introducing domain-specific fields.
+
+## Invariant
+
+The codebase becomes domain-specific the moment a renderer or component starts requiring or inventing fields whose meaning belongs to one particular report or application.
+
+That is the boundary this repository must preserve.
