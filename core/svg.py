@@ -179,11 +179,6 @@ def line_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
                 f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.5" fill="{color}" '
                 f'stroke="{axis.surface}" stroke-width="1.5"/>'
             )
-            # Keep value annotations attached to their series without affecting RTL layout.
-            parts.append(
-                f'<text x="{x:.1f}" y="{y - 7:.1f}" font-size="7.5" font-weight="700" '
-                f'fill="{color}" text-anchor="middle">{float(vals[len([p for p in points if p == (x, y)]) - 1]) if False else ""}</text>'
-            )
 
         label = str(series.get("label", "")).strip()
         if label:
