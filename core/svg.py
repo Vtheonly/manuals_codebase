@@ -251,8 +251,8 @@ def donut_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
             )
         start = end
 
-    center_value = esc(spec.get("center_value", ""))
-    center_label = esc(spec.get("center_label", ""))
+    center_value = esc(spec.get("center_value", spec.get("center_val", "")))
+    center_label = esc(spec.get("center_label", spec.get("center_lbl", "")))
     center = (
         f'<text x="{cx}" y="{cy - 2}" font-size="16" font-weight="900" '
         f'fill="{axis.primary_deep}" text-anchor="middle">{center_value}</text>'
