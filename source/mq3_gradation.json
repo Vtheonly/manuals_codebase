@@ -5,13 +5,14 @@
   "direction": "rtl",
   "theme": {
     "palette": {
-      "primary": "#1e4b7a",
-      "primary_deep": "#0c2340",
-      "accent": "#c28b2e",
-      "banner_start": "#8cbbe8",
-      "banner_end": "#a4cdfa",
-      "banner_border": "#6ba3dc",
-      "banner_text": "#0c2d48"
+      "primary": "#1a3a5f",
+      "primary_deep": "#0d2238",
+      "accent": "#d35400",
+      "accent_gold": "#c5a059",
+      "banner_start": "#72a4d4",
+      "banner_end": "#5b92e5",
+      "banner_border": "#4a7bb0",
+      "banner_text": "#ffffff"
     }
   },
   "pages": [
@@ -22,7 +23,7 @@
         {
           "type": "text",
           "align": "center",
-          "content": "<p style='font-size:14pt; font-weight:800; color:#0c2340; margin-bottom:2px;'>الجمهورية الجزائرية الديمقراطية الشعبية</p><p style='font-size:12pt; font-weight:700; color:#1e4b7a; margin-bottom:4px;'>وزارة التكــــوين والتعليـــم المهنـيين</p><p style='font-size:9.5pt; color:#64748b;'>معهد التكوين والتعليم المهنيين الشهيد محمد مختيش المدية</p><p style='font-size:9.5pt; color:#64748b;'>المعهد الوطني المتخصص في التكوين المهني سي امحمد بوقرة خميس مليانة</p>"
+          "content": "<p style='font-size:13pt; font-weight:800; color:#0d2238; margin-bottom:4px;'>الجمهورية الجزائرية الديمقراطية الشعبية</p><p style='font-size:11pt; font-weight:700; color:#1a3a5f; margin-bottom:8px;'>وزارة التكوين والتعليم المهنيين</p><p style='font-size:8.5pt; color:#4a5568; margin:2px 0;'>معهد التكوين والتعليم المهنيين الشهيد محمد مختيش المدية</p><p style='font-size:8.5pt; color:#4a5568; margin:2px 0;'>المعهد الوطني المتخصص في التكوين المهني سي امحمد بوقرة خميس مليانة</p>"
         },
         {
           "type": "badge",
@@ -44,23 +45,23 @@
         {
           "type": "info_card",
           "rows": [
-            {"label": "الاســــم واللقــــب", "value": "وعيل فتيحة", "highlight": true},
-            {"label": "الشعـــــــــبة", "value": "النسيج والألبسة"},
-            {"label": "التخصـــــــص", "value": "تصميم أزياء"},
-            {"label": "المؤسســــــــة", "value": "مركز التكوين المهني والتمهين بئر ولد خليفة<br>(المرحوم سلامي بغدادي)"},
-            {"label": "الولايـــــــــة", "value": "عين الدفلى"},
+            {"label": "الاسم واللقب", "value": "وعيل فتيحة", "highlight": true},
+            {"label": "الشعبة", "value": "النسيج والألبسة"},
+            {"label": "التخصص", "value": "تصميم أزياء"},
+            {"label": "المؤسسة", "value": "مركز التكوين المهني والتمهين بئر ولد خليفة (المرحوم سلامي بغدادي)"},
+            {"label": "الولاية", "value": "عين الدفلى"},
             {"label": "المعهد صاحب الاختصاص", "value": "معهد التكوين والتعليم المهنيين بئر خادم"}
           ]
         },
         {
           "type": "badge",
           "variant": "gradient",
-          "text": "الـدفـعـــــــــــــــة : 12"
+          "text": "الدفعة : 12"
         },
         {
           "type": "text",
           "align": "center",
-          "content": "<p style='font-size:8pt; color:#64748b;'>الموسم التكويني: 2025/2026</p>"
+          "content": "<p style='font-size:7.5pt; color:#718096;'>الموسم التكويني: 2025/2026</p>"
         }
       ]
     },
@@ -68,7 +69,7 @@
       "id": "page-2",
       "layout": "standard",
       "footer": {
-        "left": "الموسم التكويني 2025/2026",
+        "left": "الموسم التكويني: 2025/2026",
         "center": "{page}",
         "right": "HTE1204 / MQ3"
       },
@@ -99,7 +100,7 @@
       "id": "page-3",
       "layout": "standard",
       "footer": {
-        "left": "الموسم التكويني 2025/2026",
+        "left": "الموسم التكويني: 2025/2026",
         "center": "{page}",
         "right": "HTE1204 / MQ3"
       },
@@ -113,22 +114,22 @@
         },
         {
           "type": "text",
-          "content": "يُعرَّف <strong>التدريج (Gradation)</strong> بأنه التقنية البترونية التي تسمح بإنتاج مقاسات مختلفة (أصغر وأكبر) انطلاقاً من مقاس مرجعي (Taille de base) دون الإخلال بالتوازن الهيكلي والجمالي للملبس الأصلي. يُعدّ من أدق الوحدات البيداغوجية في تخصص النمذجة، إذ يتطلّب دمج المعارف الهندسية مع الحس الجمالي، ويُمثّل الجسر التقني بين التصميم الفردي والتصنيع التسلسلي."
+          "content": "يُعرَّف <strong>التدريج (Gradation)</strong> بأنه التقنية البترونية التي تسمح بإنتاج مقاسات مختلفة (أصغر وأكبر) انطلاقاً من مقاس مرجعي (Taille de base) دون الإخلال بالتوازن الهيكلي والجمالي للملبس الأصلي. يُعّد من أدق الوحدات البيداغوجية في تخصص النمذجة، إذ يتطلّب دمج المعارف الهندسية مع الحس الجمالي، ويُمثّل الجسر التقني بين التصميم الفردي والتصنيع التسلسلي."
         },
         {
           "type": "text",
-          "content": "تكتسب هذه الوحدة أهمية مضاعفة في السياق الاقتصادي الجزائري، إذ تنتج معظم المؤسسات النسيجية الوطنية مقاسات محدودة (غالباً من 38 إلى 44 للنساء، ومن 46 إلى 56 للرجال)، في حين يطلب السوق تنوّعاً أوسع. يفتح إتقان التدريج الباب أمام إنتاج سلسلة مقاسات كاملة (من 34 إلى 50) انطلاقاً من نمط أساسي واحد، مما يُضاعف القيمة السوقية للمنتج دون تكلفة تصميم إضافية، كما يُمكّن التقني السامي من تقديم خدمات النمذجة للورشات الصغيرة التي لا تمتلك مكاتب دراسات متخصصة."
+          "content": "تكتسب هذه الوحدة أهمية مضاعفة في السياق الاقتصادي الجزائري، إذ تنتج معظم المؤسسات النسيجية الوطنية مقاسات محدودة (غالباً من 38 إلى 44 للنساء، ومن 46 إلى 56 للرجال)، في حين يطلب السوق تنوعاً أوسع. يفتح إتقان التدريج الباب أمام إنتاج سلسلة مقاسات كاملة (من 34 إلى 50) انطلاقاً من نمط أساسي واحد، مما يُضاعف القيمة السوقية للمنتج دون تكلفة تصميم إضافية."
         },
         {
           "type": "text",
-          "content": "وفق إحصائيات وزارة الصناعة الجزائرية لسنة 2023، لا تتجاوز نسبة المؤسسات النسيجية الوطنية التي تنتج أكثر من 5 مقاسات لكل طراز 35%، مقابل أكثر من 80% في المؤسسات التركية والصينية المنافسة. يُفسَّر هذا الفارق جزئياً بضعف إتقان التدريج الصناعي، وهو ما تُوليه معاهد INSFP اهتماماً متزايداً عبر تحديث برامج التكوين وتجهيز المخابر بأنظمة الرقمنة المتقدمة."
+          "content": "وفق إحصائيات وزارة الصناعة الجزائرية لسنة 2023، لا تتجاوز نسبة المؤسسات النسيجية الوطنية التي تنتج أكثر من 5 مقاسات لكل طراز 35%، مقابل أكثر من 80% في المؤسسات التركية والصينية المنافسة. يُفسَّر هذا الفارق جزئياً بضعف إتقان التدريج الصناعي، وهو ما توليه معاهد INSFP اهتماماً متزايداً عبر تحديث برامج التكوين وتجهيز المخابر بأنظمة الرقمنة المتقدمة."
         },
         {
           "type": "stats",
           "columns": 4,
           "items": [
-            {"value": "38 — 44", "label": "المقاسات النسائية الأكثر استعمالاً في الجزائر", "sublabel": "Tailles dames les plus courantes"},
-            {"value": "سم 4", "label": "الفرق بين مقاسين متتاليين في محيط الصدر", "sublabel": "Écart entre tailles (poitrine)"},
+            {"value": "44 — 38", "label": "المقاسات النسائية الأكثر استعمالاً في الجزائر", "sublabel": "Tailles dames les plus courantes"},
+            {"value": "4 سم", "label": "الفرق بين مقاسين متتاليين في محيط الصدر", "sublabel": "Écart entre tailles (poitrine)"},
             {"value": "35%", "label": "نسبة المؤسسات الجزائرية (+5 مقاسات)", "sublabel": "Entreprises algériennes (5+ tailles)"},
             {"value": "80%", "label": "نسبة المؤسسات المنافسة (+5 مقاسات)", "sublabel": "Entreprises concurrentes (5+ tailles)"}
           ]
@@ -150,7 +151,7 @@
       "id": "page-4",
       "layout": "standard",
       "footer": {
-        "left": "الموسم التكويني 2025/2026",
+        "left": "الموسم التكويني: 2025/2026",
         "center": "{page}",
         "right": "HTE1204 / MQ3"
       },
@@ -168,7 +169,7 @@
             ["ما يُمثّله من قياسات", "Mesures Représentées"]
           ],
           "rows": [
-            ["المحور X (Axe X)", "أفقي (يقف) Horizontal", "التغيّرات في العرض: محيط الصدر، محيط الخصر، محيط الورك، عرض الكتف، عرض الظهر"],
+            ["المحور X (Axe X)", "أفقي (يعرض) Horizontal", "التغيّرات في العرض: محيط الصدر، محيط الخصر، محيط الورك، عرض الكتف، عرض الظهر"],
             ["المحور Y (Axe Y)", "عمودي (يطول) Vertical", "التغيّرات في الطول: ارتفاع الصدر، ارتفاع الورك، عمق الإبط، الطول الكلي، طول الكم"]
           ],
           "caption": [
@@ -200,7 +201,7 @@
         },
         {
           "type": "text",
-          "content": "يستعمل التقني السامي في النمذجة جدولاً موحّداً لمقاييس جسم الإنسان، يُعدّ مرجعاً لكل عمليات التدريج. يُعتمد في المعاهد الجزائرية على الجدول النسائي التالي (المقاسات من 36 إلى 46)، الُمستوحى من المعيار الأوروبي NF EN 13402 مع تعديلات محلية بسيطة تأخذ في الاعتبار الخصائص المورفولوجية للمرأة الجزائرية."
+          "content": "يستعمل التقني السامي في النمذجة جدولاً موحّداً لمقاييس جسم الإنسان، يُعّد مرجعاً لكل عمليات التدريج. يُعتمد في المعاهد الجزائرية على الجدول النسائي التالي (المقاسات من 36 إلى 46)، الُمستوحى من المعيار الأوروبي NF EN 13402 مع تعديلات محلية بسيطة تأخذ في الاعتبار الخصائص المورفولوجية للمرأة الجزائرية."
         }
       ]
     },
@@ -208,7 +209,7 @@
       "id": "page-5",
       "layout": "standard",
       "footer": {
-        "left": "الموسم التكويني 2025/2026",
+        "left": "الموسم التكويني: 2025/2026",
         "center": "{page}",
         "right": "HTE1204 / MQ3"
       },
@@ -226,12 +227,12 @@
             ["الفرق", "Écart"]
           ],
           "rows": [
-            ["محيط الصدر Poitrine", {"text": "84", "numeric": true}, {"text": "88", "numeric": true}, {"text": "92", "numeric": true}, {"text": "96", "numeric": true}, {"text": "100", "numeric": true}, {"text": "104", "numeric": true}, {"text": "4+", "numeric": true}],
-            ["محيط الخصر Taille", {"text": "64", "numeric": true}, {"text": "68", "numeric": true}, {"text": "72", "numeric": true}, {"text": "76", "numeric": true}, {"text": "80", "numeric": true}, {"text": "84", "numeric": true}, {"text": "4+", "numeric": true}],
-            ["محيط الأرداف Bassin", {"text": "90", "numeric": true}, {"text": "94", "numeric": true}, {"text": "98", "numeric": true}, {"text": "102", "numeric": true}, {"text": "106", "numeric": true}, {"text": "110", "numeric": true}, {"text": "4+", "numeric": true}],
-            ["طول الظهر Dos", {"text": "38", "numeric": true}, {"text": "38.5", "numeric": true}, {"text": "39", "numeric": true}, {"text": "39.5", "numeric": true}, {"text": "40", "numeric": true}, {"text": "40.5", "numeric": true}, {"text": "0.5+", "numeric": true}],
-            ["عرض الكتف Carrure", {"text": "36", "numeric": true}, {"text": "37", "numeric": true}, {"text": "38", "numeric": true}, {"text": "39", "numeric": true}, {"text": "40", "numeric": true}, {"text": "41", "numeric": true}, {"text": "1+", "numeric": true}],
-            ["عمق الإبط Emmanchure", {"text": "20", "numeric": true}, {"text": "20.5", "numeric": true}, {"text": "21", "numeric": true}, {"text": "21.5", "numeric": true}, {"text": "22", "numeric": true}, {"text": "22.5", "numeric": true}, {"text": "0.5+", "numeric": true}]
+            ["محيط الصدر Poitrine", {"text": "84", "numeric": true}, {"text": "88", "numeric": true}, {"text": "92", "numeric": true}, {"text": "96", "numeric": true}, {"text": "100", "numeric": true}, {"text": "104", "numeric": true}, {"text": "+4", "numeric": true}],
+            ["محيط الخصر Taille", {"text": "64", "numeric": true}, {"text": "68", "numeric": true}, {"text": "72", "numeric": true}, {"text": "76", "numeric": true}, {"text": "80", "numeric": true}, {"text": "84", "numeric": true}, {"text": "+4", "numeric": true}],
+            ["محيط الأرداف Bassin", {"text": "90", "numeric": true}, {"text": "94", "numeric": true}, {"text": "98", "numeric": true}, {"text": "102", "numeric": true}, {"text": "106", "numeric": true}, {"text": "110", "numeric": true}, {"text": "+4", "numeric": true}],
+            ["طول الظهر Dos", {"text": "38", "numeric": true}, {"text": "38.5", "numeric": true}, {"text": "39", "numeric": true}, {"text": "39.5", "numeric": true}, {"text": "40", "numeric": true}, {"text": "40.5", "numeric": true}, {"text": "+0.5", "numeric": true}],
+            ["عرض الكتف Carrure", {"text": "36", "numeric": true}, {"text": "37", "numeric": true}, {"text": "38", "numeric": true}, {"text": "39", "numeric": true}, {"text": "40", "numeric": true}, {"text": "41", "numeric": true}, {"text": "+1", "numeric": true}],
+            ["عمق الإبط Emmanchure", {"text": "20", "numeric": true}, {"text": "20.5", "numeric": true}, {"text": "21", "numeric": true}, {"text": "21.5", "numeric": true}, {"text": "22", "numeric": true}, {"text": "22.5", "numeric": true}, {"text": "+0.5", "numeric": true}]
           ],
           "caption": [
             "الجدول 2: الجدول المرجعي لمقاييس المرأة الجزائرية (وفق NF EN 13402)",
@@ -245,7 +246,7 @@
         {
           "type": "callout",
           "variant": "accent",
-          "icon": "i",
+          "icon": "ⓘ",
           "title": "معلومة تقنية",
           "content": "المقاس <strong>38-40</strong> هو الأكثر استعمالاً في الجزائر، ويُعتبر المقاس المرجعي الذي يُبنى عليه الباترون الأساسي في مكاتب الدراسات الجزائرية. عند تطوير منتج جديد، يُنصح بتثبيت المقاس 40 كأساس، ثم التدريج تصاعدياً وتنازلياً نحو باقي المقاسات."
         }
@@ -255,7 +256,7 @@
       "id": "page-6",
       "layout": "standard",
       "footer": {
-        "left": "الموسم التكويني 2025/2026",
+        "left": "الموسم التكويني: 2025/2026",
         "center": "{page}",
         "right": "HTE1204 / MQ3"
       },
@@ -292,7 +293,7 @@
         },
         {
           "type": "text",
-          "content": "لتسليط الضوء على التطبيق العملي لقواعد التدريج، نُقدّم دراسة حالة لتدريب تنورة نسوية أساسية (Jupe de base) من المقاس 40 إلى المقاس 42. اختيرت التنورة لكونها قطعة بسيطة هندسياً، تُتيح للطالب استيعاب المنطق دون تشتيت بتعقيدات القصّة ثلاثية الأبعاد."
+          "content": "لتسليط الضوء على التطبيق العملي لقواعد التدريج، نُقدّم دراسة حالة لتدريب تنورة نسوية أساسية (Jupe de base) من المقاس 40 إلى المقاس 42. اختيرت التنورة لكونها قطعة بسيطة هندسياً، تُتيح استيعاب المنطق الرياضي دون التشتت بتعقيدات القصّات ثلاثية الأبعاد."
         }
       ]
     },
@@ -300,7 +301,7 @@
       "id": "page-7",
       "layout": "standard",
       "footer": {
-        "left": "الموسم التكويني 2025/2026",
+        "left": "الموسم التكويني: 2025/2026",
         "center": "{page}",
         "right": "HTE1204 / MQ3"
       },
@@ -319,9 +320,9 @@
             ["ملاحظة", "Observation"]
           ],
           "rows": [
-            ["خط الخصر Taille", {"text": "0.5+ سم", "numeric": true}, {"text": "1.0+ سم", "numeric": true}, "موزّع على العبر"],
-            ["خط الورك Bassin", {"text": "0.5+ سم", "numeric": true}, {"text": "1.0+ سم", "numeric": true}, "نفس قيمة الخصر"],
-            ["خط الحاشية السفلية Ourlet", {"text": "1.0+ سم", "numeric": true}, {"text": "1.0+ سم", "numeric": true}, "اتساع متناسق"]
+            ["خط الخصر Taille", {"text": "+0.5 سم", "numeric": true}, {"text": "+1.0 سم", "numeric": true}, "موزّع على العبر"],
+            ["خط الورك Bassin", {"text": "+0.5 سم", "numeric": true}, {"text": "+1.0 سم", "numeric": true}, "نفس قيمة الخصر"],
+            ["خط الحاشية السفلية Ourlet", {"text": "+1.0 سم", "numeric": true}, {"text": "+1.0 سم", "numeric": true}, "اتساع متناسق"]
           ],
           "caption": [
             "الجدول 3: قيم التطور من المقاس 40 إلى المقاس 42 لتنورة أساسية",
@@ -335,7 +336,7 @@
         },
         {
           "type": "text",
-          "content": "يتضمن تدريج البنطلون الرجالي <strong>15+ نقطة قياس مرجعية</strong> تتوزّع بين الخصر، الأرداف، الركبة، الكاحل، والطول الكلي، مما يجعله من العمليات الأكثر تعقيداً في النمذجة الصناعية. الفرق بين المقاسات المتتالية ليس موحّداً كما في التنورة، بل يختلف حسب المنطقة: <strong>4+ سم</strong> في محيط الخصر، <strong>1.5+ سم</strong> في الطول الكلي للساق، <strong>0.3+ سم</strong> في عمق الورك."
+          "content": "يتضمن تدريج البنطلون الرجالي <strong>15+ نقطة قياس مرجعية</strong> تتوزّع بين الخصر، الأرداف، الركبة، الكاحل، والطول الكلي، مما يجعله من العمليات الأكثر تعقيداً في النمذجة الصناعية. الفرق بين المقاسات المتتالية ليس موحّداً كما في التنورة، بل يختلف حسب المنطقة: <strong>+4 سم</strong> في محيط الخصر، <strong>+1.5 سم</strong> في الطول الكلي للساق، <strong>+0.3 سم</strong> في عمق الورك."
         },
         {
           "type": "table",
@@ -345,13 +346,13 @@
             ["ملاحظة", "Observation"]
           ],
           "rows": [
-            ["محيط الخصر الكلي Taille totale", {"text": "4.0+", "numeric": true}, "موزّع على 4 نقاط (1+ لكل نقطة)"],
-            ["ارتفاع الخصر Hauteur taille", {"text": "0.3+", "numeric": true}, "لا يتغيّر في الفتحة"],
-            ["محيط الورك الكلي Bassin total", {"text": "4.0+", "numeric": true}, "موزّع على 4 نقاط"],
-            ["عمق الورك Profondeur bassin", {"text": "0.5+", "numeric": true}, "ارتفاع الورك عن الخصر"],
-            ["طول الساق (Inseam) Longueur jambe", {"text": "1.5+", "numeric": true}, "الفرق في الطول بين المقاسات"],
-            ["محيط الركبة Genou", {"text": "1.0+", "numeric": true}, "موزّع على النصف"],
-            ["محيط الكاحل Cheville", {"text": "0.5+", "numeric": true}, "ضيّق جداً"]
+            ["محيط الخصر الكلي Taille totale", {"text": "+4.0", "numeric": true}, "موزّع على 4 نقاط (+1 لكل نقطة)"],
+            ["ارتفاع الخصر Hauteur taille", {"text": "+0.3", "numeric": true}, "لا يتغيّر في الفتحة"],
+            ["محيط الورك الكلي Bassin total", {"text": "+4.0", "numeric": true}, "موزّع على 4 نقاط"],
+            ["عمق الورك Profondeur bassin", {"text": "+0.5", "numeric": true}, "ارتفاع الورك عن الخصر"],
+            ["طول الساق (Inseam) Longueur jambe", {"text": "+1.5", "numeric": true}, "الفرق في الطول بين المقاسات"],
+            ["محيط الركبة Genou", {"text": "+1.0", "numeric": true}, "موزّع على النصف"],
+            ["محيط الكاحل Cheville", {"text": "+0.5", "numeric": true}, "ضيّق جداً"]
           ],
           "caption": [
             "الجدول 4: القيم الرئيسية لتدريج البنطلون الرجالي (7 نقاط قياس)",
@@ -375,7 +376,7 @@
       "id": "page-8",
       "layout": "standard",
       "footer": {
-        "left": "الموسم التكويني 2025/2026",
+        "left": "الموسم التكويني: 2025/2026",
         "center": "{page}",
         "right": "HTE1204 / MQ3"
       },
@@ -418,7 +419,7 @@
       "id": "page-9",
       "layout": "standard",
       "footer": {
-        "left": "الموسم التكويني 2025/2026",
+        "left": "الموسم التكويني: 2025/2026",
         "center": "{page}",
         "right": "HTE1204 / MQ3"
       },
@@ -486,7 +487,7 @@
       "id": "page-10",
       "layout": "standard",
       "footer": {
-        "left": "الموسم التكويني 2025/2026",
+        "left": "الموسم التكويني: 2025/2026",
         "center": "{page}",
         "right": "HTE1204 / MQ3"
       },
@@ -553,7 +554,7 @@
       "id": "page-11",
       "layout": "standard",
       "footer": {
-        "left": "الموسم التكويني 2025/2026",
+        "left": "الموسم التكويني: 2025/2026",
         "center": "{page}",
         "right": "HTE1204 / MQ3"
       },
@@ -606,7 +607,7 @@
       "id": "page-12",
       "layout": "standard",
       "footer": {
-        "left": "الموسم التكويني 2025/2026",
+        "left": "الموسم التكويني: 2025/2026",
         "center": "{page}",
         "right": "HTE1204 / MQ3"
       },
@@ -626,7 +627,7 @@
       "id": "page-13",
       "layout": "standard",
       "footer": {
-        "left": "الموسم التكويني 2025/2026",
+        "left": "الموسم التكويني: 2025/2026",
         "center": "{page}",
         "right": "HTE1204 / MQ3"
       },
@@ -661,7 +662,7 @@
       "id": "page-14",
       "layout": "standard",
       "footer": {
-        "left": "الموسم التكويني 2025/2026",
+        "left": "الموسم التكويني: 2025/2026",
         "center": "{page}",
         "right": "HTE1204 / MQ3"
       },
@@ -676,10 +677,10 @@
             ["المرجع", "Référence"]
           ],
           "rows": [
-            ["القميص والبلوزة (قريبة) Chemisier près du corps", {"text": "سم 4", "numeric": true}, {"text": "سم 4", "numeric": true}, {"text": "سم 4", "numeric": true}, "NA EN 13402-3"],
-            ["البنطلون الُمنّسج Pantalon tailleur", {"text": "سم 4", "numeric": true}, {"text": "سم 4", "numeric": true}, {"text": "سم 4", "numeric": true}, "THC1801"],
-            ["التنورة الأساسية Jupe de base", "—", {"text": "سم 4", "numeric": true}, {"text": "سم 4", "numeric": true}, "THC1801"],
-            ["السترة والمعطف Veste & manteau", {"text": "سم 6", "numeric": true}, {"text": "سم 6", "numeric": true}, {"text": "سم 6", "numeric": true}, "THC1801"]
+            ["القميص والبلوزة (قريبة) Chemisier près du corps", {"text": "4 سم", "numeric": true}, {"text": "4 سم", "numeric": true}, {"text": "4 سم", "numeric": true}, "NA EN 13402-3"],
+            ["البنطلون الُمنّسج Pantalon tailleur", {"text": "4 سم", "numeric": true}, {"text": "4 سم", "numeric": true}, {"text": "4 سم", "numeric": true}, "THC1801"],
+            ["التنورة الأساسية Jupe de base", "—", {"text": "4 سم", "numeric": true}, {"text": "4 سم", "numeric": true}, "THC1801"],
+            ["السترة والمعطف Veste & manteau", {"text": "6 سم", "numeric": true}, {"text": "6 سم", "numeric": true}, {"text": "6 سم", "numeric": true}, "THC1801"]
           ],
           "caption": [
             "الجدول أ.1: فواصل المقاسات الرسمية حسب فئات القطع (سلسلة 36 → 48)",
@@ -710,7 +711,7 @@
       "id": "page-15",
       "layout": "standard",
       "footer": {
-        "left": "الموسم التكويني 2025/2026",
+        "left": "الموسم التكويني: 2025/2026",
         "center": "{page}",
         "right": "HTE1204 / MQ3"
       },
@@ -724,12 +725,12 @@
             ["ملاحظة تقنية", "Note"]
           ],
           "rows": [
-            ["محيط الصدر Tour de poitrine", {"text": "سم 4.0+", "numeric": true}, "أفقي مزدوج", "نصف الزيادة لكل من الأمام والخلف"],
-            ["محيط الخصر Tour de taille", {"text": "سم 4.0+", "numeric": true}, "أفقي مزدوج", "مع تعديل البنسات بنسبة 40%"],
-            ["محيط الورك Tour de bassin", {"text": "سم 4.0+", "numeric": true}, "أفقي مزدوج", "يُقاس أسفل خط الخصر بـ 20-18 سم"],
-            ["عرض الكتف Largeur épaule", {"text": "سم 0.8+", "numeric": true}, "أفقي", "نصف القيمة لكل جانب"],
-            ["عمق الثقب Profondeur d'emmanchure", {"text": "سم 0.6+", "numeric": true}, "عمودي", "يتناسب مع محيط الصدر"],
-            ["طول الترمة (للأكمام) Longueur de manche", {"text": "سم 1.0+", "numeric": true}, "عمودي", "يرافق تمدد الكتف"]
+            ["محيط الصدر Tour de poitrine", {"text": "+4.0 سم", "numeric": true}, "أفقي مزدوج", "نصف الزيادة لكل من الأمام والخلف"],
+            ["محيط الخصر Tour de taille", {"text": "+4.0 سم", "numeric": true}, "أفقي مزدوج", "مع تعديل البنسات بنسبة 40%"],
+            ["محيط الورك Tour de bassin", {"text": "+4.0 سم", "numeric": true}, "أفقي مزدوج", "يُقاس أسفل خط الخصر بـ 18-20 سم"],
+            ["عرض الكتف Largeur épaule", {"text": "+0.8 سم", "numeric": true}, "أفقي", "نصف القيمة لكل جانب"],
+            ["عمق الثقب Profondeur d'emmanchure", {"text": "+0.6 سم", "numeric": true}, "عمودي", "يتناسب مع محيط الصدر"],
+            ["طول الترمة (للأكمام) Longueur de manche", {"text": "+1.0 سم", "numeric": true}, "عمودي", "يرافق تمدد الكتف"]
           ],
           "caption": [
             "الجدول ب.1: القيم التفاضلية المرجعية لتدريج قالب الجسم — سلسلة 36 → 48",
@@ -750,7 +751,7 @@
       "id": "page-16",
       "layout": "standard",
       "footer": {
-        "left": "الموسم التكويني 2025/2026",
+        "left": "الموسم التكويني: 2025/2026",
         "center": "{page}",
         "right": "HTE1204 / MQ3"
       },
@@ -838,7 +839,7 @@
         {
           "type": "text",
           "align": "center",
-          "content": "<p style='font-size:16pt; font-weight:800; color:#c28b2e;'>وزارة التكوين والتعليم المهنيين</p><p style='font-family:Inter, sans-serif; font-size:8pt; letter-spacing:2px; color:#8cbbe8; margin-top:6px;'>MINISTÈRE DE LA FORMATION ET DE L'ENSEIGNEMENT PROFESSIONNELS</p>"
+          "content": "<p style='font-size:13pt; font-weight:800; color:#dfb76c; margin-bottom:6px;'>وزارة التكوين والتعليم المهنيين</p><p style='font-family:Inter, sans-serif; font-size:7.5pt; letter-spacing:1.5px; color:#cbd5e1;'>MINISTÈRE DE LA FORMATION ET DE L'ENSEIGNEMENT PROFESSIONNELS</p>"
         },
         {
           "type": "quote",
@@ -848,7 +849,7 @@
         {
           "type": "text",
           "align": "center",
-          "content": "<p style='font-size:8pt; line-height:1.7; color:#94a3b8;'>أُنجز هذا التقرير في إطار التربص للتكوين التكميلي ما قبل الترقية<br>الشعبة: النسيج والألبسة — التخصص: تصميم أزياء — المعهد صاحب الاختصاص: معهد التكوين والتعليم المهنيين بئر خادم<br>المرجعية: المعايير الجزائرية IANOR والقوانين المنشورة في الجريدة الرسمية JORADP ومرجعيات INFEP / MFEP<br><span style='color:#c28b2e; font-weight:bold; display:block; margin-top:8px;'>2025/2026 • الدفعة 12</span></p>"
+          "content": "<p style='font-size:7.5pt; line-height:1.6; color:#94a3b8;'>أُنجز هذا التقرير في إطار التربص للتكوين التكميلي ما قبل الترقية<br>الشعبة: النسيج والألبسة — التخصص: تصميم أزياء — المعهد صاحب الاختصاص: معهد التكوين والتعليم المهنيين بئر خادم<br>المرجعية: المعايير الجزائرية IANOR والقوانين المنشورة في الجريدة الرسمية JORADP ومرجعيات MFEP / INFEP<br><span style='color:#dfb76c; font-weight:bold; display:block; margin-top:6px;' dir='ltr'>2025/2026 • الدفعة 12</span></p>"
         }
       ]
     }
@@ -863,9 +864,9 @@
       "unit": "سم",
       "labels": ["36", "38", "40", "42", "44", "46"],
       "series": [
-        {"label": "محيط الأرداف", "values": [90, 94, 98, 102, 106, 110], "color": "#2b7a5a"},
-        {"label": "محيط الصدر", "values": [84, 88, 92, 96, 100, 104], "color": "#1e4b7a"},
-        {"label": "محيط الخصر", "values": [64, 68, 72, 76, 80, 84], "color": "#c28b2e"}
+        {"label": "محيط الأرداف", "values": [90, 94, 98, 102, 106, 110], "color": "#16a085"},
+        {"label": "محيط الصدر", "values": [84, 88, 92, 96, 100, 104], "color": "#2980b9"},
+        {"label": "محيط الخصر", "values": [64, 68, 72, 76, 80, 84], "color": "#d35400"}
       ],
       "caption": [
         "الشكل 1: تطوّر القياسات الرئيسية للمرأة الجزائرية عبر 6 مقاسات (وفق NF EN 13402)",
@@ -937,7 +938,7 @@
       "kind": "progress",
       "title": "نمو محيط الصدر عبر سلسلة المقاسات",
       "subtitle": "Croissance du tour de poitrine (36 → 48)",
-      "color": "#1e4b7a",
+      "color": "#1a3a5f",
       "values": [],
       "items": [
         {"label": "مقاس 36", "sublabel": "Taille 36", "value": 84, "max": 120},

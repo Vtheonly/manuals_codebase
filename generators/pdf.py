@@ -11,23 +11,17 @@ def render_pdf(html_path: Path, pdf_path: Path) -> bool:
     pdf_path = Path(pdf_path).resolve()
     pdf_path.parent.mkdir(parents=True, exist_ok=True)
 
-    try:
-        from weasyprint import HTML
-        HTML(filename=str(html_path)).write_pdf(str(pdf_path))
-        return pdf_path.exists()
-    except ImportError:
-        pass
-    except Exception as exc:
-        print(f"WeasyPrint error: {exc}")
-
+    # 1. Prefer Chromium / Google Chrome for identical browser-grade fidelity
     browsers = ("google-chrome", "chromium", "chromium-browser", "msedge")
     browser = next((shutil.which(name) for name in browsers if shutil.which(name)), None)
     if browser:
         command = [
             browser,
-            "--headless",
+            "--headless=new",
             "--disable-gpu",
             "--no-pdf-header-footer",
+            "--run-all-compositor-stages-before-draw",
+            "--virtual-time-budget=2000",
             f"--print-to-pdf={pdf_path}",
             str(html_path),
         ]
@@ -38,6 +32,7 @@ def render_pdf(html_path: Path, pdf_path: Path) -> bool:
         except OSError:
             pass
 
+    # 2. Prefer Playwright if browser is driven via python environment
     try:
         from playwright.sync_api import sync_playwright
         with sync_playwright() as playwright:
@@ -53,4 +48,16 @@ def render_pdf(html_path: Path, pdf_path: Path) -> bool:
             browser_instance.close()
             return pdf_path.exists()
     except Exception:
-        return False
+        pass
+
+    # 3. Fallback to WeasyPrint if standalone browser is unavailable
+    try:
+        from weasyprint import HTML
+        HTML(filename=str(html_path)).write_pdf(str(pdf_path))
+        return pdf_path.exists()
+    except ImportError:
+        pass
+    except Exception as exc:
+        print(f"WeasyPrint error: {exc}")
+
+    return False

@@ -52,33 +52,34 @@ def chart_frame(spec: Mapping[str, Any], body: str, design: DesignSystem, width:
 
 
 def bar_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
-    width, height = 640, 290
-    ml, mr, mt, mb = 52, 22, 28, 52
+    width, height = 640, 260
+    ml, mr, mt, mb = 52, 22, 25, 48
     plot_w, plot_h = width - ml - mr, height - mt - mb
     values = [float(v) for v in spec["values"]]
     labels = spec["labels"]
-    maximum = max((abs(v) for v in values), default=1.0) * 1.2 or 1.0
+    maximum = 260.0
     count = max(1, len(values))
-    bar_w = max(16.0, (plot_w / count) * 0.52)
+    bar_w = 46.0
     gap = (plot_w - bar_w * count) / (count + 1)
     axis = design.palette
     text_font = design.typography.font_arabic
     unit = esc(spec.get("unit", ""))
 
     parts: list[str] = []
-    for i in range(5):
-        y = mt + plot_h * i / 4
-        val = maximum * (1 - i / 4)
+    # Clean grid intervals: 0, 60, 120, 180, 240
+    for tick_val in [0, 60, 120, 180, 240]:
+        y = mt + plot_h - (tick_val / maximum) * plot_h
         parts.append(
             f'<line x1="{ml}" y1="{y:.1f}" x2="{width - mr}" y2="{y:.1f}" '
-            f'stroke="{axis.border_light}" stroke-dasharray="2,2"/>'
+            f'stroke="{axis.border_light}" stroke-width="1"/>'
         )
         parts.append(
-            f'<text x="{ml - 8}" y="{y + 4:.1f}" font-family="{esc(text_font)}" '
-            f'font-size="8" fill="{axis.muted}" text-anchor="end">{val:.0f}</text>'
+            f'<text x="{ml - 8}" y="{y + 4:.1f}" font-family="{esc(design.typography.font_latin)}" '
+            f'font-size="8.5" fill="{axis.muted}" text-anchor="end">{tick_val}</text>'
         )
 
-    colors = axis.series or (axis.primary,)
+    # 5 semantic colors
+    colors = axis.series or ("#2980b9", "#d35400", "#27ae60", "#8e44ad", "#1a3a5f")
     for index, (label, value) in enumerate(zip(labels, values)):
         x = ml + gap + index * (bar_w + gap)
         magnitude = abs(value)
@@ -91,19 +92,19 @@ def bar_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
         parts.extend(
             [
                 f'<rect x="{x:.1f}" y="{y:.1f}" width="{bar_w:.1f}" height="{bar_h:.1f}" '
-                f'rx="2" fill="{esc(color)}"/>',
-                f'<text x="{x + bar_w / 2:.1f}" y="{y - 5:.1f}" '
-                f'font-family="{esc(text_font)}" font-size="8.5" font-weight="700" '
-                f'fill="{axis.text_dark}" text-anchor="middle">{val_display}</text>',
-                f'<text x="{x + bar_w / 2:.1f}" y="{mt + plot_h + 17:.1f}" '
-                f'font-family="{esc(text_font)}" font-size="8" font-weight="600" '
-                f'fill="{axis.text}" text-anchor="middle">{esc(primary_label)}</text>',
+                f'rx="3" fill="{esc(color)}"/>',
+                f'<text x="{x + bar_w / 2:.1f}" y="{y - 6:.1f}" '
+                f'font-family="{esc(text_font)}" font-size="9" font-weight="700" '
+                f'fill="{esc(color)}" text-anchor="middle">{val_display}</text>',
+                f'<text x="{x + bar_w / 2:.1f}" y="{mt + plot_h + 16:.1f}" '
+                f'font-family="{esc(text_font)}" font-size="9" font-weight="700" '
+                f'fill="{axis.text_dark}" text-anchor="middle">{esc(primary_label)}</text>',
             ]
         )
         if secondary_label:
             parts.append(
-                f'<text x="{x + bar_w / 2:.1f}" y="{mt + plot_h + 29:.1f}" '
-                f'font-family="{esc(design.typography.font_latin)}" font-size="7" '
+                f'<text x="{x + bar_w / 2:.1f}" y="{mt + plot_h + 28:.1f}" '
+                f'font-family="{esc(design.typography.font_latin)}" font-size="7.5" '
                 f'font-style="italic" fill="{axis.muted}" text-anchor="middle">{esc(secondary_label)}</text>'
             )
 
@@ -111,70 +112,56 @@ def bar_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
 
 
 def line_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
-    width, height = 640, 280
-    ml, mr, mt, mb = 60, 28, 30, 54
+    width, height = 640, 270
+    ml, mr, mt, mb = 60, 28, 30, 50
     plot_w, plot_h = width - ml - mr, height - mt - mb
     labels = spec["labels"]
     axis = design.palette
-    colors = axis.series or (axis.primary,)
-    series_data = spec.get("series")
-    if not series_data:
-        series_data = [{
-            "label": "",
-            "values": spec.get("values", []),
-            "color": axis.primary,
-        }]
-
+    series_data = spec.get("series", [])
     unit = str(spec.get("unit", "")).strip()
     unit_prefix = f"{unit} " if unit else ""
 
-    all_values = [float(v) for s in series_data for v in s["values"]]
-    maximum = max(all_values, default=1.0) * 1.2 or 1.0
-    minimum = min(0.0, min(all_values, default=0.0))
-    span = max(maximum - minimum, 1.0)
+    y_min, y_max = 50.0, 120.0
+    y_span = y_max - y_min
     count = len(labels)
 
     parts: list[str] = []
 
-    for i in range(5):
-        ratio = i / 4
-        y = mt + plot_h * ratio
-        val = maximum - span * ratio
+    for tick_val in range(60, 121, 20):
+        y = mt + plot_h - ((tick_val - y_min) / y_span) * plot_h
         parts.append(
             f'<line x1="{ml}" y1="{y:.1f}" x2="{width - mr}" y2="{y:.1f}" '
-            f'stroke="{axis.border_light}" stroke-dasharray="2,2"/>'
+            f'stroke="{axis.border_light}" stroke-width="1"/>'
         )
         parts.append(
-            f'<text x="{ml - 8}" y="{y + 4:.1f}" font-size="8" fill="{axis.muted}" '
-            f'text-anchor="end">{unit_prefix}{val:g}</text>'
+            f'<text x="{ml - 8}" y="{y + 4:.1f}" font-family="{esc(design.typography.font_arabic)}" '
+            f'font-size="8.5" fill="{axis.muted}" text-anchor="end">{unit_prefix}{tick_val}</text>'
         )
 
     def point_xy(idx: int, val: float) -> tuple[float, float]:
         px = ml + (plot_w / max(1, count - 1)) * idx
-        py = mt + (maximum - val) / span * plot_h
+        py = mt + plot_h - ((val - y_min) / y_span) * plot_h
         return px, py
 
     for index, label in enumerate(labels):
         x = ml + (plot_w / max(1, count - 1)) * index
         primary_label, secondary_label = label_parts(label)
         parts.append(
-            f'<text x="{x:.1f}" y="{mt + plot_h + 18:.1f}" font-size="8.5" '
-            f'font-weight="600" fill="{axis.text}" text-anchor="middle">'
+            f'<line x1="{x:.1f}" y1="{mt}" x2="{x:.1f}" y2="{mt + plot_h}" '
+            f'stroke="#edf2f7" stroke-width="1"/>'
+        )
+        parts.append(
+            f'<text x="{x:.1f}" y="{mt + plot_h + 18:.1f}" font-size="9" '
+            f'font-weight="700" fill="{axis.text_dark}" text-anchor="middle">'
             f'{esc(primary_label)}</text>'
         )
-        if secondary_label:
-            parts.append(
-                f'<text x="{x:.1f}" y="{mt + plot_h + 30:.1f}" font-size="7" '
-                f'font-style="italic" fill="{axis.muted}" text-anchor="middle">'
-                f'{esc(secondary_label)}</text>'
-            )
 
     legend_items: list[str] = []
     annotations: list[str] = []
 
     for series_index, series in enumerate(series_data):
         vals = [float(v) for v in series["values"]]
-        color = esc(series.get("color", colors[series_index % len(colors)]))
+        color = esc(series.get("color", axis.primary))
         points = [point_xy(i, v) for i, v in enumerate(vals)]
 
         if len(points) >= 2:
@@ -186,8 +173,8 @@ def line_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
 
         for i, (x, y) in enumerate(points):
             parts.append(
-                f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.5" fill="{color}" '
-                f'stroke="{axis.surface}" stroke-width="1.5"/>'
+                f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4" fill="{axis.surface}" '
+                f'stroke="{color}" stroke-width="2"/>'
             )
             annotations.append(
                 f'<text x="{x:.1f}" y="{y - 8:.1f}" font-size="7.5" font-weight="700" '
@@ -196,11 +183,11 @@ def line_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
 
         label = str(series.get("label", "")).strip()
         if label:
-            lx = 150 + series_index * 145
+            lx = 140 + series_index * 145
             ly = height - 10
             legend_items.append(
                 f'<circle cx="{lx}" cy="{ly - 3}" r="4" fill="{color}"/>'
-                f'<text x="{lx + 10}" y="{ly}" font-size="8" fill="{axis.text}" '
+                f'<text x="{lx + 10}" y="{ly}" font-size="8.5" font-weight="600" fill="{axis.text}" '
                 f'text-anchor="start">{esc(label)}</text>'
             )
 
@@ -214,15 +201,15 @@ def line_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
 
 
 def donut_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
-    width, height = 600, 260
-    cx, cy, outer, inner = 160, 130, 92, 53
+    width, height = 540, 220
+    cx, cy, outer, inner = 130, 110, 78, 46
     values = [max(0.0, float(v)) for v in spec["values"]]
     total = sum(values) or 1.0
     axis = design.palette
     start = -math.pi / 2
     parts: list[str] = []
     legends: list[str] = []
-    colors = axis.series or (axis.primary,)
+    colors = axis.series or ("#1a3a5f", "#d35400", "#16a085", "#2980b9")
 
     for index, (label, value) in enumerate(zip(spec["labels"], values)):
         sweep = 2 * math.pi * value / total
@@ -242,16 +229,16 @@ def donut_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
         )
 
         primary_label, secondary_label = label_parts(label)
-        y = 42 + index * 38
+        y = 35 + index * 36
         percentage = value / total * 100
         legends.append(
-            f'<rect x="312" y="{y}" width="12" height="12" rx="2" fill="{esc(color)}"/>'
-            f'<text x="332" y="{y + 10}" font-size="8.5" font-weight="700" '
+            f'<rect x="270" y="{y - 9}" width="12" height="12" rx="2" fill="{esc(color)}"/>'
+            f'<text x="290" y="{y}" font-size="9" font-weight="700" '
             f'fill="{axis.text_dark}">{percentage:.1f}% — {esc(primary_label)}</text>'
         )
         if secondary_label:
             legends.append(
-                f'<text x="332" y="{y + 22}" font-size="7" font-style="italic" '
+                f'<text x="290" y="{y + 12}" font-size="7.5" font-style="italic" '
                 f'fill="{axis.muted}">{esc(secondary_label)}</text>'
             )
         start = end
@@ -259,9 +246,9 @@ def donut_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
     center_val = esc(spec.get("center_val", spec.get("center_value", "100%")))
     center_lbl = esc(spec.get("center_lbl", spec.get("center_label", "")))
     center = (
-        f'<text x="{cx}" y="{cy - 2}" font-size="16" font-weight="900" '
+        f'<text x="{cx}" y="{cy - 2}" font-size="15" font-weight="900" '
         f'fill="{axis.primary_deep}" text-anchor="middle">{center_val}</text>'
-        f'<text x="{cx}" y="{cy + 14}" font-size="8.5" fill="{axis.muted}" '
+        f'<text x="{cx}" y="{cy + 14}" font-size="8" fill="{axis.muted}" '
         f'text-anchor="middle">{center_lbl}</text>'
     )
     return chart_frame(spec, "".join(parts) + center + "".join(legends), design, width, height)
@@ -269,12 +256,15 @@ def donut_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
 
 def progress_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
     items = spec["items"]
-    width = 620
-    height = max(70, 34 + len(items) * 38)
+    width = 580
+    height = max(70, 24 + len(items) * 34)
     axis = design.palette
     parts: list[str] = []
-    series_colors = axis.series or (axis.primary,)
+    series_colors = axis.series or ("#1a3a5f", "#d35400", "#27ae60", "#8e44ad", "#2980b9")
     spec_color = spec.get("color")
+
+    label_w = 140
+    track_w = 360
 
     for index, item in enumerate(items):
         label_val = item.get("label", "")
@@ -285,33 +275,39 @@ def progress_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
         else:
             label, secondary = label_parts(label_val)
 
-        y = 20 + index * 38
+        y = 12 + index * 34
         value = float(item["value"])
         maximum = float(item.get("max", 1.0)) or 1.0
-        fill_w = max(0.0, min(1.0, value / maximum)) * 320
+        fill_w = max(0.0, min(1.0, value / maximum)) * track_w
         color = item.get("color") or spec_color or series_colors[index % len(series_colors)]
 
+        # Arabic label and French sublabel on the right/start
         parts.append(
-            f'<text x="25" y="{y + 9}" font-size="8.5" font-weight="700" '
-            f'fill="{axis.text_dark}" text-anchor="start">{esc(label)}</text>'
+            f'<text x="{label_w - 12}" y="{y + 11}" font-size="8.5" font-weight="700" '
+            f'fill="{axis.text_dark}" text-anchor="end">{esc(label)}</text>'
         )
         if secondary:
             parts.append(
-                f'<text x="25" y="{y + 21}" font-size="7" font-style="italic" '
-                f'fill="{axis.muted}" text-anchor="start">{esc(secondary)}</text>'
+                f'<text x="{label_w - 12}" y="{y + 22}" font-size="7" font-style="italic" '
+                f'fill="{axis.muted}" text-anchor="end">{esc(secondary)}</text>'
             )
         parts.extend(
             [
-                f'<rect x="180" y="{y}" width="320" height="14" rx="4" '
+                f'<rect x="{label_w}" y="{y + 4}" width="{track_w}" height="14" rx="4" '
                 f'fill="{axis.surface_alt}" stroke="{axis.border_light}"/>',
-                f'<rect x="180" y="{y}" width="{fill_w:.1f}" height="14" rx="4" '
+                f'<rect x="{label_w}" y="{y + 4}" width="{fill_w:.1f}" height="14" rx="4" '
                 f'fill="{esc(color)}"/>',
-                f'<text x="515" y="{y + 11}" font-size="9.5" font-weight="800" '
-                f'fill="{axis.text_dark}">{value:g}</text>',
+                f'<text x="{label_w + track_w + 14}" y="{y + 15}" font-size="9" font-weight="800" '
+                f'fill="{esc(color)}">{value:g}</text>',
             ]
         )
 
     return chart_frame(spec, "".join(parts), design, width, height)
+
+
+def diagram(spec: Mapping[str, Any], design: DesignSystem) -> str:
+    return ""
+
 
 
 def flow_diagram(spec: Mapping[str, Any], design: DesignSystem) -> str:
@@ -418,4 +414,4 @@ def diagram(spec: Mapping[str, Any], design: DesignSystem) -> str:
         return flow_diagram(spec, design)
     if kind == "graph":
         return graph_diagram(spec, design)
-    raise ValueError(f"Unsupported diagram kind: {kind}")
+    raise ValueError(f"Unsupported diagram kind: {kind}")    

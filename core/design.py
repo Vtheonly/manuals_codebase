@@ -8,51 +8,48 @@ from typing import Any, Mapping
 
 @dataclass(frozen=True)
 class Palette:
-    # الألوان السيادية والرسمية
-    primary: str = "#1e4b7a"
-    primary_deep: str = "#0c2340"
-    primary_light: str = "#eef4fb"
-    accent: str = "#c28b2e"
-    accent_light: str = "#fef9ed"
+    primary: str = "#1a3a5f"
+    primary_deep: str = "#0d2238"
+    primary_light: str = "#ebf5fb"
+    accent: str = "#d35400"
+    accent_gold: str = "#c5a059"
+    accent_light: str = "#fff9e6"
 
-    # بطاقة عنوان التقرير المتدرجة (Gradient Card)
-    banner_start: str = "#8cbbe8"
-    banner_end: str = "#a4cdfa"
-    banner_border: str = "#6ba3dc"
-    banner_text: str = "#0c2d48"
+    banner_start: str = "#72a4d4"
+    banner_end: str = "#5b92e5"
+    banner_border: str = "#4a7bb0"
+    banner_text: str = "#ffffff"
 
-    # ألوان السلاسل البيانية المتطابقة
     series: tuple[str, ...] = (
-        "#1e4b7a",
-        "#c28b2e",
-        "#2b7a5a",
-        "#8a4f6e",
-        "#475569",
+        "#2980b9",
+        "#d35400",
+        "#27ae60",
+        "#8e44ad",
+        "#1a3a5f",
     )
 
-    # ألوان النصوص والمحايدات
-    text_dark: str = "#0f172a"
+    text_dark: str = "#0d2238"
     text: str = "#1e293b"
-    muted: str = "#64748b"
+    muted: str = "#718096"
     surface: str = "#ffffff"
     surface_alt: str = "#f8fafc"
-    border: str = "#94a3b8"
+    border: str = "#cbd5e1"
     border_light: str = "#e2e8f0"
 
 
 @dataclass(frozen=True)
 class Typography:
-    font_arabic: str = "'Cairo', sans-serif"
-    font_latin: str = "'Inter', 'Segoe UI', sans-serif"
-    font_math: str = "'Cambria Math', 'Times New Roman', serif"
+    font_arabic: str = "'Cairo', 'Amiri', 'Traditional Arabic', 'Scheherazade New', 'Segoe UI', Tahoma, sans-serif"
+    font_latin: str = "'Inter', 'Segoe UI', Arial, sans-serif"
+    font_math: str = "'Cambria Math', 'Latin Modern Math', 'Times New Roman', serif"
     sizes: dict[str, str] = field(default_factory=lambda: {
-        "xs": "7.5pt",
+        "xs": "8pt",
         "sm": "8.5pt",
-        "base": "9.5pt",
+        "base": "10pt",
         "md": "11pt",
         "lg": "13pt",
         "xl": "15pt",
-        "2xl": "17pt",
+        "2xl": "18pt",
         "3xl": "22pt",
     })
     weights: dict[str, int] = field(default_factory=lambda: {
@@ -71,8 +68,8 @@ class Typography:
 
 @dataclass(frozen=True)
 class Spacing:
-    page_x: str = "14mm"
-    page_y: str = "12mm"
+    page_x: str = "15mm"
+    page_y: str = "14mm"
     xs: str = "4px"
     sm: str = "8px"
     md: str = "12px"
@@ -88,7 +85,7 @@ class Spacing:
 class Borders:
     thin: str = "1px"
     medium: str = "1.5px"
-    thick: str = "2.5px"
+    thick: str = "2px"
     radius_sm: str = "4px"
     radius_md: str = "8px"
     radius_lg: str = "12px"

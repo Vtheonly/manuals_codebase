@@ -55,7 +55,7 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     body {{
       background: #475569;
       color: {p.text};
-      font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+      font-family: 'Cairo', 'Amiri', 'Traditional Arabic', 'Scheherazade New', 'Segoe UI', Tahoma, sans-serif;
       direction: {esc(direction)};
       text-align: right;
       -webkit-print-color-adjust: exact;
@@ -69,10 +69,11 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     .page-sheet {{
       width: 210mm;
       height: 297mm;
+      min-height: 297mm;
       max-height: 297mm;
       background: {p.surface};
       color: {p.text};
-      padding: 13mm 15mm 10mm 15mm;
+      padding: 14mm 16mm 10mm 16mm;
       margin-bottom: 24px;
       position: relative;
       display: flex;
@@ -87,18 +88,18 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 11px;
     }}
 
     /* Cover Page Framing — Double Border Frame */
     .layout-framed {{
-      padding: 8mm;
+      padding: 9mm;
     }}
 
     .layout-framed .page-frame-outer {{
       height: 100%;
-      border: 1px solid {p.primary};
-      padding: 3.5mm;
+      border: 1.5px solid {p.primary};
+      padding: 3mm;
       box-sizing: border-box;
     }}
 
@@ -106,19 +107,20 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       height: 100%;
       border: 2px solid {p.primary};
       border-radius: 2px;
-      padding: 10mm 12mm;
+      padding: 12mm 14mm;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: stretch;
       box-sizing: border-box;
+      text-align: center;
     }}
 
     /* Back Cover Dark Theme with Inner Gold Frame */
     .layout-dark {{
       background: {p.primary_deep};
       color: #ffffff;
-      padding: 8mm;
+      padding: 9mm;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -127,8 +129,8 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
 
     .layout-dark .dark-frame {{
       height: 100%;
-      border: 1.5px solid {p.accent};
-      padding: 14mm 16mm;
+      border: 1px solid {p.accent_gold};
+      padding: 18mm 16mm;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -146,18 +148,20 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     /* Section Headings with Structured Sub-Label */
     .block-heading {{
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 10px;
       margin-bottom: 6px;
+      margin-top: 4px;
     }}
 
     .block-heading .heading-content {{
       display: flex;
       flex-direction: column;
+      flex: 1;
     }}
 
     .block-heading h2 {{
-      font-size: 13pt;
+      font-size: 13.5pt;
       font-weight: 800;
       color: {p.primary_deep};
       margin: 0;
@@ -165,8 +169,8 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     }}
 
     .circle-badge {{
-      width: 25px;
-      height: 25px;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
       background: {p.primary};
       color: #ffffff;
@@ -174,9 +178,10 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 8.5pt;
+      font-size: 9pt;
       font-family: 'Inter', sans-serif;
       flex-shrink: 0;
+      margin-top: 2px;
     }}
 
     .circle-badge.appendix-badge {{
@@ -190,29 +195,29 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       color: {p.muted};
       direction: ltr;
       text-align: right;
-      margin-top: 1px;
+      margin-top: 2px;
     }}
     [dir="ltr"] .sub-label {{
       text-align: left;
     }}
 
-    /* Subsections with Amber Vertical Accent Bar */
+    /* Subsections with Vertical Accent Bar */
     .subsection-header {{
       display: flex;
       align-items: center;
       gap: 8px;
-      border-right: 4px solid {p.accent};
+      border-right: 3.5px solid {p.primary};
       padding-right: 8px;
-      margin: 8px 0 4px 0;
+      margin: 10px 0 6px 0;
     }}
     [dir="ltr"] .subsection-header {{
       border-right: none;
-      border-left: 4px solid {p.accent};
+      border-left: 3.5px solid {p.primary};
       padding-right: 0;
       padding-left: 8px;
     }}
     .sub-title-primary {{
-      font-size: 10.5pt;
+      font-size: 11pt;
       font-weight: 700;
       color: {p.primary_deep};
     }}
@@ -226,11 +231,11 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
 
     /* Text Paragraphs */
     .block-text {{
-      font-size: 9.5pt;
-      line-height: 1.7;
+      font-size: 9.75pt;
+      line-height: 1.75;
       text-align: justify;
       color: {p.text};
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }}
     .block-text p + p {{ margin-top: 6px; }}
     .align-left {{ text-align: left; }}
@@ -239,7 +244,7 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     .align-justify {{ text-align: justify; }}
 
     /* Badges */
-    .badge-wrapper {{ margin: 5px 0; text-align: center; }}
+    .badge-wrapper {{ margin: 6px 0; text-align: center; }}
     .badge {{
       display: inline-block;
       padding: 4px 18px;
@@ -255,41 +260,40 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       font-weight: 700;
     }}
     .badge-dashed {{
-      background: {p.surface_alt};
+      background: #f0f4f8;
       color: {p.primary};
-      border: 1.5px dashed {p.primary};
+      border: 1.5px dashed {p.banner_border};
       border-radius: 20px;
-      padding: 5px 22px;
+      padding: 6px 22px;
       font-size: 9.5pt;
     }}
     .badge-gradient {{
-      background: linear-gradient(135deg, {p.banner_start}, {p.banner_end});
-      color: {p.banner_text};
-      border: 1.5px solid {p.banner_border};
-      padding: 6px 45px;
+      background: #a9cce3;
+      color: {p.primary_deep};
+      padding: 6px 36px;
       border-radius: 6px;
-      font-size: 11pt;
+      font-size: 10pt;
       font-weight: 800;
     }}
 
-    /* Topic Gradient Card */
+    /* Topic Banner Card */
     .card {{
-      border: 1.5px solid {p.banner_border};
       border-radius: 12px;
-      padding: 16px 20px;
-      margin: 8px 0;
+      padding: 18px 24px;
+      margin: 10px auto;
+      width: 100%;
       text-align: center;
       background: linear-gradient(135deg, {p.banner_start} 0%, {p.banner_end} 100%);
       box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      color: #ffffff;
     }}
-    .card-label {{ color: {p.banner_text}; font-weight: 700; font-size: 11pt; margin-bottom: 4px; }}
-    .card-title {{ color: {p.banner_text}; font-size: 18pt; font-weight: 900; line-height: 1.3; margin-bottom: 4px; }}
-    .card-subtitle {{ color: {p.primary}; font-style: italic; font-family: 'Inter', sans-serif; font-size: 9pt; margin-bottom: 8px; direction: ltr; }}
+    .card-label {{ color: #ffffff; font-weight: 600; font-size: 10pt; margin-bottom: 4px; }}
+    .card-title {{ color: #ffffff; font-size: 17pt; font-weight: 900; line-height: 1.35; margin-bottom: 4px; }}
+    .card-subtitle {{ color: #eef4fb; font-style: italic; font-family: 'Inter', sans-serif; font-size: 8.5pt; margin-bottom: 10px; direction: ltr; }}
     .card-pill {{
       display: inline-block;
-      margin-top: 4px;
       padding: 4px 18px;
-      border-radius: 20px;
+      border-radius: 999px;
       background: #ffffff;
       color: {p.primary_deep};
       font-size: 8pt;
@@ -297,169 +301,159 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }}
 
-    /* Trainee Info Card with 2-Column Exact Layout */
+    /* Trainee Info Card with Table Layout */
     .info-card {{
-      border: 1.5px solid {p.border};
-      border-radius: 12px;
-      padding: 14px 22px;
-      margin: 8px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      border: 1px solid {p.border};
+      border-radius: 10px;
+      padding: 14px 20px;
+      margin: 10px auto;
+      width: 100%;
       background: {p.surface};
     }}
-    .info-row {{
-      display: flex;
-      align-items: baseline;
-      font-size: 10pt;
+    .info-table {{
+      width: 100%;
+      border-collapse: collapse;
+      text-align: right;
+    }}
+    .info-row td {{
+      padding: 5px 0;
+      font-size: 9.5pt;
+      vertical-align: baseline;
+    }}
+    .info-label {{
+      width: 28%;
+      font-weight: 700;
+      color: {p.primary};
+      white-space: nowrap;
+    }}
+    .info-sep {{
+      width: 4%;
+      text-align: center;
+      font-weight: 700;
+      color: {p.primary};
+    }}
+    .info-value {{
+      width: 68%;
+      font-weight: 500;
+      color: {p.text};
+      line-height: 1.4;
+      padding-right: 4px;
     }}
     .info-row.highlight .info-value {{
       color: {p.primary_deep};
       font-weight: 800;
     }}
-    .info-label-cell {{
-      display: flex;
-      align-items: baseline;
-      width: 190px;
-      flex-shrink: 0;
-      justify-content: space-between;
-      padding-left: 12px;
-    }}
-    [dir="ltr"] .info-label-cell {{
-      padding-left: 0;
-      padding-right: 12px;
-    }}
-    .info-label {{
-      font-weight: 700;
-      color: {p.primary};
-    }}
-    .info-sep {{
-      font-weight: 700;
-      color: {p.primary};
-      margin: 0 4px;
-    }}
-    .info-value {{
-      flex: 1;
-      font-weight: 500;
-      color: {p.text};
-      line-height: 1.4;
-    }}
 
     /* Formula Block */
-    .formula-box {{
-      border-right: 4px solid {p.accent};
-      border-radius: 4px;
-      background: {p.accent_light};
-      padding: 12px 18px;
-      margin: 8px 0;
+    .formula-container {{
+      border: 1px solid {p.border};
+      border-radius: 8px;
+      background: #fdfefe;
+      padding: 14px 18px;
+      margin: 12px 0;
+      text-align: center;
     }}
-    [dir="ltr"] .formula-box {{
-      border-right: none;
-      border-left: 4px solid {p.accent};
-    }}
-    .formula-title {{
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 10pt;
-      font-weight: 700;
-      color: {p.accent};
-      margin-bottom: 6px;
-    }}
-    .formula-icon-circle {{
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: {p.accent};
-      color: #ffffff;
+    .formula-badge {{
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      font-size: 8.5pt;
+      gap: 6px;
+      background: #fef5e7;
+      border: 1px solid #fad7a0;
+      color: {p.accent};
+      font-size: 8pt;
+      font-weight: 700;
+      padding: 3px 14px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }}
+    .formula-icon-circle {{
       font-family: {t.font_math};
+      font-size: 9pt;
+      font-weight: bold;
     }}
     .formula-math {{
       text-align: center;
       font-family: {t.font_math};
-      font-size: 15pt;
+      font-size: 16pt;
       font-weight: bold;
       color: {p.primary_deep};
-      margin: 6px 0;
+      margin: 8px 0;
       direction: ltr;
       unicode-bidi: isolate;
     }}
     .formula-desc {{
       font-size: 8.5pt;
       line-height: 1.6;
-      color: {p.text};
+      color: #4a5568;
     }}
 
     /* Callouts */
     .callout {{
-      border-right: 4px solid {p.accent};
-      border-radius: 4px;
-      background: {p.accent_light};
-      padding: 10px 14px;
-      margin: 8px 0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-size: 9pt;
+      line-height: 1.6;
     }}
-    [dir="ltr"] .callout {{
-      border-right: none;
-      border-left: 4px solid {p.accent};
+    .callout-accent {{
+      background: #fff9e6;
+      border: 1px solid #f9e79f;
+      border-right: 4px solid #d4ac0d;
     }}
+    [dir="ltr"] .callout-accent {{
+      border-right: 1px solid #f9e79f;
+      border-left: 4px solid #d4ac0d;
+    }}
+    .callout-accent .callout-header {{ color: #d4ac0d; }}
     .callout-primary {{
-      border-color: {p.primary};
-      background: {p.primary_light};
+      background: #ebf5fb;
+      border: 1px solid #aed6f1;
+      border-right: 4px solid {p.primary};
     }}
+    [dir="ltr"] .callout-primary {{
+      border-right: 1px solid #aed6f1;
+      border-left: 4px solid {p.primary};
+    }}
+    .callout-primary .callout-header {{ color: {p.primary}; }}
     .callout-header {{
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       font-weight: 700;
-      font-size: 10pt;
+      font-size: 9.5pt;
       margin-bottom: 4px;
-      color: {p.accent};
     }}
-    .callout-primary .callout-header {{ color: {p.primary_deep}; }}
-    .callout-icon-circle {{
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: {p.accent};
-      color: #ffffff;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 8pt;
-      font-weight: 700;
-      flex-shrink: 0;
-    }}
-    .callout-primary .callout-icon-circle {{ background: {p.primary}; }}
+    .callout-icon-circle {{ font-size: 9.5pt; font-weight: bold; }}
     .callout-content {{ font-size: 9pt; line-height: 1.6; }}
 
     /* Stat Cards */
-    .stats-grid {{ display: grid; gap: 10px; margin: 10px 0; }}
-    .cols-4 {{ grid-template-columns: repeat(4, 1fr); }}
-    .cols-3 {{ grid-template-columns: repeat(3, 1fr); }}
-    .cols-2 {{ grid-template-columns: repeat(2, 1fr); }}
+    .stats-grid {{
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 14px 0;
+    }}
     .stat-card {{
+      flex: 1 1 0;
+      background: #ffffff;
       border: 1px solid {p.border_light};
-      border-radius: 6px;
+      border-radius: 8px;
       padding: 10px 8px;
       text-align: center;
-      background: {p.surface};
     }}
     .stat-value {{
-      font-size: 15pt;
-      font-weight: 900;
+      font-size: 16pt;
+      font-weight: 800;
       color: {p.primary_deep};
       font-family: {t.font_latin};
+      direction: ltr;
     }}
     .stat-label {{
       font-size: 8pt;
       font-weight: 700;
-      color: {p.text};
+      color: #2d3748;
       margin-top: 4px;
-      line-height: 1.3;
+      line-height: 1.35;
     }}
     .stat-sub {{
       display: block;
@@ -468,49 +462,50 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       font-style: italic;
       font-family: {t.font_latin};
       margin-top: 2px;
+      direction: ltr;
     }}
 
     /* Data Tables */
-    .table-wrapper {{ margin: 8px 0; }}
+    .table-wrapper {{ margin: 10px 0; }}
     .standard-table {{
       width: 100%;
       border-collapse: collapse;
       font-size: 8.5pt;
-      border: 1px solid {p.border};
+      border: 1px solid {p.primary};
     }}
     .standard-table th {{
       background: {p.primary};
       color: #ffffff;
-      padding: 6px 10px;
+      padding: 7px 10px;
       text-align: center;
-      border: 1px solid {p.primary_deep};
+      border: 1px solid {p.primary};
       font-weight: 700;
     }}
     .standard-table th .th-sub {{
       display: block;
-      color: #ffffff;
+      color: #cbd5e1;
       font-style: italic;
       font-size: 7pt;
       font-weight: 400;
-      opacity: 0.9;
+      direction: ltr;
     }}
     .standard-table td {{
       border: 1px solid {p.border_light};
-      padding: 5px 10px;
-      line-height: 1.4;
+      padding: 6px 10px;
+      line-height: 1.45;
     }}
     .standard-table tbody tr:nth-child(even) {{ background: {p.surface_alt}; }}
     td.num {{ text-align: center; font-family: {t.font_latin}; font-weight: 700; }}
     td.txt {{ text-align: right; }}
     [dir="ltr"] td.txt {{ text-align: left; }}
 
-    /* Two-Line Captions */
+    /* Captions */
     .caption {{
       text-align: center;
       margin-top: 6px;
     }}
     .caption-main {{
-      color: {p.primary};
+      color: #4a5568;
       font-weight: 700;
       font-size: 8pt;
     }}
@@ -519,24 +514,25 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       font-style: italic;
       font-size: 7pt;
       color: {p.muted};
+      direction: ltr;
       margin-top: 1px;
     }}
 
-    /* Flow Steps */
+    /* Flow Steps — Unified Card */
     .flow-steps {{
-      border: 1px solid {p.border_light};
       background: {p.surface_alt};
+      border: 1px solid {p.border_light};
       border-radius: 8px;
-      padding: 12px 18px;
-      margin: 8px 0;
+      padding: 14px 18px;
+      margin: 12px 0;
     }}
-    .step-node {{ display: flex; align-items: center; gap: 14px; }}
-    .step-content {{ display: flex; flex-direction: column; }}
+    .step-node {{ display: flex; align-items: flex-start; gap: 12px; }}
+    .step-content {{ flex: 1; }}
     .step-num {{
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
-      background: {p.primary};
+      background: {p.series[0]};
       color: #ffffff;
       display: inline-flex;
       align-items: center;
@@ -545,48 +541,45 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       font-weight: 700;
       flex-shrink: 0;
       font-family: {t.font_latin};
+      margin-top: 1px;
     }}
-    .step-title {{ font-weight: 700; font-size: 9pt; color: {p.text_dark}; }}
-    .step-sub {{ color: {p.muted}; font-family: {t.font_latin}; font-style: italic; font-size: 7.5pt; margin-top: 1px; }}
+    .step-title {{ font-weight: 700; font-size: 9pt; color: #2d3748; line-height: 1.4; }}
+    .step-sub {{ color: {p.muted}; font-family: {t.font_latin}; font-style: italic; font-size: 7.5pt; margin-top: 2px; direction: ltr; text-align: right; }}
     .step-arrow {{
-      color: {p.accent};
-      text-align: right;
-      padding-right: 8px;
-      font-size: 9pt;
+      color: {p.series[0]};
+      text-align: center;
+      padding-right: 25px;
+      font-size: 8pt;
       margin: 2px 0;
     }}
-    [dir="ltr"] .step-arrow {{
-      text-align: left;
-      padding-right: 0;
-      padding-left: 8px;
-    }}
 
-    /* Table of Contents - Spaced and Full Height */
+    /* Table of Contents */
     .toc {{
       display: flex;
       flex-direction: column;
       height: 100%;
     }}
     .toc h2 {{
-      font-size: 20pt;
+      font-size: 18pt;
       font-weight: 900;
       text-align: center;
-      color: {p.primary_deep};
+      color: {p.primary};
       margin-bottom: 2px;
     }}
     .toc-subtitle {{
       text-align: center;
       font-family: {t.font_latin};
       font-style: italic;
-      color: {p.accent};
-      margin-bottom: 8px;
-      font-size: 9pt;
+      color: {p.muted};
+      margin-bottom: 6px;
+      font-size: 8.5pt;
+      direction: ltr;
     }}
     .toc-divider-line {{
       width: 100%;
       height: 2px;
       background: {p.primary};
-      margin-bottom: 18px;
+      margin: 6px 0 20px 0;
     }}
     .toc ul {{
       list-style: none;
@@ -599,7 +592,7 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     .toc-row {{
       display: flex;
       align-items: center;
-      font-size: 10pt;
+      font-size: 9.5pt;
     }}
     .toc-badge {{
       width: 22px;
@@ -616,48 +609,56 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       margin-left: 10px;
       font-family: {t.font_latin};
     }}
-    [dir="ltr"] .toc-badge {{
-      margin-left: 0;
-      margin-right: 10px;
-    }}
     .appendix-badge {{ background: {p.accent} !important; }}
     .toc-title {{ display: flex; flex-direction: column; }}
-    .toc-title strong {{ font-weight: 700; color: {p.text_dark}; }}
-    .toc-sub {{ font-family: {t.font_latin}; font-size: 7.5pt; color: {p.muted}; font-style: italic; }}
-    .toc-dots {{ flex: 1; border-bottom: 1px dotted {p.border}; margin: 0 10px; height: 1px; }}
-    .toc-page {{ font-family: {t.font_latin}; font-weight: 700; color: {p.primary}; font-size: 10pt; }}
+    .toc-title strong {{ font-weight: 700; color: #2d3748; }}
+    .toc-sub {{ font-family: {t.font_latin}; font-size: 7.5pt; color: {p.muted}; font-style: italic; direction: ltr; text-align: right; }}
+    .toc-dots {{
+      flex: 1;
+      border-bottom: 1.5px dotted {p.border};
+      margin: 0 10px;
+      height: 12px;
+    }}
+    .toc-page {{
+      font-family: {t.font_latin};
+      font-weight: 700;
+      color: {p.primary};
+      font-size: 10pt;
+      width: 25px;
+      text-align: left;
+    }}
 
     /* Quotes */
-    .quote {{ max-width: 160mm; margin: auto; text-align: center; }}
-    .quote-rule {{ display: block; width: 45mm; height: 2px; background: {p.accent}; margin: 12px auto; }}
-    .quote p {{ font-size: 12.5pt; font-weight: 700; line-height: 1.75; color: {p.text_dark}; }}
-    .layout-dark .quote p {{ color: #f8fafc; }}
-    .quote-sub {{ font-family: {t.font_latin}; font-style: italic; font-size: 8.5pt; color: {p.muted}; margin-top: 6px; }}
-    .layout-dark .quote-sub {{ color: #cbd5e1; }}
+    .quote {{ max-width: 160mm; margin: 12px auto; text-align: center; }}
+    .quote-rule {{ display: block; width: 60px; height: 1.5px; background: {p.accent_gold}; margin: 16px auto; }}
+    .quote p {{ font-size: 12.5pt; font-weight: 700; line-height: 1.85; color: {p.text_dark}; }}
+    .layout-dark .quote p {{ color: #ffffff; }}
+    .quote-sub {{ font-family: {t.font_latin}; font-style: italic; font-size: 8.5pt; color: {p.muted}; margin-top: 8px; direction: ltr; line-height: 1.6; }}
+    .layout-dark .quote-sub {{ color: #e2e8f0; }}
     .quote-author {{ display: block; font-size: 8pt; color: {p.muted}; margin-top: 8px; }}
 
     /* Lists */
-    .content-list {{ margin: 6px 0; padding-right: 22px; line-height: 1.65; font-size: 9pt; }}
+    .content-list {{ margin: 6px 0; padding-right: 22px; line-height: 1.7; font-size: 9.5pt; }}
     [dir="ltr"] .content-list {{ padding-right: 0; padding-left: 22px; }}
 
-    /* Structured Card Lists */
+    /* Structured Card Lists (Page 16) */
     .list-cards {{
       list-style: none;
       padding: 0 !important;
       display: flex;
       flex-direction: column;
       gap: 6px;
-      margin: 6px 0;
+      margin: 8px 0;
     }}
     .list-item-card {{
       display: flex;
       align-items: center;
       justify-content: space-between;
       border: 1px solid {p.border_light};
-      border-radius: 4px;
+      border-radius: 6px;
       background: {p.surface};
-      padding: 6px 12px;
-      gap: 10px;
+      padding: 7px 12px;
+      gap: 12px;
     }}
     .list-item-badge {{
       font-size: 8.5pt;
@@ -672,20 +673,24 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }}
     .list-item-title {{
-      font-size: 8pt;
+      font-size: 8.5pt;
       font-weight: 600;
       color: {p.text_dark};
-      line-height: 1.35;
+      line-height: 1.4;
     }}
     .list-item-tag {{
       font-family: {t.font_latin};
-      font-size: 7pt;
+      font-size: 7.5pt;
       color: {p.muted};
       white-space: nowrap;
       flex-shrink: 0;
+      background: {p.surface_alt};
+      border: 1px solid {p.border_light};
+      padding: 2px 8px;
+      border-radius: 4px;
     }}
 
     /* Layout Spacers */
@@ -693,27 +698,28 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     .spacer-md {{ height: 14px; }}
     .spacer-lg {{ height: 22px; }}
 
-    /* Vector Chart Container */
+    /* Vector Chart Container Card */
     .chart-container {{
-      margin: 8px 0;
-      padding: 10px 14px;
+      margin: 10px 0;
+      padding: 12px 16px;
       border: 1px solid {p.border_light};
       border-radius: 8px;
       background: #ffffff;
+      text-align: center;
     }}
-    .chart-header {{ text-align: center; margin-bottom: 6px; }}
-    .chart-header h4 {{ font-size: 10.5pt; font-weight: 700; color: {p.primary_deep}; }}
-    .chart-header .chart-subtitle {{ font-family: {t.font_latin}; font-style: italic; font-size: 8pt; color: {p.muted}; margin-top: 1px; }}
+    .chart-header {{ text-align: center; margin-bottom: 8px; }}
+    .chart-header h4 {{ font-size: 10pt; font-weight: 700; color: {p.primary}; }}
+    .chart-header .chart-subtitle {{ font-family: {t.font_latin}; font-style: italic; font-size: 7.5pt; color: {p.muted}; margin-top: 1px; direction: ltr; }}
     .svg-viewport {{ width: 100%; max-height: 250px; display: block; margin: 0 auto; }}
 
-    /* Running Footer: Left - Center - Right */
+    /* Running Footer */
     .running-footer {{
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-top: 1px solid {p.border_light};
       padding-top: 6px;
-      font-size: 8pt;
+      font-size: 7.5pt;
       color: {p.muted};
       font-family: {t.font_latin};
       direction: ltr !important;

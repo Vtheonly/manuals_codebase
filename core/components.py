@@ -26,7 +26,7 @@ def label_parts(value: Any) -> tuple[str, str]:
 
 def clean_html(value: Any, mode: str = "auto") -> str:
     content = str(value or "")
-    # Strip any stray page-break / block sentinels generically
+    # Generic cleanup of any pagination sentinels
     content = re.sub(r'PGB[SA][a-zA-Z0-9]+', '', content)
     if mode == "html":
         return content
@@ -75,10 +75,10 @@ def render_subsection(block: Mapping[str, Any], design: DesignSystem) -> str:
 
 def render_formula(block: Mapping[str, Any], design: DesignSystem) -> str:
     icon_char = esc(block.get("icon", "∑"))
-    icon = f'<span class="formula-icon-circle">{icon_char}</span>'
     title_text = clean_html(block.get("title", ""))
-    title = (
-        f'<div class="formula-title">{icon}<strong>{title_text}</strong></div>'
+    badge_html = (
+        f'<div class="formula-badge"><span class="formula-icon-circle">{icon_char}</span>'
+        f'<strong>{title_text}</strong></div>'
         if title_text
         else ""
     )
@@ -89,7 +89,7 @@ def render_formula(block: Mapping[str, Any], design: DesignSystem) -> str:
     )
     expression = block.get("html_expression", block.get("expression", ""))
     return (
-        f'<aside class="formula-box">{title}'
+        f'<aside class="formula-container">{badge_html}'
         f'<div class="formula-math" dir="ltr">{clean_html(expression)}</div>'
         f'{description}</aside>'
     )
@@ -141,15 +141,13 @@ def render_info_card(block: Mapping[str, Any], design: DesignSystem) -> str:
         val = clean_html(row.get("value", ""))
         sep = esc(row.get("separator", ":"))
         rows.append(
-            f'<div class="info-row{highlight}">'
-            f'<div class="info-label-cell">'
-            f'<span class="info-label">{label}</span>'
-            f'<span class="info-sep">{sep}</span>'
-            f'</div>'
-            f'<div class="info-value">{val}</div>'
-            f'</div>'
+            f'<tr class="info-row{highlight}">'
+            f'<td class="info-label">{label}</td>'
+            f'<td class="info-sep">{sep}</td>'
+            f'<td class="info-value">{val}</td>'
+            f'</tr>'
         )
-    return f'<section class="info-card">{"".join(rows)}</section>'
+    return f'<section class="info-card"><table class="info-table">{"".join(rows)}</table></section>'
 
 
 def render_callout(block: Mapping[str, Any], design: DesignSystem) -> str:
@@ -252,10 +250,14 @@ def render_toc(block: Mapping[str, Any], design: DesignSystem) -> str:
             "أ", "ب", "ج", "د", "A", "B", "C", "D"
         ]
         badge_cls = " appendix-badge" if is_appendix else ""
+        # Correct RTL order: Badge on the right, title next to it, dots in middle, page on left
         items.append(
-            f'<li class="toc-row"><span class="toc-badge{badge_cls}">{esc(badge_val)}</span>'
+            f'<li class="toc-row">'
+            f'<span class="toc-badge{badge_cls}">{esc(badge_val)}</span>'
             f'<span class="toc-title"><strong>{clean_html(title)}</strong>{sub}</span>'
-            f'<span class="toc-dots"></span><span class="toc-page">{esc(item.get("page", ""))}</span></li>'
+            f'<span class="toc-dots"></span>'
+            f'<span class="toc-page">{esc(item.get("page", ""))}</span>'
+            f'</li>'
         )
     subtitle_html = (
         f'<p class="toc-subtitle">{clean_html(block["subtitle"])}</p>'
