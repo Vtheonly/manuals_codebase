@@ -1,26 +1,27 @@
-"""Data-driven, domain-agnostic design tokens with JSON theme overrides."""
+"""
+core/design.py — Abstract Design Tokens with JSON Theme Overrides
+Single source of truth for Palette, Typography, Spacing, Borders, and Page Geometry.
+"""
 from dataclasses import asdict, dataclass, field
 from typing import Any, Mapping
 
 
 @dataclass(frozen=True)
 class Palette:
+    # الألوان السيادية والرسمية
     primary: str = "#1e4b7a"
     primary_deep: str = "#0c2340"
     primary_light: str = "#eef4fb"
     accent: str = "#c28b2e"
     accent_light: str = "#fef9ed"
-    text_dark: str = "#0f172a"
-    text: str = "#1e293b"
-    muted: str = "#64748b"
-    surface: str = "#ffffff"
-    surface_alt: str = "#f8fafc"
-    border: str = "#94a3b8"
-    border_light: str = "#e2e8f0"
+
+    # بطاقة عنوان التقرير المتدرجة (Gradient Card)
     banner_start: str = "#8cbbe8"
     banner_end: str = "#a4cdfa"
     banner_border: str = "#6ba3dc"
     banner_text: str = "#0c2d48"
+
+    # ألوان السلاسل البيانية المتطابقة
     series: tuple[str, ...] = (
         "#1e4b7a",
         "#c28b2e",
@@ -28,6 +29,15 @@ class Palette:
         "#8a4f6e",
         "#475569",
     )
+
+    # ألوان النصوص والمحايدات
+    text_dark: str = "#0f172a"
+    text: str = "#1e293b"
+    muted: str = "#64748b"
+    surface: str = "#ffffff"
+    surface_alt: str = "#f8fafc"
+    border: str = "#94a3b8"
+    border_light: str = "#e2e8f0"
 
 
 @dataclass(frozen=True)
@@ -53,9 +63,9 @@ class Typography:
         "black": 900,
     })
     line_height: dict[str, float] = field(default_factory=lambda: {
-        "tight": 1.2,
-        "normal": 1.55,
-        "relaxed": 1.8,
+        "tight": 1.25,
+        "normal": 1.65,
+        "relaxed": 1.85,
     })
 
 
@@ -68,7 +78,7 @@ class Spacing:
     md: str = "12px"
     lg: str = "18px"
     xl: str = "28px"
-    card: str = "14px 18px"
+    card: str = "14px 20px"
     cell: str = "6px 10px"
     gap: str = "10px"
     frame_padding: str = "10mm 12mm"
@@ -82,7 +92,7 @@ class Borders:
     radius_sm: str = "4px"
     radius_md: str = "8px"
     radius_lg: str = "12px"
-    pill: str = "999px"
+    pill: str = "30px"
 
 
 @dataclass(frozen=True)

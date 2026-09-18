@@ -1,4 +1,7 @@
-"""Deterministic, domain-agnostic SVG generators."""
+"""
+core/svg.py — Deterministic, Domain-Agnostic Vector Graphics Engine (Pure SVG)
+Generates high-fidelity vector charts and diagrams directly using DesignSystem tokens.
+"""
 from __future__ import annotations
 
 import html
@@ -38,7 +41,7 @@ def chart_frame(spec: Mapping[str, Any], body: str, design: DesignSystem, width:
         <p>{subtitle}</p>
       </div>
       <svg viewBox="0 0 {width} {height}" class="svg-viewport"
-           style="direction:ltr !important; unicode-bidi:isolate;"
+           style="direction: ltr !important; unicode-bidi: isolate;"
            xmlns="http://www.w3.org/2000/svg" role="img"
            aria-label="{title}">{body}</svg>
       {caption}
@@ -50,12 +53,11 @@ def bar_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
     width, height = 640, 290
     ml, mr, mt, mb = 52, 22, 28, 52
     plot_w, plot_h = width - ml - mr, height - mt - mb
-    values = [float(value) for value in spec["values"]]
+    values = [float(v) for v in spec["values"]]
     labels = spec["labels"]
-    maximum = max((abs(value) for value in values), default=1.0)
-    maximum = maximum * 1.2 or 1.0
+    maximum = max((abs(v) for v in values), default=1.0) * 1.2 or 1.0
     count = max(1, len(values))
-    bar_w = max(14.0, (plot_w / count) * 0.55)
+    bar_w = max(16.0, (plot_w / count) * 0.52)
     gap = (plot_w - bar_w * count) / (count + 1)
     axis = design.palette
     text_font = design.typography.font_arabic
@@ -64,14 +66,14 @@ def bar_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
     parts: list[str] = []
     for i in range(5):
         y = mt + plot_h * i / 4
-        value = maximum * (1 - i / 4)
+        val = maximum * (1 - i / 4)
         parts.append(
             f'<line x1="{ml}" y1="{y:.1f}" x2="{width - mr}" y2="{y:.1f}" '
             f'stroke="{axis.border_light}" stroke-dasharray="2,2"/>'
         )
         parts.append(
             f'<text x="{ml - 8}" y="{y + 4:.1f}" font-family="{esc(text_font)}" '
-            f'font-size="8" fill="{axis.muted}" text-anchor="end">{value:.0f}</text>'
+            f'font-size="8" fill="{axis.muted}" text-anchor="end">{val:.0f}</text>'
         )
 
     colors = axis.series or (axis.primary,)
@@ -120,7 +122,7 @@ def line_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
             "color": axis.primary,
         }]
 
-    all_values = [float(value) for series in series_data for value in series["values"]]
+    all_values = [float(v) for s in series_data for v in s["values"]]
     maximum = max(all_values, default=1.0) * 1.2 or 1.0
     minimum = min(0.0, min(all_values, default=0.0))
     span = max(maximum - minimum, 1.0)
@@ -131,20 +133,20 @@ def line_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
     for i in range(5):
         ratio = i / 4
         y = mt + plot_h * ratio
-        value = maximum - span * ratio
+        val = maximum - span * ratio
         parts.append(
             f'<line x1="{ml}" y1="{y:.1f}" x2="{width - mr}" y2="{y:.1f}" '
             f'stroke="{axis.border_light}" stroke-dasharray="2,2"/>'
         )
         parts.append(
             f'<text x="{ml - 8}" y="{y + 4:.1f}" font-size="8" fill="{axis.muted}" '
-            f'text-anchor="end">{value:g}</text>'
+            f'text-anchor="end">{val:g}</text>'
         )
 
-    def point_xy(index: int, value: float) -> tuple[float, float]:
-        x = ml + (plot_w / max(1, count - 1)) * index
-        y = mt + (maximum - value) / span * plot_h
-        return x, y
+    def point_xy(idx: int, val: float) -> tuple[float, float]:
+        px = ml + (plot_w / max(1, count - 1)) * idx
+        py = mt + (maximum - val) / span * plot_h
+        return px, py
 
     for index, label in enumerate(labels):
         x = ml + (plot_w / max(1, count - 1)) * index
@@ -162,10 +164,12 @@ def line_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
             )
 
     legend_items: list[str] = []
+    annotations: list[str] = []
+
     for series_index, series in enumerate(series_data):
-        vals = [float(value) for value in series["values"]]
+        vals = [float(v) for v in series["values"]]
         color = esc(series.get("color", colors[series_index % len(colors)]))
-        points = [point_xy(i, value) for i, value in enumerate(vals)]
+        points = [point_xy(i, v) for i, v in enumerate(vals)]
 
         if len(points) >= 2:
             polyline = " ".join(f"{x:.1f},{y:.1f}" for x, y in points)
@@ -174,35 +178,24 @@ def line_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
                 f'stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>'
             )
 
-        for x, y in points:
+        for i, (x, y) in enumerate(points):
             parts.append(
                 f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.5" fill="{color}" '
                 f'stroke="{axis.surface}" stroke-width="1.5"/>'
+            )
+            annotations.append(
+                f'<text x="{x:.1f}" y="{y - 8:.1f}" font-size="7.5" font-weight="700" '
+                f'fill="{color}" text-anchor="middle">{vals[i]:g}</text>'
             )
 
         label = str(series.get("label", "")).strip()
         if label:
             lx = 150 + series_index * 145
-            if lx > width - 90:
-                lx = 150 + (series_index % 3) * 145
-                ly = height - 22 - (series_index // 3) * 14
-            else:
-                ly = height - 10
+            ly = height - 10
             legend_items.append(
                 f'<circle cx="{lx}" cy="{ly - 3}" r="4" fill="{color}"/>'
                 f'<text x="{lx + 10}" y="{ly}" font-size="8" fill="{axis.text}" '
                 f'text-anchor="start">{esc(label)}</text>'
-            )
-
-    # Render numeric annotations in a second pass so each annotation uses its own source value.
-    annotations: list[str] = []
-    for series_index, series in enumerate(series_data):
-        color = esc(series.get("color", colors[series_index % len(colors)]))
-        for index, raw_value in enumerate(series["values"]):
-            x, y = point_xy(index, float(raw_value))
-            annotations.append(
-                f'<text x="{x:.1f}" y="{y - 8:.1f}" font-size="7.5" font-weight="700" '
-                f'fill="{color}" text-anchor="middle">{float(raw_value):g}</text>'
             )
 
     return chart_frame(spec, "".join(parts) + "".join(annotations) + "".join(legend_items), design, width, height)
@@ -211,7 +204,7 @@ def line_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
 def donut_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
     width, height = 600, 260
     cx, cy, outer, inner = 160, 130, 92, 53
-    values = [max(0.0, float(value)) for value in spec["values"]]
+    values = [max(0.0, float(v)) for v in spec["values"]]
     total = sum(values) or 1.0
     axis = design.palette
     start = -math.pi / 2
@@ -251,13 +244,13 @@ def donut_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
             )
         start = end
 
-    center_value = esc(spec.get("center_value", spec.get("center_val", "")))
-    center_label = esc(spec.get("center_label", spec.get("center_lbl", "")))
+    center_val = esc(spec.get("center_val", spec.get("center_value", "100%")))
+    center_lbl = esc(spec.get("center_lbl", spec.get("center_label", "")))
     center = (
         f'<text x="{cx}" y="{cy - 2}" font-size="16" font-weight="900" '
-        f'fill="{axis.primary_deep}" text-anchor="middle">{center_value}</text>'
-        f'<text x="{cx}" y="{cy + 14}" font-size="8" fill="{axis.muted}" '
-        f'text-anchor="middle">{center_label}</text>'
+        f'fill="{axis.primary_deep}" text-anchor="middle">{center_val}</text>'
+        f'<text x="{cx}" y="{cy + 14}" font-size="8.5" fill="{axis.muted}" '
+        f'text-anchor="middle">{center_lbl}</text>'
     )
     return chart_frame(spec, "".join(parts) + center + "".join(legends), design, width, height)
 
@@ -271,28 +264,29 @@ def progress_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
 
     for index, item in enumerate(items):
         label, secondary = label_parts(item.get("label", ""))
-        y = 22 + index * 38
+        y = 20 + index * 38
         value = float(item["value"])
         maximum = float(item.get("max", 1.0)) or 1.0
-        fill_w = max(0.0, min(1.0, value / maximum)) * 330
+        fill_w = max(0.0, min(1.0, value / maximum)) * 320
         color = (axis.series or (axis.primary,))[index % len(axis.series or (axis.primary,))]
 
+        # النصوص على اليسار ثابتة بمحاذاة start لمنع قص النصوص العربية
         parts.append(
-            f'<text x="10" y="{y + 8}" font-size="8.5" font-weight="700" '
-            f'fill="{axis.text_dark}">{esc(label)}</text>'
+            f'<text x="25" y="{y + 9}" font-size="8.5" font-weight="700" '
+            f'fill="{axis.text_dark}" text-anchor="start">{esc(label)}</text>'
         )
         if secondary:
             parts.append(
-                f'<text x="10" y="{y + 19}" font-size="7" font-style="italic" '
-                f'fill="{axis.muted}">{esc(secondary)}</text>'
+                f'<text x="25" y="{y + 21}" font-size="7" font-style="italic" '
+                f'fill="{axis.muted}" text-anchor="start">{esc(secondary)}</text>'
             )
         parts.extend(
             [
-                f'<rect x="200" y="{y}" width="330" height="14" rx="4" '
+                f'<rect x="180" y="{y}" width="320" height="14" rx="4" '
                 f'fill="{axis.surface_alt}" stroke="{axis.border_light}"/>',
-                f'<rect x="200" y="{y}" width="{fill_w:.1f}" height="14" rx="4" '
+                f'<rect x="180" y="{y}" width="{fill_w:.1f}" height="14" rx="4" '
                 f'fill="{esc(color)}"/>',
-                f'<text x="546" y="{y + 11}" font-size="9" font-weight="800" '
+                f'<text x="515" y="{y + 11}" font-size="9.5" font-weight="800" '
                 f'fill="{axis.text_dark}">{value:g}</text>',
             ]
         )

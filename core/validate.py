@@ -1,4 +1,7 @@
-"""Validation for the generic JSON document contract."""
+"""
+core/validate.py — Generic Document Schema & Semantic Contract Validation
+Ensures incoming JSON documents conform to generic component and artifact specifications.
+"""
 from __future__ import annotations
 
 from collections.abc import Mapping
@@ -122,25 +125,25 @@ def _validate_block(block: Any, context: str) -> list[str]:
     if kind == "artifact_ref":
         return [_require_string(block, "artifact_id", context)]
 
-    if kind in {"heading", "card", "callout", "quote", "toc"}:
+    if kind in {"heading", "card", "callout", "quote", "toc", "subsection"}:
         _require_string(block, "title" if kind != "quote" else "text", context)
     if kind == "badge":
         _require_string(block, "text", context)
-    if kind == "subsection":
-        _require_string(block, "title", context)
     if kind == "formula":
         if "expression" not in block and "html_expression" not in block:
             raise ValueError(f"{context}: missing 'expression' or 'html_expression'")
-        if "title" in block and not isinstance(block["title"], str):
-            raise ValueError(f"{context}: 'title' must be a string")
     if kind == "text":
-        if "content" not in block:
-            raise ValueError(f"{context}: missing 'content'")
+        if "content" not in block and "text" not in block:
+            raise ValueError(f"{context}: missing 'content' or 'text'")
     if kind == "table":
         _require_list(block, "columns", context)
         _require_list(block, "rows", context)
+    if kind == "info_card":
+        _require_list(block, "rows", context)
     if kind == "stats":
         _require_list(block, "items", context)
+    if kind == "flow_steps":
+        _require_list(block, "steps", context)
     if kind == "group":
         children = _require_list(block, "children", context)
         for index, child in enumerate(children, start=1):
