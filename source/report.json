@@ -1,0 +1,34 @@
+{
+  "id": "manual-demo",
+  "title": "Centralized Artifact System",
+  "language": "en",
+  "metadata": {"subtitle": "Single source → validated model → deterministic artifacts"},
+  "sections": [
+    {
+      "id": "architecture",
+      "title": "Architecture",
+      "blocks": [
+        {"type":"text","role":"body","text":"The report is defined once in structured source data. Every visual artifact references that source instead of duplicating content."},
+        {"type":"artifact_ref","artifact_id":"pipeline"},
+        {"type":"artifact_ref","artifact_id":"coverage"},
+        {"type":"table","title":"Artifact responsibilities","columns":["Layer","Responsibility","Examples"],"rows":[["Source","Content and data","Text, values, labels"],["Design","Visual decisions","Color, type, spacing"],["Generator","Rendering","SVG, HTML, PDF"],["Manifest","Reproducibility","Hashes, versions"]]},
+        {"type":"callout","variant":"warning","title":"Single source of truth","content":"Do not hardcode report facts inside generators."}
+      ]
+    },
+    {
+      "id": "formatting",
+      "title": "Standardized Formatting",
+      "blocks": [
+        {"type":"text","role":"heading","text":"Typography, spacing, borders, colors, numbers, tables, quotes, lists, diagrams and charts are centralized design decisions."},
+        {"type":"artifact_ref","artifact_id":"trend"},
+        {"type":"artifact_ref","artifact_id":"distribution"}
+      ]
+    }
+  ],
+  "artifacts": [
+    {"id":"pipeline","type":"diagram","title":"Generation Pipeline","nodes":["Source Data","Validated Model","Components","Generators","Outputs"],"edges":[[0,1],[1,2],[2,3],[3,4]]},
+    {"id":"coverage","type":"chart","kind":"bar","title":"Artifact Coverage","labels":["Text","Tables","Charts","Diagrams"],"values":[12,3,4,2]},
+    {"id":"trend","type":"chart","kind":"line","title":"Regeneration Example","labels":["v1","v2","v3","v4"],"values":[10,14,18,24]},
+    {"id":"distribution","type":"chart","kind":"donut","title":"Artifact Distribution","labels":["Documents","Charts","Diagrams"],"values":[50,30,20]}
+  ]
+}
