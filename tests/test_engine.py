@@ -25,9 +25,9 @@ def document(title: str, language: str, direction: str) -> dict:
                         "children": [
                             {"type": "stats", "columns": 2, "items": [{"value": "42", "label": "Count"}, {"value": "91%", "label": "Rate"}]},
                             {"type": "table", "columns": ["Key", "Value"], "rows": [["A", "B"], ["C", "D"]]},
+                            {"type": "artifact_ref", "artifact_id": "trend"},
                         ],
                     },
-                    {"type": "artifact_ref", "artifact_id": "trend"},
                 ],
             }
         ],
@@ -54,7 +54,7 @@ def test_same_engine_compiles_different_inputs(tmp_path):
 
         assert (output / "manifest.json").exists()
         assert title in html
-        assert len(manifest["artifacts"]) == 4
+        assert len(manifest["artifacts"]) == 5
         assert not (output / "report_data.py").exists()
 
 
