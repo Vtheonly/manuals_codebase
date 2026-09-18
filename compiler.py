@@ -19,12 +19,19 @@ def load_source(path=SOURCE):
     validate(data)
     return data
 
+
+# عدل دالة generate_visual في compiler.py:
 def generate_visual(a: dict) -> str:
-    if a["type"]=="chart":
-        renderer={"bar":svg.bar_chart,"line":svg.line_chart,"donut":svg.donut_chart}.get(a["kind"])
+    if a["type"] == "chart":
+        renderer = {
+            "bar": svg.bar_chart,
+            "line": svg.line_chart,
+            "donut": svg.donut_chart,
+            "progress": svg.progress_chart
+        }.get(a["kind"])
         if renderer is None: raise ValueError(f"Unsupported chart kind: {a['kind']}")
         return renderer(a)
-    if a["type"]=="diagram": return svg.diagram(a)
+    if a["type"] == "diagram": return svg.diagram(a)
     raise ValueError(f"Unsupported visual artifact: {a['type']}")
 
 def build(source_path=SOURCE, output=OUTPUT):

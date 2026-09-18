@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-18T18:01:59.892Z",
+  "profile": "default",
+  "files": {
+    ".github/workflows/build.yml": false,
+    ".gitignore": true,
+    "README.md": true,
+    "build.py": true,
+    "compiler.py": true,
+    "core/__init__.py": true,
+    "core/components.py": true,
+    "core/design.py": true,
+    "core/model.py": true,
+    "core/svg.py": true,
+    "core/validate.py": true,
+    "docs/ARCHITECTURE.md": true,
+    "generators/__init__.py": true,
+    "generators/html.py": true,
+    "generators/pdf.py": true,
+    "pyproject.toml": true,
+    "requirements.txt": true,
+    "source/report.json": true,
+    "tests/test_engine.py": true
+  }
+}
