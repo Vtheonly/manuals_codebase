@@ -58,7 +58,7 @@ def bar_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
     bar_w = max(14.0, (plot_w / count) * 0.55)
     gap = (plot_w - bar_w * count) / (count + 1)
     axis = design.palette
-    text_font = design.typography.primary
+    text_font = design.typography.font_arabic
     unit = esc(spec.get("unit", ""))
 
     parts: list[str] = []
@@ -98,7 +98,7 @@ def bar_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
         if secondary_label:
             parts.append(
                 f'<text x="{x + bar_w / 2:.1f}" y="{mt + plot_h + 29:.1f}" '
-                f'font-family="{esc(design.typography.secondary)}" font-size="7" '
+                f'font-family="{esc(design.typography.font_latin)}" font-size="7" '
                 f'font-style="italic" fill="{axis.muted}" text-anchor="middle">{esc(secondary_label)}</text>'
             )
 
