@@ -43,7 +43,7 @@ def chart_frame(spec: Mapping[str, Any], body: str, design: DesignSystem, width:
         {subtitle_html}
       </div>
       <svg viewBox="0 0 {width} {height}" class="svg-viewport"
-           style="direction: ltr !important; unicode-bidi: isolate;"
+           style="direction:ltr !important; unicode-bidi: isolate;"
            xmlns="http://www.w3.org/2000/svg" role="img"
            aria-label="{title}">{body}</svg>
       {caption_html}
