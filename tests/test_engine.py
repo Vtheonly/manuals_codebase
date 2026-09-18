@@ -76,6 +76,33 @@ def test_batch_build(tmp_path, monkeypatch):
     assert (output_dir / "two" / "two.html").exists()
 
 
+def test_batch_json_file(tmp_path, monkeypatch):
+    from build import main
+
+    batch_source = tmp_path / "batch.json"
+    output_dir = tmp_path / "batch-output"
+    batch_source.write_text(
+        json.dumps(
+            {
+                "documents": [
+                    document("First", "en", "ltr"),
+                    document("Second", "ar", "rtl"),
+                ]
+            },
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(
+        "sys.argv",
+        ["build.py", "--batch", str(batch_source), "--output", str(output_dir)],
+    )
+    assert main() == 0
+    assert (output_dir / "001-test-en" / "batch-001-test-en.html").exists()
+    assert (output_dir / "002-test-ar" / "batch-002-test-ar.html").exists()
+
+
 def test_engine_contains_no_sample_domain_strings():
     root = Path(__file__).resolve().parents[1]
     targets = [root / "compiler.py", root / "build.py", root / "core", root / "generators"]
