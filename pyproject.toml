@@ -1,0 +1,9 @@
+[project]
+name = "manuals-artifact-engine"
+version = "1.0.0"
+requires-python = ">=3.10"
+dependencies = ["reportlab>=4.2,<5"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
