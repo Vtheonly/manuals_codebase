@@ -72,7 +72,7 @@ def main() -> int:
                 temp_root = Path(temp_dir)
                 for index, document in enumerate(documents, start=1):
                     document_id = str(document.get("id", f"document-{index}"))
-                    source = temp_root / f"{index}-{document_id}.json"
+                    source = temp_root / f"{args.input.stem}-{index:03d}-{document_id}.json"
                     source.write_text(
                         json.dumps(document, ensure_ascii=False, indent=2),
                         encoding="utf-8",
