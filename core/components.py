@@ -23,11 +23,6 @@ def label_parts(value: Any) -> tuple[str, str]:
     return str(value), ""
 
 
-def render_content(value: Any, mode: str = "text") -> str:
-    content = str(value or "")
-    return content if mode == "html" else esc(content)
-
-
 def render_content(value: Any, mode: str = "auto") -> str:
     content = str(value or "")
     if mode == "html":
@@ -217,7 +212,7 @@ def render_group(block: Mapping[str, Any], design: DesignSystem) -> str:
     align = esc(block.get("align", "stretch"))
     justify = esc(block.get("justify", "flex-start"))
     gap = esc(block.get("gap", "md"))
-    return f'<div class="content-group group-{layout} align-{align} justify-{justify} gap-{gap}'>{"".join(rendered_children)}</div>'
+    return f'<div class="content-group group-{layout} align-{align} justify-{justify} gap-{gap}">{"".join(rendered_children)}</div>'
 
 
 def render_image(block: Mapping[str, Any], design: DesignSystem) -> str:
@@ -229,6 +224,8 @@ def render_image(block: Mapping[str, Any], design: DesignSystem) -> str:
 
 RENDERERS = {
     "heading": render_heading,
+    "subsection": render_subsection,
+    "formula": render_formula,
     "text": render_text,
     "badge": render_badge,
     "card": render_card,
