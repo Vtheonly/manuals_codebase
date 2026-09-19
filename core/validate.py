@@ -13,6 +13,12 @@ The contract is strict and fails fast:
   but a TOC row without a page target is a contract violation.
 * Unknown artifact references, unknown page_ref targets and malformed block
   shapes are rejected with precise context.
+
+A ``page_ref`` may reference either a **page id** or a **block anchor** — any
+block (including nested group children) carrying an ``"id"`` field. This
+mirrors exactly what ``core.paginate.resolve_toc_page_refs`` resolves against
+after reflow, so the validator accepts precisely the references the runtime
+can honour.
 """
 from __future__ import annotations
 
@@ -66,7 +72,7 @@ def validate(document: Mapping[str, Any]) -> None:
 
     page_ids: set[str] = set()
     references: list[str] = []
-    page_ref_targets: set[str] = set()
+    block_anchor_ids: set[str] = set()
     toc_page_refs: set[str] = set()
     for index, page in enumerate(document["pages"], start=1):
         _require_mapping(page, f"page {index}")
@@ -77,24 +83,36 @@ def validate(document: Mapping[str, Any]) -> None:
             if page_id in page_ids:
                 raise ValueError(f"Duplicate page id: {page_id}")
             page_ids.add(page_id)
-            page_ref_targets.add(page_id)
 
         blocks = page.get("blocks", [])
         if not isinstance(blocks, list):
             raise ValueError(f"page {index}: 'blocks' must be an array")
         for block_index, block in enumerate(blocks, start=1):
             context = f"page {index} block {block_index}"
-            references.extend(_validate_block(block, context, toc_page_refs))
+            references.extend(
+                _validate_block(block, context, toc_page_refs, block_anchor_ids)
+            )
 
     missing_refs = sorted(set(references) - artifact_ids)
     if missing_refs:
         raise ValueError(f"Unknown artifact reference(s): {', '.join(missing_refs)}")
 
+    # A page_ref resolves against page ids ∪ block anchor ids (the same
+    # resolution space the runtime uses after reflow).
+    page_ref_targets = page_ids | block_anchor_ids
     unresolved_refs = sorted(toc_page_refs - page_ref_targets)
     if unresolved_refs:
         raise ValueError(
-            "TOC page_ref target(s) not found among page ids: "
+            "TOC page_ref target(s) not found among page ids or block anchors: "
             + ", ".join(unresolved_refs)
+        )
+    # A page id and a block anchor must not share a token: resolution order
+    # would silently prefer the page and hide an authoring mistake.
+    ambiguous = sorted(page_ids & block_anchor_ids)
+    if ambiguous:
+        raise ValueError(
+            "id(s) used both as a page id and a block anchor are ambiguous: "
+            + ", ".join(ambiguous)
         )
 
 
@@ -174,12 +192,24 @@ def _validate_artifact(artifact: Mapping[str, Any], context: str) -> None:
 
 
 def _validate_block(
-    block: Any, context: str, toc_page_refs: set[str] | None = None
+    block: Any,
+    context: str,
+    toc_page_refs: set[str] | None = None,
+    anchor_ids: set[str] | None = None,
 ) -> list[str]:
     _require_mapping(block, context)
     kind = block.get("type")
     if kind not in BLOCK_TYPES:
         raise ValueError(f"{context}: unsupported block type: {kind}")
+
+    # Any block carrying an explicit string id becomes a resolvable TOC
+    # anchor (mirrors core.paginate.resolve_toc_page_refs).
+    block_id = block.get("id")
+    if block_id is not None:
+        if not isinstance(block_id, str) or not block_id:
+            raise ValueError(f"{context}: 'id' must be a non-empty string")
+        if anchor_ids is not None:
+            anchor_ids.add(block_id)
 
     if kind == "artifact_ref":
         return [_require_string(block, "artifact_id", context)]
@@ -213,7 +243,7 @@ def _validate_block(
     if kind == "group":
         children = _require_list(block, "children", context)
         for index, child in enumerate(children, start=1):
-            _validate_block(child, f"{context} child {index}", toc_page_refs)
+            _validate_block(child, f"{context} child {index}", toc_page_refs, anchor_ids)
     if kind == "image":
         _require_string(block, "src", context)
     if kind == "list":
