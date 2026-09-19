@@ -802,7 +802,7 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 21pt;
+      gap: 16pt;
       padding: 0;
       flex: 1;
     }}
