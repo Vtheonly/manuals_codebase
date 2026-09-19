@@ -6,18 +6,34 @@ Every component reads its visual values from the DesignSystem tokens so that a
 JSON theme override changes all documents at once. Components accept optional
 generic style hints (variant names, token color references, sizes) but never
 document-specific data.
+
+Architectural guarantees implemented here:
+
+* **Automated BiDi isolation** — every text surface is emitted through the
+  `core.text` pipeline so Latin/digit runs inside RTL prose can never be
+  reordered by the Unicode Bidirectional Algorithm.
+* **Decoupled accent bars** — subsection accents are independent flex elements
+  separated from the text node by an enforced gap, never container borders.
+* **Vector icon primitives** — UI symbols (check, star, warning, …) render as
+  inline SVG paths with geometric centering instead of font glyphs.
+* **Defensive template guarding** — optional accessories (TOC badges, page
+  numbers, icons) are omitted entirely when absent rather than rendering empty
+  placeholder shapes.
 """
 from __future__ import annotations
 
-import html
 import re
 from collections.abc import Mapping
 from typing import Any
 
 from core.design import DesignSystem
+from core.text import bidi_isolate, fmt
 
 
 def esc(value: object) -> str:
+    """Escape a value for attribute/URL contexts (no BiDi processing)."""
+    import html
+
     return html.escape(str(value), quote=True)
 
 
@@ -30,16 +46,23 @@ def label_parts(value: Any) -> tuple[str, str]:
 
 
 def clean_html(value: Any, mode: str = "auto") -> str:
+    """Render a text value with automated bidirectional isolation.
+
+    mode "text"  — plain text: escaped + BiDi isolated (default for most data).
+    mode "html"  — trusted author markup: tags/entities pass through, text
+                   nodes are BiDi isolated.
+    mode "auto"  — html when the value already contains markup, else text.
+    """
     content = str(value or "")
     # Generic cleanup of any pagination sentinels
-    content = re.sub(r'PGB[SA][a-zA-Z0-9]+', '', content)
-    if mode == "html":
-        return content
+    content = re.sub(r"PGB[SA][a-zA-Z0-9]+", "", content)
     if mode == "text":
-        return esc(content)
+        return bidi_isolate(content, escape=True)
+    if mode == "html":
+        return bidi_isolate(content, escape=False)
     if "<" in content and ">" in content:
-        return content
-    return esc(content)
+        return bidi_isolate(content, escape=False)
+    return bidi_isolate(content, escape=True)
 
 
 PALETTE_TOKENS = (
@@ -71,10 +94,82 @@ def resolve_color(value: Any, design: DesignSystem, default: str | None = None) 
     return name
 
 
+# ---------------------------------------------------------------------------
+# Vector icon primitives — geometrically centered UI symbols (SVG paths)
+# ---------------------------------------------------------------------------
+
+# name -> (inner markup, stroke-based?) rendered inside a 24x24 viewBox.
+ICON_PATHS: dict[str, tuple[str, bool]] = {
+    "check": ('<path d="M20 6 9 17l-5-5"/>', True),
+    "star": ('<path d="M12 2.5l2.95 6.3 6.55.62-4.95 4.35 1.45 6.43L12 16.9l-6 3.3 1.45-6.43L2.5 9.42l6.55-.62z"/>', False),
+    "warning": ('<path d="M12 3.5 21.5 20H2.5z"/><path d="M12 10v4.2"/><circle cx="12" cy="17.1" r="0.4"/>', True),
+    "info": ('<circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="8" r="0.5"/>', True),
+    "sigma": ('<path d="M18 6H8.5l5.5 6-5.5 6H18"/>', True),
+    "target": ('<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.2"/>', True),
+    "flag": ('<path d="M6 21V4"/><path d="M6 4h11l-2.5 3.5L17 11H6"/>', True),
+    "bulb": ('<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.8.6 1.2 1.3 1.4 2.1h4.2c.2-.8.6-1.5 1.4-2.1A6 6 0 0 0 12 3z"/>', True),
+    "book": ('<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M20 19H6.5A2.5 2.5 0 0 0 4 21.5"/>', True),
+    "arrow_down": ('<path d="M12 4v13"/><path d="m6.5 12.5 5.5 5.5 5.5-5.5"/>', True),
+}
+
+# Legacy glyph characters accepted in JSON `icon` fields, mapped to vector icons.
+ICON_GLYPH_ALIASES = {
+    "✓": "check", "✔": "check", "√": "check",
+    "★": "star", "☆": "star",
+    "⚠": "warning", "⚠️": "warning", "!": "warning",
+    "ⓘ": "info", "ℹ": "info", "i": "info",
+    "∑": "sigma", "Σ": "sigma",
+    "◎": "target", "◉": "target", "⊙": "target",
+    "⚑": "flag", "⚐": "flag",
+    "▼": "arrow_down", "▽": "arrow_down",
+}
+
+
+def render_icon(name: str, size_pt: float = 9.5) -> str:
+    """Render a UI symbol as an inline, geometrically centered SVG icon."""
+    key = str(name).strip()
+    key = ICON_GLYPH_ALIASES.get(key, key)
+    entry = ICON_PATHS.get(key)
+    if entry is None:
+        return ""
+    inner, stroke_based = entry
+    if stroke_based:
+        body = (
+            f'{inner}'
+        )
+        return (
+            f'<svg class="ui-icon" viewBox="0 0 24 24" width="{size_pt}pt" height="{size_pt}pt" '
+            f'fill="none" stroke="currentColor" stroke-width="2.4" '
+            f'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{body}</svg>'
+        )
+    return (
+        f'<svg class="ui-icon" viewBox="0 0 24 24" width="{size_pt}pt" height="{size_pt}pt" '
+        f'fill="currentColor" aria-hidden="true">{inner}</svg>'
+    )
+
+
+def icon_or_text(value: Any, size_pt: float = 9.5) -> str:
+    """Vector icon when a known symbol is requested, escaped text otherwise."""
+    raw = str(value or "").strip()
+    svg = render_icon(raw, size_pt)
+    if svg:
+        return svg
+    return fmt(raw) if raw else ""
+
+
+# Block types that introduce a section and must never be stranded at the very
+# bottom of a page without at least one following block (used by the paginator).
+KEEP_WITH_NEXT_TYPES = frozenset({"heading", "subsection"})
+
+
+# ---------------------------------------------------------------------------
+# Component renderers
+# ---------------------------------------------------------------------------
+
 def render_divider(block: Mapping[str, Any], design: DesignSystem) -> str:
     """Generic decorative rule component.
 
-    Variants: solid | dotted | double | gradient | heavy-thin
+    Variants: solid | dotted | double | gradient | section
     Options: color (token/hex), thickness, width (full|content|<len>), margin (sm|md|lg)
     """
     variant = esc(block.get("variant", "solid"))
@@ -87,7 +182,7 @@ def render_divider(block: Mapping[str, Any], design: DesignSystem) -> str:
         base = resolve_color(block.get("start"), design, color) or color
         end = resolve_color(block.get("end"), design, design.palette.accent)
         extra_style = (
-            f'background: linear-gradient(90deg, {base}, {end});'
+            f"background: linear-gradient(90deg, {base}, {end});"
             if design and base and end
             else ""
         )
@@ -99,12 +194,12 @@ def render_divider(block: Mapping[str, Any], design: DesignSystem) -> str:
 
 def render_heading(block: Mapping[str, Any], design: DesignSystem) -> str:
     level = min(6, max(1, int(block.get("level", 2))))
-    badge_val = clean_html(str(block.get("badge", "")).strip())
+    badge_val = str(block.get("badge", "")).strip()
     badge_html = ""
     if badge_val:
         is_appendix = block.get("badge_variant") == "accent"
         badge_cls = "circle-badge appendix-badge" if is_appendix else "circle-badge"
-        badge_html = f'<span class="{badge_cls}">{esc(badge_val)}</span>'
+        badge_html = f'<span class="{badge_cls}">{fmt(badge_val)}</span>'
 
     subtitle_html = (
         f'<span class="sub-label">{clean_html(block["subtitle"])}</span>'
@@ -120,14 +215,22 @@ def render_heading(block: Mapping[str, Any], design: DesignSystem) -> str:
             rule_block = {"type": "divider", "variant": "section"}
         rule_html = render_divider(rule_block, design)
     title = clean_html(block["title"])
+    # Heading + rule are wrapped in a single container so one block always
+    # maps to exactly one layout child (atomic for pagination measurement).
     return (
-        f'<div class="block-heading level-{level}">{badge_html}'
+        f'<div class="heading-block"><div class="block-heading level-{level}">{badge_html}'
         f'<div class="heading-content"><h{level}>{title}</h{level}>{subtitle_html}</div></div>'
-        f'{rule_html}'
+        f'{rule_html}</div>'
     )
 
 
 def render_subsection(block: Mapping[str, Any], design: DesignSystem) -> str:
+    """Subsection header with a decoupled accent bar.
+
+    The accent bar is an independent flex element separated from the text by
+    the header's `gap`, so text ink and the bar can never share coordinate
+    space regardless of the script's sidebearings.
+    """
     subtitle = (
         f'<span class="sub-title-secondary">{clean_html(block["subtitle"])}</span>'
         if "subtitle" in block
@@ -136,21 +239,24 @@ def render_subsection(block: Mapping[str, Any], design: DesignSystem) -> str:
     accent = esc(block.get("accent", "bar"))
     accent_color = resolve_color(block.get("accent_color"), design, design.palette.accent)
     style = f' style="--subsection-accent:{accent_color}"' if accent_color else ""
+    bar = '<span class="subsection-bar" aria-hidden="true"></span>' if accent == "bar" else ""
     # The dash lives inside the RTL title element so it stays adjacent to the
     # Arabic text regardless of document direction.
     dash = '<span class="sub-dash">—</span>' if subtitle else ""
     return (
-        f'<div class="subsection-header sub-accent-{accent}"{style}>'
+        f'<div class="subsection-header sub-accent-{accent}"{style}>{bar}'
         f'<h4 class="sub-title-primary">'
         f'{clean_html(block["title"])}{dash}</h4>{subtitle}</div>'
     )
 
 
 def render_formula(block: Mapping[str, Any], design: DesignSystem) -> str:
-    icon_char = esc(block.get("icon", "∑"))
+    icon_char = str(block.get("icon", "∑") or "")
+    icon_html = icon_or_text(icon_char, size_pt=10)
+    icon_span = f'<span class="formula-icon-circle">{icon_html}</span>' if icon_html else ""
     title_text = clean_html(block.get("title", ""))
     badge_html = (
-        f'<div class="formula-badge"><span class="formula-icon-circle">{icon_char}</span>'
+        f'<div class="formula-badge">{icon_span}'
         f'<strong>{title_text}</strong></div>'
         if title_text
         else ""
@@ -161,9 +267,14 @@ def render_formula(block: Mapping[str, Any], design: DesignSystem) -> str:
         else ""
     )
     expression = block.get("html_expression", block.get("expression", ""))
+    # The math body is a dedicated, isolated LTR block: operators, sub/superscripts
+    # and variable names can never be influenced by ambient RTL flow.
+    math_html = (
+        f'<div class="formula-math" dir="ltr" isolation="isolate">{bidi_isolate(str(expression), escape=False)}</div>'
+    )
     return (
         f'<aside class="formula-container">{badge_html}'
-        f'<div class="formula-math" dir="ltr">{clean_html(expression)}</div>'
+        f'{math_html}'
         f'{description}</aside>'
     )
 
@@ -207,6 +318,12 @@ def render_card(block: Mapping[str, Any], design: DesignSystem) -> str:
 
 
 def render_info_card(block: Mapping[str, Any], design: DesignSystem) -> str:
+    """Key/value metadata card with intrinsically sized label column.
+
+    The label column uses ``width: 1%; white-space: nowrap`` shrink-to-fit
+    sizing so labels of any length stay on one line and never split across
+    cells; the value column absorbs the remaining width.
+    """
     rows = []
     for row in block.get("rows", []):
         if not isinstance(row, Mapping):
@@ -228,11 +345,12 @@ def render_info_card(block: Mapping[str, Any], design: DesignSystem) -> str:
 def render_callout(block: Mapping[str, Any], design: DesignSystem) -> str:
     variant = esc(block.get("variant", "accent"))
     icon_char = block.get("icon")
-    icon_html = f'<span class="callout-icon-circle">{esc(icon_char)}</span>' if icon_char else ""
+    icon_html = icon_or_text(icon_char, size_pt=9) if icon_char else ""
+    icon_span = f'<span class="callout-icon-circle">{icon_html}</span>' if icon_html else ""
     content = clean_html(block.get("content", ""), block.get("format", "auto"))
     return (
         f'<aside class="callout callout-{variant}">'
-        f'<div class="callout-header">{icon_html}<strong>{clean_html(block["title"])}</strong></div>'
+        f'<div class="callout-header">{icon_span}<strong>{clean_html(block["title"])}</strong></div>'
         f'<div class="callout-content">{content}</div>'
         f'</aside>'
     )
@@ -261,8 +379,11 @@ def render_table(block: Mapping[str, Any], design: DesignSystem) -> str:
         sub = f'<span class="th-sub">{clean_html(secondary)}</span>' if secondary else ""
         headers.append(f"<th>{clean_html(primary)}{sub}</th>")
 
+    # Zebra parity survives table splits across pages: the continuation
+    # carries ``_zebra_offset`` so striping continues seamlessly.
+    zebra_offset = int(block.get("_zebra_offset", 0) or 0)
     rows = []
-    for row in block.get("rows", []):
+    for row_index, row in enumerate(block.get("rows", []), start=1):
         cells = []
         for cell in row:
             if isinstance(cell, Mapping):
@@ -275,7 +396,9 @@ def render_table(block: Mapping[str, Any], design: DesignSystem) -> str:
             else:
                 value, cls, sub = cell, "txt", ""
             cells.append(f'<td class="{cls}">{clean_html(value)}{sub}</td>')
-        rows.append(f"<tr>{''.join(cells)}</tr>")
+        parity = row_index + zebra_offset
+        row_class = ' class="alt"' if parity % 2 == 0 else ""
+        rows.append(f"<tr{row_class}>{''.join(cells)}</tr>")
 
     caption_html = ""
     if "caption" in block:
@@ -305,33 +428,46 @@ def render_flow_steps(block: Mapping[str, Any], design: DesignSystem) -> str:
         title, fallback_subtitle = label_parts(step.get("title", step.get("label", "")))
         subtitle = step.get("subtitle", fallback_subtitle)
         sub = f'<p class="step-sub">{clean_html(subtitle)}</p>' if subtitle else ""
-        badge_val = esc(step.get("badge", index + 1))
+        badge_val = str(step.get("badge", index + 1))
         parts.append(
-            f'<div class="step-node"><span class="step-num">{badge_val}</span>'
+            f'<div class="step-node"><span class="step-num">{fmt(badge_val)}</span>'
             f'<div class="step-content"><p class="step-title">{clean_html(title)}</p>{sub}</div></div>'
         )
         if index < len(steps) - 1:
-            parts.append('<div class="step-arrow">▼</div>')
+            parts.append(f'<div class="step-arrow">{render_icon("arrow_down", 8)}</div>')
     title = f'<div class="flow-title">{clean_html(block["title"])}</div>' if "title" in block else ""
     return f'<section class="flow-steps">{title}{"".join(parts)}</section>'
 
 
 def render_toc(block: Mapping[str, Any], design: DesignSystem) -> str:
+    """Table of contents with canonical logical DOM ordering.
+
+    DOM order always matches logical reading order:
+    leading accessory (badge) -> primary title -> flexible spacer (dots) ->
+    trailing accessory (page number). Missing accessories are omitted
+    entirely instead of rendering empty placeholder shapes.
+    """
     items = []
     for item in block.get("items", []):
         title, fallback_subtitle = label_parts(item.get("title", ""))
         subtitle = item.get("subtitle", fallback_subtitle)
         sub = f'<span class="toc-sub">{clean_html(subtitle)}</span>' if subtitle else ""
         badge_val = str(item.get("badge", "")).strip()
+        page_val = str(item.get("page", "")).strip()
         is_appendix = item.get("appendix", False) or item.get("badge_variant") == "accent"
         badge_cls = " appendix-badge" if is_appendix else ""
-        # Correct RTL order: Badge on the right, title next to it, dots in middle, page on left
+        badge_html = (
+            f'<span class="toc-badge{badge_cls}">{fmt(badge_val)}</span>' if badge_val else ""
+        )
+        page_html = (
+            f'<span class="toc-page" dir="ltr">{fmt(page_val)}</span>' if page_val else ""
+        )
         items.append(
             f'<li class="toc-row">'
-            f'<span class="toc-badge{badge_cls}">{esc(badge_val)}</span>'
+            f'{badge_html}'
             f'<span class="toc-title"><strong>{clean_html(title)}</strong>{sub}</span>'
-            f'<span class="toc-dots"></span>'
-            f'<span class="toc-page">{esc(item.get("page", ""))}</span>'
+            f'<span class="toc-dots" aria-hidden="true"></span>'
+            f'{page_html}'
             f'</li>'
         )
     subtitle_html = (
@@ -369,7 +505,7 @@ def render_list(block: Mapping[str, Any], design: DesignSystem) -> str:
             title = clean_html(item.get("title", item.get("text", "")), mode)
             subtitle = clean_html(item.get("subtitle", ""))
             tag_txt = clean_html(item.get("tag", ""))
-            badge_html = f'<span class="list-item-badge">{esc(badge)}</span>' if badge else ""
+            badge_html = f'<span class="list-item-badge">{fmt(badge)}</span>' if str(badge).strip() else ""
             tag_html = f'<span class="list-item-tag">{tag_txt}</span>' if tag_txt else ""
             sub_html = f'<span class="list-item-sub">{subtitle}</span>' if subtitle else ""
             if variant == "rows":

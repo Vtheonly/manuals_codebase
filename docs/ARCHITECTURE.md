@@ -127,3 +127,50 @@ New semantic components can be added as reusable primitives without introducing 
 The codebase becomes domain-specific the moment a renderer or component starts requiring or inventing fields whose meaning belongs to one particular report or application.
 
 That is the boundary this repository must preserve.
+
+## Text integrity & bidirectional isolation (`core/text.py`)
+
+Every text surface passes through the ingestion pipeline:
+
+1. **Unicode NFC normalization** of every string at load time.
+2. **Arabic joining-integrity lint** that fails the build on unambiguous
+   corruption (whitespace before combining marks, invisible BiDi control
+   characters). The engine never guesses how to rejoin broken letters at
+   render time — source data is repaired at the source.
+3. **Automated bidirectional isolation**: Latin letters, digits, signed
+   numbers (`+4.0`), dates (`2025/2026`), codes and mixed French phrases
+   embedded in RTL prose are wrapped in `<bdi dir="ltr">` runs. The scanner is
+   tag-aware and safe for both plain values and trusted author markup.
+
+## Measured, overflow-safe pagination (`core/paginate.py`)
+
+Pages are never trusted to fit. The compiler renders a layout probe, measures
+real Chromium geometry (per-block outer heights, flex gaps, table internals),
+and reflows overflowing pages:
+
+* Trailing blocks **flow into the next accepting page** (natural document
+  flow); a page may declare `"break": true` to always start fresh.
+* **Long tables split at row boundaries** with repeated column headers and
+  continuous zebra striping (`_zebra_offset`), exactly like a print engine.
+* **keep_with_next**: headings and subsections never strand at a page bottom.
+* A single block taller than an empty page fails fast with an actionable
+  error instead of silently clipping.
+* TOC **`page_ref`** entries (page ids or block anchors) resolve against the
+  *final* pagination, so numbers stay correct after any reflow.
+* The final render is audited for residual overflow and the result is
+  recorded in the manifest (`pagination` block).
+
+## Strict data contracts (`core/validate.py`)
+
+* Charts: non-empty labels/values/series, numeric values, matching lengths —
+  ghost charts cannot build silently. Common aliases (`data`→`values`,
+  `categories`→`labels`, …) are canonicalized first (`core/normalize.py`).
+* TOC items require `page` or `page_ref`; unknown refs are rejected.
+* `page_ref` may target a page id or any block carrying an `id` (anchor).
+
+## PDF backend
+
+Playwright-driven Chromium is the canonical backend (it also powers the
+measurement pass, so the PDF is produced by the exact Blink layout that was
+measured). Standalone Chromium and WeasyPrint remain as fallbacks for PDF
+export only.

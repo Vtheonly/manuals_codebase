@@ -188,3 +188,39 @@ The repository bundles an open-licensed font library under `assets/fonts` (Noto 
 All design defaults are generic. A caller may override palette, typography (font families, sizes, weights, line heights), spacing, borders (including the section-rule accent overlay width), or page dimensions in JSON.
 
 Unknown design token names are rejected so spelling mistakes do not silently change rendering.
+
+## Guaranteed layout behaviors
+
+The engine guarantees the following, generically, for any JSON document:
+
+* **No footer collisions.** Pages are measured with the same Chromium engine
+  that prints the PDF; overflowing content is reflowed (block flow, row-level
+  table splitting with repeated headers) before export.
+* **No blank spillover pages.** The final sheet never forces a trailing blank
+  page.
+* **No ghost charts.** Charts with empty or non-numeric data fail the build
+  with a precise error instead of rendering empty grids.
+* **No TOC starvation.** TOC rows without a page target (`page`/`page_ref`)
+  fail validation; badges and page numbers are omitted by the template only
+  when intentionally absent.
+* **No BiDi scrambling.** Latin runs, codes, dates, and signed numbers inside
+  RTL prose are automatically isolated; math formulas render in a dedicated
+  LTR block.
+* **Arabic text integrity.** NFC normalization on load; the build fails on
+  whitespace-damaged joining (fix the source, never patch at render time).
+
+## Page flow control
+
+Pages flow into each other by default when content overflows. Declare
+`"break": true` on a page that must always start fresh (e.g. an annex):
+
+~~~json
+{"id": "annex-a", "layout": "standard", "break": true, "blocks": [...]}
+~~~
+
+TOC entries reference sections by anchor so numbers survive reflow:
+
+~~~json
+{"type": "heading", "id": "sec-01", "badge": "1", "title": "..."}
+{"type": "toc", "items": [{"badge": "1", "title": "...", "page_ref": "sec-01"}]}
+~~~

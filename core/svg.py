@@ -86,7 +86,11 @@ def series_colors(spec: Mapping[str, Any], design: DesignSystem, count: int) -> 
 
 def axis_max_of(maximum: float, headroom: float = 1.2) -> float:
     """Axis maximum = data maximum scaled by headroom (reference behavior:
-    110 -> 132, 240 -> 288) with 4 even intervals."""
+    110 -> 132, 240 -> 288, 420 -> 504) with 4 even intervals.
+
+    The value is always derived from the data, never a hardcoded range, and
+    chart specs may pin it explicitly through ``axis_max``.
+    """
     if maximum <= 0:
         return 4.0
     return maximum * headroom
@@ -132,7 +136,8 @@ def line_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
     unit = str(spec.get("unit", "")).strip()
 
     values = [float(v) for s in series_data for v in s["values"]] or [1.0]
-    axis_max = axis_max_of(max(values))
+    explicit_max = spec.get("axis_max")
+    axis_max = float(explicit_max) if explicit_max else axis_max_of(max(values))
     colors = series_colors(spec, design, max(1, len(series_data)))
 
     parts: list[str] = []
@@ -244,7 +249,10 @@ def bar_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
     values = [float(v) for v in spec["values"]]
     labels = spec["labels"]
     unit = str(spec.get("unit", "")).strip()
-    axis_max = axis_max_of(max(values, default=0.0))
+    # Explicit axis_max in the spec always wins; otherwise it is derived from
+    # the data so the plot area never shows excessive empty headroom.
+    explicit_max = spec.get("axis_max")
+    axis_max = float(explicit_max) if explicit_max else axis_max_of(max(values, default=0.0))
     colors = series_colors(spec, design, max(1, len(values)))
     count = max(1, len(values))
     bar_w = min(46.0, plot_w / count * 0.52)
@@ -337,20 +345,24 @@ def donut_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
         y = 38 + index * 36
         percentage = value / total * 100
         swatch_x = 254
-        # Legend row reads LTR: swatch, then "XX.X% — " in latin, then the
-        # Arabic label at the right end (reference composite layout).
+        # Two fixed legend columns so every row aligns on a uniform vertical
+        # axis regardless of label length: swatch | percentage (right-aligned)
+        # | label (start-anchored, flowing within the remaining width).
+        pct_x = 342
+        lbl_x = 348
         legends.append(
             f'<rect x="{swatch_x}" y="{y - 9}" width="10" height="10" rx="2" fill="{esc(color)}"/>'
-            f'<text x="{swatch_x + 16}" y="{y}" font-size="7.5" font-weight="700" '
-            f'fill="{p.chart_axis}" direction="ltr" text-anchor="start" '
-            f'font-family="{esc(fonts["chart_latin"])}">'
-            f'<tspan>{percentage:.1f}% — </tspan>'
-            f'<tspan font-family="{esc(fonts["chart_arabic"])}">{esc(primary_label)}</tspan></text>'
+            f'<text x="{pct_x}" y="{y}" font-size="7.5" font-weight="700" '
+            f'fill="{p.chart_axis}" direction="ltr" text-anchor="end" '
+            f'font-family="{esc(fonts["chart_latin"])}">{percentage:.1f}%</text>'
+            f'<text x="{lbl_x}" y="{y}" font-size="7.5" font-weight="400" '
+            f'fill="{p.chart_axis}" direction="rtl" text-anchor="start" '
+            f'font-family="{esc(fonts["chart_arabic"])}">{esc(primary_label)}</text>'
         )
         if secondary_label:
             legends.append(
-                f'<text x="{swatch_x + 16}" y="{y + 10.5}" font-size="5.9" font-style="italic" '
-                f'fill="{p.muted}" direction="ltr" text-anchor="start" '
+                f'<text x="{pct_x}" y="{y + 10.5}" font-size="5.9" font-style="italic" '
+                f'fill="{p.muted}" direction="ltr" text-anchor="end" '
                 f'font-family="{esc(fonts["chart_latin"])}">{esc(secondary_label)}</text>'
             )
         start = end
@@ -377,7 +389,7 @@ def progress_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
     colors = series_colors(spec, design, max(1, len(items)))
     spec_color = spec.get("color")
 
-    label_x = 58
+    label_x = 190
     track_x = 196
     track_w = 260
     track_h = 13.4
@@ -398,16 +410,17 @@ def progress_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
         fill_w = max(0.0, min(1.0, value / maximum)) * track_w
         color = item.get("color") or spec_color or colors[index % len(colors)]
 
-        # label block on the left, right-aligned
+        # Label column: anchored at the track boundary so text always flows
+        # away from the track and can never overhang onto it.
         parts.append(
             f'<text x="{label_x}" y="{y + 8.5:.1f}" font-size="7.5" font-weight="400" '
-            f'fill="{p.chart_axis}" text-anchor="start" direction="rtl" '
+            f'fill="{p.chart_axis}" text-anchor="end" '
             f'font-family="{esc(fonts["chart_arabic"])}">{esc(label)}</text>'
         )
         if secondary:
             parts.append(
                 f'<text x="{label_x}" y="{y + 17.5:.1f}" font-size="5.9" font-style="italic" '
-                f'fill="{p.muted}" text-anchor="end" direction="ltr" '
+                f'fill="{p.muted}" text-anchor="end" '
                 f'font-family="{esc(fonts["chart_latin"])}">{esc(secondary)}</text>'
             )
         # track (light) + right-anchored fill (grows leftward for RTL reading)

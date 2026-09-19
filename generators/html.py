@@ -14,6 +14,7 @@ from typing import Any
 
 from core.components import render_block
 from core.design import DesignSystem
+from core.text import fmt
 
 
 def esc(value: object) -> str:
@@ -101,6 +102,20 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
         margin: 0 !important;
         break-after: page !important;
         page-break-after: always !important;
+      }}
+      /* The final sheet must not spill an empty trailing page. */
+      .page-sheet:last-child {{
+        break-after: auto !important;
+        page-break-after: auto !important;
+      }}
+      /* Atomic components never split across PDF page boundaries. */
+      .card, .callout, .formula-container, .info-card, .table-wrapper,
+      .chart-container, .flow-steps, .stats-grid, .quote, .toc,
+      .content-list, .artifact {{ break-inside: avoid; }}
+      /* Section introductions stay with at least one following block. */
+      .heading-block, .subsection-header {{
+        break-inside: avoid;
+        break-after: avoid;
       }}
     }}
 
@@ -233,6 +248,9 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     h1, h2, h3, h4, h5, h6, p, ul, ol, figure {{ margin: 0; }}
 
     /* ============ Section Headings with Gold Sub-Label and Rule ============ */
+    /* Wrapper keeps heading + rule as one atomic layout child for measured
+       pagination. */
+    .heading-block {{ display: block; }}
     .block-heading {{
       display: flex;
       align-items: flex-start;
@@ -255,6 +273,8 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       line-height: 1.32;
     }}
 
+    /* Circular glyph badges: leading neutralized, script-primary font stack,
+       flex-centered so ascenders/descenders optically center in the circle. */
     .circle-badge {{
       width: 22.5pt;
       height: 22.5pt;
@@ -266,7 +286,9 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       justify-content: center;
       font-weight: 700;
       font-size: 10.5pt;
-      font-family: {fonts['latin']};
+      line-height: 1;
+      padding: 0;
+      font-family: {fonts['badge']};
       flex-shrink: 0;
     }}
 
@@ -279,13 +301,10 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       font-style: italic;
       font-size: 9pt;
       color: {p.accent_text};
-      direction: ltr;
-      text-align: left;
+      unicode-bidi: isolate;
+      text-align: start;
       display: block;
       margin-top: 2.5pt;
-    }}
-    [dir="ltr"] .sub-label {{
-      text-align: right;
     }}
 
     .block-heading + .divider-section {{
@@ -295,26 +314,24 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     /* ============ Subsections with configurable accent ============ */
     .subsection-header {{
       display: flex;
-      align-items: baseline;
-      gap: 6pt;
+      align-items: center;
+      gap: 8pt;
       position: relative;
-      padding-right: 0;
       margin: 8pt 0 5pt 0;
       min-height: 17pt;
     }}
-    .subsection-header.sub-accent-bar::after {{
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
+    /* The accent bar is an independent flex element separated from the text
+       node by the enforced header gap: bar ink and glyph ink can never share
+       coordinate space, whatever the script's sidebearings. */
+    .subsection-bar {{
+      display: block;
       width: 2.25pt;
       height: 16.5pt;
+      min-width: 2.25pt;
+      border-radius: 1.125pt;
       background: var(--subsection-accent, {p.accent});
-    }}
-    [dir="ltr"] .subsection-header.sub-accent-bar::after {{
-      right: auto;
-      left: 0;
+      flex-shrink: 0;
+      align-self: center;
     }}
     .subsection-header.sub-accent-rule {{
       border-bottom: 0.75pt solid {p.divider_strong};
@@ -331,7 +348,6 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       font-style: italic;
       font-size: 9pt;
       color: {p.muted};
-      direction: ltr;
       unicode-bidi: isolate;
       white-space: nowrap;
     }}
@@ -339,7 +355,7 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       font-family: {fonts['latin']};
       font-weight: 400;
       color: {p.muted};
-      margin-inline-end: 4pt;
+      margin-inline: 5pt 4pt;
     }}
 
     /* ============ Text Paragraphs ============ */
@@ -457,32 +473,35 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     .info-table {{
       width: 100%;
       border-collapse: collapse;
-      text-align: right;
+      text-align: start;
     }}
     .info-row td {{
       padding: 4.5pt 0;
       font-size: 11pt;
       vertical-align: baseline;
     }}
+    /* Intrinsic sizing: the label column shrink-wraps to its content so a
+       label of any length stays on one line and never splits across cells. */
     .info-label {{
-      width: 30%;
+      width: 1%;
+      white-space: nowrap;
       font-weight: 700;
       color: {p.text_dark};
-      white-space: nowrap;
     }}
     .info-sep {{
-      width: 4%;
+      width: 1%;
+      white-space: nowrap;
       text-align: center;
       font-weight: 700;
       color: {p.primary};
       font-family: {fonts['latin']};
+      padding: 0 2pt;
     }}
     .info-value {{
-      width: 66%;
       font-weight: 600;
       color: {p.text};
       line-height: 1.75;
-      padding-right: 4pt;
+      padding-inline-start: 6pt;
     }}
     .info-row.highlight .info-value {{
       color: {p.text_dark};
@@ -492,16 +511,12 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     /* ============ Formula Block (gold theme) ============ */
     .formula-container {{
       border: none;
-      border-right: 4.5pt solid {p.accent};
+      border-inline-start: 4.5pt solid {p.accent};
       border-radius: 0;
       background: {p.accent_light};
       padding: 10pt 12pt;
       margin: 10pt 0;
       text-align: center;
-    }}
-    [dir="ltr"] .formula-container {{
-      border-right: none;
-      border-left: 4.5pt solid {p.accent};
     }}
     .formula-badge {{
       display: inline-flex;
@@ -511,7 +526,6 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       font-size: 10.5pt;
       font-weight: 700;
       margin-bottom: 6pt;
-      direction: rtl;
     }}
     .formula-icon-circle {{
       width: 17.25pt;
@@ -522,9 +536,8 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-family: {fonts['math']};
-      font-size: 10pt;
-      font-weight: 700;
+      line-height: 1;
+      padding: 0;
       flex-shrink: 0;
     }}
     .formula-math {{
@@ -549,23 +562,15 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     .callout {{
       background: {p.accent_light};
       border: none;
-      border-right: 4.5pt solid {p.accent};
+      border-inline-start: 4.5pt solid {p.accent};
       padding: 10pt 12pt;
       margin: 10pt 0;
       font-size: 10pt;
       line-height: 1.85;
     }}
-    [dir="ltr"] .callout {{
-      border-right: none;
-      border-left: 4.5pt solid {p.accent};
-    }}
     .callout-primary {{
       background: {p.primary_light};
-      border-right-color: {p.primary};
-    }}
-    [dir="ltr"] .callout-primary {{
-      border-right: none;
-      border-left: 4.5pt solid {p.primary};
+      border-inline-start-color: {p.primary};
     }}
     .callout-primary .callout-header {{ color: {p.text_dark}; }}
     .callout-header {{
@@ -586,11 +591,11 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-family: {fonts['latin']};
-      font-size: 10pt;
-      font-weight: 700;
+      line-height: 1;
+      padding: 0;
       flex-shrink: 0;
     }}
+    .ui-icon {{ display: block; }}
     .callout-primary .callout-icon-circle {{ background: {p.primary}; }}
     .callout-content {{ font-size: 10pt; line-height: 1.85; color: {p.text}; }}
 
@@ -687,11 +692,10 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       line-height: 1.55;
       vertical-align: middle;
     }}
-    .standard-table tbody tr:nth-child(even) {{ background: {p.surface_alt}; }}
-    td.num {{ text-align: center; font-family: {fonts['latin']}; font-weight: 700; direction: ltr; color: {p.text_dark}; }}
-    td.txt {{ text-align: right; }}
+    .standard-table tbody tr.alt {{ background: {p.surface_alt}; }}
+    td.num {{ text-align: center; font-family: {fonts['latin']}; font-weight: 700; direction: ltr; unicode-bidi: isolate; color: {p.text_dark}; }}
+    td.txt {{ text-align: start; }}
     td.strong {{ font-weight: 700; color: {p.text_dark}; }}
-    [dir="ltr"] td.txt {{ text-align: left; }}
     .td-sub {{
       display: inline;
       font-size: 8pt;
@@ -699,7 +703,6 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       font-weight: 400;
       font-family: {fonts['latin']};
       font-style: italic;
-      direction: ltr;
       unicode-bidi: isolate;
     }}
 
@@ -749,22 +752,23 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       justify-content: center;
       font-size: 10pt;
       font-weight: 700;
+      line-height: 1;
+      padding: 0;
       flex-shrink: 0;
-      font-family: {fonts['latin']};
+      font-family: {fonts['badge']};
     }}
     .step-title {{ font-weight: 400; font-size: 9.5pt; color: {p.text}; line-height: 1.5; margin-top: 1.5pt; }}
     .step-title strong {{ color: {p.text_dark}; }}
-    .step-sub {{ color: {p.muted}; font-family: {fonts['latin']}; font-style: italic; font-size: 8pt; margin-top: 0; direction: ltr; text-align: right; }}
-    [dir="ltr"] .step-sub {{ text-align: left; }}
+    .step-sub {{ color: {p.muted}; font-family: {fonts['latin']}; font-style: italic; font-size: 8pt; margin-top: 0; unicode-bidi: isolate; text-align: start; }}
     .step-arrow {{
       color: {p.accent};
-      text-align: center;
-      padding-right: 24pt;
-      font-size: 9pt;
-      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-inline-start: 24pt;
       margin: 5pt 0;
     }}
-    [dir="ltr"] .step-arrow {{ padding-right: 0; padding-left: 24pt; }}
+    .step-arrow svg {{ display: block; }}
 
     /* ============ Table of Contents ============ */
     .toc {{
@@ -818,55 +822,55 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       justify-content: center;
       font-size: 10pt;
       font-weight: 700;
+      line-height: 1;
+      padding: 0;
       flex-shrink: 0;
-      margin-left: 9pt;
-      font-family: {fonts['latin']};
+      margin-inline-end: 9pt;
+      font-family: {fonts['badge']};
     }}
     .appendix-badge {{ background: {p.accent_text} !important; }}
     .toc-title {{ display: flex; flex-direction: column; font-weight: 400; }}
     .toc-title strong {{ font-weight: 400; color: {p.text}; }}
-    .toc-sub {{ font-family: {fonts['latin']}; font-size: 8pt; color: {p.muted}; font-style: italic; direction: ltr; text-align: right; }}
+    .toc-sub {{ font-family: {fonts['latin']}; font-size: 8pt; color: {p.muted}; font-style: italic; unicode-bidi: isolate; text-align: start; }}
     .toc-dots {{
       flex: 1;
-      border-bottom: 1.5pt dotted {p.dots};
-      margin: 0 9pt;
-      height: 11pt;
+      margin: 0 13pt 0 9pt;
+      height: 5pt;
+      background-image: radial-gradient(circle, {p.dots} 0.75pt, transparent 0.85pt);
+      background-size: 5pt 5pt;
+      background-repeat: repeat-x;
+      background-position: bottom center;
     }}
     .toc-page {{
       font-family: {fonts['latin']};
       font-weight: 700;
       color: {p.primary};
       font-size: 10.5pt;
-      width: 24pt;
-      text-align: left;
+      min-width: 16pt;
+      text-align: end;
     }}
 
     /* ============ Quotes (serif, boxed) ============ */
+    .quote-box {{
+      background: {p.surface_warm};
+      border: none;
+      border-inline-start: 3.5pt solid {p.primary};
+      padding: 12pt 18pt;
+      border-radius: 0;
+      max-width: none;
+      margin: 10pt 0;
+    }}
+    .layout-dark .quote-box {{
+      background: transparent;
+      border-color: {p.back_frame};
+    }}
+    .quote-rule {{ display: block; width: 60pt; height: 1.5pt; background: {p.accent}; margin: 12pt auto; }}
     .quote {{
       max-width: 490pt;
       margin: 10pt auto;
       text-align: center;
       padding: 0 22pt;
     }}
-    .quote-box {{
-      background: {p.surface_warm};
-      border: none;
-      border-right: 3.5pt solid {p.primary};
-      padding: 12pt 18pt;
-      border-radius: 0;
-      max-width: none;
-      margin: 10pt 0;
-    }}
-    [dir="ltr"] .quote-box {{
-      border-right: none;
-      border-left: 3.5pt solid {p.primary};
-    }}
-    .quote-box .quote-rule {{ display: none; }}
-    .layout-dark .quote-box {{
-      background: transparent;
-      border-color: {p.back_frame};
-    }}
-    .quote-rule {{ display: block; width: 60pt; height: 1.5pt; background: {p.accent}; margin: 12pt auto; }}
     .quote p {{
       font-size: 11.5pt;
       font-weight: 400;
@@ -874,14 +878,15 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       color: {p.text_dark};
       font-family: {fonts['quote']};
     }}
-    .layout-dark .quote p {{ color: #ffffff; }}
+    .layout-dark .quote p {{ color: #ffffff; line-height: 2.05; }}
+    .layout-dark .quote {{ margin: 26pt auto; padding: 0 30pt; }}
     .quote-sub {{
       font-family: {fonts['latin']};
       font-style: italic;
       font-size: 8.5pt;
       color: {p.muted};
       margin-top: 7pt;
-      direction: ltr;
+      unicode-bidi: isolate;
       line-height: 1.6;
     }}
     .layout-dark .quote-sub {{ color: #e2e8f0; }}
@@ -890,15 +895,13 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       font-size: 8.5pt;
       color: {p.muted};
       margin-top: 7pt;
-      direction: ltr;
-      text-align: left;
+      text-align: end;
+      unicode-bidi: isolate;
       font-family: {fonts['latin']};
     }}
-    [dir="ltr"] .quote-author {{ text-align: right; }}
 
     /* ============ Lists ============ */
-    .content-list {{ margin: 5pt 0; padding-right: 20pt; line-height: 1.7; font-size: 10.5pt; }}
-    [dir="ltr"] .content-list {{ padding-right: 0; padding-left: 20pt; }}
+    .content-list {{ margin: 5pt 0; padding-inline-start: 20pt; line-height: 1.7; font-size: 10.5pt; }}
 
     /* Card-variant lists */
     .list-cards {{
@@ -926,6 +929,7 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       flex-shrink: 0;
       width: 16pt;
       text-align: center;
+      font-family: {fonts['badge']};
     }}
     .list-item-content {{
       flex: 1;
@@ -979,11 +983,13 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       border-radius: 50%;
       background: {p.surface_alt};
       color: {p.primary};
-      font-family: {fonts['latin']};
+      font-family: {fonts['badge']};
       font-size: 9.5pt;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      line-height: 1;
+      padding: 0;
       flex-shrink: 0;
       margin-top: 1pt;
     }}
@@ -1035,6 +1041,7 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       font-family: {fonts['arabic']};
       direction: ltr !important;
       unicode-bidi: isolate;
+      line-height: 1.3;
     }}
     .footer-left {{ text-align: left; direction: rtl; unicode-bidi: isolate; }}
     .footer-right {{ text-align: right; direction: ltr; font-family: {fonts['latin']}; }}
@@ -1045,9 +1052,12 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       font-weight: 700;
       font-size: 9pt;
       line-height: 1;
-      padding: 2pt 4.5pt;
+      padding: 2.2pt 5pt;
       border-radius: 3pt;
-      min-width: 13.5pt;
+      min-width: 14pt;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
     }}
     """
@@ -1080,29 +1090,31 @@ def render_page(
             center_cls = "footer-center"
         footer_html = (
             f'<footer class="running-footer">'
-            f'<span class="footer-left">{esc(left)}</span>'
-            f'<span class="{center_cls}">{esc(center)}</span>'
-            f'<span class="footer-right">{esc(right)}</span>'
+            f'<span class="footer-left">{fmt(left)}</span>'
+            f'<span class="{center_cls}">{fmt(center)}</span>'
+            f'<span class="footer-right">{fmt(right)}</span>'
             f'</footer>'
         )
 
     layout = page.get("layout", "standard")
     content = "".join(content_parts)
+    continuation = ' data-continuation="true"' if page.get("_continuation") else ""
+    data_attrs = f' data-page-token="{esc(page_token)}"{continuation}'
 
     if layout == "framed":
         return (
-            f'<main class="page-sheet layout-framed">'
+            f'<main class="page-sheet layout-framed"{data_attrs}>'
             f'<div class="page-frame-outer"><div class="page-frame">{content}</div></div>'
             f'</main>'
         )
     if layout == "dark":
         return (
-            f'<main class="page-sheet layout-dark">'
+            f'<main class="page-sheet layout-dark"{data_attrs}>'
             f'<div class="dark-frame">{content}</div>'
             f'</main>'
         )
     return (
-        f'<main class="page-sheet layout-{esc(layout)}">'
+        f'<main class="page-sheet layout-{esc(layout)}"{data_attrs}>'
         f'<div class="page-content">{content}</div>{footer_html}'
         f'</main>'
     )

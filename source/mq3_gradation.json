@@ -107,82 +107,82 @@
               "badge": "1",
               "title": "مفهوم التدريج و أهميته الاقتصادية",
               "subtitle": "Introduction — Gradation",
-              "page": "3"
+              "page_ref": "sec-01"
             },
             {
               "badge": "2",
               "title": "القواعد الرياضية و نظام المحاور الديكارتية",
               "subtitle": "Principes Mathématiques",
-              "page": "3"
+              "page_ref": "sec-02"
             },
             {
               "badge": "3",
               "title": "جدول مقاييس جسم الإنسان المرجعي",
               "subtitle": "Barème de Mesures",
-              "page": "4"
+              "page_ref": "sec-03"
             },
             {
               "badge": "4",
               "title": "الخطوات المنهجية لتنفيذ التدريج",
               "subtitle": "Démarche Méthodologique",
-              "page": "5"
+              "page_ref": "sec-04"
             },
             {
               "badge": "5",
               "title": "دراسة عملية: تدريب تنورة أساسية",
               "subtitle": "Étude de Cas: Jupe de Base",
-              "page": "6"
+              "page_ref": "sec-05"
             },
             {
               "badge": "6",
               "title": "التدريج اليدوي مقابل الرقمي (CAD)",
               "subtitle": "Manuel vs Numérique",
-              "page": "7"
+              "page_ref": "sec-06"
             },
             {
               "badge": "7",
               "title": "أخطاء شائعة و طرق معالجتها",
               "subtitle": "Erreurs Courantes",
-              "page": "8"
+              "page_ref": "sec-07"
             },
             {
               "badge": "8",
               "title": "الخلاصة و المراجع",
               "subtitle": "Conclusion et Références",
-              "page": "9"
+              "page_ref": "sec-08"
             },
             {
               "badge": "9",
               "title": "معجم المصطلحات التقنية",
               "subtitle": "Glossaire Technique Bilingue",
-              "page": "10"
+              "page_ref": "sec-09"
             },
             {
               "badge": "10",
               "title": "تمارين تطبيقية و دراسات حالة",
               "subtitle": "Exercices Pratiques et Études de Cas",
-              "page": "11"
+              "page_ref": "sec-10"
             },
             {
               "badge": "أ",
               "title": "المرجعية الجزائرية الرسمية والإطار المعياري",
               "subtitle": "Référentiel Officiel & Normatif Algérien",
-              "page": "12",
-              "appendix": true
+              "appendix": true,
+              "page_ref": "sec-11"
             },
             {
               "badge": "ب",
               "title": "دراسات حالة وبيانات من الصناعة الجزائرية",
               "subtitle": "Études de Cas & Données Industrielles",
-              "page": "13",
-              "appendix": true
+              "appendix": true,
+              "page_ref": "sec-12"
             },
             {
               "badge": "ج",
               "title": "المراجع والوثائق المعتمدة",
               "subtitle": "Bibliographie & Documents Officiels",
-              "page": "15",
-              "appendix": true
+              "appendix": true,
+              "page_ref": "sec-13"
             }
           ]
         }
@@ -202,7 +202,8 @@
           "level": 2,
           "badge": "1",
           "title": "مفهوم التدريج و أهميته الاقتصادية",
-          "subtitle": "Introduction — Gradation"
+          "subtitle": "Introduction — Gradation",
+          "id": "sec-01"
         },
         {
           "type": "text",
@@ -247,7 +248,8 @@
           "level": 2,
           "badge": "2",
           "title": "القواعد الرياضية و نظام المحاور الديكارتية",
-          "subtitle": "Principes Mathématiques"
+          "subtitle": "Principes Mathématiques",
+          "id": "sec-02"
         },
         {
           "type": "text",
@@ -322,7 +324,8 @@
           "level": 2,
           "badge": "3",
           "title": "جدول مقاييس جسم الإنسان المرجعي",
-          "subtitle": "Barème de Mesures"
+          "subtitle": "Barème de Mesures",
+          "id": "sec-03"
         },
         {
           "type": "text",
@@ -613,7 +616,8 @@
           "level": 2,
           "badge": "4",
           "title": "الخطوات المنهجية لتنفيذ التدريج",
-          "subtitle": "Démarche Méthodologique"
+          "subtitle": "Démarche Méthodologique",
+          "id": "sec-04"
         },
         {
           "type": "text",
@@ -664,7 +668,8 @@
           "level": 2,
           "badge": "5",
           "title": "دراسة عملية: تدريب تنورة أساسية",
-          "subtitle": "Étude de Cas: Jupe de Base"
+          "subtitle": "Étude de Cas: Jupe de Base",
+          "id": "sec-05"
         },
         {
           "type": "text",
@@ -842,7 +847,8 @@
           "level": 2,
           "badge": "6",
           "title": "التدريج اليدوي مقابل الرقمي (CAD)",
-          "subtitle": "Manuel vs Numérique"
+          "subtitle": "Manuel vs Numérique",
+          "id": "sec-06"
         },
         {
           "type": "text",
@@ -944,7 +950,8 @@
           "level": 2,
           "badge": "7",
           "title": "أخطاء شائعة و طرق معالجتها",
-          "subtitle": "Erreurs Courantes"
+          "subtitle": "Erreurs Courantes",
+          "id": "sec-07"
         },
         {
           "type": "text",
@@ -1003,7 +1010,8 @@
           "level": 2,
           "badge": "8",
           "title": "الخلاصة و المراجع",
-          "subtitle": "Conclusion et Références"
+          "subtitle": "Conclusion et Références",
+          "id": "sec-08"
         },
         {
           "type": "text",
@@ -1068,7 +1076,8 @@
           "level": 2,
           "badge": "9",
           "title": "معجم المصطلحات التقنية",
-          "subtitle": "Glossaire Technique Bilingue"
+          "subtitle": "Glossaire Technique Bilingue",
+          "id": "sec-09"
         },
         {
           "type": "text",
@@ -1125,37 +1134,7 @@
               "المحور العمودي",
               "Axe Y",
               "يمثّل تغيّرات الطول"
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "page-11",
-      "layout": "standard",
-      "footer": {
-        "left": "الموسم التكويني: 2025/2026",
-        "center": "{page}",
-        "right": "HTE1204 / MQ3"
-      },
-      "blocks": [
-        {
-          "type": "table",
-          "columns": [
-            [
-              "المصطلح العربي",
-              "Terme Arabe"
             ],
-            [
-              "المصطلح الفرنسي",
-              "Terme Français"
-            ],
-            [
-              "التعريف المختصر",
-              "Définition Courte"
-            ]
-          ],
-          "rows": [
             [
               "جدول مقاييس",
               "Barème de Mesures",
@@ -1186,13 +1165,25 @@
             "الجدول 7: معجم مصطلحات التدريج الصناعي",
             "Tableau 7: Glossaire des termes de gradation"
           ]
-        },
+        }
+      ]
+    },
+    {
+      "id": "page-11",
+      "layout": "standard",
+      "footer": {
+        "left": "الموسم التكويني: 2025/2026",
+        "center": "{page}",
+        "right": "HTE1204 / MQ3"
+      },
+      "blocks": [
         {
           "type": "heading",
           "level": 2,
           "badge": "10",
           "title": "تمارين تطبيقية و دراسات حالة",
-          "subtitle": "Exercices Pratiques et Études de Cas"
+          "subtitle": "Exercices Pratiques et Études de Cas",
+          "id": "sec-10"
         },
         {
           "type": "subsection",
@@ -1255,7 +1246,8 @@
           "level": 2,
           "badge": "أ",
           "title": "الإطار المعياري الجزائري للمقاسات والتدريج",
-          "subtitle": "Cadre Normatif des Tailles"
+          "subtitle": "Cadre Normatif des Tailles",
+          "id": "sec-11"
         },
         {
           "type": "text",
@@ -1380,7 +1372,8 @@
           "level": 2,
           "badge": "ب",
           "title": "قيم التدريج التطبيقية للنقاط الرئيسية",
-          "subtitle": "Valeurs de Gradation Appliquées"
+          "subtitle": "Valeurs de Gradation Appliquées",
+          "id": "sec-12"
         },
         {
           "type": "text",
@@ -1502,7 +1495,8 @@
           "level": 2,
           "badge": "ج",
           "title": "المراجع والوثائق المعتمدة",
-          "subtitle": "Bibliographie & Documents Officiels"
+          "subtitle": "Bibliographie & Documents Officiels",
+          "id": "sec-13"
         },
         {
           "type": "text",
@@ -1574,7 +1568,8 @@
             }
           ]
         }
-      ]
+      ],
+      "break": true
     },
     {
       "id": "page-17",

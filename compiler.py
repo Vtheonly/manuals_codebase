@@ -8,16 +8,22 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Any
 
-from core import svg
+from core import paginate, svg
 from core.components import render_block
 from core.design import DesignSystem
+from core.normalize import normalize_document_spec
+from core.text import document_integrity_report
 from core.validate import validate
 from generators.html import FONT_FACES, render as render_html
-from generators.pdf import render_pdf
+from generators.pdf import render_document
 
 
-ENGINE_VERSION = "3.0.0"
+ENGINE_VERSION = "4.0.0"
 ASSETS_DIR = Path(__file__).resolve().parent / "assets"
+
+# Measured-layout passes: 1 fit check + spill correction rounds (content
+# chains can cascade forward through several pages before converging).
+MAX_LAYOUT_PASSES = 20
 
 
 def sha256_bytes(data: bytes) -> str:
@@ -40,7 +46,24 @@ def copy_font_assets(output_dir: Path) -> bool:
 def load_source(path: str | Path) -> dict[str, Any]:
     source_path = Path(path)
     data = json.loads(source_path.read_text(encoding="utf-8"))
+    # 1) Canonicalize the data contract (NFC + chart aliases + numerics).
+    data = normalize_document_spec(data)
+    # 2) Strict schema contract — fails fast on ghost charts, TOC starvation,
+    #    unknown references, malformed blocks.
     validate(data)
+    # 3) Arabic joining-integrity lint — fails fast on unambiguous corruption
+    #    so broken text is repaired in the source data, never guessed at
+    #    render time.
+    integrity = document_integrity_report(data)
+    if integrity:
+        details = "; ".join(
+            f"{entry['path']}: {'; '.join(entry['problems'])}" for entry in integrity[:5]
+        )
+        more = "" if len(integrity) <= 5 else f" (+{len(integrity) - 5} more)"
+        raise ValueError(
+            "Arabic text integrity problems detected (fix the source JSON):\n"
+            f"{details}{more}"
+        )
     return data
 
 
@@ -80,6 +103,28 @@ def render_content_block(
     return render_block(block, design)
 
 
+def render_block_map(
+    document: dict[str, Any],
+    design: DesignSystem,
+    artifact_html: dict[str, str],
+    output_dir: Path | None = None,
+) -> dict[str, str]:
+    """Render every block of every page; optionally persist block artifacts."""
+    block_html: dict[str, str] = {}
+    for page_index, page in enumerate(document["pages"], start=1):
+        page_token = str(page.get("id", page_index))
+        for block_index, block in enumerate(page.get("blocks", []), start=1):
+            if block.get("type") == "artifact_ref":
+                continue
+            block_id = f"page-{page_token}-block-{block_index}"
+            rendered = render_content_block(block, design, artifact_html)
+            if output_dir is not None:
+                block_path = output_dir / "artifacts" / f"{block_id}.html"
+                block_path.write_text(rendered, encoding="utf-8")
+            block_html[block_id] = rendered
+    return block_html
+
+
 def build(source_path: str | Path, output_dir: str | Path) -> dict[str, Any]:
     source_path = Path(source_path).resolve()
     output_dir = Path(output_dir).resolve()
@@ -92,8 +137,12 @@ def build(source_path: str | Path, output_dir: str | Path) -> dict[str, Any]:
     artifact_dir.mkdir(parents=True)
     copy_font_assets(output_dir)
 
+    # Every page gets a stable token so measurements survive reflow passes.
+    for ordinal, page in enumerate(document["pages"], start=1):
+        if "id" not in page:
+            page["id"] = f"page-{ordinal}"
+
     artifact_html: dict[str, str] = {}
-    block_html: dict[str, str] = {}
     manifest: dict[str, Any] = {
         "engine_version": ENGINE_VERSION,
         "document_id": document["id"],
@@ -101,6 +150,12 @@ def build(source_path: str | Path, output_dir: str | Path) -> dict[str, Any]:
         "source_sha256": sha256_bytes(source_path.read_bytes()),
         "artifacts": [],
         "outputs": {},
+        "pagination": {
+            "mode": "measured",
+            "passes": 0,
+            "spills": [],
+            "warnings": [],
+        },
     }
 
     for spec in document["artifacts"]:
@@ -118,26 +173,54 @@ def build(source_path: str | Path, output_dir: str | Path) -> dict[str, Any]:
             }
         )
 
-    for page_index, page in enumerate(document["pages"], start=1):
+    # ---- Measured pagination loop -------------------------------------
+    work = deepcopy(document)
+    probe_path = output_dir / "_layout_probe.html"
+    pagination = manifest["pagination"]
+
+    for _ in range(MAX_LAYOUT_PASSES):
+        block_html = render_block_map(work, design, artifact_html)
+        probe_path.write_text(
+            render_html(work, artifact_html, block_html, design), encoding="utf-8"
+        )
+        probe = render_document(probe_path)
+        if not probe.backend or probe.backend == "unavailable":
+            pagination["mode"] = "trust"
+            pagination["warnings"].append(
+                "No JavaScript-capable backend available: measured overflow "
+                "protection disabled (install Playwright)."
+            )
+            break
+        outcome = paginate.reflow(work, probe.measurements)
+        pagination["passes"] += 1
+        pagination["spills"].extend(outcome["spills"])
+        pagination["warnings"].extend(outcome["warnings"])
+        if not outcome["changed"]:
+            break
+    probe_path.unlink(missing_ok=True)
+
+    # Resolve TOC page references against the final page ordinals.
+    if paginate.resolve_toc_page_refs(work):
+        pagination["warnings"].append("TOC page references resolved after reflow")
+
+    # ---- Final render ---------------------------------------------------
+    block_html = render_block_map(work, design, artifact_html, output_dir)
+    for page_index, page in enumerate(work["pages"], start=1):
         page_token = str(page.get("id", page_index))
         for block_index, block in enumerate(page.get("blocks", []), start=1):
             if block.get("type") == "artifact_ref":
                 continue
             block_id = f"page-{page_token}-block-{block_index}"
-            rendered = render_content_block(block, design, artifact_html)
-            block_path = artifact_dir / f"{block_id}.html"
-            block_path.write_text(rendered, encoding="utf-8")
-            block_html[block_id] = rendered
             manifest["artifacts"].append(
                 {
                     "id": block_id,
                     "type": block["type"],
-                    "path": str(block_path.relative_to(output_dir)),
-                    "sha256": sha256_bytes(block_path.read_bytes()),
+                    "path": str((artifact_dir / f"{block_id}.html").relative_to(output_dir)),
+                    "sha256": sha256_bytes((artifact_dir / f"{block_id}.html").read_bytes()),
                 }
             )
 
-    html_output = render_html(document, artifact_html, block_html, design)
+    html_output = render_html(work, artifact_html, block_html, design)
     html_path = output_dir / f"{source_path.stem}.html"
     html_path.write_text(html_output, encoding="utf-8")
     manifest["outputs"]["html"] = {
@@ -147,13 +230,20 @@ def build(source_path: str | Path, output_dir: str | Path) -> dict[str, Any]:
 
     pdf_path = output_dir / f"{source_path.stem}.pdf"
     metadata = document.get("metadata") if isinstance(document.get("metadata"), dict) else {}
-    generated = render_pdf(html_path, pdf_path, metadata)
+    result = render_document(html_path, pdf_path, metadata)
     manifest["outputs"]["pdf"] = {
         "path": str(pdf_path.relative_to(output_dir)),
-        "generated": generated,
+        "generated": result.generated,
+        "backend": result.backend,
     }
     if pdf_path.exists():
         manifest["outputs"]["pdf"]["sha256"] = sha256_bytes(pdf_path.read_bytes())
+
+    # Final safety audit: report (never silently ignore) residual overflow.
+    for issue in paginate.remaining_overflow(result.measurements):
+        pagination["warnings"].append(f"residual overflow on page {issue['page']}")
+    if pagination["warnings"]:
+        print(f"[pagination] {source_path.stem}: " + " | ".join(pagination["warnings"]))
 
     manifest_path = output_dir / "manifest.json"
     manifest_path.write_text(

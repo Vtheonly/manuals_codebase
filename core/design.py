@@ -62,6 +62,9 @@ class Typography:
         "quote": "'Amiri', 'Noto Naskh Arabic', 'Traditional Arabic', serif",
         "chart_arabic": "'Noto Sans Arabic UI', 'Noto Kufi Arabic', sans-serif",
         "chart_latin": "'Tinos', 'Arimo', 'Times New Roman', 'Noto Kufi Arabic', serif",
+        # Standalone glyph badges declare the primary script first so the line
+        # box is measured with Arabic metrics even for digits or Latin letters.
+        "badge": "'Noto Kufi Arabic', 'Arimo', 'Noto Sans Arabic UI', sans-serif",
     })
     sizes: dict[str, str] = field(default_factory=lambda: {
         "2xs": "6pt",

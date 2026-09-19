@@ -92,8 +92,10 @@ def test_high_fidelity_components_and_multi_series_chart(tmp_path):
     manifest = build(source, output)
 
     rendered = (output / "styled.html").read_text(encoding="utf-8")
-    assert "<strong>formatted</strong>" in rendered
-    assert "<small>small text</small>" in rendered
+    assert "<strong>" in rendered and "formatted" in rendered
+    assert "<small>" in rendered and "small text" in rendered
+    # Latin runs are bidi-isolated inside author markup
+    assert 'dir="ltr"' in rendered
     assert 'class="formula-math"' in rendered
     assert 'class="subsection-header sub-accent-bar"' in rendered
 
