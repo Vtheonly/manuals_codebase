@@ -253,8 +253,16 @@ def bar_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
     # the data so the plot area never shows excessive empty headroom.
     explicit_max = spec.get("axis_max")
     axis_max = float(explicit_max) if explicit_max else axis_max_of(max(values, default=0.0))
-    colors = series_colors(spec, design, max(1, len(values)))
     count = max(1, len(values))
+    # Default bar palette alternates the first two series colors (the design
+    # system's blue/gold alternation measured from the reference charts);
+    # explicit `colors` lists and `color_scale` ramps still override it.
+    if spec.get("colors") or spec.get("color_scale"):
+        colors = series_colors(spec, design, max(1, len(values)))
+    else:
+        base = list(design.palette.series)
+        pair = base[:2] if len(base) >= 2 else base or ["#2d6494", "#c2932e"]
+        colors = [pair[i % len(pair)] for i in range(count)]
     # Reference bar proportions: bar width ≈ 0.62 of the per-category pitch.
     bar_w = min(61.0, plot_w / count * 0.62)
     gap = (plot_w - bar_w * count) / (count + 1)
