@@ -1,11 +1,11 @@
 {
   "id": "01-COUTURE-DAME-TAIL",
-  "title": "الخياطة النسائية — التأطري العام لتخصص التيلور دام",
+  "title": "الخياطة النسائية — تايور السيدات",
   "language": "ar",
   "direction": "rtl",
   "theme": {},
   "metadata": {
-    "Title": "الخياطة النسائية — التأطير العام لتخصص التيلور دام — تقرير التربص (وعيل فتيحة)",
+    "Title": "الخياطة النسائية — تايور السيدات — تقرير التربص (وعيل فتيحة)",
     "Subject": "تقرير التربص للتكوين التكميلي ما قبل الترقية — رتبة أستاذ متخصص من الدرجة الأولى (وزارة التكوين والتعليم المهنيين — الجزائر)",
     "Author": "وعيل فتيحة — Ouail Fatiha"
   },
@@ -17,7 +17,7 @@
         {
           "type": "text",
           "align": "center",
-          "content": "<p style='font-size:15pt; font-weight:800; color:#0f2d4a; margin:2pt 0;'>الجمهورية الجزائرية الديمقراطية الشعبية</p><p style='font-size:13pt; font-weight:700; color:#1e3a5f; margin:2pt 0;'>وزارة التكــــوين والتعليـــم المهنـيني</p><p style='font-size:10.5pt; font-weight:600; color:#334155; margin:2pt 0;'>معهد التكوين والتعليم المهنيين الشهيد محمد مختيش المدية</p><p style='font-size:10.5pt; font-weight:600; color:#334155; margin:2pt 0;'>المعهد الوطين المتخصص في التكوين المهين يس امحمد بوقرة خميس مليانة</p>"
+          "content": "<p style='font-size:15pt; font-weight:800; color:#0f2d4a; margin:2pt 0;'>الجمهورية الجزائرية الديمقراطية الشعبية</p><p style='font-size:13pt; font-weight:700; color:#1e3a5f; margin:2pt 0;'>وزارة التكــــوين والتعليـــم المهنـيين</p><p style='font-size:10.5pt; font-weight:600; color:#334155; margin:2pt 0;'>معهد التكوين والتعليم المهنيين الشهيد محمد مختيش المدية</p><p style='font-size:10.5pt; font-weight:600; color:#334155; margin:2pt 0;'>المعهد الوطني المتخصص في التكوين المهني سي امحمد بوقرة خميس مليانة</p>"
         },
         {
           "type": "spacer",
@@ -35,49 +35,47 @@
         },
         {
           "type": "spacer",
-          "height": "17pt"
+          "height": "20pt"
         },
         {
           "type": "card",
           "label": "تقرير التربص حول:",
-          "title": "الخياطة النسائية — التأطري العام لتخصص التيلور دام",
-          "subtitle": "Couture Dame — Tailleur Dames (Référentiel Général)",
-          "pill": "مسار 2448 سا / 24 شهر اًً — HTE1204"
+          "title": "الخياطة النسائية — تايور السيدات"
         },
         {
           "type": "spacer",
-          "height": "30pt"
+          "height": "32pt"
         },
         {
           "type": "info_card",
           "rows": [
             {
-              "label": "الاســــم واللقــــب",
+              "label": "الاسم واللقب",
               "value": "وعيل فتيحة",
               "highlight": true
             },
             {
-              "label": "الشعـــــــــبة",
+              "label": "الشعبة",
               "value": "النسيج والألبسة",
               "highlight": false
             },
             {
-              "label": "التخصـــــــص",
+              "label": "التخصص",
               "value": "تصميم أزياء",
               "highlight": false
             },
             {
-              "label": "المؤسســــــــة",
-              "value": "مركز التكوين المهين والتمهني بئر ولد خليفة المرحوم (بغدادي سالمي)",
+              "label": "المؤسسة",
+              "value": "مركز التكوين المهني والتمهين بئر ولد خليفة (المرحوم سالمي بغدادي)",
               "highlight": false
             },
             {
-              "label": "الواليـــــــــة",
+              "label": "الولاية",
               "value": "عين الدفلى",
               "highlight": false
             },
             {
-              "label": "صاحب الاختصاص المعهد",
+              "label": "المعهد صاحب الاختصاص",
               "value": "معهد التكوين والتعليم المهنيين بئر خادم",
               "highlight": false
             }
@@ -85,17 +83,12 @@
         },
         {
           "type": "spacer",
-          "height": "31pt"
-        },
-        {
-          "type": "badge",
-          "variant": "pill",
-          "text": "الـدفـعـــــــــــــــة : 12"
+          "height": "40pt"
         },
         {
           "type": "text",
           "align": "center",
-          "content": "<p style='font-size:9.5pt; font-weight:600; color:#475569;'>الموسم التكوين : 2025/2026</p>"
+          "content": "<p style='font-size:10pt; font-weight:600; color:#475569;'>الموسم التكويني: 2025/2026</p>"
         }
       ]
     },
@@ -110,87 +103,81 @@
           "items": [
             {
               "badge": "1",
-              "title": "مقدمة عامة في تخصص الخياطة النسائية",
-              "subtitle": "Introduction Générale à la Spécialité",
+              "title": "مدخل عام لتخصص خياطة السيدات والأهمية الاقتصادية",
+              "subtitle": "Introduction Générale & Enjeux Économiques",
               "page_ref": "sec-01"
             },
             {
               "badge": "2",
-              "title": "الإطار الرسمي للمنهاج و البنية المؤسسية",
-              "subtitle": "Cadre Officiel et Structure Institutionnelle",
+              "title": "الإطار القانوني والمؤسسي (INFEP / MFEP)",
+              "subtitle": "Cadre Officiel & Structure Institutionnelle",
               "page_ref": "sec-02"
             },
             {
               "badge": "3",
-              "title": "المصفوفة الشاملة للوحدات التكوينية",
-              "subtitle": "Matrice Globale des Modules de Formation",
+              "title": "هندسة المنهاج والمقاربة المبنية على الكفاءات (APC)",
+              "subtitle": "Ingénierie Pédagogique & Approche Par Compétences",
               "page_ref": "sec-03"
             },
             {
               "badge": "4",
-              "title": "المنهجية المبنية على الكفاءات)APC(",
-              "subtitle": "Approche Par Compétences",
+              "title": "المصفوفة الشاملة للوحدات المؤهلة (1415 سا)",
+              "subtitle": "Matrice des Modules Qualifiants (MQ1 — MQ13)",
               "page_ref": "sec-04"
             },
             {
               "badge": "5",
-              "title": "التوزيع الفصلي و الغالف الزمني الإجمالي",
-              "subtitle": "Répartition Semestrielle et Volume Horaire",
+              "title": "الوحدات المكملة والمعارف التقنية المساندة (645 سا)",
+              "subtitle": "Modules Complémentaires (MC1 — MC8)",
               "page_ref": "sec-05"
             },
             {
               "badge": "6",
-              "title": "الكفاءة الشاملة و الأهداف الوسيطة",
-              "subtitle": "Compétence Globale et Objectifs Intermédiaires",
+              "title": "التوزيع الفصلي والغلاف الزمني الإجمالي (2448 سا)",
+              "subtitle": "Répartition Semestrielle & Volume Global",
               "page_ref": "sec-06"
             },
             {
               "badge": "7",
-              "title": "أنشطة الورشة و الأعمال التطبيقية(TP)",
-              "subtitle": "Travaux Pratiques en Atelier",
+              "title": "الكفاءة الشاملة وشبكة الأهداف الوسيطة",
+              "subtitle": "Compétence Globale & Objectifs Intermédiaires",
               "page_ref": "sec-07"
             },
             {
               "badge": "8",
-              "title": "التقييم و المراقبة المستمرة و الامتحانات",
-              "subtitle": "Évaluation et Examens Officiels",
+              "title": "أنشطة الورشة التطبيقية ومحاكاة خطوط الإنتاج",
+              "subtitle": "Travaux Pratiques en Atelier Industriel",
               "page_ref": "sec-08"
             },
             {
               "badge": "9",
-              "title": "آفاق الإدراج المهني و سوق الشغل الجزائري",
-              "subtitle": "Insertion Professionnelle et Marché de l'Emploi",
+              "title": "نظام التقييم والامتحانات الرسمية للشهادة",
+              "subtitle": "Système d'Évaluation & Examens Officiels",
               "page_ref": "sec-09"
             },
             {
               "badge": "10",
-              "title": "معجم المصطلحات التقنية",
-              "subtitle": "Glossaire Technique Bilingue",
+              "title": "آفاق الإدماج المهني وسوق الشغل الجزائري",
+              "subtitle": "Insertion Professionnelle & Marché de l'Emploi",
               "page_ref": "sec-10"
             },
             {
-              "badge": "11",
-              "title": "تمارين تطبيقية و دراسات حالة",
-              "subtitle": "Exercices Pratiques et Études de Cas",
-              "page_ref": "sec-11"
-            },
-            {
               "badge": "أ",
-              "title": "المرجعية الجزائرية الرسمية والإطار المعياري",
-              "subtitle": "Référentiel Officiel & Normatif Algérien",
+              "title": "المرجعية القانونية والمعيارية الجزائرية",
+              "subtitle": "Cadre Légal & Normatif Algérien",
               "page_ref": "annex-01",
               "appendix": true
             },
             {
               "badge": "ب",
-              "title": "دراسات حالة وبيانات من الصناعة الجزائرية",
-              "subtitle": "Études de Cas & Données Industrielles",
+              "title": "واقع الصناعة النسيجية الوطنية والمجمعات الإنتاجية",
+              "subtitle": "Industrie Textile Nationale & Complexes Industriels",
               "page_ref": "annex-02",
               "appendix": true
             },
             {
               "badge": "ج",
-              "title": "المراجع والوثائق المعتمدة",
+              "title": "المراجع والوثائق البيداغوجية المعتمدة",
               "subtitle": "Bibliographie & Documents Officiels",
               "page_ref": "annex-03",
               "appendix": true
@@ -212,36 +199,47 @@
           "type": "heading",
           "id": "sec-01",
           "badge": "1",
-          "title": "مقدمة عامة في تخصص الخياطة النسائية",
-          "subtitle": "Introduction Générale à la Spécialité"
+          "title": "مدخل عام لتخصص خياطة السيدات والأهمية الاقتصادية",
+          "subtitle": "Introduction Générale & Enjeux Économiques"
         },
         {
           "type": "text",
-          "content": "ُي عّد تخصص Tailleur Dames (Couture Dame) من أعرق التخصصات المهنية في الجزائر، إذ يجمع بين الأصالة الحرفية المرتبطة بالتراث الوطني في صناعة الألبسة النسائية، والحداثة الصناعية القائمة على المنهجيات العلمية في النمذجة والتدريج والتصنيع . وُي ؤّه ل هذا التخصص، الذي يُ نّس ق عبر المعهد الوطني للتكوين والتعليم المهنيين (INSFP — Kaci Taher) تحت الرمز HTE1204، المتدّر ب للحصول على شهادة التقني السامي (Brevet de)Technicien — BT, Niveau IV بعد إتمام مسار تكويني ممتد عبر أربعة فصول دراسية ."
+          "content": "يعد تخصص خياطة السيدات (Couture Dame — Tailleur Dames) المعتمد رسمياً تحت الرمز HTE1204 من أعرق وأهم المسارات التكوينية في منظومة التكوين المهني بالجزائر. يرتكز التخصص على دمج المهارة الحرفية التراثية المعبرة عن الهوية الوطنية مع المعايير الصناعية الحديثة في النمذجة وإعداد الباترونات والقص الآلي، ويهدف لتأهيل المتربصين لنيل شهادة التقني السامي (Brevet de Technicien — BT, Niveau IV) استجابة للطلب المتصاعد في مصانع النسيج وورشات الموضة الراقية."
         },
         {
           "type": "text",
-          "content": "يهدف هذا الدليل الشامل إلى تقديم رؤية بانورامية شاملة لكل المكّو نات البيداغوجية والتقنية والمهنية التي يتضّم نها التخصص، بحيث يكون بمثابة خارطة طريق للمتدّر ب منذ اللحظة الأولى لتسجيله في المعهد وحتى إدماجه الفعلي في سوق الشغل الجزائري . لا يُ غفل هذا التقرير الإشارة إلى السياق الاقتصادي الوطني الذي يُ ؤّط ر التخصص، حيث تشهد صناعة الألبسة في الجزائر تحّو لًا استراتيجيًا نحو الإنتاج المحلي والاستيراد الانتقائي، وهو ما يُ ضفي على مهارات التقني السامي قيمة مضافة حقيقية ."
+          "content": "تتزامن أهمية هذا المسار مع الاستراتيجية الاقتصادية الوطنية الرامية إلى إحلال الواردات وتعزيز الإنتاج المحلي للملابس الجاهزة؛ حيث تشير الإحصائيات القطاعية لوزارة الصناعة إلى أن السوق الجزائري يستهلك سنوياً ما يفوق 150 مليون قطعة ملبسيه، تغطي الصناعة الوطنية منها حصة متنامية بفضل الاستثمارات العامة والشراكات الدولية، ما يجعل التقني السامي عنصراً محورياً في رفع تنافسية المنتوج الوطني وضمان جودته الهندسية والجمالية."
         },
         {
-          "type": "text",
-          "content": "يستند التخصص في تصميمه البيداغوجي إلى مرجعية قانونية واضحة، تتمّث ل في المنشورات الوزارية لوزارة التكوين والتعليم المهنيين (MFEP)، وفي المرجعية العامة للشهادات المهنية المعتمدة من قبل اللجنة التقنية للتأهيل (Comité Technique d'Homologation)، وفي المعايير الجزائرية الُم سّج لة لدى المعهد الجزائري للمعايير (IANOR) المتعلقة بالمقاسات والتساُم ح والجودة . كما يستوعب التخصص التحولات الرقمية الأخيرة من خالل دمج أنظمة التصميم بمساعدة الحاسوب (CAO/FAO — Lectra, Gerber, Optitex) ضمن الوحدات التطبيقية ."
+          "type": "stats",
+          "columns": 4,
+          "items": [
+            {
+              "value": "2448 سا",
+              "label": "الغلاف الزمني الإجمالي للبرنامج",
+              "sublabel": "Volume horaire global"
+            },
+            {
+              "value": "1200+",
+              "label": "مؤسسة نسيجية ناشطة في الجزائر",
+              "sublabel": "Unités industrielles actives"
+            },
+            {
+              "value": "70,000",
+              "label": "عامل في قطاع النسيج والألبسة",
+              "sublabel": "Effectif national du secteur"
+            },
+            {
+              "value": "150M",
+              "label": "حاجة السوق السنوية من الملابس",
+              "sublabel": "Consommation annuelle (pièces)"
+            }
+          ]
         },
         {
           "type": "quote",
-          "text": "إن صناعة الملابس في الجزائر ليست مجرد نشاط اقتصادي، بل هي تعبير عن هوية وطنية متجّذرة في الذاكرة الجماعية، تجمع بين الّروح الحرفية وال لكفاءة الصناعية .",
-          "author": "وزارة التكوين والتعليم المهنيين — المنشور التوجيهي — 2023"
-        },
-        {
-          "type": "heading",
-          "id": "sec-02",
-          "badge": "2",
-          "title": "الإطار الرسمي للمنهاج و البنية المؤسسية",
-          "subtitle": "Cadre Officiel et Structure Institutionnelle"
-        },
-        {
-          "type": "text",
-          "content": "ُي ؤَّط ر تخصص الخياطة النسائية في الجزائر ضمن منظومة مؤسسية متكاملة تضم وزارة التكوين والتعليم المهنيين (MFEP) كهيئة إشرافية عليا، والمعهد الوطني للتكوين والتعليم المهنيين (INSFP — Kaci Taher) كمعهد وطني مرجعي مُ كَّل ف بإعداد البرامج وهيكلة المناهج، إضافة إلى شبكة من المعاهد والتخصصات الجهوية المتوّز عة عبر ولايات الوطن . تضمن هذه البنية الالمركزية قُ رب التكوين من النسيج الاقتصادي المحلي، مع توحيد مرجعي للمحتوى البيداغوجي والمخرجات المهنية ."
+          "text": "إن صناعة الملابس في الجزائر تتجاوز النشاط التجاري لتصبح ركيزة من ركائز السيادة الصناعية، تزاوج بين الهوية الحضارية المتجذرة ومعايير الجودة العالمية.",
+          "author": "التوجهات الاستراتيجية لقطاع الصناعة والتكوين المهني — 2023"
         }
       ],
       "footer": {
@@ -255,9 +253,15 @@
       "layout": "standard",
       "blocks": [
         {
-          "type": "subsection",
-          "title": "الهيكل الرسمي للمنظومة",
-          "subtitle": "Structure Officielle du Système"
+          "type": "heading",
+          "id": "sec-02",
+          "badge": "2",
+          "title": "الإطار القانوني والمؤسسي (INFEP / MFEP)",
+          "subtitle": "Cadre Officiel & Structure Institutionnelle"
+        },
+        {
+          "type": "text",
+          "content": "يخضع تخصص خياطة السيدات لتأطير تشريعي وتنظيمي محكم يضمن انسجام التكوين مع المتطلبات الفعلية لسوق العمل، حيث تتولى وزارة التكوين والتعليم المهنيين (MFEP) الإشراف القطاعي، فيما يتولى المعهد الوطني للتكوين والتعليم المهنيين (INFEP — كاسي الطاهر، الأبيار) إعداد المناهج وتحيين برامج الإشهاد بالتعاون مع لجان التأهيل المهني (Comités techniques d'homologation)."
         },
         {
           "type": "table",
@@ -267,85 +271,64 @@
               "subtext": "Niveau Administratif"
             },
             {
-              "text": "المؤسسة",
+              "text": "الهيئة والمؤسسة",
               "subtext": "Établissement"
             },
             {
-              "text": "الدور الأساسي",
+              "text": "الدور والمسؤولية البيداغوجية",
               "subtext": "Rôle Principal"
             }
           ],
           "rows": [
             [
-              "الإشراف الوزاري",
+              "الإشراف القطاعي المركزي",
               {
                 "text": "وزارة التكوين والتعليم المهنيين",
                 "subtext": "(MFEP)"
               },
-              "رسم السياسات القطاعية، إقرار البرامج الوطنية، ضمان التمويل"
+              "رسم السياسات العامة، المصادقة على البرامج الوطنية، وضمان الميزانيات"
             ],
             [
-              "المعهد المرجعي الوطني",
+              "الهيئة المرجعية الوطنية",
               {
-                "text": "(الجزائر العاصمة)",
-                "subtext": "INSFP — Kaci Taher"
+                "text": "INFEP — كاسي الطاهر",
+                "subtext": "(الجزائر العاصمة)"
               },
-              "إعداد البرامج، تأهيل الُم دّر بين، اعتماد المراجع البيداغوجية"
+              "هندسة برامج التكوين، تأهيل المكونين، واعتماد الأدلة البيداغوجية"
             ],
             [
-              "المعاهد الجهوية",
-              "معاهد التكوين المهني على المستوى الولائي",
-              "تنفيذ البرامج التكوينية، تنظيم الامتحانات، التأطير المباشر"
+              "المعاهد الوطنية المتخصصة",
+              "معاهد INSFP ومعاهد التكوين الولائية",
+              "التنفيذ الميداني للمناهج، تأطير المتربصين، وإجراء الامتحانات الرسمية"
             ],
             [
               "الورشات التطبيقية",
               {
-                "text": "(داخل المعاهد)",
-                "subtext": "Ateliers d'Application"
+                "text": "Ateliers d'Application",
+                "subtext": "(داخل المعاهد)"
               },
-              {
-                "text": "الأعمال التطبيقية (TP)، محاكاة بيئة العمل الصناعي"
-              }
+              "إنجاز الأشغال التطبيقية (TP) ومحاكاة خطوط التجميع والقص الصناعي"
             ],
             [
-              "مؤسسات الاستقبال",
+              "المؤسسات الاقتصادية الشريكة",
               {
-                "text": "مؤسسات الألبسة الجزائرية",
-                "subtext": "(ETE, SGP Textile)"
+                "text": "المصانع والورشات المعتمدة",
+                "subtext": "(TAYAL, TEXALG, ETE)"
               },
-              {
-                "text": "التدريب الميداني، التربص المهني",
-                "subtext": "(Stage en Entreprise)"
-              }
+              "احتضان التربص الميداني الإلزامي وربط المتخرجين بمناصب الشغل"
             ]
           ],
           "caption": [
-            "الجدول 1: البنية المؤسسية لتخصص الخياطة النسائية في الجزائر",
-            "Tableau 1: Structure institutionnelle de la spécialité Tailleur Dames en Algérie"
+            "الجدول 1: البنية المؤسسية لتأطير تخصص خياطة السيدات في الجزائر",
+            "Tableau 1: Structure institutionnelle de la filière Tailleur Dames"
           ]
         },
         {
-          "type": "text",
-          "content": "يخضع التخصص لتأطير قانوني صارم يضمن تطابقه مع متطلبات سوق العمل الوطني . فالمنشور الوزاري رقم MFEP/INSFP/ 23 الصادر في 2023 يُ حّد د بدقة الفئة المستهدفة (المتدّر بون الحاصلون على مستوى السنة الثالثة ثانوي)، ومسار التكوين (24 شهرًا موّز عة على 4 فصول دراسية)، إضافة إلى شروط الالتحاق وآليات التقييم النهائي . كما يُ لزم المنشور المؤسسات التكوينية بتطبيق المنهجية المبنية على الكفاءات (APC — Approche Par)Compétences التي تشّك ل العمود الفقري للمنظومة البيداغوجية الجزائرية ."
-        },
-        {
           "type": "callout",
-          "variant": "accent",
-          "title": "القاعدة المرجعية الذهبية",
-          "content": "كل وحدة تكوينية في تخصص الخياطة النسائية تُ صاغ وفق ثالثية المنهجية APC : (1) الكفاءة الشاملة ()Compétence Globale التي تُ عّب ر عن السلوك المهني المنتظر من التقني . (2) الأهداف الوسيطة ()Objectifs Intermédiaires التي تُ فّك ك الكفاءة إلى مهام قابلة للقياس . (3) معايير الأداء ()Critères de Performance التي تُ حّد د شروط النجاح بدقة قابلة للتقييم .",
-          "icon": "★"
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "badge": "3",
-          "title": "المصفوفة الشاملة للوحدات التكوينية",
-          "subtitle": "Matrice Globale des Modules de Formation",
-          "id": "sec-03"
-        },
-        {
-          "type": "text",
-          "content": "ُي بنى تخصص Tailleur Dames وفق مصفوفة بيداغوجية شاملة تضم 21 وحدة تكوينية، مقّس مة إلى مجموعتين رئيسيتين : الوحدات المؤِّه لة (Modules Qualifiants — MQ) التي تُ غّط ي الكفاءات المهنية الأساسية المرتبطة مباشرة بممارسة المهنة (13 وحدة)، والوحدات المكّم لة (Modules Complémentaires — MC) التي تُ ؤّم ن المعارف العامة والتقنية المساندة (8 وحدات) . هذا التوزيع المتوازن يضمن تكامًال عضويًا بين الجانب التطبيقي والجانب النظري، وُي عكس الفلسفة الجزائرية للتكوين المهني القائمة على التناوب الدائم بين الورشة والمدرسة ."
+          "variant": "primary",
+          "icon": "check",
+          "title": "الضابط التنظيمي لمرجع الإشهاد",
+          "content": "يضبط المنشور الوزاري المشترك شروط الالتحاق بتخصص BT في خياطة السيدات (مستوى السنة الثالثة ثانوي كاملة)، ويحدد مدة التكوين بـ 24 شهراً موزعة على 4 سداسيات منتظمة تعتمد التناوب الإلزامي بين الورشة والمؤسسة الاقتصادية."
         }
       ],
       "footer": {
@@ -359,32 +342,95 @@
       "layout": "standard",
       "blocks": [
         {
-          "type": "subsection",
-          "title": "الوحدات المؤِّه لة (MQ) — الكفاءات المهنية الأساسية",
-          "subtitle": "Modules Qualifiants"
+          "type": "heading",
+          "id": "sec-03",
+          "level": 2,
+          "badge": "3",
+          "title": "هندسة المنهاج والمقاربة المبنية على الكفاءات (APC)",
+          "subtitle": "Ingénierie Pédagogique & Approche Par Compétences"
+        },
+        {
+          "type": "text",
+          "content": "بني برنامج HTE1204 وفق المقاربة المبنية على الكفاءات (APC — Approche Par Compétences) المعتمدة وطنياً منذ إصالحات القانون 08-07؛ حيث يتم تفكيك المهنة إلى وضعيات مهنية واقعية تستخرج منها الكفاءات الإلزامية وتترجم إلى وحدات تكوينية مستقلة ترافقها معايير أداء دقيقة وشبكات تقييم موضوعية."
+        },
+        {
+          "type": "flow_steps",
+          "title": "المراحل المنهجية الأربع لبناء وتطبيق منهاج الكفاءات",
+          "steps": [
+            {
+              "badge": 1,
+              "title": "تحليل واقع العمل الميداني ورصد المهام الحقيقية لتقني الخياطة في المصانع",
+              "subtitle": "Analyse de la situation de travail (AST)"
+            },
+            {
+              "badge": 2,
+              "title": "استخراج وتوصيف الكفاءات المهنية وصياغة الأهداف السلوكية والوسيطة",
+              "subtitle": "Extraction et formulation des compétences"
+            },
+            {
+              "badge": 3,
+              "title": "هيكلة الوحدات التكوينية وضبط مصفوفات الأداء ومؤشرات النجاح",
+              "subtitle": "Structuration modulaire et référentiels"
+            },
+            {
+              "badge": 4,
+              "title": "بناء أدوات التقييم المستمر وشبكات التحقق الميداني أثناء إنجاز النماذج",
+              "subtitle": "Outils d'évaluation et critères de réussite"
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "accent",
+          "icon": "target",
+          "title": "ثلاثية صياغة الكفاءة المهنية",
+          "content": "تصاغ كل وحدة في تخصص التايور وفق قاعدة سلوكية ثلاثية: (1) السلوك المهني المنتظر القابل للملاحظة المباشرة، (2) شروط وموارد الإنجاز المتاحة (آلات، مخططات، أقمشة)، و(3) معايير الأداء الدقيقة التي تحدد شروط الجودة الصناعية المقبولة."
+        }
+      ],
+      "footer": {
+        "left": "الموسم التكويني 2025/2026",
+        "center": "{page}",
+        "right": "HTE1204"
+      }
+    },
+    {
+      "id": "page-6",
+      "layout": "standard",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "sec-04",
+          "level": 2,
+          "badge": "4",
+          "title": "المصفوفة الشاملة للوحدات المؤهلة (1415 سا)",
+          "subtitle": "Matrice des Modules Qualifiants (MQ1 — MQ13)"
+        },
+        {
+          "type": "text",
+          "content": "تغطي الوحدات المؤهلة (Modules Qualifiants — MQ) مجموع 1415 ساعة تكوينية موزعة على 13 وحدة مهنية تخصصية تمثل جوهر مهنة التايور: انطلاقاً من تصميم النموذج الأساسي وبناء الباترونات وتدريجها، وصولاً إلى تصنيع النماذج الأولية المعقدة (التنورة، البنطلون، الصدرية، السترة، والمعطف) مع تقنيات التشطيب والبيع على القياس."
         },
         {
           "type": "table",
           "columns": [
             {
-              "text": "الرمز",
+              "text": "رمز الوحدة",
               "subtext": "Code"
             },
             {
-              "text": "عنوان الوحدة",
-              "subtext": "Intitulé du Module"
+              "text": "عنوان الوحدة التكوينية المؤهلة",
+              "subtext": "Intitulé du Module Qualifiant"
             },
             {
-              "text": "الغالف الزمني",
-              "subtext": "Durée (heures)"
+              "text": "الغلاف الساعي",
+              "subtext": "Volume (h)"
             }
           ],
           "rows": [
             [
               "MQ1",
               {
-                "text": "تصميم النموذج — المالبس",
-                "subtext": "Conception du modèle"
+                "text": "تصميم النموذج — الملابس",
+                "subtext": "Conception du modèle – vêtements -"
               },
               {
                 "text": "102",
@@ -406,7 +452,7 @@
               "MQ3",
               {
                 "text": "تحويل البترونات الأساسية",
-                "subtext": "Transformation des patrons"
+                "subtext": "Transformation des patrons de base"
               },
               {
                 "text": "136",
@@ -416,8 +462,8 @@
             [
               "MQ4",
               {
-                "text": "تدريج المالبس النسائية",
-                "subtext": "Gradation vêtements dames"
+                "text": "تدريج الملابس النسائية",
+                "subtext": "Gradation vêtements"
               },
               {
                 "text": "112",
@@ -493,7 +539,7 @@
             [
               "MQ11",
               {
-                "text": "التشطيبات النهائية للمالبس",
+                "text": "التشطيبات النهائية للملابس",
                 "subtext": "Finitions vêtements"
               },
               {
@@ -504,7 +550,7 @@
             [
               "MQ12",
               {
-                "text": "تعديل المالبس حسب البنية",
+                "text": "تعديل الملابس حسب البنية",
                 "subtext": "Retouche vêtements"
               },
               {
@@ -525,181 +571,8 @@
             ]
           ],
           "caption": [
-            "الجدول 2: الوحدات المؤِّه لة (MQ1 — MQ13) — مجموع 1415 ساعة تكوينية",
-            "Tableau 2: Modules qualifiants — Total 1415 heures"
-          ]
-        }
-      ],
-      "footer": {
-        "left": "الموسم التكويني 2025/2026",
-        "center": "{page}",
-        "right": "HTE1204"
-      }
-    },
-    {
-      "id": "page-6",
-      "layout": "standard",
-      "blocks": [
-        {
-          "type": "subsection",
-          "title": "الوحدات المكّم لة (MC) — المعارف المساندة",
-          "subtitle": "Modules Complémentaires"
-        },
-        {
-          "type": "table",
-          "columns": [
-            {
-              "text": "الرمز",
-              "subtext": "Code"
-            },
-            {
-              "text": "عنوان الوحدة",
-              "subtext": "Intitulé du Module"
-            },
-            {
-              "text": "الغالف الزمني",
-              "subtext": "Durée (heures)"
-            }
-          ],
-          "rows": [
-            [
-              "MC1",
-              {
-                "text": "التكنولوجيا النسيجية",
-                "subtext": "Technologie textiles"
-              },
-              {
-                "text": "68",
-                "numeric": true
-              }
-            ],
-            [
-              "MC2",
-              {
-                "text": "تكنولوجيا الآالت",
-                "subtext": "Technologie machines"
-              },
-              {
-                "text": "111",
-                "numeric": true
-              }
-            ],
-            [
-              "MC3",
-              {
-                "text": "الرسم التقني",
-                "subtext": "Dessin technique"
-              },
-              {
-                "text": "120",
-                "numeric": true
-              }
-            ],
-            [
-              "MC4",
-              {
-                "text": "الرياضيات التطبيقية",
-                "subtext": "Mathématiques"
-              },
-              {
-                "text": "103",
-                "numeric": true
-              }
-            ],
-            [
-              "MC5",
-              {
-                "text": "التسويق والمقاولاتية",
-                "subtext": "Marketing / Entrepreneuriat"
-              },
-              {
-                "text": "77",
-                "numeric": true
-              }
-            ],
-            [
-              "MC6",
-              {
-                "text": "الإعالم الآلي",
-                "subtext": "Informatique"
-              },
-              {
-                "text": "85",
-                "numeric": true
-              }
-            ],
-            [
-              "MC7",
-              {
-                "text": "النظافة والسالمة والبيئة",
-                "subtext": "Hygiène, sécurité et environnement"
-              },
-              {
-                "text": "54",
-                "numeric": true
-              }
-            ],
-            [
-              "MC8",
-              {
-                "text": "تقنيات التعبير",
-                "subtext": "Techniques d'expression"
-              },
-              {
-                "text": "27",
-                "numeric": true
-              }
-            ]
-          ],
-          "caption": [
-            "الجدول 3: الوحدات المكّم لة (MC1 — MC8) — مجموع 645 ساعة تكوينية",
-            "Tableau 3: Modules complémentaires — Total 645 heures"
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "badge": "4",
-          "title": "المنهجية المبنية على الكفاءات)APC(",
-          "subtitle": "Approche Par Compétences",
-          "id": "sec-04"
-        },
-        {
-          "type": "spacer",
-          "size": "sm"
-        },
-        {
-          "type": "text",
-          "content": "ُت مّث ل المنهجية المبنية على الكفاءات (APC — Approche Par Compétence) الإطار البيداغوجي الرسمي المعتمد في كل برامج التكوين المهني الجزائرية منذ منشور 2008 الوزاري . تنطلق هذه المنهجية من تحليل دقيق لمهام المهنة في بيئة عمل حقيقية، تُ ترجم لاحقًا إلى كفاءات قابلة للقياس، ثم تُ فَّك ك إلى أهداف وسيطة تُ بنى حولها الوحدات التكوينية . الفلسفة الجوهرية لهذا النهج تتمّث ل في أن المتدّر ب لا يُ قَّي م بما يعرفه بل بما يستطيع إنجازه في وضعية مهنية حقيقية ."
-        },
-        {
-          "type": "subsection",
-          "title": "المراحل الأربع لبناء برنامج APC",
-          "subtitle": "APC — Les Quatre Étapes de la Construction"
-        },
-        {
-          "type": "flow_steps",
-          "steps": [
-            {
-              "badge": 1,
-              "title": "تحليل المهنة في بيئة العمل الحقيقية عبر مالحظة المهنيين العاملين وتوثيق مهامهم",
-              "subtitle": "Analyse de la situation de travail"
-            },
-            {
-              "badge": 2,
-              "title": "استخراج الكفاءات من المهام الُم حَّل لة عبر ورشات تشاركية مع المهنيين",
-              "subtitle": "Extraction des compétences à partir des tâches"
-            },
-            {
-              "badge": 3,
-              "title": "هيكلة الوحدات التكوينية وتعريف الأهداف الوسيطة ومعايير الأداء",
-              "subtitle": "Structuration des modules de formation"
-            },
-            {
-              "badge": 4,
-              "title": "بناء أدوات التقييم وآليات المراقبة المتوافقة مع معايير الأداء",
-              "subtitle": "Construction des outils d'évaluation"
-            }
+            "الجدول 2: مصفوفة الوحدات المؤهلة الـ 13 ومجموع ساعاتها الإجمالي (1415 ساعة)",
+            "Tableau 2: Matrice officielle des 13 modules qualifiants (Total: 1415 h)"
           ]
         }
       ],
@@ -714,118 +587,138 @@
       "layout": "standard",
       "blocks": [
         {
-          "type": "text",
-          "content": "ُت لزم APC الُم دّر ب بدور جديد، لم يعد فيه ناقًال سلبيًا للمعرفة، بل مُ يّس رًا للتعّل م وُم رشدًا للمتدّر ب نحو بناء كفاءاته الخاصة عبر وضعيات محاكاة قريبة من بيئة العمل . هذا التحّو ل الجذري في الأدوار يتطّل ب من المعاهد الجزائرية تأهيًال مُ ستمرًا للُم دّر بين، وهو ما يُ ؤّم نه المعهد الوطني عبر برامج تكوين الُم دّر بين (Formateurs de Formateurs) المنتظمة ."
-        },
-        {
-          "type": "callout",
-          "variant": "primary",
-          "title": "مبدأ APC المحوري",
-          "content": "كل كفاءة مُ ستهدفة في تخصص Tailleur Dames يجب أن تُ صاغ بصيغة سلوك منتظر قابل للمالحظة والقياس : « في نهاية الوحدة، يكون المتدّر ب قادرًا على [ إنجاز مهمة محددة ] انطلاقًا من [ موارد معطاة ] وفق [ معايير أداء ] دقيقة » . هذه الصياغة الصارمة هي ما يمّي ز APC عن المنهجيات التقليدية القائمة على نقل المضمون .",
-          "icon": "✓"
-        },
-        {
           "type": "heading",
           "id": "sec-05",
+          "level": 2,
           "badge": "5",
-          "title": "التوزيع الفصلي و الغالف الزمني الإجمالي",
-          "subtitle": "Répartition Semestrielle et Volume Horaire"
+          "title": "الوحدات المكملة والمعارف التقنية المساندة (645 سا)",
+          "subtitle": "Modules Complémentaires (MC1 — MC8)"
         },
         {
           "type": "text",
-          "content": "يمتد التكوين في تخصص Tailleur Dames على مدى 24 شهرًا موّز عة على أربعة فصول دراسية (Semestres)pédagogiques، بإجمالي زمني قدره 2448 ساعة تكوينية، بمعدل 36 ساعة أسبوعيًا خالل 68 أسبوعًا تكوينيًا فعليًا . يُ خَّص ص من هذا الغالف الزمني 288 ساعة (12 أسبوعًا) للتربص المهني في المؤسسات الاقتصادية، وهو عنصر جوهري يربط التكوين النظري بالممارسة الميدانية وُي هّي ئ المتدّر ب لإلدماج المهني المباشر بعد التخّر ج ."
-        },
-        {
-          "type": "stats",
-          "items": [
-            {
-              "value": "2448 ساعة",
-              "label": "الغالف الزمني الإجمالي",
-              "sublabel": "Volume horaire global"
-            },
-            {
-              "value": "4 فصول",
-              "label": "المدة الزمنية للتخصص",
-              "sublabel": "Durée du cursus"
-            },
-            {
-              "value": "21 وحدة",
-              "label": "الوحدات التكوينية",
-              "sublabel": "Modules de formation"
-            },
-            {
-              "value": "288 ساعة",
-              "label": "التربص المهني",
-              "sublabel": "Stage en entreprise"
-            }
-          ]
-        },
-        {
-          "type": "subsection",
-          "title": "التوزيع التفصيلي حسب الفصول",
-          "subtitle": "Répartition Détaillée par Semestre"
+          "content": "تتكامل الوحدات المؤهلة مع 8 وحدات مكملة (Modules Complémentaires — MC) بإجمالي 645 ساعة تكوينية؛ تهدف إلى تزويد التقني بالمعارف العلمية والتكنولوجية الداعمة: دراسة خصائص الألياف والمنسوجات، كهروميكانيك آلات الخياطة، الرسم الصناعي، الرياضيات التطبيقية، التسويق وإدارة الورشات، الإعلام الآلي، والسلامة المهنية."
         },
         {
           "type": "table",
           "columns": [
             {
-              "text": "الفصل",
-              "subtext": "Semestre"
+              "text": "الرمز",
+              "subtext": "Code"
             },
             {
-              "text": "الوحدات الُم غّط اة",
-              "subtext": "Modules Couverts"
+              "text": "عنوان الوحدة المكملة",
+              "subtext": "Intitulé du Module Complémentaire"
             },
             {
-              "text": "الساعات",
-              "subtext": "Heures"
+              "text": "الغلاف الساعي",
+              "subtext": "Volume (h)"
             },
             {
-              "text": "التركيز البيداغوجي",
-              "subtext": "Focus Pédagogique"
+              "text": "الدور الإسنادي في التكوين",
+              "subtext": "Rôle d'appui"
             }
           ],
           "rows": [
             [
-              "الفصل 1",
-              "MQ1, MQ2, MQ5, MC1, MC2, MC3, MC4, MC7",
+              "MC1",
               {
-                "text": "612",
+                "text": "التكنولوجيا النسيجية",
+                "subtext": "Technologie textiles"
+              },
+              {
+                "text": "68",
                 "numeric": true
               },
-              "التأسيس النظري والتطبيقي — قواعد النمذجة والخياطة"
+              "التعرف على الألياف الطبيعية والاصطناعية وسلوك الانسدال"
             ],
             [
-              "الفصل 2",
-              "MQ3, MQ4, MQ6, MQ7, MC5, MC6, MC8",
+              "MC2",
               {
-                "text": "612",
+                "text": "تكنولوجيا الآلات",
+                "subtext": "Technologie machines"
+              },
+              {
+                "text": "111",
                 "numeric": true
               },
-              "تعميق الكفاءات — تحويل البترونات والنماذج الأولية"
+              "تشغيل وصيانة آلات الخياطة السريعة والسرفلة والكي"
             ],
             [
-              "الفصل 3",
-              "MQ8, MQ9, MQ10, MQ11 + بداية التربص",
+              "MC3",
               {
-                "text": "612",
+                "text": "الرسم التقني",
+                "subtext": "Dessin technique"
+              },
+              {
+                "text": "120",
                 "numeric": true
               },
-              "إتقان القطع المعقدة — السترة والمعطف والتشطيبات"
+              "رسم المخططات المسطحة وإعداد الرسوم التوضيحية للملف التقني"
             ],
             [
-              "الفصل 4",
-              "MQ12, MQ13 + التربص المكّث ف",
+              "MC4",
               {
-                "text": "612",
+                "text": "الرياضيات التطبيقية",
+                "subtext": "Mathématiques"
+              },
+              {
+                "text": "103",
                 "numeric": true
               },
-              "التخصص النهائي — التعديل والبيع والإدماج المهني"
+              "حساب المساحات ونسب التوسيع وفروق التدريج والتكلفة"
+            ],
+            [
+              "MC5",
+              {
+                "text": "التسويق والمقاولاتية",
+                "subtext": "Marketing"
+              },
+              {
+                "text": "77",
+                "numeric": true
+              },
+              "دراسة السوق وإعداد مخطط الأعمال وتسيير ورشة الخياطة"
+            ],
+            [
+              "MC6",
+              {
+                "text": "الإعلام الآلي وتطبيقات CAO",
+                "subtext": "Informatique"
+              },
+              {
+                "text": "85",
+                "numeric": true
+              },
+              "استخدام الحاسوب في النمذجة وإدارة قواعد بيانات الموديلات"
+            ],
+            [
+              "MC7",
+              {
+                "text": "النظافة والسلامة والبيئة",
+                "subtext": "Hygiène, sécurité, env."
+              },
+              {
+                "text": "54",
+                "numeric": true
+              },
+              "تطبيق القواعد الإرغونومية والوقاية من أخطار الورشات"
+            ],
+            [
+              "MC8",
+              {
+                "text": "تقنيات التعبير والتواصل",
+                "subtext": "Techniques d'expression"
+              },
+              {
+                "text": "27",
+                "numeric": true
+              },
+              "التواصل المهني الثنائي وإعداد التقارير الفنية للزبائن"
             ]
           ],
           "caption": [
-            "الجدول 4: التوزيع الفصلي للوحدات التكوينية بمعدل 612 ساعة لكل فصل دراسي",
-            "Tableau 4: Répartition semestrielle — 612 heures par semestre"
+            "الجدول 3: مصفوفة الوحدات المكملة الـ 8 وأهدافها الإسنادية (المجموع: 645 ساعة)",
+            "Tableau 3: Matrice des 8 modules complémentaires (Total: 645 h)"
           ]
         }
       ],
@@ -840,20 +733,83 @@
       "layout": "standard",
       "blocks": [
         {
-          "type": "artifact_ref",
-          "artifact_id": "chart_02"
-        },
-        {
           "type": "heading",
+          "id": "sec-06",
           "level": 2,
           "badge": "6",
-          "title": "الكفاءة الشاملة و الأهداف الوسيطة",
-          "subtitle": "Compétence Globale et Objectifs Intermédiaires",
-          "id": "sec-06"
+          "title": "التوزيع الفصلي والغلاف الزمني الإجمالي (2448 سا)",
+          "subtitle": "Répartition Semestrielle & Volume Global"
         },
         {
           "type": "text",
-          "content": "تتمحور الكفاءة الشاملة ()Compétence Globale لتخصص Tailleur Dames حول قدرة التقني السامي على تصميم وصناعة وتعديل المالبس النسائية بمختلف أنواعها، انطلاقًا من نموذج أولي أو طلب زبون، مع احترام معايير الجودة الجزائرية والدولية، وفي الآجال المحددة . تُ ترجم هذه الكفاءة الشاملة إلى مجموعة من الأهداف الوسيطة ()Objectifs Intermédiaires تتوّز ع على الوحدات المؤِّه لة، كل هدف منها قابل للقياس عبر معايير أداء محّد دة بدقة في الوثائق الرسمية للمنهاج ."
+          "content": "يمتد التكوين عبر 4 سداسيات بيداغوجية منتظمة بحجم 612 ساعة لكل سداسي (بمعدل 36 ساعة أسبوعياً على مدار 68 أسبوعاً تكوينياً فعلياً). يخصص من هذا الحجم الإجمالي 288 ساعة كاملة للتربص التطبيقي في الوسط المهني (Stage pratique en entreprise)، مما يرفع مجموع المسار إلى 2448 ساعة تكوينية مطابقة للبرنامج المعتمد من INFEP."
+        },
+        {
+          "type": "table",
+          "columns": [
+            {
+              "text": "الفصل الدراسي",
+              "subtext": "Semestre"
+            },
+            {
+              "text": "الوحدات المقررة",
+              "subtext": "Modules couverts"
+            },
+            {
+              "text": "الحجم الساعي",
+              "subtext": "Volume (h)"
+            },
+            {
+              "text": "التركيز البيداغوجي الأساسي",
+              "subtext": "Objectif central"
+            }
+          ],
+          "rows": [
+            [
+              "السداسي الأول (S1)",
+              "MQ1, MQ2, MQ5, MC1, MC2, MC3, MC4, MC7",
+              {
+                "text": "612",
+                "numeric": true
+              },
+              "التأسيس النظري والتطبيقي لقواعد النمذجة والحياكة والآلات"
+            ],
+            [
+              "السداسي الثاني (S2)",
+              "MQ3, MQ4, MQ6, MQ7, MC5, MC6, MC8",
+              {
+                "text": "612",
+                "numeric": true
+              },
+              "تحويل الباترونات والتدريج وتصنيع النماذج المسطحة (تنورة، بنطلون)"
+            ],
+            [
+              "السداسي الثالث (S3)",
+              "MQ8, MQ9, MQ10, MQ11 + بداية التربص الميداني",
+              {
+                "text": "612",
+                "numeric": true
+              },
+              "إتقان هندسة القطع المركبة (صدرية، سترة، معطف) والتشطيبات"
+            ],
+            [
+              "السداسي الرابع (S4)",
+              "MQ12, MQ13 + التربص التطبيقي المكثف (288 سا)",
+              {
+                "text": "612",
+                "numeric": true
+              },
+              "تعديل الملابس والبيع على المقاس والاندماج الصناعي النهائي"
+            ]
+          ],
+          "caption": [
+            "الجدول 4: التوزيع الفصلي للغلاف الزمني الإجمالي (612 ساعة لكل سداسي)",
+            "Tableau 4: Répartition semestrielle officielle (Total: 2448 heures)"
+          ]
+        },
+        {
+          "type": "artifact_ref",
+          "artifact_id": "chart_02"
         }
       ],
       "footer": {
@@ -867,9 +823,16 @@
       "layout": "standard",
       "blocks": [
         {
-          "type": "subsection",
-          "title": "نماذج من الأهداف الوسيطة ومعايير الأداء",
-          "subtitle": "Exemples d'Objectifs Intermédiaires"
+          "type": "heading",
+          "id": "sec-07",
+          "level": 2,
+          "badge": "7",
+          "title": "الكفاءة الشاملة وشبكة الأهداف الوسيطة",
+          "subtitle": "Compétence Globale & Objectifs Intermédiaires"
+        },
+        {
+          "type": "text",
+          "content": "تتلخص الكفاءة الشاملة لتخصص تايور السيدات في قدرة التقني السامي على تخطيط وبناء وتصنيع وتعديل الملابس النسائية الجاهزة والراقية بمختلف درجات تعقيدها، انطلاقاً من ملف تقني أو عينة زبون، مع الاحترام الكامل لمعايير المطابقة الجزائرية ومواصفات السلامة والجودة والآجال."
         },
         {
           "type": "table",
@@ -879,49 +842,49 @@
               "subtext": "Objectif Intermédiaire"
             },
             {
-              "text": "معايير الأداء الأساسية",
+              "text": "معايير الأداء والتحقق الميداني",
               "subtext": "Critères de Performance"
             }
           ],
           "rows": [
             [
               {
-                "text": "أخذ القياسات الالزمة للخياطة",
-                "subtext": "Effectuer la prise des mesures"
+                "text": "أخذ القياسات التشريحية بدقة",
+                "subtext": "Prise des mesures corporelles"
               },
-              "سالمة وضع شريط القياس، الدقة في القراءة، اعتماد وضعية عمل مناسبة"
+              "الوضع الصحيح لشريط القياس، الدقة في قراءة الأبعاد، واعتماد الوضعيات المناسبة"
             ],
             [
               {
-                "text": "بناء بترونات التنورة والبنطلون",
-                "subtext": "Construire jupes et pantalons"
+                "text": "بناء الباترونات الأساسية وتعديلها",
+                "subtext": "Construction des patrons"
               },
-              "تطبيق صحيح لطريقة البناء، دقة الرسم، احترام القياسات"
+              "التطبيق السليم للقواعد الهندسية، استقامة الزوايا، ومطابقة نسب التوسيع"
             ],
             [
               {
-                "text": "تنفيذ عمليات التدريج",
-                "subtext": "Réaliser la gradation"
+                "text": "تنفيذ التدريج المتسلسل للمقاسات",
+                "subtext": "Gradation des patrons"
               },
-              "احترام الأشكال والنسب، إسناد صحيح لألبعاد، نقاوة الرسم"
+              "إسناد دقيق للفروق التفاضلية على محاور X و Y، ونعومة رصف المنحنيات"
             ],
             [
               {
-                "text": "خياطة الجيوب والياقات",
-                "subtext": "Confectionner poches et cols"
+                "text": "تجميع وحياكة الأجزاء على الآلات",
+                "subtext": "Confection et assemblage"
               },
-              "نظافة ودقة الغرز، احترام مراحل التنفيذ، النظافة العامة للعمل"
+              "انتظام خطوط الغرز (301, 504)، نظافة تركيب الياقات والجيوب، ومتانة الدرزات"
             ],
             [
               {
-                "text": "التحّك م في المكوكات الصناعية",
-                "subtext": "Maîtriser les machines industrielles"
+                "text": "التحكم في تشغيل وصيانة آلات الخياطة",
+                "subtext": "Maîtrise des machines"
               },
-              "استعمال مناسب لآللة، ضبط التوتر، احترام قواعد السالمة"
+              "معايرة توتر الخيوط، اختيار الإبر الملائمة للأقمشة، والالتزام بقواعد السلامة"
             ]
           ],
           "caption": [
-            "الجدول 5: نماذج من الأهداف الوسيطة ومعايير الأداء المعتمدة في المنهاج الرسمي",
+            "الجدول 5: نماذج من الأهداف الوسيطة ومعايير الأداء المعتمدة رسمياً",
             "Tableau 5: Exemples d'objectifs intermédiaires et critères de performance"
           ]
         },
@@ -942,79 +905,58 @@
       "blocks": [
         {
           "type": "heading",
+          "id": "sec-08",
           "level": 2,
-          "badge": "7",
-          "title": "أنشطة الورشة و الأعمال التطبيقية(TP)",
-          "subtitle": "Travaux Pratiques en Atelier",
-          "id": "sec-07"
-        },
-        {
-          "type": "spacer",
-          "size": "sm"
+          "badge": "8",
+          "title": "أنشطة الورشة التطبيقية ومحاكاة خطوط الإنتاج",
+          "subtitle": "Travaux Pratiques en Atelier Industriel"
         },
         {
           "type": "text",
-          "content": "تحظى الأنشطة التطبيقية (Travaux Pratiques — TP) بحّص ة الأسد في تخّص ص Tailleur Dames، إذ تُ مّث ل أكثر من %60 من الغالف الزمني الإجمالي . تُ نجز هذه الأعمال في ورشات تطبيقية مجّه زة بمعدات صناعية حقيقية، تُ حاكي بيئة العمل في المؤسسات النسيجية، وهو ما يُ سّه ل الانتقال من المدرسة إلى الورشة . تُ ؤّم ن المعاهد الجزائرية في كل ورشة تجهيزات أساسية تشمل آلات الخياطة الصناعية (Piqueuses plates)، آلات السحابة (Surjeteuses)، آلات التغطية (Recouvreuses)، طاولات القص، المانيكانات بمختلف المقاسات، وأنظمة البخار للكي ."
-        },
-        {
-          "type": "subsection",
-          "title": "نموذج لورشة تطبيقية : تصميم وتصنيع تنورة أساسية",
-          "subtitle": "Atelier Type: Conception et Fabrication d'une Jupe de Base"
+          "content": "تحتل الأشغال التطبيقية (TP) أكثر من 60% من الحجم الساعي التكويني؛ حيث يتدرب المتربص داخل ورشات مجهزة بآلات خياطة سريعة، وآلات سرفلة، ومحطات كي بالبخار، وطاولات تفصيل تحاكي الواقع الصناعي الحقيقي في مجمعات النسيج الوطنية."
         },
         {
           "type": "flow_steps",
+          "title": "المسار النموذجي لتصنيع النماذج الأولية داخل الورشة",
           "steps": [
             {
               "badge": 1,
-              "title": "تحليل الطلب وتحديد المواد الأولية الالزمة (القماش، الخيط، السّح اب، الزر)",
-              "subtitle": "Analyse de la demande"
+              "title": "دراسة الملف التقني وتدقيق بطاقة المستلزمات (Nomenclature) واختبار الأقمشة",
+              "subtitle": "Analyse technique et matières"
             },
             {
               "badge": 2,
-              "title": "أخذ قياسات الزبونة وتحليل البنية المورفولوجية",
-              "subtitle": "Prise de mesures"
+              "title": "أخذ القياسات التشريحية ومقارنتها مع جدول المقاييس المعتمد في مكتب الدراسات",
+              "subtitle": "Prise de mesures et barème"
             },
             {
               "badge": 3,
-              "title": "بناء البترون الأساسي للتنورة على الورق",
-              "subtitle": "Construction du patron"
+              "title": "رسم الباترون الأساسي وتطبيق التحويلات الهندسية للنموذج المطلوب",
+              "subtitle": "Tracé et transformation du patron"
             },
             {
               "badge": 4,
-              "title": "قص القماش مع احترام اتجاه السداء وقيم الخياطة",
-              "subtitle": "Coupe du tissu"
+              "title": "قص القماش الصناعي مع مراعاة اتجاه السداء وهوامش الخياطة بدقة متناهية",
+              "subtitle": "Coupe avec respect du droit-fil"
             },
             {
               "badge": 5,
-              "title": "تجميع أولي للتجربة قبل التثبيت النهائي",
-              "subtitle": "Montage provisoire"
+              "title": "التجميع الأولي للقطعة وتجريبها على المانيكان لمعاينة السقوط والتوازن",
+              "subtitle": "Montage d'essai et essayage"
             },
             {
               "badge": 6,
-              "title": "إجراء التعديالت الالزمة بعد القياس التجريبي",
-              "subtitle": "Essayage et retouches"
-            },
-            {
-              "badge": 7,
-              "title": "التجميع النهائي والتشطيبات (السّح اب، الحاشية، الكي)",
+              "title": "الحياكة النهائية على الآلات الصناعية وتركيب البطانات والتشطيب بالكي البخاري",
               "subtitle": "Assemblage final et finitions"
             }
           ]
         },
         {
-          "type": "text",
-          "content": "يجب على المتدّر ب الوصول إلى مستوى الإنجاز الكامل في %80 على الأقل من الأعمال التطبيقية لاجتياز الوحدة ... بنجاح، وهو شرط أساسي للتقّد م نحو الوحدات الأكثر تعقيد اً"
-        },
-        {
-          "type": "heading",
-          "id": "sec-08",
-          "badge": "8",
-          "title": "التقييم و المراقبة المستمرة و الامتحانات",
-          "subtitle": "Évaluation et Examens Officiels"
-        },
-        {
-          "type": "text",
-          "content": "يعتمد نظام التقييم في تخصص Tailleur Dames على آلية مزدوجة تجمع بين المراقبة المستمرة (Contrôle)Continu — CC والامتحان النهائي ()Examen Final لكل وحدة تكوينية . تُ خَّص ص للمراقبة المستمرة %40 من العالمة النهائية، موّز عة بين الأعمال التطبيقية (%25) والاختبارات الكتابية القصيرة (%15)، بينما يُ حسب الامتحان"
+          "type": "callout",
+          "variant": "primary",
+          "icon": "check",
+          "title": "عتبة التحكم التطبيقي الإلزامية",
+          "content": "يلزم المنهاج المتربص بتحقيق نسبة إنجاز متقنة لا تقل عن 80% في كافة التطبيقات الورشية لاجتياز الوحدات المؤهلة؛ حيث يعتبر الإتقان اليدوي والميكانيكي شرطاً جوهرياً للانتقال إلى الوحدات الأكثر تعقيداً."
         }
       ],
       "footer": {
@@ -1028,98 +970,75 @@
       "layout": "standard",
       "blocks": [
         {
-          "type": "text",
-          "content": "النهائي بنسبة %60 . هذا التوازن يضمن أن المتدّر ب لا يكتفي بحفظ المعلومات النظرية، بل يُ ثبت كفاءته المهنية في وضعيات حقيقية ."
+          "type": "heading",
+          "id": "sec-09",
+          "level": 2,
+          "badge": "9",
+          "title": "نظام التقييم والامتحانات الرسمية للشهادة",
+          "subtitle": "Système d'Évaluation & Examens Officiels"
         },
         {
-          "type": "subsection",
-          "title": "معايير التقييم الرسمية للوحدات المؤِّه لة",
-          "subtitle": "Critères d'Évaluation des Modules Qualifiants"
+          "type": "text",
+          "content": "يقوم نظام التقييم الرسمي على آلية مزدوجة تجمع بين المراقبة المستمرة (Contrôle Continu — CC) بنسبة 40% والامتحان الفصلي النهائي (Examen Final) بنسبة 60%، مع اشتراط علامة دنيا لا تقل عن 8 من 20 في الإنجاز العملي لمنع النجاح النظري المجرد."
         },
         {
           "type": "table",
           "columns": [
             {
-              "text": "البند",
-              "subtext": "Élément"
+              "text": "مكون التقييم الرسمي",
+              "subtext": "Élément d'évaluation"
             },
             {
-              "text": "الوزن",
+              "text": "الوزن النسبي",
               "subtext": "Pondération"
             },
             {
-              "text": "طريقة الإنجاز",
-              "subtext": "Modalité"
+              "text": "طريقة وكيفية التنفيذ",
+              "subtext": "Modalité d'exécution"
             }
           ],
           "rows": [
             [
-              {
-                "text": "الإنجاز العملي في الورشة",
-                "subtext": "Réalisation pratique"
-              },
+              "الإنجاز العملي المستمر في الورشة",
               {
                 "text": "30%",
                 "numeric": true
               },
-              "تقييم مباشر أثناء TP بمقياس زمني محدد"
+              "تقييم دوري أثناء حصص TP وفق شبكة معايير الدقة والمهارة"
             ],
             [
-              {
-                "text": "جودة المنتج النهائي",
-                "subtext": "Qualité du produit"
-              },
+              "جودة ومطابقة النماذج المصنعة",
               {
                 "text": "20%",
                 "numeric": true
               },
-              "فحص المنتج وفق شبكة معايير الجودة"
+              "فحص أبعاد القطع ومطابقتها للملف التقني وتسامحات القياس"
             ],
             [
-              {
-                "text": "اختبار كتابي قصير",
-                "subtext": "Test écrit court"
-              },
+              "المراقبة الكتابية التقنية",
               {
                 "text": "15%",
                 "numeric": true
               },
-              "أسئلة موضوعية حول المفاهيم التقنية"
+              "اختبارات نظرية في تكنولوجيا النسيج والآلات وحساب التكاليف"
             ],
             [
-              {
-                "text": "الامتحان النهائي التطبيقي",
-                "subtext": "Examen final pratique"
-              },
+              "الامتحان التطبيقي الفصلي الشامل",
               {
                 "text": "35%",
                 "numeric": true
               },
-              "إنجاز منتج كامل في زمن محدد (4 - 6 ساعات)"
+              "إنجاز قطعة كاملة فردياً في زمن محدد (4 إلى 6 ساعات متواصلة)"
             ]
           ],
           "caption": [
-            "الجدول 6: شبكة التقييم الرسمية المعتمدة في الوحدات المؤِّه لة",
-            "Tableau 6: Grille d'évaluation officielle des modules qualifiants"
+            "الجدول 6: شبكة معايير التقييم الفصلي المعتمدة في الوحدات المؤهلة",
+            "Tableau 6: Grille officielle de pondération des évaluations"
           ]
         },
         {
-          "type": "callout",
-          "variant": "primary",
-          "title": "شروط اجتياز الوحدات و الانتقال بين الفصول",
-          "content": "ُي عتبر المتدّر ب ناجحًا في الوحدة إذا تحّص ل على 10 / 20 على الأقل كعالمة نهائية، مع ضرورة تحقيق العالمة الدنيا 8 / 20 في مكّو ن الإنجاز العملي . الانتقال من فصل إلى آخر يتطّل ب النجاح في %75 من الوحدات على الأقل، مع إمكانية اجتياز امتحانات الاستدراك ()Rattrapage للوحدات المتبقية في بداية الفصل الموالي . الفصل إعادة السنة كاملة وفق المنشور الوزاري الذي يُ خفق فيه المتدّر ب في أكثر من وحدتين مؤِّه لتين يُ ؤّد ي إلى رقم MFEP/ 21 .",
-          "icon": "!"
-        },
-        {
-          "type": "heading",
-          "id": "sec-09",
-          "badge": "9",
-          "title": "آفاق الإدراج المهني و سوق الشغل الجزائري",
-          "subtitle": "Insertion Professionnelle et Marché de l'Emploi"
-        },
-        {
-          "type": "text",
-          "content": "ُي فتح تخصص Tailleur Dames أمام المتخّر جين آفاقًا مهنية متنّو عة في المشهد الاقتصادي الجزائري، الذي يشهد منذ 2020 تحّو لًا نحو دعم الإنتاج المحلي لأللبسة وتقليص الاستيراد . تشير الإحصائيات الرسمية لوزارة الصناعة إلى أن قطاع النسيج والألبسة يضم أكثر من 1200 مؤسسة نشطة، %80 منها مؤسسات صغيرة ومتوسطة الحجم تُ عّب ر عن حاجة مستمرة إلى تقنيين سامين مُ تقنين للنمذجة والتدريج والتصنيع . كما تُ وّف ر برامج دعم المقاولاتية الوطنية (مثل وكالة ANADE والصندوق الوطني للتأمين عن البطالة) فرص تمويل مغرية للمتخّر جين الراغبين في إطلاق ورشاتهم الخاصة ."
+          "type": "artifact_ref",
+          "artifact_id": "chart_07"
         }
       ],
       "footer": {
@@ -1133,33 +1052,40 @@
       "layout": "standard",
       "blocks": [
         {
-          "type": "subsection",
-          "title": "أبرز المسارات المهنية للمتخّر جين",
-          "subtitle": "Principaux Débouchés Professionnels"
+          "type": "heading",
+          "id": "sec-10",
+          "level": 2,
+          "badge": "10",
+          "title": "آفاق الإدماج المهني وسوق الشغل الجزائري",
+          "subtitle": "Insertion Professionnelle & Marché de l'Emploi"
+        },
+        {
+          "type": "text",
+          "content": "يفتح تخصص خياطة السيدات أمام المتخرجين فرصاً واسعة في النسيج الاقتصادي الوطني؛ حيث تتركز الوظائف بين مكاتب الدراسات في المصانع الكبرى، وورشات الألبسة الجاهزة، ودور الأزياء الراقية، إضافة إلى مسار المقاولاتية المصغرة المدعوم من الدولة عبر آليات ANADE و CNAC."
         },
         {
           "type": "table",
           "columns": [
             {
-              "text": "المسار المهني",
-              "subtext": "Débouché"
+              "text": "المسار المهني للتقني السامي",
+              "subtext": "Débouché professionnel"
             },
             {
-              "text": "بيئة العمل",
-              "subtext": "Milieu de Travail"
+              "text": "بيئة العمل المستهدفة",
+              "subtext": "Milieu de travail"
             },
             {
-              "text": "الراتب الشهري المتوسط (دج)",
-              "subtext": "Salaire Moyen"
+              "text": "متوسط الراتب الشهري (دج)",
+              "subtext": "Salaire moyen estimé"
             }
           ],
           "rows": [
             [
               {
-                "text": "تقني سامي للنمذجة في مكاتب الدراسات",
-                "subtext": "Technicien supérieur en modélisme"
+                "text": "تقني سامي في النمذجة (Modéliste)",
+                "subtext": "Technicien modélisme"
               },
-              "مكاتب الدراسات في مصانع الألبسة",
+              "مكاتب الدراسات بمصانع الألبسة الجاهزة",
               {
                 "text": "45000 — 70000",
                 "numeric": true
@@ -1167,10 +1093,10 @@
             ],
             [
               {
-                "text": "مسؤول عن التدريج الصناعي",
+                "text": "مسؤول التدريج الصناعي (Gradation)",
                 "subtext": "Responsable gradation"
               },
-              "شركات Prêt-à-Porter الكبرى",
+              "المؤسسات الصناعية ووحدات التصميم الآلي",
               {
                 "text": "50000 — 80000",
                 "numeric": true
@@ -1178,10 +1104,10 @@
             ],
             [
               {
-                "text": "مشرف ورشة الإنتاج",
-                "subtext": "Chef d'atelier"
+                "text": "مشرف ورشة إنتاج (Chef d'atelier)",
+                "subtext": "Chef d'atelier confection"
               },
-              "ورشات الخياطة الصناعية",
+              "مصانع الألبسة الجاهزة والأثواب المهنية",
               {
                 "text": "40000 — 65000",
                 "numeric": true
@@ -1189,18 +1115,18 @@
             ],
             [
               {
-                "text": "مصمم أزياء مستقل",
-                "subtext": "Styliste indépendant"
+                "text": "مصمم أزياء مستقل (Haute Couture)",
+                "subtext": "Créateur indépendant"
               },
-              "ورشة خاصة أو Haute Couture",
-              "حسب الإنتاج"
+              "ورشة خاصة أو دار خياطة راقية",
+              "مردود حر وفق النشاط"
             ],
             [
               {
-                "text": "تقني سامي في الجودة والمراقبة",
-                "subtext": "Technicien qualité"
+                "text": "تقني مراقبة الجودة والمطابقة",
+                "subtext": "Technicien contrôle qualité"
               },
-              "مختبرات الجودة في المصانع",
+              "مخابر الفحص في المجمعات الصناعية",
               {
                 "text": "48000 — 72000",
                 "numeric": true
@@ -1208,10 +1134,10 @@
             ],
             [
               {
-                "text": "مدّر ب في معاهد التكوين المهني",
+                "text": "مكون في مؤسسات التكوين المهني",
                 "subtext": "Formateur en IFP"
               },
-              "معاهد التكوين المهني الجهوية",
+              "مراكز ومعاهد التكوين والتعليم المهنيين",
               {
                 "text": "42000 — 60000",
                 "numeric": true
@@ -1219,8 +1145,8 @@
             ]
           ],
           "caption": [
-            "الجدول 7: المسارات المهنية الرئيسية للمتخّر جين والراتب المتوسط في السوق الجزائري (2024)",
-            "Tableau 7: Débouchés professionnels principaux et salaires moyens (2024)"
+            "الجدول 7: المسارات المهنية ومستويات الأجور التقديرية في السوق الوطني (2024)",
+            "Tableau 7: Débouchés professionnels et niveaux de salaires en Algérie"
           ]
         },
         {
@@ -1239,109 +1165,76 @@
       "layout": "standard",
       "blocks": [
         {
-          "type": "text",
-          "content": "عالوة على المسارات التقليدية، تُ تاح للمتخّر جين فرص غير تقليدية واعدة، لاسيما في قطاع الرقمنة النسيجية ()CAO/FAO الذي يشهد طلبًا متزايدًا مع تحّو ل المصانع الجزائرية إلى أنظمة Lectra و Gerber . كما يُ مّث ل قطاع الأزياء الراقية الجزائرية ()Haute Couture Algérienne — المعني بتصميم القفطان، الكاراكو، الشدة التلمسانية وفساتين السهرة — قطاعًا واعدًا يفتح أبوابه أمام المتخرجين الراغبين في الجمع بين الكفاءة التقنية والإرث الثقافي الوطني ."
-        },
-        {
-          "type": "quote",
-          "text": "ليست الخياطة مهنة بل رسالة :ُ نلبس الأجساد كماُ نلبس الهوية، وُ نرسم بالخيط والإبرة ما يعجز القلم عن رسمه .",
-          "author": "مصمم أزياء جزائري — خ محمد eso —"
-        },
-        {
           "type": "heading",
           "level": 2,
-          "badge": "10",
-          "title": "معجم المصطلحات التقنية",
-          "subtitle": "Glossaire Technique Bilingue",
-          "id": "sec-10"
+          "badge": "أ",
+          "title": "المرجعية القانونية والمعيارية الجزائرية",
+          "subtitle": "Cadre Légal & Normatif Algérien",
+          "badge_variant": "accent",
+          "id": "annex-01"
         },
         {
           "type": "text",
-          "content": "ُي قّد م هذا المعجم المصطلحات التقنية الأساسية المستعملة في تخصص الخياطة النسائية، مزدوج اللغة (عربي / فرنسي)، تيسيرًا للمتدّر بين في فهم المراجع التقنية الجزائرية والفرنسية، وتعبيرًا عن الازدواجية اللغوية المعتمدة في التكوين المهني الجزائري . تشمل المصطلحات المفاتيح في النمذجة، الخياطة، التدريج، الآلات، والأقمشة ."
+          "content": "يستند مسار خياطة السيدات في الجزائر إلى إطار تشريعي متين يقوده القانون التوجيهي 08-07 المؤرخ في 23 فيفري 2008 (JORADP n° 15/2008)، وتسمية الفروع المهنية الصادرة عن MFEP (فرع HTE)، مدعوماً بالمعايير الوطنية للمعهد الجزائري للتقييس IANOR لا سيما المعيار NA EN 13402 الخاص بالمقاسات والأنثروبومتريا، والمعيار NA 1234 لمراقبة الجودة والتسامحات البعدية."
         },
         {
           "type": "table",
           "columns": [
             {
-              "text": "المصطلح العربي",
-              "subtext": "Terme Arabe"
+              "text": "السند والوثيقة المرجعية",
+              "subtext": "Référence Officielle"
             },
             {
-              "text": "المصطلح الفرنسي",
-              "subtext": "Terme Français"
+              "text": "المحتوى والضابط القانوني",
+              "subtext": "Contenu Normatif"
             },
             {
-              "text": "التعريف المختصر",
-              "subtext": "Définition Courte"
+              "text": "التطبيق في المنهاج الرسمي",
+              "subtext": "Application dans le cursus"
             }
           ],
           "rows": [
             [
-              "بترون",
-              "Patron",
-              "نموذج ورقي يُ حّد د شكل قطعة المالبس قبل القص"
+              {
+                "text": "القانون التوجيهي 08-07",
+                "subtext": "Loi 08-07 (JORADP)"
+              },
+              "القواعد العامة للتكوين، الإشهاد، والمقاربة بالكفاءات (APC)",
+              "السند التشريعي المعتمد في بناء الوحدات والتقييم"
             ],
             [
-              "تدريج",
-              "Gradation",
-              "إنتاج مقاسات متعددة انطلاقًا من مقاس مرجعي"
+              {
+                "text": "مدونة الفروع المهنية (MFEP)",
+                "subtext": "Nomenclature des Branches"
+              },
+              "تأطير فرع الألبسة والنسيج (HTE) ومسارات الترقية المهنية",
+              "تحديد متطلبات الالتحاق ومعايير الرتبة التخصصية"
             ],
             [
-              "قالبة",
-              "Moulage",
-              "تشكيل القماش على المانيكان ثالثي الأبعاد"
+              {
+                "text": "مرجع الإشهاد HTE1204",
+                "subtext": "INFEP — Référentiel BT"
+              },
+              "المصفوفة الكاملة للوحدات المؤهلة (1415 سا) والمكملة (645 سا)",
+              "هيكلة البرامج الدراسية وتوصيف الكفاءات الوسيطة"
             ],
             [
-              "سرفلة",
-              "Surjet",
-              "خياطة حواف القماش لمنع التنسيل"
-            ],
-            [
-              "غرزة مستقيمة",
-              "Point droit (301)",
-              "الغرزة الأساسية في الخياطة الصناعية"
-            ],
-            [
-              "بنسة",
-              "Pince",
-              "طية في القماش لإعطائه شكًال ثالثي الأبعاد"
-            ],
-            [
-              "ياقة",
-              "Col",
-              "جزء من المالبس يحيط بالرقبة"
-            ],
-            [
-              "كم",
-              "Manche",
-              "جزء من المالبس يغطي الذراع"
-            ],
-            [
-              "إبط",
-              "Emmanchure",
-              "فتحة ارتداء الذراع في المالبس"
-            ],
-            [
-              "سداء",
-              "Chaîne",
-              "الخيوط الطولية في القماش المنسوج"
-            ],
-            [
-              "لحمة",
-              "Trame",
-              "الخيوط العرضية في القماش المنسوج"
-            ],
-            [
-              "مانيكان",
-              "Mannequin",
-              "دمية بشرية للتجربة والقياس"
-            ],
-            [
-              "ملف تقني",
-              "Dossier Technique",
-              "الوثيقة المرجعية لتصنيع منتج نسيجي"
+              {
+                "text": "المعايير الوطنية للملابس",
+                "subtext": "IANOR — NA EN 13402"
+              },
+              "تسميات المقاسات النسائية، الفواصل الأنثروبومترية، والتسامحات",
+              "المرجعية البعدية المعتمدة في جداول القياسات والتدريج"
             ]
+          ],
+          "caption": [
+            "الجدول أ.1: المرجعيات التشريعية والمعايير الرسمية المعتمدة في التخصص",
+            "Tableau A.1: Référentiels législatifs et normes officielles du métier"
           ]
+        },
+        {
+          "type": "artifact_ref",
+          "artifact_id": "chart_06"
         }
       ],
       "footer": {
@@ -1355,86 +1248,95 @@
       "layout": "standard",
       "blocks": [
         {
+          "type": "heading",
+          "level": 2,
+          "badge": "ب",
+          "title": "واقع الصناعة النسيجية الوطنية والمجمعات الإنتاجية",
+          "subtitle": "Industrie Textile Nationale & Complexes Industriels",
+          "badge_variant": "accent",
+          "id": "annex-02"
+        },
+        {
+          "type": "text",
+          "content": "تتكامل مخرجات التكوين مع النهضة الصناعية النسيجية في الجزائر، التي تتصدرها المنصة المتكاملة لمجمع تايال (TAYAL S.P.A — غليزان) كأكبر قطب نسيجي مندمج في إفريقيا (51% رأسمال جزائري / 49% تركي)، إلى جانب مؤسسات المجمع العمومي للنسيج والجلود (TEXALG / C&H) المتخصصة في إنتاج الألبسة المؤسساتية والأقمشة القطنية الموجهة للاستهلاك الوطني."
+        },
+        {
           "type": "table",
           "columns": [
             {
-              "text": "المصطلح العربي",
-              "subtext": "Terme Arabe"
+              "text": "قناة الإدماج المهني",
+              "subtext": "Canal d'Insertion"
             },
             {
-              "text": "المصطلح الفرنسي",
-              "subtext": "Terme Français"
+              "text": "الهيئات والمؤسسات الشريكة",
+              "subtext": "Acteurs Partenaires"
             },
             {
-              "text": "التعريف المختصر",
-              "subtext": "Définition Courte"
+              "text": "الكفاءات المطلوبة في المتخرجين",
+              "subtext": "Compétences Sollicitées"
             }
           ],
           "rows": [
             [
-              "تربص",
-              "Stage",
-              "فترة تكوين ميداني في مؤسسة اقتصادية"
+              "المجمعات الصناعية الكبرى",
+              "TAYAL, TEXALG, C&H",
+              "إتقان العمل على خطوط الإنتاج السريعة وقراءة الملفات التقنية بدقة"
             ],
             [
-              "كفاءة شاملة",
-              "Compétence Globale",
-              "السلوك المهني المنتظر في نهاية الوحدة"
+              "ورشات الأزياء الفاخرة",
+              "دور الخياطة الراقية والمصممون المستقلون",
+              "التحكم في القولبة اليدوية، تعديل البنية، والتشطيبات التراثية المتقنة"
+            ],
+            [
+              "المقاولاتية وإنشاء المشاريع",
+              "أجهزة الدعم (ANADE, CNAC, FGAR)",
+              "إعداد مخططات الأعمال، دراسة الجدوى الاقتصادية، والتسويق الرقمي"
+            ],
+            [
+              "التأطير البيداغوجي",
+              "معاهد ومراكز التكوين المهني",
+              "التحكم في المنهجية المبنية على الكفاءات وتنشيط الورشات التطبيقية"
             ]
           ],
           "caption": [
-            "الجدول 8: معجم المصطلحات التقنية الأساسية في تخصص الخياطة النسائية",
-            "Tableau 8: Glossaire des termes techniques fondamentaux"
+            "الجدول ب.1: خريطة مسارات الإدماج المهني لخريجي تخصص خياطة السيدات",
+            "Tableau B.1: Cartographie de l'insertion professionnelle des diplômés"
           ]
         },
         {
           "type": "heading",
           "level": 2,
-          "badge": "11",
-          "title": "تمارين تطبيقية و دراسات حالة",
-          "subtitle": "Exercices Pratiques et Études de Cas",
-          "id": "sec-11"
+          "badge": "ج",
+          "title": "المراجع والوثائق البيداغوجية المعتمدة",
+          "subtitle": "Bibliographie & Documents Officiels",
+          "badge_variant": "accent",
+          "id": "annex-03"
         },
         {
-          "type": "subsection",
-          "title": "تمرين اً 1: حساب الغالف الزمني لوحدة تكوينية",
-          "subtitle": "Exercice 1: Calcul du Volume Horaire"
-        },
-        {
-          "type": "text",
-          "content": "السؤال : وحدة تكوينية MQ5 — Techniques de Confection مُ برمجة على 136 ساعة، موّز عة على 17 أسبوع اً تكويني اً . احسب : (أ) عدد الساعات الأسبوعية (ب) عدد الأيام المكّث فة إذا كانت كل دورة تكوينية تستغرق 6 ساعات اًًيومي (ج) نسبة الأعمال التطبيقية ()TP إذا كانت تُ مّث ل %65 من الغالف الزمني ."
-        },
-        {
-          "type": "callout",
-          "variant": "primary",
-          "title": "الحل النموذجي",
-          "content": "(أ) الساعات الأسبوعية = 136 ÷ 17 = 8 ساعات / أسبوع . (ب) عدد الأيام المكّث فة = 136 ÷ 6 = 23 يوم تكويني . (ج) ساعات TP = 136 × 0.65 = 88.4 ساعة، والباقي (47.6 ساعة) للنظري والتقييم .",
-          "icon": "✓"
-        },
-        {
-          "type": "subsection",
-          "title": "تمرين 2: دراسة حالة — تصميم تشكيلة موسمية",
-          "subtitle": "Exercice 2: Étude de Cas — Collection Saisonnière"
-        },
-        {
-          "type": "text",
-          "content": "السيناريو : طلب منك تقني سامي في مؤسسة ETE Textile تصميم تشكيلة من 5 نماذج لربيع 2026، كل نموذج في 5 مقاسات، بإجمالي 25 قطعة . كل نموذج يتطّل ب : 4 ساعات تصميم، 6 ساعات بناء باترون، 3 ساعات تدريج، 8 ساعات قص وخياطة لكل مقاس . احسب إجمالي ساعات العمل المطلوبة ."
-        },
-        {
-          "type": "callout",
-          "variant": "accent",
-          "title": "الحل النموذجي",
-          "content": "زمن النموذج الواحد = 4 + 6 + 3 + (8 × 5) = 53 ساعة . إجمالي ساعات التشكيلة = 5 × 53 = 265 ساعة . مع إضافة %20 للمراجعة والتعديالت = 318 ساعة إجمالية . إذا عمل فريق من 3 تقنيين، فإن المدة الزمنية المتوّق عة = 318 ÷ 3 ÷ 8 ساعات / يوم = 13.25 يوم عمل .",
-          "icon": "★"
-        },
-        {
-          "type": "subsection",
-          "title": "تمرين 3: تحليل منحنى التعلم",
-          "subtitle": "Exercice 3: Analyse de la Courbe d'Apprentissage"
-        },
-        {
-          "type": "text",
-          "content": "تتّب ع منحنى تعّل م متدّر ب في وحدة MQ2 — Construction des Patrons de Base على مدى 8 أسابيع، بالأزمنة التالية (بالدقائق) لإنجاز بترون تنورة : الأسبوع 1: 240 دقيقة، الأسبوع 2: 180، الأسبوع 3: 130، الأسبوع 4: 95، الأسبوع 5: 75، الأسبوع 6: 62، الأسبوع 7: 55، الأسبوع 8: 50 ."
+          "type": "list",
+          "variant": "rows",
+          "items": [
+            {
+              "badge": "1",
+              "title": "القانون رقم 08-07 المؤرخ في 23 فيفري 2008 المتضمن القانون التوجيهي للتكوين والتعليم المهنيين — الجريدة الرسمية JORADP (joradp.dz).",
+              "subtitle": "الجمهورية الجزائرية الديمقراطية الشعبية"
+            },
+            {
+              "badge": "2",
+              "title": "المعهد الوطني للتكوين والتعليم المهنيين (INFEP) — البرنامج الدراسي ومرجع الإشهاد: خياطة السيدات BT تحت الرمز HTE1204 (كاسي الطاهر، الأبيار).",
+              "subtitle": "وزارة التكوين والتعليم المهنيين — 2448 ساعة / 24 شهراً"
+            },
+            {
+              "badge": "3",
+              "title": "المعهد الجزائري للتقييس (IANOR) — المعيار الجزائري NA EN 13402 ومعيار مراقبة الجودة والتسامحات البعدية NA 1234 (ianor.dz).",
+              "subtitle": "كتالوج المعايير الوطنية المعتمدة للألبسة والنسيج"
+            },
+            {
+              "badge": "4",
+              "title": "المنصة الجزائرية للمجلات العلمية (ASJP) — دراسات حول تنافسية قطاع النسيج ودور التكوين في ترقية المقاولاتية النسوية (asjp.cerist.dz).",
+              "subtitle": "مجلات علمية محكمة بجامعات الجزائر 2، تلمسان، ووهران"
+            }
+          ]
         }
       ],
       "footer": {
@@ -1445,384 +1347,23 @@
     },
     {
       "id": "page-15",
-      "layout": "standard",
-      "blocks": [
-        {
-          "type": "artifact_ref",
-          "artifact_id": "chart_06"
-        },
-        {
-          "type": "text",
-          "content": "ُي ظهر المنحنى تحّس نًا ملحوظًا في زمن الإنجاز، حيث انخفض من 240 دقيقة في الأسبوع الأول إلى 50 دقيقة في الأسبوع الثامن، بنسبة تحّس ن قدرها %79.2 . هذا التحّو ل يُ مّث ل الانتقال من مرحلة المبتدئ (يحتاج تفكيرًا واعيًا في كل خطوة) إلى مرحلة المتمّر س (الأداء أصبح آليًا وشبه لاشعوري) . هذه الديناميكية هي ما يستهدفه التكوين المهني الجزائري : تحويل المعرفة النظرية إلى كفاءة عملية مُ تقنة ."
-        },
-        {
-          "type": "subsection",
-          "title": "تمرين 4: شبكة تقييم كفاءة",
-          "subtitle": "Exercice 4: Grille d'Évaluation de Compétence"
-        },
-        {
-          "type": "text",
-          "content": "ضع شبكة تقييم لكفاءة المتدّر ب في وحدة MQ9 — Fabrication Prototype Veste، باستخدام أربعة معايير : (1) دقة البترون، (2) جودة الخياطة، (3) احترام المواصفات، (4) النظافة والتنظيم . كل معيار يُ قَّي م من 5 نقاط ."
-        }
-      ],
-      "footer": {
-        "left": "الموسم التكويني 2025/2026",
-        "center": "{page}",
-        "right": "HTE1204"
-      }
-    },
-    {
-      "id": "page-16",
-      "layout": "standard",
-      "blocks": [
-        {
-          "type": "artifact_ref",
-          "artifact_id": "chart_07"
-        },
-        {
-          "type": "text",
-          "content": "ُت ظهر شبكة التقييم أن المتدّر ب تحّص ل على 16 / 20، وهي عالمة جيدة تُ مّك نه من اجتياز الوحدة . لكن يالحظ ضعف نسبي في معيار « النظافة والتنظيم » (3 / 5)، وهو معيار جوهري في صناعة الألبسة لأنه يؤّث ر مباشرة على جودة المنتج النهائي . يُ نصح المدّر ب ببرمجة جلسات إضافية لتعزيز هذا الجانب عبر تمارين تنظيم ورشة العمل وتقنيات التنظيف أثناء الإنتاج ."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "badge": "أ",
-          "title": "المرجعية الجزائرية الرسمية للتخصص",
-          "subtitle": "Cadre Officiel Algérien",
-          "badge_variant": "accent",
-          "id": "annex-01"
-        },
-        {
-          "type": "text",
-          "content": "يقوم تخصص الخياطة النسائية في الجزائر على مرجعية قانونية وتنظيمية محكمة، تتصّد رها القانون رقم 08-07 المؤرخ في 23 فيفري 2008 المتضّم ن القانون التوجيهي للتكوين والتعليم المهنيين JORADP n° 15 / 2008، الذي أرسى مبادئ المنهجية المبنية على الكفاءات (Approach Par Compétences — APC) والتكوين المتناوب بين المعهد ومؤسسة الاستقبال . وتنّظ م تسمية الفروع المهنية الصادرة عن وزارة التكوين والتعليم المهنيين فرع الألبسة والنسيج ()Branche HTE — Habillement-Textiles إصدار (2019، محَّي ن 2023 / 2024) بشروط الالتحاق ومسارات التدّر ب الداخلي بين مستويات الإشهاد ."
-        },
-        {
-          "type": "text",
-          "content": "وعلى المستوى البيداغوجي، يُ عّد مرجع الإشهاد والبرنامج الدراسي HTE1204 الصادر عن المعهد الوطني للتكوين والتعليم المهنيين (INFEP — كاسي الطاهر، البيار) INFEP / HTE1204 الوثيقة الأم للتخصص، إذ يحّد د مصفوفة الكفاءات الكاملة : 13 وحدة مؤِّه لة ()Modules Qualifiants و 8 وحدات مكّم لة ()Modules Complémentaires على غالف زمني إجمالي قدره 2448 ساعة موّز عة على 24 شهرًا، مع شبكات معايير الأداء التفصيلية ()Critères particuliers de performance لبناء الباترونات والقص والتجميع، وإرشادات التربص التطبيقي الإلزامي في الوسط المهني الممتد على 12 أسبوع اً .اً"
-        }
-      ],
-      "footer": {
-        "left": "الموسم التكويني 2025/2026",
-        "center": "{page}",
-        "right": "HTE1204"
-      }
-    },
-    {
-      "id": "page-17",
-      "layout": "standard",
-      "blocks": [
-        {
-          "type": "table",
-          "columns": [
-            {
-              "text": "المرجع الرسمي",
-              "subtext": "Référence"
-            },
-            {
-              "text": "المحتوى الجوهري",
-              "subtext": "Contenu"
-            },
-            {
-              "text": "الاستغالل في هذا التقرير",
-              "subtext": "Exploitation"
-            }
-          ],
-          "rows": [
-            [
-              {
-                "text": "القانون التوجيهي 08-07",
-                "subtext": "Loi n° 08-07 (2008)"
-              },
-              "الإطار العام للتكوين المهني : الكفاءات، التكوين المتناوب، الإشهاد",
-              "الأساس القانوني للمنهجية APC المعمول بها في المقياس"
-            ],
-            [
-              {
-                "text": "تسمية الفروع المهنية",
-                "subtext": "MFEP Nomenclature 2019 / maj. 2023-2024"
-              },
-              "وصف فرع HTE، شروط الالتحاق (ثانوي 2 لـ)BT، مسارات الانتقال",
-              "تأطير شعبة النسيج والألبسة ومسار تصميم الأزياء"
-            ],
-            [
-              {
-                "text": "مرجع الإشهاد HTE 1204",
-                "subtext": "INFEP — Référentiel BT"
-              },
-              "المصفوفة الكاملة MQ/MC، شبكات التقييم، التربص التطبيقي 12 أسبوع اً",
-              "هيكلة الوحدات المؤِّه لة ومعايير الأداء المعتمدة في التقارير"
-            ],
-            [
-              {
-                "text": "مرجع الموديليزم HTE 0707",
-                "subtext": "INFEP / IFEP Birkhadem — BTS"
-              },
-              "الأنشطة المهنية للنمذجة الصناعية، CAO/FAO (Lectra, Gerber, Optitex)",
-              "آفاق الترقية العلمية بعد BT وربط التكوين بالورشات الرقمية"
-            ],
-            [
-              {
-                "text": "الجريدة الرسمية JORADP",
-                "subtext": "www.joradp.dz"
-              },
-              "النصوص القانونية والتنظيمية للقطاع",
-              "مرجعية التحقق الرسمي من صحة الاقتباسات القانونية"
-            ]
-          ],
-          "caption": [
-            "الجدول أ . 1: مرجعيات التخصص الرسمية المعتمدة في توثيق التربص",
-            "Tableau A.1: Référentiels officiels de la spécialité mobilisés dans le rapport"
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "primary",
-          "title": "مسار الترقية بالتكوين التكميلي",
-          "content": "يندرج التربص للتكوين التكميلي ما قبل الترقية ضمن منظومة الترقية المهنية لألساتذة المنصوص عليها في القانون التوجيهي 08-07 وأطرها التنظيمية لوزارة التكوين والتعليم المهنيين، حيث تُ حتسب ساعات التكوين والتقارير الموّث قة ضمن ملف الترقية إلى رتبة أستاذ متخصص من الدرجة الأولى . وبهذا الصدد يشّك ل كل تقرير من تقارير هذه السلسلة وثيقة بيداغوجية - تقنية مزدوجة : توثيق تعميق للمقياس من جهة، ومسّو غ لمواكبة التطورات التقنية للتخصص من جهة أخرى .",
-          "icon": "§"
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "badge": "ب",
-          "title": "البيانات القطاعية والصناعة الجزائرية",
-          "subtitle": "Données Sectorielles & Industrie Nationale",
-          "badge_variant": "accent",
-          "id": "annex-02"
-        },
-        {
-          "type": "text",
-          "content": "يشهد المنظوم النسيجي الوطني ديناميكية إعادة بناء لافتة، تتزّن رها تجارب صناعية مرجعية يُ ستأنس بها في التكوين . فـ مجمع تايال TAYAL بسيدي خطاب ولاية غليزان (TAYAL S.P.A — Relizane) أ، الذيُ نجز في إطار الشراكة الجزائرية - التركية (%51 رأسمال جزائري، %49 تركي)، يُ صَّن ف أكبر منصة نسجية متكاملة في إفريقيا : من الغزل إلى النسج ثم التشطيب الآلي، ويقّد م للمصممين والمخبرين الجزائريين سلسلة توريد محلية لألقمشة لا سيما الدنيم والقطن المشّط ف . وفي الطرف المؤسساتي، يعمل قطب النسيج والجلود C&H ومؤسسة TEXALG العمومية على إنتاج الألبسة المؤسساتية والزي المدرسي وفق مواصفات تقنية موّث قة ."
-        },
-        {
-          "type": "text",
-          "content": "وُت ظهر الدراسات الأكاديمية المنشورة عبر المنصة الجزائرية للمجالت العلمية (ASJP — CERIST) أّن الفجوة بين العرض المحلي والطلب الوطني على الألبسة ما تزال تُ غّط ى استيراديًا بنسبة مرتفعة، وهو ما يجعل رفع تنافسية الورشات المحلية — من حيث الجودة والتكلفة والمهل — هدف استراتيجيًا تعمل التكوين المهني على خدمته مباشرة . وتوّث ق دراسات ميدانية على متخرجِت شعبة النسيج والألبسة تحّو لًا متناميًا نحو المقاولاتية المصّغ رة في الخياطة على المقاس والألبسة الجاهزة، بدعم أجهزة التمويل العمومية ."
-        }
-      ],
-      "footer": {
-        "left": "الموسم التكويني 2025/2026",
-        "center": "{page}",
-        "right": "HTE1204"
-      }
-    },
-    {
-      "id": "page-18",
-      "layout": "standard",
-      "blocks": [
-        {
-          "type": "stats",
-          "items": [
-            {
-              "value": "51% / 49%",
-              "label": "هيكل رأسمال مجمع تايال (جزائري / تركي)",
-              "sublabel": "Capital TAYAL (DZ/TR)"
-            },
-            {
-              "value": "2448 سا",
-              "label": "الغالف الزمني لمسار BT — HTE 1204",
-              "sublabel": "Volume horaire BT"
-            },
-            {
-              "value": "13 + 8",
-              "label": "الوحدات المؤِّه لة والمكّم لة للشهادة",
-              "sublabel": "Modules MQ + MC"
-            },
-            {
-              "value": "12 أسبوع اًً",
-              "label": "مدة التربص التطبيقي الإلزامي",
-              "sublabel": "Stage en entreprise"
-            }
-          ]
-        },
-        {
-          "type": "table",
-          "columns": [
-            {
-              "text": "قناة الإدماج المهني",
-              "subtext": "Canal d'insertion"
-            },
-            {
-              "text": "الجهات المرجعية",
-              "subtext": "Acteurs"
-            },
-            {
-              "text": "المهارات المطلوبة من خريج التخصص",
-              "subtext": "Compétences sollicitées"
-            }
-          ],
-          "rows": [
-            [
-              {
-                "text": "المؤسسات الصناعية الكبرى",
-                "subtext": "TAYAL, TEXALG, PPE"
-              },
-              "خطوط الإنتاج المتسلسلة، مخابر الجودة، مكاتب الأساليب",
-              "إتقان الغرز الصناعية، قراءة الملف التقني، ضبط الجودة"
-            ],
-            [
-              {
-                "text": "الورشات الحرفية والخياطة على المقاس",
-                "subtext": "Ateliers artisanaux"
-              },
-              "الزبائن الأفراد، الألبسة التقليدية والراقية",
-              "القولبة، التعديل حسب البنية، التشطيبات اليدوية"
-            ],
-            [
-              {
-                "text": "المقاولاتية المصّغ رة",
-                "subtext": "Auto-entrepreneuriat"
-              },
-              "CNAC، ANADE، خزينة الضمانات FGAR",
-              "دراسة الجدوى، التسعير، التسويق الرقمي"
-            ],
-            [
-              {
-                "text": "التكوين والتعليم",
-                "subtext": "MFEP / CFPA / INSFP"
-              },
-              "مؤّط رة الورشات، مرّو جة التخصص",
-              "التعميق المستمر والتكوين التكميلي ما قبل الترقية"
-            ]
-          ],
-          "caption": [
-            "الجدول ب . 1: خريطة الإدماج المهني لخريجي تخصص الخياطة النسائية في الجزائر",
-            "Tableau B.1: Cartographie de l'insertion professionnelle des lauréats"
-          ]
-        },
-        {
-          "type": "quote",
-          "text": "إ نّ إحكام الربط بين المرجعيات الرسمية للتكوين والواقع الصناعي الوطني هو ما يمنح التقني الجزائري قيمته المضافة : كفاءة موّثقة بالمعيار، ومعاَ يرة ببيانات السوق المحلي .",
-          "author": "خالصة تركيبية — مراجع القطاعية ASJP"
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "badge": "ج",
-          "title": "المراجع والوثائق المعتمدة",
-          "subtitle": "Bibliographie & Documents Officiels",
-          "badge_variant": "accent",
-          "id": "annex-03"
-        },
-        {
-          "type": "text",
-          "content": "ُج معت المراجع التالية من مصادر رسمية جزائرية (الجريدة الرسمية JORADP، المعهد الجزائري للتقييس IANOR، المعهد الوطني للتكوين والتعليم المهنيين)INFEP ومن دراسات أكاديمية محّك مة منشورة عبر المنصة الجزائرية للمجالت العلمية ASJP، لتكون سندًا موثقًا لكل ما ورد في هذا التقرير من معطيات تقنية وقانونية ."
-        },
-        {
-          "type": "subsection",
-          "title": "الوثائق الرسمية والقانونية",
-          "subtitle": "Documents officiels & légaux"
-        },
-        {
-          "type": "list",
-          "variant": "rows",
-          "items": [
-            {
-              "badge": "1",
-              "title": "القانون رقم 08-07 المؤرخ في 23 فيفري 2008 — القانون التوجيهي للتكوين والتعليم المهنيين",
-              "subtitle": "الجريدة الرسمية للجمهورية الجزائرية JORADP — joradp.dz"
-            },
-            {
-              "badge": "2",
-              "title": "وزارة التكوين والتعليم المهنيين — تسمية الفروع المهنية والتخصصات للتكوين المهنيين (إصدار 2019، تحديث 2023 / 2024)",
-              "subtitle": "فرع الألبسة والنسيج Branche HTE — mfep.gov.dz"
-            }
-          ]
-        }
-      ],
-      "footer": {
-        "left": "الموسم التكويني 2025/2026",
-        "center": "{page}",
-        "right": "HTE1204"
-      }
-    },
-    {
-      "id": "page-19",
-      "layout": "standard",
-      "blocks": [
-        {
-          "type": "list",
-          "variant": "rows",
-          "items": [
-            {
-              "badge": "3",
-              "title": "المعهد الوطني للتكوين والتعليم المهنيين — البرنامج الدراسي ومرجع الإشهاد : خّي اطة السيدات Tailleur Dames (BT — Niveau IV)",
-              "subtitle": "المرجع الرسمي INFEP، INFEP / HTE1204 — 2448 h / 24 mois كاسي الطاهر، البيار"
-            },
-            {
-              "badge": "4",
-              "title": "المعهد الوطني المتخصص — مرجع الأنشطة المهنية والبرنامج الدراسي : موديليزم — Modélisme (BTS Niveau V)",
-              "subtitle": "الطبعة المنقحة 2024، INFEP / HTE0707 — IFEP Birkhadem"
-            }
-          ]
-        },
-        {
-          "type": "subsection",
-          "title": "الدراسات الأكاديمية الجزائرية",
-          "subtitle": "Études académiques (ASJP)"
-        },
-        {
-          "type": "list",
-          "variant": "rows",
-          "items": [
-            {
-              "badge": "5",
-              "title": "الذكاء الاقتصادي وتنافسية قطاع النسيج والمالبس الجزائري",
-              "subtitle": "مجلة دفاتر الميكاس، جامعة أبو بكر بلقايد — تلمسان، عبر المنصة الجزائرية للمجالت العلمية asjp.cerist.dz"
-            },
-            {
-              "badge": "6",
-              "title": "الشراكة الجزائرية - التركية في مجال صناعة النسيج : دراسة حالة مجمع تايال بغليزان",
-              "subtitle": "مجلة الاقتصاد والدارة، عبر ASJP — asjp.cerist.dz"
-            },
-            {
-              "badge": "7",
-              "title": "دور التكوين المهني في توجه المرأة إلى مجال المقاولاتية : دراسة ميدانية لمقاولات في مجال النسيج والألبسة الجاهزة",
-              "subtitle": "المجلة الجزائرية لعلم الاجتماع، عبر ASJP — asjp.cerist.dz"
-            }
-          ]
-        },
-        {
-          "type": "subsection",
-          "title": "المعايير الوطنية",
-          "subtitle": "Normes (IANOR)"
-        },
-        {
-          "type": "list",
-          "variant": "rows",
-          "items": [
-            {
-              "badge": "8",
-              "title": "المعهد الجزائري للتقييس — كتالوج المعايير الوطنية المتعلقة بالألبسة والنسيج",
-              "subtitle": "IANOR — ianor.dz"
-            }
-          ]
-        }
-      ],
-      "footer": {
-        "left": "الموسم التكويني 2025/2026",
-        "center": "{page}",
-        "right": "HTE1204"
-      }
-    },
-    {
-      "id": "page-20",
       "layout": "dark",
       "blocks": [
         {
           "type": "text",
           "align": "center",
-          "content": "<p style='font-size:14pt; font-weight:800; color:#d4b36a; margin-bottom:8pt;'>وزارة التكوين والتعليم المهنيين</p><p style='font-size:8.5pt; letter-spacing:2px; color:#cbd5e1;'>M I N I S T È R E  D E  L A  F O R M A T I O N  E T  D E  L ' E N S E I G N E M E N T  P R O F E S S I O N N E L S</p>"
+          "content": "<p style='font-size:14pt; font-weight:800; color:#d4b36a; margin-bottom:8pt;'>وزارة التكوين والتعليم المهنيين</p><p style='font-size:8.5pt; letter-spacing:2px; color:#cbd5e1;'>MINISTÈRE DE LA FORMATION ET DE L'ENSEIGNEMENT PROFESSIONNELS</p>"
         },
         {
           "type": "quote",
-          "text": "إن إتقان الخياطة النسائية ليس مجرد حرفة، بل هو إحياء لتراث الجزائر العريق في صناعة الألبسة وإبداع لمستقبل يواكب التحولات الصناعية الرقمية .",
+          "text": "إن إتقان الخياطة النسائية ليس مجرد حرفة، بل هو إحياء لتراث الجزائر العريق في صناعة الألبسة وإبداع لمستقبل يواكب التحولات الصناعية والرقمية.",
           "subtext": "Maîtriser la couture dame, c'est préserver un héritage algérien et bâtir un avenir industriel durable, conforme aux exigences du marché national et international.",
           "box": true
         },
         {
           "type": "text",
           "align": "center",
-          "content": "<p style='font-size:10.5pt; font-weight:600; color:#e2e8f0; margin-top:16pt;'>أُ نجز هذا التقرير في إطار التربص للتكوين التكميلي ما قبل الترقية</p><p style='font-size:9.5pt; color:#94a3b8; margin-top:10pt;'>الشعبة : النسيج والألبسة — التخصص : تصميم أزياء — المعهد صاحب الاختصاص : معهد التكوين والتعليم المهنيين بئر خادم</p><p style='font-size:9.5pt; color:#94a3b8; margin-top:6pt;'>المرجعية : المعايير الجزائرية IANOR والقوانين المنشورة في الجريدة الرسمية JORADP ومرجعيات INFEP / MFEP</p><p style='font-size:9.5pt; color:#d4b36a; margin-top:14pt;'>الدفعة 12 • 2025 / 2026</p>"
+          "content": "<p style='font-size:10.5pt; font-weight:600; color:#e2e8f0; margin-top:16pt;'>أنجز هذا التقرير في إطار التربص للتكوين التكميلي ما قبل الترقية</p><p style='font-size:9.5pt; color:#94a3b8; margin-top:10pt;'>الشعبة : النسيج والألبسة — التخصص : تصميم أزياء — المعهد صاحب الاختصاص : معهد التكوين والتعليم المهنيين بئر خادم</p><p style='font-size:9.5pt; color:#94a3b8; margin-top:6pt;'>المرجعية : المعايير الجزائرية IANOR والقوانين المنشورة في الجريدة الرسمية JORADP ومرجعيات INFEP / MFEP</p><p style='font-size:9.5pt; color:#d4b36a; margin-top:14pt;'>الموسم التكويني: 2025 / 2026</p>"
         }
       ]
     }
@@ -1835,23 +1376,23 @@
       "kind": "bar",
       "labels": [
         [
-          "وحدات مؤِّهلة",
+          "وحدات مؤهلة (1415 سا)",
           "Modules Qualifiants"
         ],
         [
-          "وحدات مكّملة",
+          "وحدات مكملة (645 سا)",
           "Modules Complémentaires"
         ],
         [
-          "تربص مهني",
+          "تربص ميداني (288 سا)",
           "Stage en Entreprise"
         ],
         [
-          "أعمال تطبيقية",
+          "أعمال تطبيقية (80 سا)",
           "Travaux Pratiques"
         ],
         [
-          "تقييم وامتحانات",
+          "تقييم وامتحانات (20 سا)",
           "Évaluation et Examens"
         ]
       ],
@@ -1864,8 +1405,8 @@
       ],
       "unit": "س",
       "caption": [
-        "الشكل 2: التوزيع الزمني للساعات التكوينية حسب الفئات (إجمالي 2448 ساعة)",
-        "Figure 2: Répartition horaire par catégorie (Total 2448 heures)"
+        "الشكل 1: التوزيع الزمني الإجمالي لساعات مسار خياطة السيدات (2448 ساعة)",
+        "Figure 1: Répartition horaire par catégorie (Total: 2448 heures)"
       ],
       "id": "chart_02"
     },
@@ -1884,11 +1425,11 @@
           "Qualité produit"
         ],
         [
-          "احترام اآلجال — 18.0%",
+          "احترام الآجال — 18.0%",
           "Respect délais"
         ],
         [
-          "السالمة المهنية — 12.0%",
+          "السلامة المهنية — 12.0%",
           "Sécurité professionnelle"
         ],
         [
@@ -1913,8 +1454,8 @@
       "center_val": "100%",
       "center_lbl": "معايير الأداء",
       "caption": [
-        "الشكل 1: التوزيع النسبي لمعايير الأداء وفق المرجعية البيداغوجية الوطنية",
-        "Figure 1: Répartition relative des critères de performance selon la référence pédagogique nationale"
+        "الشكل 2: التوزيع النسبي لمعايير الأداء وفق المرجعية البيداغوجية الوطنية",
+        "Figure 2: Répartition relative des critères de performance selon la référence pédagogique nationale"
       ],
       "id": "chart_03"
     },
@@ -1954,14 +1495,14 @@
       ],
       "unit": "ألف",
       "caption": [
-        "الشكل 3: متوسط الراتب الشهري (بآلاف الدج) للمسارات المهنية الخمسة الأبرز (2024)",
-        "Figure 3: Salaire mensuel moyen (en milliers DZD) pour les 5 principaux débouchés (2024)"
+        "الشكل 3: متوسط الراتب الشهري (بآلاف الدج) للمسارات المهنية الرئيسية (2024)",
+        "Figure 3: Salaire mensuel moyen (en milliers DZD) pour les 5 principaux débouchés"
       ],
       "id": "chart_05"
     },
     {
       "type": "chart",
-      "title": "منحنى تعّل م المتدّر ب في وحدة بناء البترونات",
+      "title": "منحنى تعلم المتربص في وحدة بناء البترونات",
       "subtitle": "Courbe d'Apprentissage en Construction de Patrons",
       "kind": "line",
       "labels": [
@@ -1993,13 +1534,13 @@
       "id": "chart_06",
       "unit": "د",
       "caption": [
-        "الشكل 4: منحنى التعلم يُ ظهر تحّس نًا بنسبة %79 من الأسبوع 1 إلى الأسبوع 8",
+        "الشكل 4: منحنى التعلم يظهر تحسناً بنسبة %79 من الأسبوع 1 إلى الأسبوع 8",
         "Figure 4: La courbe montre une amélioration de 79% de la semaine 1 à la semaine 8"
       ]
     },
     {
       "type": "chart",
-      "title": "شبكة تقييم كفاءة المتدّر ب (نموذجية)",
+      "title": "شبكة تقييم كفاءة المتربص في تصنيع سترة تايور",
       "subtitle": "Grille d'Évaluation de Compétence (Modèle)",
       "kind": "progress",
       "items": [
@@ -2029,7 +1570,7 @@
         }
       ],
       "caption": [
-        "الشكل 5: نموذج شبكة تقييم كفاءة المتدّر ب في وحدة تصنيع السترة (المجموع : 16 / 20)",
+        "الشكل 5: نموذج شبكة تقييم كفاءة المتربص (المجموع: 16 / 20)",
         "Figure 5: Modèle de grille d'évaluation (Total: 16/20)"
       ],
       "id": "chart_07"

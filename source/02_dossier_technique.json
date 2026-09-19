@@ -5,8 +5,8 @@
   "direction": "rtl",
   "theme": {},
   "metadata": {
-    "Title": "إعداد وتسيير الملف التقني للمنتج — تقرير التربص وعيل فتيحة",
-    "Subject": "تقرير التربص للتكوين التكميلي ما قبل الترقية — رتبة أستاذ متخصص من الدرجة الأولى وزارة التكوين والتعليم المهنيين — الجزائر",
+    "Title": "إعداد وتسيير الملف التقني للمنتج — تقرير التربص (وعيل فتيحة)",
+    "Subject": "تقرير التربص للتكوين التكميلي ما قبل الترقية — رتبة أستاذ متخصص من الدرجة الأولى (وزارة التكوين والتعليم المهنيين — الجزائر)",
     "Author": "وعيل فتيحة — Ouail Fatiha"
   },
   "pages": [
@@ -21,12 +21,12 @@
         },
         {
           "type": "spacer",
-          "height": "34pt"
+          "height": "52pt"
         },
         {
           "type": "badge",
           "variant": "plain",
-          "text": "تقرير التربص للتكوين التكميلي ما قبل الترقية"
+          "text": "- تقرير التربص للتكوين التكميلي ما قبل الترقية -"
         },
         {
           "type": "badge",
@@ -35,49 +35,47 @@
         },
         {
           "type": "spacer",
-          "height": "16pt"
+          "height": "20pt"
         },
         {
           "type": "card",
           "label": "تقرير التربص حول:",
-          "title": "إعداد وتسيير الملف التقني للمنتج",
-          "subtitle": "Élaboration et Gestion du Dossier Technique du Produit",
-          "pill": "الغالف الساعي 102 سا — HTE1204 / MQ2"
+          "title": "إعداد وتسيير الملف التقني للمنتج"
         },
         {
           "type": "spacer",
-          "height": "20pt"
+          "height": "32pt"
         },
         {
           "type": "info_card",
           "rows": [
             {
-              "label": "الاســــم واللقــــب:",
+              "label": "الاسم واللقب",
               "value": "وعيل فتيحة",
               "highlight": true
             },
             {
-              "label": "الشعـــــــــبة:",
+              "label": "الشعبة",
               "value": "النسيج والألبسة",
               "highlight": false
             },
             {
-              "label": "التخصـــــــص:",
+              "label": "التخصص",
               "value": "تصميم أزياء",
               "highlight": false
             },
             {
-              "label": "المؤسســــــــة:",
+              "label": "المؤسسة",
               "value": "مركز التكوين المهني والتمهين بئر ولد خليفة (المرحوم سالمي بغدادي)",
               "highlight": false
             },
             {
-              "label": "الولايـــــــــة:",
+              "label": "الولاية",
               "value": "عين الدفلى",
               "highlight": false
             },
             {
-              "label": "المعهد صاحب الاختصاص:",
+              "label": "المعهد صاحب الاختصاص",
               "value": "معهد التكوين والتعليم المهنيين بئر خادم",
               "highlight": false
             }
@@ -85,12 +83,12 @@
         },
         {
           "type": "spacer",
-          "height": "12pt"
+          "height": "40pt"
         },
         {
           "type": "text",
           "align": "center",
-          "content": "<p style='font-size:11pt; font-weight:700; color:#0f2d4a; margin:3pt 0;'>الـدفـعـــــــــــــــة: 12</p><p style='font-size:11pt; font-weight:700; color:#0f2d4a; margin:3pt 0;'>التكويني الموسم: 2025/2026</p>"
+          "content": "<p style='font-size:10pt; font-weight:600; color:#475569;'>الموسم التكويني: 2025/2026</p>"
         }
       ]
     },
@@ -105,84 +103,84 @@
           "items": [
             {
               "badge": "1",
-              "title": "مقدمة عامة و أهمية الملف التقني",
-              "subtitle": "Introduction Générale",
+              "title": "مقدمة عامة وأهمية الملف التقني للمنتج",
+              "subtitle": "Introduction Générale & Enjeux Industriels",
               "page_ref": "sec-01"
             },
             {
               "badge": "2",
-              "title": "المهارات و الكفاءات المستهدفة",
-              "subtitle": "Compétences Visées",
+              "title": "الأهداف والكفاءات المستهدفة وفق مقاربة APC",
+              "subtitle": "Compétences Visées selon l'Approche APC",
               "page_ref": "sec-02"
             },
             {
               "badge": "3",
-              "title": "المكّو نات الأساسية للملف التقني",
-              "subtitle": "Composantes du Dossier",
+              "title": "المكونات الأساسية الخمسة للملف التقني",
+              "subtitle": "Composantes du Dossier Technique de Fabrication",
               "page_ref": "sec-03"
             },
             {
               "badge": "4",
-              "title": "المئزر المدرسي:دراسة حالة تطبيقية",
-              "subtitle": "Étude de Cas: Tablier Scolaire",
+              "title": "دراسة حالة تطبيقية: المئزر المدرسي",
+              "subtitle": "Étude de Cas Pratique: Tablier Scolaire",
               "page_ref": "sec-04"
             },
             {
               "badge": "5",
-              "title": "جدول القياسات و الأزمنة المعيارية",
-              "subtitle": "Mesures et Temps Standard",
+              "title": "جدول القياسات والأزمنة المعيارية للإنتاج",
+              "subtitle": "Tableau de Mesures & Temps Standard",
               "page_ref": "sec-05"
             },
             {
               "badge": "6",
-              "title": "التحّو ل الرقمي )CAO/FAO(",
-              "subtitle": "Numérisation CAD/CAM",
+              "title": "التحول الرقمي وأنظمة CAO/FAO في إعداد الملف التقني",
+              "subtitle": "Numérisation CAD/CAM (Lectra, Gerber, Optitex)",
               "page_ref": "sec-06"
             },
             {
               "badge": "7",
-              "title": "منحنى التعّل م و التحديات",
-              "subtitle": "Courbe d'Apprentissage",
+              "title": "منحنى التعلم والتحديات المهنية للمتربص",
+              "subtitle": "Courbe d'Apprentissage & Défis Métier",
               "page_ref": "sec-07"
             },
             {
               "badge": "8",
-              "title": "الخالصة و التوصيات و المراجع",
-              "subtitle": "Conclusion et Références",
+              "title": "الخلاصة والتوصيات المهنية والبيداغوجية",
+              "subtitle": "Conclusion, Recommandations & Bonnes Pratiques",
               "page_ref": "sec-08"
             },
             {
               "badge": "9",
-              "title": "معجم المصطلحات التقنية",
+              "title": "معجم المصطلحات التقنية المزدوج",
               "subtitle": "Glossaire Technique Bilingue",
               "page_ref": "sec-09"
             },
             {
               "badge": "10",
-              "title": "تمارين تطبيقية و دراسات حالة",
-              "subtitle": "Exercices Pratiques et Études de Cas",
+              "title": "تمارين تطبيقية ودراسات حالة حسابية",
+              "subtitle": "Exercices Pratiques & Calcul de Coûts",
               "page_ref": "sec-10"
             },
             {
               "badge": "أ",
-              "title": "المرجعية الجزائرية الرسمية والإطار المعياري",
-              "subtitle": "Référentiel Officiel & Normatif Algérien",
-              "appendix": true,
-              "page_ref": "annex-01"
+              "title": "الإطار المعياري والقانوني للملف التقني",
+              "subtitle": "Cadre Normatif et Légal (NA 1234 & D.E. 13-378)",
+              "page_ref": "annex-01",
+              "appendix": true
             },
             {
               "badge": "ب",
-              "title": "دراسات حالة وبيانات من الصناعة الجزائرية",
-              "subtitle": "Études de Cas & Données Industrielles",
-              "appendix": true,
-              "page_ref": "annex-02"
+              "title": "التطبيق الصناعي وقائمة التجهيز المرجعية",
+              "subtitle": "Pratique Industrielle & Nomenclature Officielle",
+              "page_ref": "annex-02",
+              "appendix": true
             },
             {
               "badge": "ج",
-              "title": "المراجع والوثائق المعتمدة",
+              "title": "المراجع والوثائق الرسمية المعتمدة",
               "subtitle": "Bibliographie & Documents Officiels",
-              "appendix": true,
-              "page_ref": "annex-03"
+              "page_ref": "annex-03",
+              "appendix": true
             }
           ]
         }
@@ -199,44 +197,92 @@
       "blocks": [
         {
           "type": "heading",
-          "level": 2,
+          "id": "sec-01",
           "badge": "1",
-          "title": "مقدمة عامة و أهمية الملف التقني",
-          "subtitle": "Introduction Générale",
-          "id": "sec-01"
+          "title": "مقدمة عامة وأهمية الملف التقني للمنتج",
+          "subtitle": "Introduction Générale & Enjeux Industriels"
         },
         {
           "type": "text",
-          "content": "يُ عَّر ف الملف التقني )Dossier Technique( بأنّ ه الوثيقة المركزية التي تربط بين مكتب الدراسات التصميمية وورشات الإنتاج، فهو بمثابة لغة تقنية موّح دة تُ ترجم فكرة المصمم ثنائية الأبعاد إلى منتج قابل للتصنيع الكمي المتسلسل، وفق معايير الجودة والاستغالل الأمثل للموارد. لا يمكن ضمان تجانس المنتج ولا حساب التكلفة التقديرية بدقة دون هذه الوثيقة الموّح دة، إذ تُ مّث ل العمود الفقري للتواصل الصناعي بين الأقسام."
+          "content": "يعرف الملف التقني (Dossier Technique de Fabrication) بأنه الوثيقة الهندسية المركزية التي تربط بين مكتب الدراسات والتصميم وورشات الإنتاج الصناعي؛ فهو يمثل لغة تواصل موحدة تترجم فكرة المصمم الطرازية إلى منتج مادي قابل للتصنيع المتسلسل وفق معايير الجودة والاستغلال الأمثل للأقمشة والمستلزمات. بدون ملف تقني متكامل، لا يمكن ضمان تجانس القطع المصنعة عبر الدفعات الإنتاجية ولا حساب التكلفة التقديرية بدقة."
         },
         {
           "type": "text",
-          "content": "تشهد صناعة الألبسة في الجزائر تحّو لًا مهّم اً نحو التصنيع المنّظ م، في ظل السياسة الوطنية الرامية إلى تقليص الاستيراد وتشجيع الإنتاج المحلي. أصبح إتقان إعداد الملف التقني كفاءة جوهرية يجب أن يتقنها التقني السامي في النمذجة وتصميم المالبس، إذ بدون هذه الوثيقة لا يمكن ضمان تجانس المنتج ولا حساب التكلفة التقديرية بدّق ة. كما تُ سهم هذه الكفاءة في رفع تنافسية المؤسسات الوطنية في مواجهة المنتجات المستوردة، خاصة من الصين وتركيا، التي تستفيد من توثيق تقني صارم يضمن ثبات الجودة."
-        },
-        {
-          "type": "text",
-          "content": "يهدف هذا التقرير إلى تقديم رؤية شاملة لوحدة إعداد الملف التقني، من خالل استعراض الكفاءات المستهدفة ثم تفكيك مكّو ناتها، وتقديم دراسة حالة تطبيقية مستوحاة من واقع المؤسسات الجزائرية لأللبسة. كما يستعرض التقرير أبعاد التحول الرقمي الذي تشهده هذه الوحدة في المعاهد المتخصصة الوطنية للتكوين المهني )INSFP(، مع تحليل منحنى التعلم والتحديات التي يواجهها المتدّر بون."
-        },
-        {
-          "type": "subsection",
-          "title": "منهجية التقرير",
-          "subtitle": "Méthodologie du Rapport"
-        },
-        {
-          "type": "text",
-          "content": "تّم اعتماد المزدوجية التقنية للمصطلحات )فرنسية/عربية( في هذا التقرير، التزامًا بالمعيار البيداغوجي المعمول به في المعاهد الجزائرية للتكوين المهني، حيث تُ دَّر س الوحدات التقنية للنسيج والألبسة باللغة العربية مع الإبقاء على المصطلحات الفرنسية كلغة تواصل مهني سائدة في القطاع. تُ ؤّم ن هذه المزدوجية للمتدّر ب سهولة الانتقال بين المراجع التقنية الجزائرية والفرنسية، وُت هّي ئه للتعامل مع البرمجيات الصناعية التي تستعمل الواجهات الفرنسية في معظم المؤسسات الوطنية."
+          "content": "في ظل السياسة الوطنية لتشجيع الإنتاج المحلي للملابس وإحلال الواردات، أضحى إتقان إعداد وتسيير الملف التقني كفاءة إستراتيجية يجب أن يتحكم فيها التقني السامي في النمذجة (HTE1204). فالملف التقني المحكم هو الضامن الوحيد لثبات الجودة وتفادي النزاعات التجارية مع الزبائن المؤسساتيين وخفض نسب الهدر في المواد الأولية."
         },
         {
           "type": "heading",
-          "level": 2,
+          "id": "sec-02",
           "badge": "2",
-          "title": "المهارات و الكفاءات المستهدفة",
-          "subtitle": "Compétences Visées",
-          "id": "sec-02"
+          "title": "الأهداف والكفاءات المستهدفة وفق مقاربة APC",
+          "subtitle": "Compétences Visées selon l'Approche APC"
         },
         {
           "type": "text",
-          "content": "تتمحور الكفاءة الشاملة للوحدة حول قدرة المتدّر ب على إعداد ملف تقني صناعي كامل لمنتوج نسيجي، انطلاقًا من دفتر شروط أو نموذج أولي، مع احترام المعايير الجزائرية والدولية، وفي الآجال المحددة. تُ فَّك ك هذه الكفاءة الشاملة إلى خمسة أهداف سلوكية محّد دة، كل منها قابل للقياس عبر شبكة معايير أداء دقيقة، وفق متطلبات المنهجية المبنية على الكفاءات )APC(."
+          "content": "تتمحور الكفاءة المستهدفة حول قدرة المتربص على بناء ملف تقني صناعي كامل وموثق لمنتوج نسيجي انطلاقاً من دفتر شروط أو نموذج أولي، وفق متطلبات المنهجية المبنية على الكفاءات (APC)."
+        },
+        {
+          "type": "table",
+          "columns": [
+            {
+              "text": "الرقم",
+              "subtext": "N°"
+            },
+            {
+              "text": "الهدف السلوكي المهني",
+              "subtext": "Objectif Comportemental"
+            },
+            {
+              "text": "معيار الأداء والتحقق الصناعي",
+              "subtext": "Critère de Performance"
+            }
+          ],
+          "rows": [
+            [
+              {
+                "text": "1",
+                "numeric": true
+              },
+              "قراءة دفتر الشروط وتحديد قائمة الخامات والمستلزمات",
+              "الدقة في تصنيف الأقمشة، الخيوط، والملحقات (Nomenclature)"
+            ],
+            [
+              {
+                "text": "2",
+                "numeric": true
+              },
+              "إنتاج المخططات التقنية المسطحة ثنائية الأبعاد (Dessin plat)",
+              "وضوح التفاصيل البنيوية، ومواقع الدرزات من الأمام والخلف"
+            ],
+            [
+              {
+                "text": "3",
+                "numeric": true
+              },
+              "صياغة وتدقيق جدول القياسات وشبكة التسامح المعتمدة",
+              "الامتثال لتسامح 0.5± سم وفق المعيار الجزائري NA 1234"
+            ],
+            [
+              {
+                "text": "4",
+                "numeric": true
+              },
+              "تحرير نطاق مراحل التجميع المتسلسلة (Gamme de montage)",
+              "تسلسل زمني ومنطقي سليم مع تحديد الآلة المناسبة لكل عملية"
+            ],
+            [
+              {
+                "text": "5",
+                "numeric": true
+              },
+              "حساب التكلفة التقديرية وسعر التكلفة الصناعي (Prix de revient)",
+              "شمولية الحساب (المواد الأولية + اليد العاملة + المصاريف العامة)"
+            ]
+          ],
+          "caption": [
+            "الجدول 1: الأهداف السلوكية الخمسة لإعداد الملف التقني وفق معايير APC",
+            "Tableau 1: Les cinq objectifs comportementaux du Dossier Technique"
+          ]
         }
       ],
       "footer": {
@@ -250,106 +296,86 @@
       "layout": "standard",
       "blocks": [
         {
-          "type": "subsection",
-          "title": "الأهداف السلوكية التفصيلية",
-          "subtitle": "Objectifs Comportementaux Détaillés"
+          "type": "heading",
+          "id": "sec-03",
+          "level": 2,
+          "badge": "3",
+          "title": "المكونات الأساسية الخمسة للملف التقني",
+          "subtitle": "Composantes du Dossier Technique de Fabrication"
+        },
+        {
+          "type": "text",
+          "content": "يتكون الملف التقني النموذجي في المؤسسات الصناعية الجزائرية من خمس وثائق أساسية مترابطة تشكل عقداً فنياً ملزماً بين قسم الدراسات وورشة الخياطة. غياب أي وثيقة يؤدي مباشرة إلى فجوات اتصالية، وارتفاع في نسبة الهدر، واختلال في ثبات الجودة."
         },
         {
           "type": "table",
           "columns": [
             {
-              "text": "الرقم",
-              "subtext": "N°"
+              "text": "الوثيقة التقنية",
+              "subtext": "Document"
             },
             {
-              "text": "الهدف السلوكي",
-              "subtext": "Objectif Comportemental"
+              "text": "الوصف الوظيفي والمحتوى",
+              "subtext": "Description Fonctionnelle"
             },
             {
-              "text": "معيار الأداء الأساسي",
-              "subtext": "Critère Principal"
+              "text": "المحور والبيانات الأساسية",
+              "subtext": "Axe Principal"
             }
           ],
           "rows": [
             [
               {
-                "text": "1",
-                "numeric": true
+                "text": "بطاقة الطراز الأساسية (Fiche de style)",
+                "subtext": "Fiche technique"
               },
-              {
-                "text": "قراءة دفتر الشروط وتحديد الخامات",
-                "subtext": "Nomenclature des matières"
-              },
-              "دّق ة التعّر ف على أنواع الأقمشة والإكسسوارات"
+              "الرسم المسطح التفصيلي للموديل مع المواصفات الجمالية",
+              "نوع القماش، اللون المرجعي، المقاس الأساسي، وكود الموديل"
             ],
             [
               {
-                "text": "2",
-                "numeric": true
-              },
-              {
-                "text": "إنتاج المخططات التقنية المسطحة",
-                "subtext": "Dessins plats / Dessins techniques"
-              },
-              "وضوح التفاصيل البنيوية من الأمام والخلف"
-            ],
-            [
-              {
-                "text": "3",
-                "numeric": true
-              },
-              {
-                "text": "صياغة جدول القياسات",
+                "text": "بطاقة القياسات (Fiche de mesures)",
                 "subtext": "Tableau de mesures"
               },
-              "احترام التسامح 0.5± سم لأللبسة الجاهزة"
+              "أبعاد كل مقاس عبر نقاط الارتكاز مع حدود التسامح المسموح",
+              "الصدر، الخصر، الورك، طول القامة، وتسامح 0.5± سم"
             ],
             [
               {
-                "text": "4",
-                "numeric": true
+                "text": "جدول المستلزمات (Nomenclature)",
+                "subtext": "Fournitures"
               },
-              {
-                "text": "كتابة مراحل التجميع",
-                "subtext": "Gamme de montage"
-              },
-              "تسلسل منطقي وذكر نوع الآلة لكل عملية"
+              "حصر شامل لكافة الخامات والملحقات الداخلة في القطعة",
+              "الأقمشة، خيوط الحياكة، الأزرار، السحابات، وشريط الحشو"
             ],
             [
               {
-                "text": "5",
-                "numeric": true
+                "text": "نطاق مراحل التجميع (Gamme de montage)",
+                "subtext": "Gamme opératoire"
               },
+              "التسلسل الزمني للعمليات وتوزيعها على الآلات الصناعية",
+              "رمز العملية، نوع الغرزة (ISO)، الآلة، والزمن القياسي (ثا)"
+            ],
+            [
               {
-                "text": "حساب التكلفة التقديرية )مواد+ يد عاملة+ مصاريف(",
-                "subtext": "Prix de revient"
+                "text": "بطاقة مراقبة الجودة (Contrôle qualité)",
+                "subtext": "Fiche de contrôle"
               },
-              "شمولية الحساب"
+              "شبكة التحقق ونقاط الفحص المرحلية والنهائية للمنتج",
+              "عيوب الحياكة، مطابقة الأبعاد، وقرار قبول أو رفض الدفعة"
             ]
           ],
           "caption": [
-            "الجدول 1: الأهداف السلوكية الخمسة لإعداد الملف التقني وفق المعيار البيداغوجي APC",
-            "Tableau 1: Les cinq objectifs comportementaux du Dossier Technique"
+            "الجدول 2: الوثائق الخمس المشكلة للملف التقني الصناعي النموذجي",
+            "Tableau 2: Les cinq documents constitutifs du dossier technique type"
           ]
         },
         {
           "type": "callout",
           "variant": "accent",
-          "title": "قاعدة ذهبية: التسامح 0.5± سم",
-          "content": "التسامح المعتمد في الألبسة الجاهزة الجزائرية هو 0.5± سم لكل قياس، وفق IANOR — NA 1234. لا يمكن للمؤسسة ضمان تجانس المنتج بين دفعات إنتاجية مختلفة دون احترام هذا التسامح بدقة، وأّي تجاوز له يُ ؤّد ي إلى رفض الدفعة من قِ بَ ل مراقبة الجودة وإلى خسائر مالية مباشرة.",
-          "icon": "★"
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "badge": "3",
-          "title": "المكّو نات الأساسية للملف التقني",
-          "subtitle": "Composantes du Dossier Technique",
-          "id": "sec-03"
-        },
-        {
-          "type": "text",
-          "content": "يتكّو ن الملف التقني النموذجي في المؤسسات الجزائرية لأللبسة من خمس وثائق رئيسية مترابطة، تشّك ل بمجموعها ما يُ عرف بـ »الملف التقني للتصنيع« )Dossier Technique de Fabrication(. تخدم كل وثيقة وظيفة محددة في سلسلة الإنتاج، وغياب أّي منها يؤّد ي إلى فجوات اتصالية بين مكتب الدراسات والورشة، وإلى ارتفاع في نسبة الهدر. تشّك ل هذه الوثائق الخمس منظومة متكاملة لا تتجزأ، فالانتقال من واحدة إلى أخرى يتبع تسلسًال منطقيًا صارمًا يضمن انسياب المعلومة الفنية من مرحلة التصميم إلى مرحلة التغليف."
+          "icon": "target",
+          "title": "قاعدة ذهبية: التسامح القياسي 0.5± سم (NA 1234)",
+          "content": "يحدد المعيار الجزائري NA 1234 أقصى تسامح مسموح به في القياسات الحرجة (محيط الصدر، الخصر، وطول الظهر) بمقدار 0.5± سم. أي تجاوز لهذه العتبة يمنح مصلحة الجودة الحق القانوني في رفض الدفعة المصنعة بالكامل وتحميل الورشة مسؤولية إعادة التشغيل."
         }
       ],
       "footer": {
@@ -363,83 +389,114 @@
       "layout": "standard",
       "blocks": [
         {
+          "type": "heading",
+          "id": "sec-04",
+          "level": 2,
+          "badge": "4",
+          "title": "دراسة حالة تطبيقية: المئزر المدرسي",
+          "subtitle": "Étude de Cas Pratique: Tablier Scolaire"
+        },
+        {
+          "type": "text",
+          "content": "اعتمد المئزر المدرسي كحالة تطبيقية مرجعية نظراً لكونه منتجاً واسع الاستهلاك يخضع لدفاتر شروط ومواصفات معيارية دقيقة تضبطها وزارة التربية الوطنية والمجمعات العمومية (قطب النسيج والجلود C&H / TEXALG). يتيح هذا النموذج تطبيق كافة عناصر الملف التقني بشكل واقعي يربط التكوين بالإنتاج الفعلي."
+        },
+        {
           "type": "table",
           "columns": [
             {
-              "text": "الوثيقة",
-              "subtext": "Document"
+              "text": "عنصر المواصفة",
+              "subtext": "Élément"
             },
             {
-              "text": "الوصف الوظيفي",
-              "subtext": "Description Fonctionnelle"
-            },
-            {
-              "text": "المحور الرئيسي",
-              "subtext": "Axe Principal"
+              "text": "المواصفة الفنية والعيارية المعتمدة",
+              "subtext": "Spécification Technique"
             }
           ],
           "rows": [
             [
-              {
-                "text": "بطاقة تقنية أساسية",
-                "subtext": "Fiche Technique de Base"
-              },
-              "الرسم المسطح للمنتوج مع المواصفات العامة",
-              "اللون، نوع القماش، المقاس المرجعي"
+              "اللون المرجعي",
+              "أزرق نظامي موحد موثق بكود Pantone 286 C المقاوم للغسيل"
             ],
             [
-              {
-                "text": "بطاقة القياسات",
-                "subtext": "Fiche de Mesures"
-              },
-              "أبعاد القطعة لكل مقاس مع التسامح 0.5± سم",
-              "النقاط المرجعية للقياس"
+              "القماش الأساسي",
+              "تيرغال (Tergal): تركيبة 65% بوليستر مع 35% قطن متين"
             ],
             [
-              {
-                "text": "جدول المستلزمات",
-                "subtext": "Nomenclature des Fournitures"
-              },
-              "حصر المواد الأولية مع الكميات، أقمشة، خيوط، أزرار، سّح ابات، ملصقات",
-              ""
+              "وزن القماش (الغرامية)",
+              "180 إلى 210 غرام/م² (كثافة متوسطة توفر متانة عالية ومقاومة للتمزق)"
             ],
             [
-              {
-                "text": "مراحل التجميع",
-                "subtext": "Gamme de Montage"
-              },
-              "تسلسل العمليات التقنية مع الآلة",
-              "زمن كل عملية، مستوى المهارة"
+              "مستلزمات الإغلاق",
+              "5 أزرار بلاستيكية بقطر 11 ملم مثبتة بمسافات متساوية كل 10 سم"
             ],
             [
-              {
-                "text": "بطاقة مراقبة الجودة",
-                "subtext": "Fiche de Contrôle Qualité"
-              },
-              "نقاط فحص بعد كل مرحلة رئيسية",
-              "نقاط الفحص، معايير القبول/الرفض"
+              "توزيع الجيوب",
+              "جيب أمامي رئيسي (18×16 سم) مع جيب جانبي إضافي (10×9 سم)"
+            ],
+            [
+              "سلسلة المقاسات",
+              "سلسلة مدرسية تضم 5 مقاسات نظامية: 10، 12، 14، 16، و18 سنة"
             ]
           ],
           "caption": [
-            "الجدول 2: المكّو نات الخمسة للملف التقني النموذجي المعتمد في المؤسسات الجزائرية",
-            "Tableau 2: Les cinq composantes du Dossier Technique type"
+            "الجدول 3: المواصفات المادية والتقنية للمئزر المدرسي وفق دفتر الشروط الوطني",
+            "Tableau 3: Spécifications techniques du tablier scolaire réglementaire"
           ]
         },
         {
-          "type": "text",
-          "content": "تُ ختصر هذه الوثائق الخمس في كثير من الورشات الجزائرية الصغيرة والمتوسطة في وثيقتين أو ثالث فقط، مما يُ سّب ب ارتفاعًا في نسبة الهدر وعدم استقرار الجودة. تُ مّث ل الوثائق الخمس الحد الأدنى القانوني الذي تُ لزم به وزارة الصناعة الجزائرية المؤسسات الُم نِت جة لأللبسة، خاصة تلك الُم ستفيدة من برامج الدعم العمومي أو تلك التي تتعامل مع طلبات الإدارة العمومية )مثل وزارة التربية الوطنية في برنامج الأثواب المدرسية(."
+          "type": "subsection",
+          "title": "مخطط مراحل التجميع (Gamme de Montage)",
+          "subtitle": "Schéma de la Gamme Opératoire"
         },
         {
-          "type": "heading",
-          "level": 2,
-          "badge": "4",
-          "title": "المئزر المدرسي:دراسة حالة تطبيقية",
-          "subtitle": "Étude de Cas: Tablier Scolaire",
-          "id": "sec-04"
-        },
-        {
-          "type": "text",
-          "content": "اخترنا المئزر المدرسي )Tablier Scolaire( كموضوع للدراسة التطبيقية لكونه منتجًا ذا استهالك واسع في السوق الجزائري، يخضع لشروط وطنية محددة في دفاتر شروط الأولى الوزارة ضمن برامج مكاتب الإتاحة المدرسية. يتمّي ز المئزر ببساطة تصميمه، مما يُ تيح تطبيق خطوات الملف التقني كامل دون تعقيدات تقنية مبالغ فيها، مع كونه منتجًا صناعيًا حقيقيًا يُ نَت ج بكميات كبيرة سنويًا."
+          "type": "flow_steps",
+          "steps": [
+            {
+              "badge": 1,
+              "title": "فحص القصصات ومطابقة أبعادها مع الباترونات الأساسية وعلامات التقابل",
+              "subtitle": "Vérification des pièces découpées"
+            },
+            {
+              "badge": 2,
+              "title": "تثبيت الجيوب على قطع الأمام بخياطة موازية على آلة Piqueuse plate",
+              "subtitle": "Piquage des poches sur devant"
+            },
+            {
+              "badge": 3,
+              "title": "تجميع خطوط الكتف ومطابقتها بغرزة القفل 301 مع تعزيز الدرزات",
+              "subtitle": "Assemblage des épaules (301)"
+            },
+            {
+              "badge": 4,
+              "title": "سرفلة حواف الفتحات والدرزات الداخلية على آلة Surjeteuse لمنع التنسل",
+              "subtitle": "Surfilage des bords (504)"
+            },
+            {
+              "badge": 5,
+              "title": "حياكة وتثبيت الياقة على خط محيط الرقبة وضبط التناظر الجانبي",
+              "subtitle": "Montage et piquage du col"
+            },
+            {
+              "badge": 6,
+              "title": "تركيب وتجميع الأكمام في حفرة الإبط مع مراعاة راحة الحركة",
+              "subtitle": "Montage des manches sur emmanchure"
+            },
+            {
+              "badge": 7,
+              "title": "خياطة الجوانب المستمرة من أطراف الأكمام وصولاً إلى الحاشية السفلية",
+              "subtitle": "Couture des côtés et sous-bras"
+            },
+            {
+              "badge": 8,
+              "title": "فتح العراوي الآلية وتركيب الأزرار الخمسة بنظام الإغلاق المزدوج",
+              "subtitle": "Exécution boutonnières et boutons"
+            },
+            {
+              "badge": 9,
+              "title": "كف وحياكة الحاشية السفلية بالماكينة ثم الكي النهائي بالبخار والشفط",
+              "subtitle": "Ourlet final et repassage vapeur"
+            }
+          ]
         }
       ],
       "footer": {
@@ -453,106 +510,140 @@
       "layout": "standard",
       "blocks": [
         {
-          "type": "subsection",
-          "title": "مواصفات المنتج",
-          "subtitle": "Spécifications du Produit"
+          "type": "heading",
+          "id": "sec-05",
+          "level": 2,
+          "badge": "5",
+          "title": "جدول القياسات والأزمنة المعيارية للإنتاج",
+          "subtitle": "Tableau de Mesures & Temps Standard"
+        },
+        {
+          "type": "text",
+          "content": "تتضمن بطاقة القياسات جدولاً ثنائياً يربط بين المقاسات المعتمدة ونقاط القياس التشريحية على القطعة. يرفق الجدول بدراسة الأزمنة المعيارية (Chronométrage) المحددة وفق جداول مكتب الأزمنة الأولية (BTE) لضبط الحمل التشغيلي وموازنة خطوط الخياطة."
+        },
+        {
+          "type": "artifact_ref",
+          "artifact_id": "chart_02"
         },
         {
           "type": "table",
           "columns": [
             {
-              "text": "البند",
-              "subtext": "Élément"
+              "text": "نقطة القياس التشريحية",
+              "subtext": "Point de Mesure"
             },
             {
-              "text": "المواصفة",
-              "subtext": "Spécification"
+              "text": "القيمة المحددة (سم)",
+              "subtext": "Valeur (cm)"
+            },
+            {
+              "text": "التسامح المسموح به",
+              "subtext": "Tolérance (NA 1234)"
             }
           ],
           "rows": [
             [
-              "اللون",
-              "أزرق موّح د — Pantone 286 C )وفق شروط الوزارة("
+              {
+                "text": "محيط الصدر (Tour de poitrine)",
+                "subtext": "Poitrine"
+              },
+              {
+                "text": "76.0",
+                "numeric": true
+              },
+              {
+                "text": "±1.0 سم",
+                "numeric": true
+              }
             ],
             [
-              "القماش",
-              "ترغال )Tergal( — 65% بوليستر + %35 قطن"
+              {
+                "text": "الطول الكلي للمئزر (Longueur totale)",
+                "subtext": "Longueur dos"
+              },
+              {
+                "text": "70.0",
+                "numeric": true
+              },
+              {
+                "text": "±1.0 سم",
+                "numeric": true
+              }
             ],
             [
-              "وزن القماش",
-              "180 غرام/م² — كثافة متوسطة تضمن المتانة والاستعمال اليومي"
+              {
+                "text": "عرض الظهر والكتف (Carrure dos)",
+                "subtext": "Carrure"
+              },
+              {
+                "text": "32.0",
+                "numeric": true
+              },
+              {
+                "text": "±0.5 سم",
+                "numeric": true
+              }
             ],
             [
-              "الأزرار",
-              "5 أزرار بالستيكية قطر 11 ملم، موّز عة كل 10 سم"
+              {
+                "text": "عرض الصدر الأمامي (Carrure devant)",
+                "subtext": "Devant"
+              },
+              {
+                "text": "33.0",
+                "numeric": true
+              },
+              {
+                "text": "±0.5 سم",
+                "numeric": true
+              }
             ],
             [
-              "الجيوب",
-              "جيب أمامي رئيسي )18×16 سم( + جيب جانبي صغير )10×9 سم("
+              {
+                "text": "عمق فتحة الإبط (Emmanchure)",
+                "subtext": "Emmanchure"
+              },
+              {
+                "text": "20.0",
+                "numeric": true
+              },
+              {
+                "text": "±0.5 سم",
+                "numeric": true
+              }
             ],
             [
-              "المقاسات",
-              "5 مقاسات )10، 12، 14، 16، 18 سنة("
+              {
+                "text": "طول الكم (Longueur manche)",
+                "subtext": "Manche"
+              },
+              {
+                "text": "25.0",
+                "numeric": true
+              },
+              {
+                "text": "±0.5 سم",
+                "numeric": true
+              }
+            ],
+            [
+              {
+                "text": "عرض الوشاح السفلي (Bassin)",
+                "subtext": "Largeur bas"
+              },
+              {
+                "text": "82.0",
+                "numeric": true
+              },
+              {
+                "text": "±1.0 سم",
+                "numeric": true
+              }
             ]
           ],
           "caption": [
-            "الجدول 3: مواصفات المئزر المدرسي وفق دفتر الشروط الرسمي",
-            "Tableau 3: Spécifications du tablier scolaire selon le cahier des charges officiel"
-          ]
-        },
-        {
-          "type": "subsection",
-          "title": "مخطط مراحل التجميع",
-          "subtitle": "Schéma de la Gamme de Montage"
-        },
-        {
-          "type": "flow_steps",
-          "steps": [
-            {
-              "badge": 1,
-              "title": "فحص القصصات الورقية و مطابقتها مع البترون",
-              "subtitle": "Vérification des pièces de patronnage"
-            },
-            {
-              "badge": 2,
-              "title": "تثبيت الجيوب الثالثة على الأمام بخيوط التثبيت",
-              "subtitle": "Pose des poches"
-            },
-            {
-              "badge": 3,
-              "title": "تجميع خطوط الكتف بتقنية الخياطة المتراكبة",
-              "subtitle": "Assemblage des épaules"
-            },
-            {
-              "badge": 4,
-              "title": "جمع كل خطوط الفتحات بخيطين ) سرفلة+ خياطة متقنة(",
-              "subtitle": "Surfilage + piquage"
-            },
-            {
-              "badge": 5,
-              "title": "تركيب الياقة و تثبيتها على خط العنق",
-              "subtitle": "Pose du col"
-            },
-            {
-              "badge": 6,
-              "title": "تجميع الأكمام من الناحية الأمامية بخياطة بنسجية",
-              "subtitle": "Montage des manches"
-            },
-            {
-              "badge": 7,
-              "title": "خياطة الجوانب من الأسفل إلى الإبط",
-              "subtitle": "Couture des côtés"
-            },
-            {
-              "badge": 8,
-              "title": "تركيب الأزرار الخمسة و عمل العراوي",
-              "subtitle": "Pose boutons + boutonnières"
-            },
-            {
-              "badge": 9,
-              "title": "تجميع وشاح المئزر مع الأسفل و كي المنتج نهائي اً",
-              "subtitle": "Assemblage final + repassage"
-            }
+            "الجدول 4: بطاقة قياسات المئزر المدرسي (مقاس 10 سنوات) وفق المعيار NA 1234",
+            "Tableau 4: Fiche de mesures du tablier scolaire (Taille 10 ans)"
           ]
         }
       ],
@@ -567,20 +658,175 @@
       "layout": "standard",
       "blocks": [
         {
-          "type": "heading",
-          "level": 2,
-          "badge": "5",
-          "title": "جدول القياسات و الأزمنة المعيارية",
-          "subtitle": "Mesures et Temps Standard",
-          "id": "sec-05"
+          "type": "table",
+          "columns": [
+            {
+              "text": "الرقم",
+              "subtext": "N°"
+            },
+            {
+              "text": "العملية الإنتاجية في خط التجميع",
+              "subtext": "Opération"
+            },
+            {
+              "text": "الآلة الصناعية المستخدمة",
+              "subtext": "Machine Affectée"
+            },
+            {
+              "text": "الزمن المعياري (ثانية)",
+              "subtext": "Temps Standard (s)"
+            }
+          ],
+          "rows": [
+            [
+              {
+                "text": "1",
+                "numeric": true
+              },
+              "تجهيز وتثبيت الجيوب على الصدر والأمام",
+              "Piqueuse plate (غرزة 301)",
+              {
+                "text": "180",
+                "numeric": true
+              }
+            ],
+            [
+              {
+                "text": "2",
+                "numeric": true
+              },
+              "تجميع درزات الكتفين مع السرفلة المدمجة",
+              "Piqueuse + Surjeteuse",
+              {
+                "text": "60",
+                "numeric": true
+              }
+            ],
+            [
+              {
+                "text": "3",
+                "numeric": true
+              },
+              "تحضير الياقة وتركيبها على شريط الرقبة",
+              "Piqueuse plate",
+              {
+                "text": "150",
+                "numeric": true
+              }
+            ],
+            [
+              {
+                "text": "4",
+                "numeric": true
+              },
+              "تجميع وتركيب الأكمام على حفرة الإبط",
+              "Piqueuse plate",
+              {
+                "text": "120",
+                "numeric": true
+              }
+            ],
+            [
+              {
+                "text": "5",
+                "numeric": true
+              },
+              "خياطة الجوانب وإقفال الأكمام المستمر",
+              "Surjeteuse (غرزة 504)",
+              {
+                "text": "90",
+                "numeric": true
+              }
+            ],
+            [
+              {
+                "text": "6",
+                "numeric": true
+              },
+              "فتح العراوي الآلية وتركيب الأزرار الخمسة",
+              "Boutonnière + Pose-boutons",
+              {
+                "text": "240",
+                "numeric": true
+              }
+            ],
+            [
+              {
+                "text": "7",
+                "numeric": true
+              },
+              "حياكة الحاشية السفلية وكف أطراف الأكمام",
+              "Recouvreuse (غرزة تغطية)",
+              {
+                "text": "120",
+                "numeric": true
+              }
+            ],
+            [
+              {
+                "text": "8",
+                "numeric": true
+              },
+              "الكي النهائي بالبخار وفحص الخيوط الزائدة",
+              "Table à repasser vapeur",
+              {
+                "text": "90",
+                "numeric": true
+              }
+            ],
+            [
+              {
+                "text": "—",
+                "numeric": false
+              },
+              {
+                "text": "المجموع الإجمالي للقطعة",
+                "subtext": "Total Assemblage"
+              },
+              "خط متسلسل متوازن",
+              {
+                "text": "1050 ثا (17.5 دقيقة)",
+                "strong": true
+              }
+            ]
+          ],
+          "caption": [
+            "الجدول 5: دراسة الأزمنة القياسية لعمليات تجميع المئزر المدرسي",
+            "Tableau 5: Temps standard par opération pour le tablier scolaire"
+          ]
         },
         {
-          "type": "artifact_ref",
-          "artifact_id": "chart_02"
+          "type": "stats",
+          "columns": 4,
+          "items": [
+            {
+              "value": "1050 ثا",
+              "label": "زمن التجميع الكلي للقطعة",
+              "sublabel": "Temps total d'assemblage"
+            },
+            {
+              "value": "17.5 د",
+              "label": "المدة المعيارية للإنجاز",
+              "sublabel": "Durée unitaire standard"
+            },
+            {
+              "value": "±0.5 سم",
+              "label": "التسامح الأبعادي المعتمد",
+              "sublabel": "Tolérance NA 1234"
+            },
+            {
+              "value": "65/35",
+              "label": "تركيبة قماش التيرغال المعتمد",
+              "sublabel": "Tergal PES/CO"
+            }
+          ]
         },
         {
-          "type": "text",
-          "content": "تتضمن بطاقة القياسات )Fiche de Mesures( جدولًا ثنائي البعد، تُ مّث ل فيه الأعمدة المقاسات )34 , 36 , 38 , 40 , 42 , 44( والصفوف النقاط المرجعية للقياس على المنتج )محيط الصدر، طول الظهر، عرض الكتف، عمق الإبط، طول الكم...(. تُ كتب القيمة بالسنتيمتر عند كل تقاطع، مع تحديد نسبة التسامح. تُ عّد هذه البطاقة من أدق وثائق الملف التقني، إذ يُ شّك ل أي خطأ فيها سببًا مباشرًا لرفض المنتج النهائي من قِ بَ ل الزبون."
+          "type": "callout",
+          "variant": "primary",
+          "icon": "check",
+          "title": "حساب الزمن المعياري ومعامل الراحة (BTE)",
+          "content": "يحسب الزمن المعياري عبر ضرب زمن العمل الصافي في معامل الراحة الفيزيولوجية والبيئية (15-18%) وفق معادلة BTE: Tstandard = Tmoyen × 1.18. يضمن هذا الإجراء عدم إرهاق العاملات وثبات نسق الإنتاج طيلة ساعات الوردية."
         }
       ],
       "footer": {
@@ -594,270 +840,73 @@
       "layout": "standard",
       "blocks": [
         {
-          "type": "subsection",
-          "title": "جدول قياسات المئزر )مقاس 10 سنوات(",
-          "subtitle": "Tableau de Mesures — Tablier (Taille 10 ans)"
+          "type": "heading",
+          "id": "sec-06",
+          "level": 2,
+          "badge": "6",
+          "title": "التحول الرقمي وأنظمة CAO/FAO في إعداد الملف التقني",
+          "subtitle": "Numérisation CAD/CAM (Lectra, Gerber, Optitex)"
+        },
+        {
+          "type": "text",
+          "content": "يشهد قطاع النسيج في الجزائر اندماجاً واسعاً لأنظمة التصميم والتصنيع بمساعدة الحاسوب (CAO/FAO — CAD/CAM)، وفي مقدمتها نظام Lectra Modaris الشائع في المؤسسات الكبرى، يليه نظام Gerber Accumark و Optitex. أحدثت هذه البرمجيات ثورة في إعداد الملفات التقنية، حيث مكنت من أتمتة جداول القياسات والتدريج الفوري وحساب استهلاك الأقمشة بدقة متناهية."
         },
         {
           "type": "table",
           "columns": [
             {
-              "text": "نقطة القياس",
-              "subtext": "Point de Mesure"
+              "text": "معيار التقييم الفني",
+              "subtext": "Critère d'évaluation"
             },
             {
-              "text": "القيمة )سم(",
-              "subtext": "Valeur (cm)"
+              "text": "الملف التقني اليدوي التقليدي",
+              "subtext": "Méthode Manuelle"
             },
             {
-              "text": "التسامح",
-              "subtext": "Tolérance"
+              "text": "الملف التقني الرقمي (CAO/FAO)",
+              "subtext": "Système Numérique"
             }
           ],
           "rows": [
             [
-              {
-                "text": "محيط الصدر",
-                "subtext": "Tour de poitrine"
-              },
-              {
-                "text": "76",
-                "numeric": true
-              },
-              {
-                "text": "±1.0",
-                "numeric": true
-              }
+              "زمن إعداد وتدقيق الملف",
+              "3 إلى 5 أيام عمل متواصلة",
+              "2 إلى 3 ساعات عمل برمجية"
             ],
             [
-              {
-                "text": "الطول الكلي للمئزر",
-                "subtext": "Longueur totale"
-              },
-              {
-                "text": "70",
-                "numeric": true
-              },
-              {
-                "text": "±1.0",
-                "numeric": true
-              }
+              "الدقة الهندسية للخطوط",
+              "تعتمد على مهارة الرسام (أخطاء واردة)",
+              "دقة آلية متناهية (± 0.1 ملم)"
             ],
             [
-              {
-                "text": "عرض الكتف )الظهر(",
-                "subtext": "Carrure dos"
-              },
-              {
-                "text": "32",
-                "numeric": true
-              },
-              {
-                "text": "±0.5",
-                "numeric": true
-              }
+              "توليد سلاسل المقاسات",
+              "إعادة رسم كل مقاس يدوياً",
+              "تدريج فوري متزامن لكافة المقاسات"
             ],
             [
-              {
-                "text": "عرض الكتف )الأمام(",
-                "subtext": "Carrure devant"
-              },
-              {
-                "text": "33",
-                "numeric": true
-              },
-              {
-                "text": "±0.5",
-                "numeric": true
-              }
+              "مخطط الوضع والقص (Placement)",
+              "رص يدوي مع نسبة هدر بين 12 و 16%",
+              "تعشيق آلي مثالي يقلص الهدر لما دون 6%"
             ],
             [
-              {
-                "text": "عمق الإبط",
-                "subtext": "Emmanchure"
-              },
-              {
-                "text": "20",
-                "numeric": true
-              },
-              {
-                "text": "±0.5",
-                "numeric": true
-              }
+              "مرونة التعديل والتصحيح",
+              "إعادة رسم وتلف أوراق الباترون",
+              "تعديل رقمي فوري محفوظ في السجلات"
             ],
             [
-              {
-                "text": "طول الكم",
-                "subtext": "Longueur manche"
-              },
-              {
-                "text": "25",
-                "numeric": true
-              },
-              {
-                "text": "±0.5",
-                "numeric": true
-              }
-            ],
-            [
-              {
-                "text": "عرض الوشاح السفلي",
-                "subtext": "Bassin"
-              },
-              {
-                "text": "82",
-                "numeric": true
-              },
-              {
-                "text": "±1.0",
-                "numeric": true
-              }
+              "الأرشفة والمشاركة البينية",
+              "مستودعات أرشيف ورقية عرضة للتلف",
+              "أرشفة سحابية وقواعد بيانات سريعة الوصول"
             ]
           ],
           "caption": [
-            "الجدول 4: قياسات المئزر المدرسي للمقاس 10 سنوات )المرجع: IANOR NA 1234(",
-            "Tableau 4: Mesures du tablier scolaire — Taille 10 ans"
+            "الجدول 6: مقارنة تفصيلية بين إعداد الملف التقني يدوياً ورقمياً",
+            "Tableau 6: Comparatif détaillé entre méthode manuelle et CAO/FAO"
           ]
         },
         {
-          "type": "subsection",
-          "title": "الأزمنة المعيارية لكل عملية",
-          "subtitle": "Temps Standard par Opération"
-        },
-        {
-          "type": "table",
-          "columns": [
-            {
-              "text": "#",
-              "subtext": "N°"
-            },
-            {
-              "text": "العملية",
-              "subtext": "Opération"
-            },
-            {
-              "text": "اآللة المستعملة",
-              "subtext": "Machine"
-            },
-            {
-              "text": "الزمن )ثانية(",
-              "subtext": "Temps (s)"
-            }
-          ],
-          "rows": [
-            [
-              {
-                "text": "1",
-                "numeric": true
-              },
-              "تثبيت الجيوب الثالثة",
-              "Piqueuse plate",
-              {
-                "text": "180",
-                "numeric": true
-              }
-            ],
-            [
-              {
-                "text": "2",
-                "numeric": true
-              },
-              "جمع خطوط الكتف",
-              "Piqueuse + Surjeteuse",
-              {
-                "text": "60",
-                "numeric": true
-              }
-            ],
-            [
-              {
-                "text": "3",
-                "numeric": true
-              },
-              "تركيب الياقة",
-              "Piqueuse plate",
-              {
-                "text": "150",
-                "numeric": true
-              }
-            ],
-            [
-              {
-                "text": "4",
-                "numeric": true
-              },
-              "تجميع الأكمام",
-              "Piqueuse plate",
-              {
-                "text": "120",
-                "numeric": true
-              }
-            ],
-            [
-              {
-                "text": "5",
-                "numeric": true
-              },
-              "خياطة الجوانب",
-              "Surjeteuse",
-              {
-                "text": "90",
-                "numeric": true
-              }
-            ],
-            [
-              {
-                "text": "6",
-                "numeric": true
-              },
-              "تركيب الأزرار+ عمل العراوي",
-              "Boutonnière + Pose-boutons",
-              {
-                "text": "240",
-                "numeric": true
-              }
-            ],
-            [
-              {
-                "text": "7",
-                "numeric": true
-              },
-              "الوشاح السفلي+ الأكمام",
-              "Recouvreuse",
-              {
-                "text": "120",
-                "numeric": true
-              }
-            ],
-            [
-              {
-                "text": "8",
-                "numeric": true
-              },
-              "الكي النهائي",
-              "Table à repasser vapeur",
-              {
-                "text": "90",
-                "numeric": true
-              }
-            ],
-            [
-              {
-                "text": "—",
-                "numeric": false
-              },
-              {
-                "text": "المجموع",
-                "subtext": "Total"
-              },
-              "—",
-              "1050 = 17.5 دقيقة"
-            ]
-          ],
-          "caption": [
-            "الجدول 5: الأزمنة المعيارية لجميع عمليات تجميع المئزر المدرسي",
-            "Tableau 5: Temps standard pour toutes les opérations d'assemblage"
-          ]
+          "type": "artifact_ref",
+          "artifact_id": "chart_03"
         }
       ],
       "footer": {
@@ -872,77 +921,81 @@
       "blocks": [
         {
           "type": "heading",
+          "id": "sec-07",
           "level": 2,
-          "badge": "6",
-          "title": "التحّو ل الرقمي )CAO/FAO(",
-          "subtitle": "Numérisation CAD/CAM",
-          "id": "sec-06"
+          "badge": "7",
+          "title": "منحنى التعلم والتحديات المهنية للمتربص",
+          "subtitle": "Courbe d'Apprentissage & Défis Métier"
         },
         {
           "type": "text",
-          "content": "تشهد معاهد التكوين المهني الجزائرية، منذ منتصف العقد الماضي، إدماجًا تدريجيًا لبرمجيات التصميم بمساعدة الحاسوب )CAO/FAO — CAD/CAM( في وحدات إعداد الملفات التقنية. أبرز الأنظمة المعتمدة هي Lectra Modaris، إلى جانب Gerber Accumark و Optitex. تُ تيح هذه الأنظمة أتمتة معظم مراحل إعداد الملف التقني، مما يُ قّل ص زمن الإنجاز من أيام إلى ساعات، وُي مّك ن من اختبار عدة سيناريوهات إنتاجية قبل اعتماد الحل الأمثل."
+          "content": "يوثق تتبع أداء المتربصين خلال الأسابيع الأولى لوحدة إعداد الملف التقني تطوراً ملحوظاً في سرعة الإنجاز ودقة المخرجات؛ حيث يتقلص زمن إعداد الملف التقني الكامل من 180 دقيقة في الأسبوع الأول إلى 65 دقيقة في الأسبوع الرابع (نسبة تحسن تفوق 64%)."
         },
         {
-          "type": "subsection",
-          "title": "مقارنة بين الملف التقني اليدوي و الرقمي",
-          "subtitle": "Comparaison Manuel vs Numérique"
+          "type": "artifact_ref",
+          "artifact_id": "chart_04"
         },
         {
           "type": "table",
           "columns": [
             {
-              "text": "البند",
-              "subtext": "Critère"
+              "text": "الرقم",
+              "subtext": "N°"
             },
             {
-              "text": "الملف اليدوي",
-              "subtext": "Manuel"
+              "text": "التحدي المهني المرصود",
+              "subtext": "Défi Pédagogique"
             },
             {
-              "text": "الملف الرقمي )CAO(",
-              "subtext": "Numérique CAO"
+              "text": "الإجراء التقني التصحيحي المعتمد",
+              "subtext": "Solution Appliquée"
             }
           ],
           "rows": [
             [
-              "زمن إعداد الملف",
-              "3-5 أيام عمل",
-              "2-3 ساعات عمل"
+              {
+                "text": "1",
+                "numeric": true
+              },
+              "استخراج المواصفات الفنية من لغة تجارية غامضة",
+              "التدريب على قراءة دفاتر شروط المؤسسات والمناقصات الرسمية"
             ],
             [
-              "الدقة التقنية",
-              "تعتمد على مهارة التقني )أخطاء محتملة(",
-              "دقة آلية 0.1± ملم"
+              {
+                "text": "2",
+                "numeric": true
+              },
+              "ضبط التسامحات الأبعادية وفق نوعية القماش ومطاطيته",
+              "تطبيق جداول المعيار الجزائري NA 1234 وإجراء تجارب الغسيل"
             ],
             [
-              "تعّد د المقاسات",
-              "1-2 مقاس لكل يدوي",
-              "ثواٍن لكل المقاسات"
+              {
+                "text": "3",
+                "numeric": true
+              },
+              "المفاضلة بين الترتيب النظري والترتيب الأمثل للتجميع",
+              "دراسة محاكاة خطوط الإنتاج والحد من تقاطع مسارات الحركة"
             ],
             [
-              "إعادة الستعمال",
-              "صعب — إعادة رسم لكل باترون",
-              "سهل — قابلية إعادة كاملة"
+              {
+                "text": "4",
+                "numeric": true
+              },
+              "دمج معاملات الراحة والجهد في قياسات الأزمنة",
+              "تطبيق جداول مكتب الأزمنة الأولية (BTE) ومعادلات Leroy"
             ],
             [
-              "التعديل",
-              "مُ رِه ق و مُ عّر ض لألخطاء",
-              "مرن وقابل للتراجع"
-            ],
-            [
-              "التشغيل و التكلفة",
-              "أدوات يدوية )ورق، مساطر، أقالم(",
-              "حواسيب+ برمجيات )استثمار أولي مرتفع("
-            ],
-            [
-              "مالءمة الورشات",
-              "جميع الورشات )حتى الحرفية(",
-              "اورشات مُ جّه زة رقميًا فقط"
+              {
+                "text": "5",
+                "numeric": true
+              },
+              "صياغة وثائق فنية واضحة ومزدوجة (عربي/فرنسي)",
+              "توحيد معجم المصطلحات التقنية والرموز البصرية المعيارية"
             ]
           ],
           "caption": [
-            "الجدول 6: مقارنة تفصيلية بين إعداد الملف التقني يدويًا ورقميًا",
-            "Tableau 6: Comparaison détaillée entre dossier technique manuel et numérique"
+            "الجدول 7: التحديات المهنية الخمسة الكبرى والحلول البيداغوجية المطبقة",
+            "Tableau 7: Principaux défis professionnels et solutions pédagogiques"
           ]
         }
       ],
@@ -957,52 +1010,25 @@
       "layout": "standard",
       "blocks": [
         {
-          "type": "artifact_ref",
-          "artifact_id": "chart_03"
-        },
-        {
-          "type": "callout",
-          "variant": "primary",
-          "title": "توصية بيداغوجية",
-          "content": "يُ نصح بتعليم تكوين المتدّر بين على برمجيات Lectra Modaris في السنة الثانية من التكوين، مع تنظيم زيارات تطبيقية إلى مصانع الألبسة الجزائرية المجهّز ة بهذا النظام )مثل وحدات المؤسسة الوطنية للنسيج والجلد(. الهدف هو إخراج تقنيين جاهزين للاندماج المباشر في سير العمل الصناعي الرقمي، مع تزويدهم بمرجعية عملية تُ كّم ل التكوين النظري.",
-          "icon": "✓"
-        },
-        {
           "type": "heading",
+          "id": "sec-08",
           "level": 2,
-          "badge": "7",
-          "title": "منحنى التعّل م و التحديات",
-          "subtitle": "Courbe d'Apprentissage",
-          "id": "sec-07"
+          "badge": "8",
+          "title": "الخلاصة والتوصيات المهنية والبيداغوجية",
+          "subtitle": "Conclusion, Recommandations & Bonnes Pratiques"
         },
         {
           "type": "text",
-          "content": "يُ واجه المتدّر ب خالل الأسابيع الأربعة الأولى من وحدة إعداد الملف التقني سلسلة من التحديات المعرفية والمهنية التي تُ مّث ل العقبات الكبرى في مسار التكوين. يُ مّث ل منحنى التعلم الانخفاض التدريجي في زمن إنجاز ملف تقني كامل مع تكرار التمارين، حيث ينتقل المتدّر ب من 180 دقيقة في الأسبوع الأول إلى 65 دقيقة في الأسبوع الرابع، أي بتحّس ن بنسبة %64."
+          "content": "يبرز التحليل المعمق لوحدة إعداد وتسيير الملف التقني دورها الاستراتيجي في تكوين التقني السامي في النمذجة وتصميم الأزياء؛ فالملف التقني يمثل صمام الأمان المالي والتقني للمؤسسة النسيجية، ويحول العمل من اجتهاد فردي إلى منظومة تصنيع قابلة للمراقبة والتكرار."
         },
         {
-          "type": "stats",
-          "items": [
-            {
-              "value": "180 → 65 دقيقة",
-              "label": "زمن الإنجاز )4 أسابيع(",
-              "sublabel": "Temps de réalisation"
-            },
-            {
-              "value": "64%",
-              "label": "نسبة التحّس ن",
-              "sublabel": "Taux d'amélioration"
-            },
-            {
-              "value": "5",
-              "label": "التحديات الكبرى",
-              "sublabel": "Défis majeurs"
-            },
-            {
-              "value": "±0.1 ملم",
-              "label": "دقة الرقمنة",
-              "sublabel": "Précision numérique"
-            }
-          ]
+          "type": "text",
+          "content": "<strong>للمعاهد الوطنية المتخصصة:</strong> تعميق التكوين العملي على برمجيات CAO/FAO الحديثة وتجهيز قاعات التدريب بحواسيب متطورة تحاكي مكاتب الدراسات الصناعية الكبرى مع تحديث برامج التكوين المستمر للأساتذة المكونين.<br><strong>للمؤسسات الإنتاجية والمصانع:</strong> إلزامية إعداد ملف تقني كامل بخمس وثائق لكل قطعة قبل الشروع في الإنتاج المتسلسل لتفادي النزاعات التقنية وخفض نسب الهدر في المواد الأولية.<br><strong>للمتربصين والتقنيين:</strong> التدرب المستمر على ترجمة دفاتر الشروط الواقعية الصادرة عن الإدارات والمؤسسات إلى وثائق فنية معيارية مع التحكم في الازدواجية اللغوية والمصطلحات الموحدة.<br><strong>للهيئات العمومية:</strong> تعميم اعتماد المعيار الجزائري NA 1234 وفرض شهادات المطابقة البعدية والوسمية في جميع الصفقات والمشتريات العمومية للملابس."
+        },
+        {
+          "type": "quote",
+          "text": "الوثيقة التقنية ليست مجرد ورق إداري، بل هي ذاكرة المؤسسة النسيجية: قوة المصنع تبدأ من دقة ملفه التقني، ولا تتأرجح مع تغير العمالة.",
+          "author": "دليل مكاتب الدراسات الصناعية — التكوين والتعليم المهنيين"
         }
       ],
       "footer": {
@@ -1016,103 +1042,109 @@
       "layout": "standard",
       "blocks": [
         {
-          "type": "subsection",
-          "title": "أبرز التحديات التي يواجهها المتدّر ب",
-          "subtitle": "Principaux Défis"
-        },
-        {
-          "type": "artifact_ref",
-          "artifact_id": "chart_04"
+          "type": "heading",
+          "id": "sec-09",
+          "level": 2,
+          "badge": "9",
+          "title": "معجم المصطلحات التقنية المزدوج",
+          "subtitle": "Glossaire Technique Bilingue"
         },
         {
           "type": "table",
           "columns": [
             {
-              "text": "#",
-              "subtext": "N°"
+              "text": "المصطلح العربي",
+              "subtext": "Terme Arabe"
             },
             {
-              "text": "التحدي",
-              "subtext": "Défi"
+              "text": "المصطلح الفرنسي",
+              "subtext": "Terme Français"
             },
             {
-              "text": "الحل المقترح",
-              "subtext": "Solution Proposée"
+              "text": "المدلول والتعريف التقني",
+              "subtext": "Définition Sommaire"
             }
           ],
           "rows": [
             [
-              {
-                "text": "1",
-                "numeric": true
-              },
-              {
-                "text": "استخراج المواصفات الفنية من لغة تجارية عامة",
-                "subtext": "Analyse du cahier des charges"
-              },
-              "تدريب على قراءة دفاتر الشروط الحقيقية"
+              "ملف تقني للتصنيع",
+              "Dossier technique",
+              "الوثيقة المركزية التي تحدد مواصفات ومراحل إنتاج القطعة"
             ],
             [
-              {
-                "text": "2",
-                "numeric": true
-              },
-              {
-                "text": "حساب نسبة التسامح حسب نوع القياس",
-                "subtext": "Calcul des tolérances"
-              },
-              "تطبيق الجداول المرجعية و حفظها"
+              "بطاقة القياسات",
+              "Fiche de mesures",
+              "جدول الأبعاد التفصيلية لكل مقاس مع مجالات التسامح"
             ],
             [
-              {
-                "text": "3",
-                "numeric": true
-              },
-              {
-                "text": "التمييز بين الترتيب المنطقي والترتيب الأمثل",
-                "subtext": "Séquence d'assemblage"
-              },
-              "دراسة حالات صناعية حقيقية"
+              "نطاق مراحل التجميع",
+              "Gamme de montage",
+              "التسلسل المنطقي لعمليات الحياكة والآلات والأزمنة القياسية"
             ],
             [
-              {
-                "text": "4",
-                "numeric": true
-              },
-              {
-                "text": "دمج معامالت الراحة في قياسات الزمن",
-                "subtext": "Temps standard"
-              },
-              "تطبيق معادلة Leroy / BTE"
+              "جدول المستلزمات",
+              "Nomenclature",
+              "حصر شامل لكافة الخامات والأقمشة والإكسسوارات وكمياتها"
             ],
             [
-              {
-                "text": "5",
-                "numeric": true
-              },
-              {
-                "text": "صياغة الوثائق بطريقة يفهمها الجميع",
-                "subtext": "Communication inter-services"
-              },
-              "ورشات كتابة تقنية باللغتين"
+              "سعر التكلفة التقديري",
+              "Prix de revient",
+              "المجموع المالي للخامات وساعات العمل والمصاريف العامة"
+            ],
+            [
+              "التسامح البعدي",
+              "Tolérance dimensionnelle",
+              "الهامش المعياري المسموح به في الانحراف عن المقاس (±0.5 سم)"
+            ],
+            [
+              "مراقبة الجودة",
+              "Contrôle qualité",
+              "فحص مطابقة القطع للمواصفات خلال مراحل الإنتاج وبعدها"
+            ],
+            [
+              "مخطط مسطح ثنائي الأبعاد",
+              "Dessin plat technique",
+              "رسم فني هندسي يبين تفاصيل الموديل من الأمام والخلف بدقة"
+            ],
+            [
+              "التصميم والتصنيع بالحاسوب",
+              "CAO / FAO",
+              "استخدام البرمجيات المتخصصة في رسم الباترونات والقص الآلي"
+            ],
+            [
+              "دفتر الشروط الفني",
+              "Cahier des charges",
+              "الوثيقة التعاقدية التي تحدد متطلبات الزبون ومعايير القبول"
             ]
           ],
           "caption": [
-            "الجدول 7: التحديات الكبرى الخمسة والحلول المقترحة لمعالجتها",
-            "Tableau 7: Les cinq défis majeurs et solutions proposées"
+            "الجدول 8: معجم المصطلحات التقنية الأساسية لإعداد وتسيير الملف التقني",
+            "Tableau 8: Glossaire des termes techniques du Dossier Technique"
           ]
         },
         {
           "type": "heading",
+          "id": "sec-10",
           "level": 2,
-          "badge": "8",
-          "title": "الخالصة و التوصيات و المراجع",
-          "subtitle": "Conclusion, Recommandations et Références",
-          "id": "sec-08"
+          "badge": "10",
+          "title": "تمارين تطبيقية ودراسات حالة حسابية",
+          "subtitle": "Exercices Pratiques & Calcul de Coûts"
+        },
+        {
+          "type": "subsection",
+          "title": "تمرين 1: حساب زمن التجميع المعياري وفق معادلة BTE",
+          "subtitle": "Exercice 1: Calcul du Temps Standard"
         },
         {
           "type": "text",
-          "content": "تُ كشف دراسة وحدة إعداد الملف التقني عن دور محوري لهذه الوحدة في التكوين الشامل للتقني السامي في النمذجة وتصميم المالبس. فالملف التقني ليس وثيقة إدارية مجردة، بل أداة تواصل صناعي تضمن انسياب المعلومة الفنية من مرحلة التصميم إلى مرحلة التغليف، وُت حّد د بعيدًا جودة المنتج النهائي وتكلفته."
+          "content": "السؤال: عملية تركيب جيب جانبي تستغرق في المتوسط 95 ثانية من العمل الصافي (متوسط 10 قياسات مسجلة). معامل الراحة الفيزيولوجية المعتمد في الورشة هو 18%. احسب الزمن المعياري للعملية وفسر دلالته الصناعية."
+        },
+        {
+          "type": "callout",
+          "variant": "primary",
+          "icon": "check",
+          "title": "الحل النموذجي",
+          "content": "حسب معادلة Leroy/BTE: Tstandard = Tmoyen × (1 + معامل الراحة)<br>Tstandard = 95 × (1 + 0.18) = 95 × 1.18 = <strong>112.1 ثانية</strong>.<br>الدلالة: تحتاج العاملة إلى 112.1 ثانية لإنتاج الوحدة في ظروف عمل طبيعية مع احتساب فترات الراحة الفيزيولوجية لضمان الاستمرارية."
         }
       ],
       "footer": {
@@ -1126,69 +1158,29 @@
       "layout": "standard",
       "blocks": [
         {
-          "type": "text",
-          "content": "إن إتقان إعداد الملف التقني يُ تيح للمؤسسات الجزائرية تحقيق ثالثة أهداف استراتيجية متالزمة: تقليص الهدر في المواد الأولية بحساب دقيق الحتياج، ضبط التكلفة التقديرية )Prix de revient( بدقة عالية، وتسريع دورة الإنتاج عبر توحيد المعلومات بين الأقسام. كما يُ مّك ن التحول نحو الرقمنة من رفع الإنتاجية بنسبة قد تصل إلى %40 وفق دراسات قطاعية."
+          "type": "subsection",
+          "title": "تمرين 2: مقارنة الكفاءة التشغيلية بين الطريقة اليدوية والرقمية",
+          "subtitle": "Exercice 2: Comparaison Manuel vs Numérique"
+        },
+        {
+          "type": "artifact_ref",
+          "artifact_id": "chart_05"
         },
         {
           "type": "subsection",
-          "title": "التوصيات المهنية و البيداغوجية",
-          "subtitle": "Recommandations Professionnelles et Pédagogiques"
+          "title": "تمرين 3: دراسة حالة — حساب سعر التكلفة التقديري (Prix de revient)",
+          "subtitle": "Exercice 3: Calcul Détaillé du Prix de Revient"
         },
         {
           "type": "text",
-          "content": "<strong>للمعاهد التكوينية:</strong> تعميق تكوين المتدّر بين على برمجيات CAO/FAO (Lectra, Gerber)، مع تجهيز مختبر رقمي متخصص يُ حاكي بيئة مكتب الدراسات الصناعي الحقيقية، إضافة إلى تخصيص تكوين متواصل للُم دّر بين على إصدارات البرمجيات الجديدة."
+          "content": "السيناريو: احسب سعر التكلفة التقديرية لمئزر مدرسي واحد انطلاقاً من معطيات الملف التقني: قماش تيرغال 1.5 م بسعر 250 دج/م، 5 أزرار بلاستيكية بسعر 3 دج/زر، خيط حياكة وسرفلة 15 دج، زمن التجميع الكلي 17.5 دقيقة بمعدل أجر 200 دج/ساعة، ومصاريف عامة تشغيلية تقدر بـ 25% من كلفة اليد العاملة."
         },
         {
-          "type": "text",
-          "content": "<strong>للمؤسسات الإنتاجية:</strong> إلزام قسم الدراسات بإعداد ملف تقني كامل بخمس وثائق لكل منتج جديد قبل إطلاقه في الإنتاج، وعدم الاكتفاء ببطاقة تقنية مبّس طة، خاصة في المؤسسات الُم ستفيدة من برامج الدعم العمومي."
-        },
-        {
-          "type": "text",
-          "content": "<strong>للمتدّر بين:</strong> التدّر ب على تحويل دفاتر الشروط الواقعية )المستخرجة من طلبات المؤسسات الوطنية أو وزارة التربية( إلى ملفات تقنية كاملة، بما في ذلك دراسة التكلفة، مع الحرص على المزدوجية اللغوية العربية/الفرنسية في كل الوثائق."
-        },
-        {
-          "type": "text",
-          "content": "<strong>للسياسة العمومية:</strong> إدراج وحدة معيارية موّح دة لإعداد الملف التقني الرقمي ضمن المنهاج الوطني للتقني السامي في صناعة الألبسة، معتمدة في كل معاهد INSFP على المستوى الوطني."
-        },
-        {
-          "type": "quote",
-          "text": "الوثيقة التقنية ليست ورقًا، بل ذاكرة المؤسسة النسيجية الجزائرية: قوة المؤسسة تبدأ من قوة ملفها التقني، ولا تتأرجح مع تغّير العمالة",
-          "author": "دليل مكتب الدراسات — المعهد الوطني للتكوين المهني"
-        },
-        {
-          "type": "subsection",
-          "title": "المراجع",
-          "subtitle": "Références Bibliographiques"
-        },
-        {
-          "type": "list",
-          "variant": "rows",
-          "items": [
-            {
-              "badge": "1",
-              "title": "وزارة التكوين والتعليم المهنيين )MFEP(، المرجعية البيداغوجية لتخصص التقني السامي في النمذجة وتصميم المالبس، الطبعة المنقحة، الجزائر، 2023."
-            },
-            {
-              "badge": "2",
-              "title": "المعهد الوطني للتكوين المهني )INFEP(، مدونة برامج التكوين المهني لقطاع النسيج والألبسة، 2022، الِب يار، الجزائر."
-            },
-            {
-              "badge": "3",
-              "title": "المعهد الجزائري للمعايير )IANOR(، المعيار الجزائري لأللبسة الجاهزة NA 1234: التسامح والمقاسات، الجريدة الرسمية، 2021."
-            },
-            {
-              "badge": "4",
-              "title": "Lectra Systems, Modaris V8 — User Manual for Pattern-Makers, Paris, France, 2022."
-            },
-            {
-              "badge": "5",
-              "title": "Bureau d'Études Textile, Dossier Technique de Fabrication: Guide Pratique, Éditions Dunod, Paris, 2019."
-            },
-            {
-              "badge": "6",
-              "title": "المؤسسة الوطنية للنسيج والجلد )ETE(، دليل مكتب الدراسات: قواعد التدريج الصناعي، الجزائر، 2023."
-            }
-          ]
+          "type": "callout",
+          "variant": "accent",
+          "icon": "star",
+          "title": "الحل النموذجي",
+          "content": "1. كلفة المواد الأولية: قماش (1.5 × 250 = 375 دج) + أزرار (5 × 3 = 15 دج) + خيوط (15 دج) = <strong>405.0 دج</strong>.<br>2. كلفة اليد العاملة: 17.5 دقيقة = 0.2917 ساعة × 200 دج/سا = <strong>58.34 دج</strong>.<br>3. المصاريف العامة المباشرة: 58.34 × 0.25 = <strong>14.58 دج</strong>.<br>سعر التكلفة الإجمالي (Prix de revient) = 405 + 58.34 + 14.58 = <strong>477.92 دج للمئزر الواحد</strong>."
         }
       ],
       "footer": {
@@ -1204,114 +1196,97 @@
         {
           "type": "heading",
           "level": 2,
-          "badge": "9",
-          "title": "معجم المصطلحات التقنية",
-          "subtitle": "Glossaire Technique Bilingue",
-          "id": "sec-09"
+          "badge": "أ",
+          "title": "الإطار المعياري والقانوني للملف التقني",
+          "subtitle": "Cadre Normatif et Légal (NA 1234 & D.E. 13-378)",
+          "badge_variant": "accent",
+          "id": "annex-01"
         },
         {
           "type": "text",
-          "content": "يُ قّد م هذا المعجم المصطلحات التقنية الأساسية المستعملة في إعداد الملف التقني للتصنيع، مزدوج اللغة )عربي/فرنسي(، تيسيرًا للمتدّر بين في فهم المراجع التقنية الجزائرية والفرنسية. تشمل المصطلحات المفاتيح في التوثيق الصناعي، الجودة، والتصنيع النسيجي."
+          "content": "لم يعد الملف التقني وثيقة داخلية تقتصر على تنظيم الورشة، بل أصبح سنداً قانونياً ملزماً في بيئة الأعمال الجزائرية. فالمعيار الوطني NA 1234 الصادر عن المعهد الجزائري للتقييس (IANOR) يفرض حداً أقصى للتسامح في الأبعاد الحرجة بمقدار 0.5± سم، وهو ما يجب أن ينعكس إجبارياً في جدول القياسات وشبكات التفتيش."
+        },
+        {
+          "type": "text",
+          "content": "كما يلزم المرسوم التنفيذي رقم 13-378 المتعلق بإعلام المستهلك بالمنتجات النسيجية الصادر في الجريدة الرسمية وضع وسم دائم يوضح بدقة النسب المئوية للتركيب الليفي، وبلد المنشأ، ورموز العناية الدولية، مما يحمل معد الملف التقني مسؤولية مدنية وقانونية مباشرة في حال عدم تطابق المنتوج مع البطاقة التقنية."
         },
         {
           "type": "table",
           "columns": [
             {
-              "text": "المصطلح العربي",
-              "subtext": "Terme Arabe"
+              "text": "عنصر الملف التقني",
+              "subtext": "Document du Dossier"
             },
             {
-              "text": "المصطلح الفرنسي",
-              "subtext": "Terme Français"
+              "text": "المحتوى الإلزامي المطلوب",
+              "subtext": "Exigence Technique"
             },
             {
-              "text": "التعريف المختصر",
-              "subtext": "Définition Courte"
+              "text": "السند المعياري والقانوني المعتمد",
+              "subtext": "Référence Légale"
             }
           ],
           "rows": [
             [
-              "ملف تقني",
-              "Dossier Technique",
-              "وثيقة مرجعية لتصنيع منتج نسيجي"
+              {
+                "text": "بطاقة الطراز (Fiche de style)",
+                "subtext": "Fiche technique"
+              },
+              "التوصيف الهندسي والجمالي للموديل ونوعية الأقمشة المعتمدة",
+              "دليل منهاج التخصص — INFEP/HTE1204"
             ],
             [
-              "بطاقة قياسات",
-              "Fiche de Mesures",
-              "جدول بأبعاد القطعة لكل مقاس"
+              {
+                "text": "جدول القياسات والتسامحات",
+                "subtext": "Tableau de mesures"
+              },
+              "أبعاد كل مقاس عبر نقاط الارتكاز مع حدود تسامح صارمة",
+              "المعيار الجزائري NA 1234 (±0.5 سم)"
             ],
             [
-              "مراحل التجميع",
-              "Gamme de Montage",
-              "تسلسل العمليات التقنية"
+              {
+                "text": "بطاقة الوسم والمطابقة",
+                "subtext": "Étiquetage permanent"
+              },
+              "التركيب الليفي المئوي الدقيق، بلد المنشأ، ورموز الغسيل والكي",
+              "المرسوم التنفيذي رقم 13-378 (JORADP)"
             ],
             [
-              "جدول المستلزمات",
-              "Nomenclature",
-              "حصر المواد الأولية والكميات"
+              {
+                "text": "نطاق مراحل التجميع",
+                "subtext": "Gamme de montage"
+              },
+              "تسلسل العمليات ونوع الغرزة المعتمدة وفق الترميز القياسي",
+              "المعيار الجزائري NA ISO 4915 (أنواع الغرز)"
             ],
             [
-              "تكلفة تقديرية",
-              "Prix de Revient",
-              "التكلفة الكاملة للمنتج"
+              {
+                "text": "مخطط الوضع والقص (Placement)",
+                "subtext": "Plan de coupe"
+              },
+              "رسم التعشيق ونسبة الاستهلاك والهدر القماشي المحسوبة",
+              "دفاتر شروط التجهيز الصادرة عن ENEFEP"
             ],
             [
-              "تسامح",
-              "Tolérance",
-              "الهامش المسموح في القياس )0.5± سم("
-            ],
-            [
-              "ضبط الجودة",
-              "Contrôle Qualité",
-              "فحص المنتج عبر مراحل الإنتاج"
-            ],
-            [
-              "تصميم بمساعدة الحاسوب",
-              "CAO/FAO",
-              "نمذجة رقمية للباترونات"
-            ],
-            [
-              "دفتر شروط",
-              "Cahier des Charges",
-              "وثيقة تحدد مواصفات المنتج"
-            ],
-            [
-              "مخطط مسطح",
-              "Dessin Plat",
-              "رسم تقني للمنتج من الأمام والخلف"
-            ],
-            [
-              "محيط الصدر",
-              "Tour de Poitrine",
-              "قياس أساسي للنمذجة"
-            ],
-            [
-              "مرجعي",
-              "Référentiel",
-              "مستند مرجعي للمعايير"
+              {
+                "text": "بطاقة مراقبة الجودة",
+                "subtext": "Fiche de contrôle"
+              },
+              "نقاط المراقبة المرحلية ومؤشرات قبول أو رفض الدفعة",
+              "معيار مراقبة الجودة الصناعية NA 1234"
             ]
           ],
           "caption": [
-            "الجدول 7: معجم المصطلحات التقنية لإعداد الملف التقني",
-            "Tableau 7: Glossaire des termes techniques du Dossier Technique"
+            "الجدول أ.1: عناصر الملف التقني ومراجعها القانونية والمعيارية في السياق الوطني",
+            "Tableau A.1: Éléments du dossier technique et références normatives algériennes"
           ]
         },
         {
-          "type": "heading",
-          "level": 2,
-          "badge": "10",
-          "title": "تمارين تطبيقية و دراسات حالة",
-          "subtitle": "Exercices Pratiques et Études de Cas",
-          "id": "sec-10"
-        },
-        {
-          "type": "subsection",
-          "title": "تمرين 1: حساب زمن التجميع المعياري",
-          "subtitle": "Exercice 1: Calcul du Temps Standard"
-        },
-        {
-          "type": "text",
-          "content": "<strong>السؤال:</strong> عملية تركيب جيب جانبي تستغرق في المتوسط 95 ثانية )متوسط قياسات 10(. معامل الراحة المعتمد %18. احسب الزمن المعياري )Temps Standard( وفسر النتيجة."
+          "type": "callout",
+          "variant": "accent",
+          "icon": "target",
+          "title": "القاعدة الذهبية للمطابقة القانونية",
+          "content": "يجب تدوين كل قياس في جدول الأبعاد مقروناً بهامش التسامح المسموح (مثال: محيط الصدر 96 سم ± 0.5 سم). هذا التدوين المنهجي يحمي المؤسسة المصنعة قانونياً عند إجراء تحاليل المطابقة ويسهل حسم المناقصات مع المتعاملين المؤسساتيين."
         }
       ],
       "footer": {
@@ -1325,33 +1300,120 @@
       "layout": "standard",
       "blocks": [
         {
-          "type": "callout",
-          "variant": "primary",
-          "title": "الحل النموذجي",
-          "content": "حسب معادلة Leroy/BTE: Tstandard = Tmoyen × )1+ معامل الراحة(. Tstandard = 95 × (1 + 0.18) = 95 × 1.18 = 112.1 ثانية. هذا يعني أن العاملة تحتاج إلى 112.1 ثانية لإنتاج الوحدة الواحدة في ظروف عمل طبيعية مع فترات راحة مناسبة.",
-          "icon": "✓"
-        },
-        {
-          "type": "subsection",
-          "title": "تمرين 2: مقارنة الملف اليدوي والرقمي",
-          "subtitle": "Exercice 2: Comparaison Manuel vs Numérique"
-        },
-        {
-          "type": "artifact_ref",
-          "artifact_id": "chart_05"
+          "type": "heading",
+          "level": 2,
+          "badge": "ب",
+          "title": "التطبيق الصناعي وقائمة التجهيز المرجعية",
+          "subtitle": "Pratique Industrielle & Nomenclature Officielle",
+          "badge_variant": "accent",
+          "id": "annex-02"
         },
         {
           "type": "text",
-          "content": "تُ ظهر المقارنة تفّو ق الملف التقني الرقمي على اليدوي في كل المعايير تقريبًا، باستثناء التكلفة الأولية )غير معروضة(. ومع ذلك، يبقى إتقان الطريقة اليدوية ضروريًا للمتدّر ب، لأنه يُ مّك نه من فهم منطق بناء الملف التقني قبل الانتقال إلى البرمجيات المتخصصة. التوازن بين الطريقتين هو ما يجعل التقني السامي محترفًا قادرًا على التكيّف مع مختلف بيئات العمل."
+          "content": "تستند الممارسة الصناعية المعتمدة في المجمعات العمومية (قطب النسيج والجلود C&H ومؤسسة TEXALG) ومجمع تايال (TAYAL S.P.A — غليزان) إلى دفاتر شروط صارمة تضبط بطاقة المستلزمات (Nomenclature) لضمان متانة الألبسة المؤسساتية وثبات ألوانها بعد دورات الغسيل المتكررة."
         },
         {
-          "type": "subsection",
-          "title": "تمرين 3: دراسة حالة — حساب التكلفة التقديرية",
-          "subtitle": "Exercice 3: Étude de Cas — Calcul du Prix de Revient"
+          "type": "table",
+          "columns": [
+            {
+              "text": "عنصر المستلزمات",
+              "subtext": "Composant"
+            },
+            {
+              "text": "المواصفة الفنية والمعيارية الدقيقة",
+              "subtext": "Spécification Technique"
+            },
+            {
+              "text": "المورد المرجعي / المعيار المطبق",
+              "subtext": "Référence Industrielle"
+            }
+          ],
+          "rows": [
+            [
+              {
+                "text": "القماش الأساسي",
+                "subtext": "Tissu principal"
+              },
+              "تيرغال 65% بوليستر / 35% قطن بغرامية 180-210 غ/م²",
+              "مؤسسة TEXALG / قطب C&H (مواصفة وطنية)"
+            ],
+            [
+              {
+                "text": "خيط الحياكة والتجميع",
+                "subtext": "Fil d'assemblage"
+              },
+              "بوليستر مبرم نمرة 120 بقوة شد عالية ومقاومة للتآكل",
+              "مواصفات الخيوط الصناعية المعتمدة"
+            ],
+            [
+              {
+                "text": "خيط السرفلة والتثبيت",
+                "subtext": "Fil de surjet"
+              },
+              "بوليستر نمرة 40/2 متناسق اللون تماماً مع الصبغة المرجعية",
+              "المعيار الجزائري NA ISO 4915 (غرزة 504)"
+            ],
+            [
+              {
+                "text": "مطاط الخصر والأشرطة",
+                "subtext": "Élastique ceinture"
+              },
+              "عرض 25 ملم مع نسبة استرجاع مرن تتجاوز 95% بعد 5000 تمدد",
+              "مواصفات الملحقات النسيجية الصناعية"
+            ],
+            [
+              {
+                "text": "بطاقة الوسم الدائمة",
+                "subtext": "Étiquette de composition"
+              },
+              "نسيج ساتان مطبوع يوضح التركيبة والمنشأ ورموز العناية",
+              "المرسوم التنفيذي رقم 13-378"
+            ]
+          ],
+          "caption": [
+            "الجدول ب.1: قائمة التجهيز المرجعية (Nomenclature) المعتمدة وطنياً",
+            "Tableau B.1: Nomenclature industrielle de référence pour confection"
+          ]
         },
         {
-          "type": "text",
-          "content": "<strong>السؤال:</strong> احسب التكلفة التقديرية لمئزر مدرسي واحد انطلاقًا من المعطيات التالية: قماش Tergal )1.5 م × 250 دج/م(، 5 أزرار بالستيكية )3 دج/قطعة(، خيط )15 دج(، سّح ابة )لا توجد(، وقت العمل 17.5 دقيقة بمعدل 200 دج/ساعة، مصاريف عامة %25 من كلفة العمل."
+          "type": "heading",
+          "level": 2,
+          "badge": "ج",
+          "title": "المراجع والوثائق الرسمية المعتمدة",
+          "subtitle": "Bibliographie & Documents Officiels",
+          "badge_variant": "accent",
+          "id": "annex-03"
+        },
+        {
+          "type": "list",
+          "variant": "rows",
+          "items": [
+            {
+              "badge": "1",
+              "title": "المعيار الجزائري NA 1234: الألبسة الجاهزة — التسامحات البعدية ومراقبة الجودة، المعهد الجزائري للتقييس IANOR (ianor.dz).",
+              "subtitle": "المواصفة الوطنية الرسمية"
+            },
+            {
+              "badge": "2",
+              "title": "المرسوم التنفيذي رقم 13-378 المحدد لطرائق إعلام المستهلك بالمنتجات النسيجية والألبسة — الجريدة الرسمية JORADP.",
+              "subtitle": "النصوص القانونية والتنظيمية الوطنية"
+            },
+            {
+              "badge": "3",
+              "title": "المعيار الجزائري NA ISO 4915: المنسوجات — أنواع غرز الخياطة، التصنيف والتسميات المعتمدة — IANOR.",
+              "subtitle": "كتالوج المعايير الصناعية"
+            },
+            {
+              "badge": "4",
+              "title": "المعهد الوطني للتكوين والتعليم المهنيين (INFEP) — البرنامج الدراسي ومرجع الإشهاد: خياطة السيدات BT كود HTE1204 (الأبيار).",
+              "subtitle": "وزارة التكوين والتعليم المهنيين"
+            },
+            {
+              "badge": "5",
+              "title": "المنصة الجزائرية للمجلات العلمية (ASJP) — دراسات حول الجودة في الصناعة النسيجية الوطنية ومذكرات مكاتب الأساليب (asjp.cerist.dz).",
+              "subtitle": "دوريات علمية محكمة بجامعات الجزائر، وهران، وتلمسان"
+            }
+          ]
         }
       ],
       "footer": {
@@ -1362,362 +1424,27 @@
     },
     {
       "id": "page-15",
-      "layout": "standard",
-      "blocks": [
-        {
-          "type": "callout",
-          "variant": "accent",
-          "title": "الحل النموذجي",
-          "content": "المواد: قماش 250×1.5 = 375 دج، أزرار 3×5 = 15 دج، خيط 15 دج. إجمالي المواد = 405 دج. العمل: 17.5 دقيقة = 0.292 ساعة × 200 دج = 58.3 دج. المصاريف العامة: 58.3 × 0.25 = 14.6 دج. التكلفة التقديرية الإجمالية = 405 + 58.3 + 14.6 = 477.9 دج للمئزر الواحد.",
-          "icon": "★"
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "badge": "أ",
-          "title": "الإطار المعياري والقانوني للملف التقني",
-          "subtitle": "Cadre Normatif du Dossier Technique",
-          "badge_variant": "accent",
-          "id": "annex-01"
-        },
-        {
-          "type": "text",
-          "content": "لم يعد الملف التقني )Dossier Technique( وثيقة داخلية للورشة فحسب، بل صار سندًا قانونيًا في بيئة الأعمال الجزائرية. فالمعيار الجزائري الخاص بالألبسة الجاهزة )تسامحات الأبعاد ومراقبة الجودة( الصادر عن )IANOR — NA 1234( المعهد الجزائري للتقييس يُ قّر ر حدًا أقصى للتسامح في القياسات الحرجة للمنتج )الصدر، الخصر، الرقبة( في حدود 0.5± سم، وهو القيمة التي يجب أن يلتزم بها جدول القياسات في الملف التقني وأن تُ راَق ب في محطات المراقبة النهائية."
-        },
-        {
-          "type": "text",
-          "content": "كما يُ لزم المرسوم التنفيذي رقم 378-13 المتعلق بطرائق إعالم المستهلك بالمنتجات النسيجية والألبسة )JORADP — D.E. 13-378( كل منتج وَ سم دائم يبّي ن النسب المئوية للتركيب الليفي، وبلد المنشأ، وتعليمات العناية. ومن ثّم فإّن الملف التقني الُم عّد طبقًا للمرجعية الجزائرية يتضمّن إلزاميًا ورقة المطابقة الوسمية، ويترّت ب على مُ عِ دّ ه مسؤولية مدنية عند عجز المنتج عن تلبية المعلومات الُم لصقة."
-        },
-        {
-          "type": "table",
-          "columns": [
-            {
-              "text": "عنصر الملف التقني",
-              "subtext": "Élément du dossier"
-            },
-            {
-              "text": "المحتوى الإزامي",
-              "subtext": "Contenu exigé"
-            },
-            {
-              "text": "المرجع المعتمد",
-              "subtext": "Référence"
-            }
-          ],
-          "rows": [
-            [
-              {
-                "text": "بطاقة الطراز",
-                "subtext": "Fiche de style"
-              },
-              "التوصيف الفني والجمالي للموديل والخامات",
-              {
-                "text": "مرجع الوحدة — MQ2",
-                "subtext": "INFEP/HTE1204"
-              }
-            ],
-            [
-              {
-                "text": "جدول القياسات",
-                "subtext": "Tableau de mesures"
-              },
-              "القياسات المرجعية وتسامحاتها على المقاس الأساس",
-              {
-                "text": "NA 1234 — ±0.5 cm",
-                "numeric": true
-              }
-            ],
-            [
-              {
-                "text": "ورقة الوسم والمطابقة",
-                "subtext": "Étiquetage & conformité"
-              },
-              "التركيب الليفي %، بلد المنشأ، تعليمات العناية",
-              {
-                "text": "D.E. 13-378",
-                "numeric": true
-              }
-            ],
-            [
-              {
-                "text": "نطاق التجميع",
-                "subtext": "Gamme de montage"
-              },
-              "تسلسل العمليات، نوع الغرزة لكل مرحلة، الأزمنة",
-              {
-                "text": "NA ISO 4915",
-                "subtext": ")أنواع الغرز("
-              }
-            ],
-            [
-              {
-                "text": "مخطط الوضع",
-                "subtext": "Plan de placement"
-              },
-              "وضع الباترونات ونسبة الهدر المحسوبة",
-              "معايير الورشة — ENEFEP"
-            ],
-            [
-              {
-                "text": "بطاقة الجودة",
-                "subtext": "Fiche de contrôle"
-              },
-              "نقاط المراقبة وقبول/رفض الدفعة",
-              {
-                "text": "NA 1234",
-                "subtext": ")مراقبة الجودة("
-              }
-            ]
-          ],
-          "caption": [
-            "الجدول أ.1: عناصر الملف التقني ومراجعها القانونية والمعيارية في السياق الجزائري",
-            "Tableau A.1: Composants du dossier technique et leurs références légales"
-          ]
-        }
-      ],
-      "footer": {
-        "left": "الموسم التكويني 2025/2026",
-        "center": "{page}",
-        "right": "HTE1204 / MQ2"
-      }
-    },
-    {
-      "id": "page-16",
-      "layout": "standard",
-      "blocks": [
-        {
-          "type": "heading",
-          "level": 2,
-          "badge": "ب",
-          "title": "دراسة الحالة المعَّز زة المئزر المدرسي",
-          "subtitle": "Étude de Cas Renforcée: Tablier Scolaire",
-          "badge_variant": "accent",
-          "id": "annex-02"
-        },
-        {
-          "type": "callout",
-          "variant": "accent",
-          "title": "القاعدة الذهبية للمطابقة",
-          "content": "كل قيمة مقاس في جدول القياسات يجب أن تُ كتب بالتسامح المسموح وليس كرقم مطلق — مثال: الصدر 96 سم cm 0.5± وفق NA 1234. هذا التدوين يحمي المنِت ج قانونيًا وُي سّه ل الحسم عند نزاع المراقبة، ويجعل الملف التقني صالحًا لإليداع لدى جهات الزبائن المؤسساتية عند المناقصة.",
-          "icon": "✓"
-        },
-        {
-          "type": "text",
-          "content": "يعتمد التطبيق المرجعي للمقياس — المئزر المدرسي — على كراس الشروط الوزاري لألبسة المؤسسات التربوية، الذي يسترشد في مواصفاته بالمخرجات الصناعية العمومية المرجعية )مؤسسة TEXALG / قطب النسيج والجلود / C&H(. فالقماش المعتمد هو التيرغال %65 بوليستر / %35 قطن بغرامية تتراوح بين 180 و210 غ/م²، لما يوّف ره من متانة لالستعمال اليومي وثبات للون بعد الغسيالت المتكررة وسهولة في الكي."
-        },
-        {
-          "type": "table",
-          "columns": [
-            {
-              "text": "عنصر التجهيز",
-              "subtext": "Composant"
-            },
-            {
-              "text": "المواصفة الفنية",
-              "subtext": "Spécification"
-            },
-            {
-              "text": "المورد المرجعي/ المرجع",
-              "subtext": "Référence / Fournisseur"
-            }
-          ],
-          "rows": [
-            [
-              {
-                "text": "القماش الأساسي",
-                "subtext": "Tissu principal"
-              },
-              "تيرغال %65 بوليستر / %35 قطن — 180-210 غ/م²",
-              {
-                "text": "C&H قطب / TEXALG",
-                "subtext": "مواصفة وطنية مرجعية"
-              }
-            ],
-            [
-              {
-                "text": "خيط التجميع",
-                "subtext": "Fil d'assemblage"
-              },
-              "بوليستر مُ برم 120 — مقاومة الشّد عالية",
-              "مواصفات الخيوط الصناعية المعتمدة"
-            ],
-            [
-              {
-                "text": "خيط السربلة",
-                "subtext": "Fil de surpiqûre"
-              },
-              "بوليستر 40/2 — لون متناسق مع الدفعة",
-              {
-                "text": "NA ISO 4915",
-                "subtext": ")غرزة 301("
-              }
-            ],
-            [
-              {
-                "text": "مطاط الخصر",
-                "subtext": "Élastique ceinture"
-              },
-              "عرض 25 مم — استرجاع ≥%95 بعد 5000 تمدد",
-              "مواصفات الملحقات النسيجية"
-            ],
-            [
-              {
-                "text": "الوسم الدائم",
-                "subtext": "Étiquette permanente"
-              },
-              "تركيب 65/35 — صُ نع في الجزائر — رموز العناية",
-              {
-                "text": "D.E. 13-378",
-                "numeric": true
-              }
-            ]
-          ],
-          "caption": [
-            "الجدول ب.1: قائمة التجهيز المرجعية )Nomenclature( للمئزر المدرسي وفق المواصفات الوطنية",
-            "Tableau B.1: Nomenclature de référence du tablier scolaire selon les spécifications nationales"
-          ]
-        },
-        {
-          "type": "text",
-          "content": "وُت خَت تم الحلقة بمرحلة المطابقة الوسمية بعد المراقبة البعدية وفق تسامحات NA 1234، تُ لصق البطاقة الدائمة التي تتضمن بيانات التركيب والمنشأ ورموز العناية المرسومة وفق المرسوم 378-13. بهذا التسلسل يتحّو ل المئزر المدرسي من منتج تربصي إلى منتج قابل للتسويق قانونًا في السوق الوطنية، وهو التحول الذي تسعى ورشات التكوين إلى ترسيخه لدى المتدربين."
-        },
-        {
-          "type": "quote",
-          "text": "الوثيقة التقنية ليست ورقًا، بل ذاكرة المؤسسة النسيجية الجزائرية: قوة المؤسسة تبدأ من قوة ملفها التقني، ولا تتأرجح مع تغّير العمالة",
-          "author": "خالصة المقياس MQ2"
-        }
-      ],
-      "footer": {
-        "left": "الموسم التكويني 2025/2026",
-        "center": "{page}",
-        "right": "HTE1204 / MQ2"
-      }
-    },
-    {
-      "id": "page-17",
-      "layout": "standard",
-      "blocks": [
-        {
-          "type": "heading",
-          "level": 2,
-          "badge": "ج",
-          "title": "المراجع والوثائق المعتمدة",
-          "subtitle": "Bibliographie & Documents Officiels",
-          "badge_variant": "accent",
-          "id": "annex-03"
-        },
-        {
-          "type": "text",
-          "content": "جُ معت المراجع التالية من مصادر رسمية جزائرية )الجريدة الرسمية JORADP، المعهد الجزائري للتقييس IANOR، المعهد الوطني للتكوين والتعليم المهنيين INFEP( ومن دراسات أكاديمية محّك مة منشورة عبر المنصة الجزائرية ASJP للمجالت العلمية، لتكون سندًا موثقًا لكل ما ورد في هذا التقرير من معطيات تقنية وقانونية."
-        },
-        {
-          "type": "subsection",
-          "title": "المعايير الوطنية والقوانين",
-          "subtitle": "Normes & textes légaux"
-        },
-        {
-          "type": "list",
-          "variant": "rows",
-          "items": [
-            {
-              "badge": "1",
-              "title": "المعيار الجزائري NA 1234 — الألبسة الجاهزة: التسامحات البعدية ومراقبة الجودة",
-              "subtitle": "IANOR — ianor.dz"
-            },
-            {
-              "badge": "2",
-              "title": "المرسوم التنفيذي رقم 378-13 المحدد لطرائق إعالم المستهلك على المنتجات النسيجية والألبسة",
-              "subtitle": "JORADP — joradp.dz الجريدة الرسمية"
-            },
-            {
-              "badge": "3",
-              "title": "المعيار NA ISO 4915: النسيج — أنواع غرز الخياطة، التصنيف والتسمية",
-              "subtitle": "IANOR — ianor.dz"
-            }
-          ]
-        },
-        {
-          "type": "subsection",
-          "title": "الوثائق البيداغوجية الرسمية",
-          "subtitle": "Documents pédagogiques officiels"
-        },
-        {
-          "type": "list",
-          "variant": "rows",
-          "items": [
-            {
-              "badge": "4",
-              "title": "INFEP — البرنامج الدراسي ومرجع الإشهاد — Tailleur Dames BT، الوحدة MQ2: الملف التقني",
-              "subtitle": "INFEP / HTE1204"
-            },
-            {
-              "badge": "5",
-              "title": "كراس الشروط الوزاري النموذجي لألبسة المؤسسات التربوية )الزي المدرسي(",
-              "subtitle": "النماذج المرجعية — الوزارتان الوصيتان على التربية والتجارة"
-            }
-          ]
-        },
-        {
-          "type": "subsection",
-          "title": "المرجعيات الصناعية",
-          "subtitle": "Références industrielles"
-        },
-        {
-          "type": "list",
-          "variant": "rows",
-          "items": [
-            {
-              "badge": "6",
-              "title": "قطب النسيج والجلود / C&H مؤسسة TEXALG — مواصفات أقمشة الألبسة المؤسساتية )تيرغال 65/35(",
-              "subtitle": "النماذج المرجعية للقطاع المؤسسات العمومية"
-            },
-            {
-              "badge": "7",
-              "title": "مخبر الجودة بمجمع تايال TAYAL — سيدي خطاب، غليزان",
-              "subtitle": "TAYAL S.P.A — Sidi Khettab, Relizane"
-            }
-          ]
-        }
-      ],
-      "footer": {
-        "left": "الموسم التكويني 2025/2026",
-        "center": "{page}",
-        "right": "HTE1204 / MQ2"
-      }
-    },
-    {
-      "id": "page-18",
       "layout": "dark",
       "blocks": [
         {
           "type": "text",
           "align": "center",
-          "content": "<p style='font-size:14pt; font-weight:800; color:#d4b36a; margin-bottom:8pt;'>وزارة التكوين والتعليم المهنيين</p><p style='font-size:8.5pt; letter-spacing:2px; color:#cbd5e1;'>M I N I S T È R E  D E  L A  F O R M A T I O N  E T  D E  L ' E N S E I G N E M E N T  P R O F E S S I O N N E L S</p>"
+          "content": "<p style='font-size:14pt; font-weight:800; color:#d4b36a; margin-bottom:8pt;'>وزارة التكوين والتعليم المهنيين</p><p style='font-size:8.5pt; letter-spacing:2px; color:#cbd5e1;'>MINISTÈRE DE LA FORMATION ET DE L'ENSEIGNEMENT PROFESSIONNELS</p>"
         },
         {
           "type": "quote",
-          "text": "إن الملف التقني ليس وثيقة إدارية، بل ذاكرة المؤسسة: قوة المؤسسة النسيجية الجزائرية تُ بنى من قوة ملفها التقني.",
+          "text": "إن الملف التقني ليس وثيقة إدارية مجردة، بل هو ذاكرة المؤسسة وسندها التعاقدي: قوة المصنع النسيجي الجزائري تبدأ من انضباط ملفه التقني.",
           "box": true
         },
         {
           "type": "text",
           "align": "center",
-          "content": "<p style='font-size:8.5pt; color:#94a3b8; margin-top:10pt;'>Le dossier technique n'est pas un document administratif, mais la mémoire de l'entreprise: la force de l'entreprise textile algérienne commence par la rigueur de son dossier technique.</p>"
+          "content": "<p style='font-size:8.5pt; color:#94a3b8; margin-top:10pt; direction:ltr; font-style:italic;'>Le dossier technique n'est pas un document administratif, mais la mémoire de l'entreprise: la force de l'industrie textile algérienne commence par la rigueur de son dossier technique.</p>"
         },
         {
           "type": "text",
           "align": "center",
-          "content": "<p style='font-size:9pt; color:#cbd5e1; margin-top:12pt;'>ُأنجز هذا التقرير في إطار التربص للتكوين التكميلي ما قبل الترقية</p>"
-        },
-        {
-          "type": "text",
-          "align": "center",
-          "content": "<p style='font-size:8.5pt; color:#94a3b8; margin-top:8pt;'>المرجعية: المعايير الجزائرية IANOR والقوانين المنشورة في الجريدة الرسمية JORADP ومرجعيات INFEP / MFEP — الشعبة: النسيج والألبسة — التخصص: تصميم أزياء — المعهد صاحب الاختصاص: معهد التكوين والتعليم المهنيين بئر خادم</p>"
-        },
-        {
-          "type": "text",
-          "align": "center",
-          "content": "<p style='font-size:9.5pt; color:#d4b36a; margin-top:14pt;'>الدفعة 12 • 2025 / 2026</p>"
+          "content": "<p style='font-size:10.5pt; font-weight:600; color:#e2e8f0; margin-top:16pt;'>أنجز هذا التقرير في إطار التربص للتكوين التكميلي ما قبل الترقية</p><p style='font-size:9.5pt; color:#94a3b8; margin-top:10pt;'>الشعبة: النسيج والألبسة — التخصص: تصميم أزياء — المعهد صاحب الاختصاص: معهد التكوين والتعليم المهنيين بئر خادم</p><p style='font-size:9.5pt; color:#94a3b8; margin-top:6pt;'>المرجعية: المعايير الجزائرية IANOR والقوانين المنشورة في الجريدة الرسمية JORADP ومرجعيات INFEP / MFEP</p><p style='font-size:9.5pt; color:#d4b36a; margin-top:14pt;'>الموسم التكويني: 2025 / 2026</p>"
         }
       ]
     }
@@ -1730,172 +1457,111 @@
       "title": "توزيع زمن الإنتاج على مراحل تجميع المئزر المدرسي",
       "subtitle": "Répartition du Temps de Production par Étape — Tablier Scolaire",
       "labels": [
-        [
-          "الجيوب",
-          "Poches"
-        ],
-        [
-          "الكتف",
-          "Épaules"
-        ],
-        [
-          "الياقة",
-          "Col"
-        ],
-        [
-          "الأكمام",
-          "Manches"
-        ],
-        [
-          "الجوانب",
-          "Côtés"
-        ],
-        [
-          "الأزرار",
-          "Boutons"
-        ],
-        [
-          "الكي",
-          "Repassage"
-        ]
+        ["الجيوب", "Poches"],
+        ["الكتف", "Épaules"],
+        ["الياقة", "Col"],
+        ["الأكمام", "Manches"],
+        ["الجوانب", "Côtés"],
+        ["الأزرار", "Boutons"],
+        ["الكي", "Repassage"]
       ],
-      "values": [
-        180,
-        60,
-        150,
-        120,
-        90,
-        240,
-        90
-      ],
+      "values": [180, 60, 150, 120, 90, 240, 90],
       "unit": "ث",
       "axis_max": 288,
       "caption": [
-        "الشكل 1: توزيع الزمن )بالثواني( على مراحل تجميع المئزر — الإجمالي 1050 ثانية",
-        "Figure 1: Répartition du temps (en secondes) — Total 1050 s"
+        "الشكل 1: توزيع زمن الحياكة (بالثواني) على مراحل التجميع — المجموع 1050 ثانية (17.5 دقيقة)",
+        "Figure 1: Répartition du temps opératoire par étape — Total 1050 secondes"
       ]
     },
     {
       "type": "chart",
       "id": "chart_03",
       "kind": "donut",
-      "title": "توزيع اعتماد أنظمة CAD/FAO في الجزائر",
+      "title": "توزيع اعتماد أنظمة CAD/CAM في مصانع الألبسة الوطنية",
       "subtitle": "Répartition de l'Adoption CAD/CAM en Algérie",
       "labels": [
-        [
-          "Lectra Modaris",
-          "Lectra Modaris"
-        ],
-        [
-          "Gerber Accumark",
-          "Gerber Accumark"
-        ],
-        [
-          "Optitex",
-          "Optitex"
-        ],
-        [
-          "أنظمة أخرى",
-          "Autres systèmes"
-        ]
+        ["Lectra Modaris", "Lectra Modaris"],
+        ["Gerber Accumark", "Gerber Accumark"],
+        ["Optitex", "Optitex"],
+        ["أنظمة أخرى", "Autres systèmes"]
       ],
-      "values": [
-        45,
-        30,
-        15,
-        10
-      ],
+      "values": [45, 30, 15, 10],
       "center_val": "100%",
-      "center_lbl": "CAD/FAO",
-      "colors": [
-        "#0f2d4a",
-        "#2d6494",
-        "#c2932e",
-        "#7ba3c4"
-      ],
+      "center_lbl": "أنظمة CAD/CAM",
+      "colors": ["#0f2d4a", "#2d6494", "#c2932e", "#7ba3c4"],
       "caption": [
-        "الشكل 3: توزيع أنظمة CAD/FAO المعتمدة في المؤسسات النسيجية الجزائرية )2024(",
-        "Figure 3: Répartition des systèmes CAD/CAM adoptés en Algérie (2024)"
+        "الشكل 2: نسبة انتشار برمجيات التصميم والتصنيع بمساعدة الحاسوب في الجزائر (2024)",
+        "Figure 2: Taux de pénétration des logiciels CAD/CAM en Algérie (2024)"
       ]
     },
     {
       "type": "chart",
       "id": "chart_04",
       "kind": "line",
-      "title": "منحنى تعّل م المتدّر ب في إعداد الملف التقني",
+      "title": "منحنى تعلم المتربص في إعداد الملف التقني",
       "subtitle": "Courbe d'Apprentissage — Dossier Technique",
-      "labels": [
-        "1 أسبوع",
-        "2 أسبوع",
-        "3 أسبوع",
-        "4 أسبوع"
-      ],
+      "labels": ["أسبوع 1", "أسبوع 2", "أسبوع 3", "أسبوع 4"],
       "series": [
         {
-          "label": "",
+          "label": "زمن الإنجاز (دقيقة)",
           "color": "#2d6494",
-          "values": [
-            180,
-            130,
-            95,
-            65
-          ]
+          "values": [180, 130, 95, 65]
         }
       ],
       "unit": "د",
       "axis_max": 216,
       "caption": [
-        "الشكل 2: منحنى التعلم — انخفاض زمن الإنجاز بنسبة %64 خالل 4 أسابيع",
-        "Figure 2: Courbe d'apprentissage — réduction de 64% en 4 semaines"
+        "الشكل 3: تطور سرعة إعداد الملف التقني عبر أسابيع التكوين — تحسن بنسبة 64%",
+        "Figure 3: Évolution de la rapidité d'exécution — gain de productivité de 64%"
       ]
     },
     {
       "type": "chart",
       "id": "chart_05",
       "kind": "progress",
-      "title": "مقارنة الكفاءة: الملف اليدوي مقابل الرقمي",
+      "title": "مقارنة الكفاءة التشغيلية: الملف اليدوي مقابل الرقمي",
       "subtitle": "Comparaison d'Efficacité: Manuel vs Numérique",
       "items": [
         {
-          "label": "زمن إعداد يدوي )أيام(",
-          "sublabel": "Temps préparation (jours)",
-          "value": 4,
-          "max": 5
+          "label": "زمن الإعداد اليدوي (أيام)",
+          "sublabel": "Temps préparation manuel",
+          "value": 4.0,
+          "max": 5.0
         },
         {
-          "label": "زمن رقمي )ساعات(",
-          "sublabel": "Temps numérique (heures)",
-          "value": 3,
-          "max": 5
+          "label": "زمن الإعداد الرقمي (ساعات)",
+          "sublabel": "Temps numérique (h)",
+          "value": 3.0,
+          "max": 5.0
         },
         {
-          "label": "الدقة اليدوية",
+          "label": "الدقة الهندسية اليدوية",
           "sublabel": "Précision manuelle",
-          "value": 3,
-          "max": 5
+          "value": 3.0,
+          "max": 5.0
         },
         {
-          "label": "الدقة الرقمية",
-          "sublabel": "Précision numérique",
-          "value": 5,
-          "max": 5
+          "label": "الدقة الهندسية الرقمية",
+          "sublabel": "Précision numérique (±0.1 mm)",
+          "value": 5.0,
+          "max": 5.0
         },
         {
-          "label": "سرعة التعديل يدوي",
+          "label": "سرعة التعديل اليدوي",
           "sublabel": "Vitesse modif. manuelle",
-          "value": 2,
-          "max": 5
+          "value": 2.0,
+          "max": 5.0
         },
         {
-          "label": "سرعة التعديل رقمي",
+          "label": "سرعة التعديل الرقمي",
           "sublabel": "Vitesse modif. numérique",
-          "value": 5,
-          "max": 5
+          "value": 5.0,
+          "max": 5.0
         }
       ],
       "caption": [
-        "الشكل 4: مقارنة شاملة بين الملف التقني اليدوي والرقمي على ستة معايير",
-        "Figure 4: Comparaison détaillée manuel vs numérique sur six critères"
+        "الشكل 4: مقارنة متعددة المعايير بين الطرق اليدوية والحلول الرقمية في إعداد الملف التقني",
+        "Figure 4: Comparatif multi-critères entre méthodes manuelles et solutions numériques"
       ]
     }
   ]
