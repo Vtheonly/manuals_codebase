@@ -1030,7 +1030,7 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
     }}
     .svg-viewport {{ width: 100%; max-height: 250pt; display: block; margin: 0 auto; }}
 
-    /* ============ Running Footer (no rule, navy page pill) ============ */
+    /* ============ Running Footer (no rule, navy page number) ============ */
     .running-footer {{
       display: flex;
       justify-content: space-between;
@@ -1038,7 +1038,7 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       margin-top: 14pt;
       font-size: 7.5pt;
       color: {p.muted_light};
-      font-family: {fonts['arabic']};
+      font-family: {fonts['chart_arabic']};
       direction: ltr !important;
       unicode-bidi: isolate;
       line-height: 1.3;
@@ -1059,6 +1059,15 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       align-items: center;
       justify-content: center;
       text-align: center;
+    }}
+    /* Plain page number: primary-colored bold digits, no pill background
+       (the reference design's default footer treatment). */
+    .footer-center.footer-center-plain {{
+      background: transparent;
+      color: {p.primary};
+      padding: 0;
+      border-radius: 0;
+      min-width: 0;
     }}
     """
 
@@ -1084,10 +1093,10 @@ def render_page(
         left = str(footer.get("left", "")).replace("{page}", str(page_number)).replace("{pages}", str(page_count))
         center = str(footer.get("center", "")).replace("{page}", str(page_number)).replace("{pages}", str(page_count))
         right = str(footer.get("right", "")).replace("{page}", str(page_number)).replace("{pages}", str(page_count))
-        center_style = esc(footer.get("center_style", "pill"))
+        center_style = str(footer.get("center_style", "plain"))
         center_cls = f"footer-center footer-center-{center_style}"
         if center_style not in ("pill", "plain"):
-            center_cls = "footer-center"
+            center_cls = "footer-center footer-center-plain"
         footer_html = (
             f'<footer class="running-footer">'
             f'<span class="footer-left">{fmt(left)}</span>'
