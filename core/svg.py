@@ -255,7 +255,8 @@ def bar_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
     axis_max = float(explicit_max) if explicit_max else axis_max_of(max(values, default=0.0))
     colors = series_colors(spec, design, max(1, len(values)))
     count = max(1, len(values))
-    bar_w = min(46.0, plot_w / count * 0.52)
+    # Reference bar proportions: bar width ≈ 0.62 of the per-category pitch.
+    bar_w = min(61.0, plot_w / count * 0.62)
     gap = (plot_w - bar_w * count) / (count + 1)
 
     parts: list[str] = []
@@ -279,14 +280,22 @@ def bar_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
         primary_label, secondary_label = label_parts(label)
         color = colors[index % len(colors)]
 
-        val_display = f"{value:g} {unit}" if unit else f"{value:g}"
+        # Value above the bar: number in the latin chart font, unit in the
+        # script font (mirrors the reference's per-script typography).
+        if unit:
+            val_display = (
+                f'<tspan font-family="{esc(fonts["chart_latin"])}">{value:g} </tspan>'
+                f'<tspan font-family="{esc(fonts["chart_arabic"])}">{esc(unit)}</tspan>'
+            )
+        else:
+            val_display = f"{value:g}"
         parts.extend(
             [
                 f'<rect x="{x:.1f}" y="{y:.1f}" width="{bar_w:.1f}" height="{bar_h:.1f}" '
                 f'rx="3" fill="{esc(color)}"/>',
                 f'<text x="{x + bar_w / 2:.1f}" y="{y - 4:.1f}" '
                 f'font-family="{esc(fonts["chart_arabic"])}" font-size="7.3" font-weight="700" '
-                f'fill="{p.text_dark}" text-anchor="middle">{esc(val_display)}</text>',
+                f'fill="{p.text_dark}" text-anchor="middle">{val_display}</text>',
                 f'<text x="{x + bar_w / 2:.1f}" y="{mt + plot_h + 11:.1f}" '
                 f'font-family="{esc(fonts["chart_arabic"])}" font-size="6.5" font-weight="700" '
                 f'fill="{p.chart_axis}" text-anchor="middle">{esc(primary_label)}</text>',
@@ -313,18 +322,42 @@ def bar_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
 
 
 def donut_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
+    """Donut chart matching the reference design system.
+
+    Geometry (viewBox 510 × H, measured from the reference PDFs):
+    * Thick ring — inner radius ≈ 0.545 × outer — vertically centered on the
+      left half, first segment starting at 12 o'clock, clockwise.
+    * Compact legend on the right: sharp-cornered square swatch, one flowing
+      bidi line per row (``label — pct%``, label in the script font, the
+      number in the latin chart font, regular weight) with an optional italic
+      sub-label underneath.
+    * Large serif center value with a small script label beneath it.
+    """
     p = design.palette
     fonts = design.typography.families
-    width, height = 510, 205
-    cx, cy, outer, inner = 132, 102, 62, 38
     values = [max(0.0, float(v)) for v in spec["values"]]
     total = sum(values) or 1.0
-    start = -math.pi / 2
-    parts: list[str] = []
-    legends: list[str] = []
+
+    # ---- ring geometry (reference proportions) ----
+    width = 510
+    outer, inner = 87.5, 47.5
+    cx, cy = 140.5, 134.0
+
+    # ---- legend geometry (reference proportions) ----
+    swatch_x, swatch_size, swatch_rx = 255.0, 10.6, 1.4
+    text_x = 270.6
+    row_pitch_sub = 17.6      # row pitch when the entry carries a sub-label
+    row_pitch_plain = 12.6    # row pitch for single-line entries
+    sub_dy = 8.8              # sub-label baseline offset below the main line
+    legend_first_baseline = 33.0
+
+    labels = [label_parts(label) for label in spec["labels"]]
     colors = series_colors(spec, design, max(1, len(values)))
 
-    for index, (label, value) in enumerate(zip(spec["labels"], values)):
+    parts: list[str] = []
+    start = -math.pi / 2
+    legend_height = 0.0
+    for index, (value, (primary_label, secondary_label)) in enumerate(zip(values, labels)):
         sweep = 2 * math.pi * value / total
         end = start + sweep
         large = 1 if sweep > math.pi else 0
@@ -338,45 +371,68 @@ def donut_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
             f"L {x3:.2f} {y3:.2f} A {inner} {inner} 0 {large} 0 {x4:.2f} {y4:.2f} Z"
         )
         parts.append(
-            f'<path d="{path}" fill="{esc(color)}" stroke="{p.surface}" stroke-width="1"/>'
+            f'<path d="{path}" fill="{esc(color)}" stroke="{p.surface}" stroke-width="1.25"/>'
         )
-
-        primary_label, secondary_label = label_parts(label)
-        y = 38 + index * 36
-        percentage = value / total * 100
-        swatch_x = 254
-        # Two fixed legend columns so every row aligns on a uniform vertical
-        # axis regardless of label length: swatch | percentage (right-aligned)
-        # | label (start-anchored, flowing within the remaining width).
-        pct_x = 342
-        lbl_x = 348
-        legends.append(
-            f'<rect x="{swatch_x}" y="{y - 9}" width="10" height="10" rx="2" fill="{esc(color)}"/>'
-            f'<text x="{pct_x}" y="{y}" font-size="7.5" font-weight="700" '
-            f'fill="{p.chart_axis}" direction="ltr" text-anchor="end" '
-            f'font-family="{esc(fonts["chart_latin"])}">{percentage:.1f}%</text>'
-            f'<text x="{lbl_x}" y="{y}" font-size="7.5" font-weight="400" '
-            f'fill="{p.chart_axis}" direction="rtl" text-anchor="start" '
-            f'font-family="{esc(fonts["chart_arabic"])}">{esc(primary_label)}</text>'
-        )
-        if secondary_label:
-            legends.append(
-                f'<text x="{pct_x}" y="{y + 10.5}" font-size="5.9" font-style="italic" '
-                f'fill="{p.muted}" direction="ltr" text-anchor="end" '
-                f'font-family="{esc(fonts["chart_latin"])}">{esc(secondary_label)}</text>'
-            )
         start = end
 
     center_val = esc(spec.get("center_val", spec.get("center_value", "100%")))
     center_lbl = esc(spec.get("center_lbl", spec.get("center_label", "")))
     center = (
-        f'<text x="{cx}" y="{cy - 2}" font-size="15" font-weight="700" '
+        f'<text x="{cx}" y="{cy - 2:.1f}" font-size="17.6" font-weight="700" '
         f'fill="{p.text_dark}" text-anchor="middle" '
         f'font-family="{esc(fonts["chart_latin"])}">{center_val}</text>'
-        f'<text x="{cx}" y="{cy + 13}" font-size="8" fill="{p.muted}" '
+        f'<text x="{cx}" y="{cy + 12.5:.1f}" font-size="7.85" fill="{p.muted}" '
         f'text-anchor="middle" font-family="{esc(fonts["chart_arabic"])}">{center_lbl}</text>'
     )
-    return chart_frame(spec, "".join(parts) + center + "".join(legends), design, width, height)
+
+    # ---- legend rows ----
+    def _is_rtl(text: str) -> bool:
+        return any(
+            0x0590 <= ord(ch) <= 0x08FF or 0xFB50 <= ord(ch) <= 0xFDFF or 0xFE70 <= ord(ch) <= 0xFEFF
+            for ch in text
+        )
+
+    legends: list[str] = []
+    baseline = legend_first_baseline
+    for index, (primary_label, secondary_label) in enumerate(labels):
+        color = colors[index % len(colors)]
+        percentage = values[index] / total * 100
+        swatch_y = baseline - 8.4
+        legends.append(
+            f'<rect x="{swatch_x}" y="{swatch_y:.1f}" width="{swatch_size}" '
+            f'height="{swatch_size}" rx="{swatch_rx}" fill="{esc(color)}"/>'
+        )
+        pct_text = f"{percentage:.1f}%"
+        if _is_rtl(primary_label):
+            # RTL line: label renders rightmost, the number ends up on the
+            # left; anchor the visual left edge at text_x.
+            line = (
+                f'<text x="{text_x}" y="{baseline:.1f}" font-size="7.85" '
+                f'direction="rtl" text-anchor="end" fill="{p.chart_axis}">'
+                f'<tspan font-family="{esc(fonts["chart_arabic"])}">{esc(primary_label)}</tspan>'
+                f'<tspan font-family="{esc(fonts["chart_latin"])}"> — {pct_text}</tspan>'
+                f"</text>"
+            )
+        else:
+            line = (
+                f'<text x="{text_x}" y="{baseline:.1f}" font-size="7.85" '
+                f'fill="{p.chart_axis}" font-family="{esc(fonts["chart_latin"])}">'
+                f"{esc(primary_label)} — {pct_text}</text>"
+            )
+        legends.append(line)
+        if secondary_label:
+            legends.append(
+                f'<text x="{text_x}" y="{baseline + sub_dy:.1f}" font-size="6.2" '
+                f'font-style="italic" fill="{p.muted}" font-family="{esc(fonts["chart_latin"])}">'
+                f"{esc(secondary_label)}</text>"
+            )
+            baseline += row_pitch_sub
+        else:
+            baseline += row_pitch_plain
+    legend_bottom = baseline - row_pitch_sub if labels else legend_first_baseline
+
+    height = max(256.0, legend_bottom + 18.0)
+    return chart_frame(spec, "".join(parts) + center + "".join(legends), design, width, int(height))
 
 
 def progress_chart(spec: Mapping[str, Any], design: DesignSystem) -> str:
