@@ -149,6 +149,8 @@ A batch file can use:
 }
 ~~~
 
+Image blocks may reference local files such as `images/example/figure.jpg`; the compiler copies `source/images/` alongside generated HTML/PDF output, and image blocks support `src`, `alt`, `width`, `height`, `align`, `border`, and bilingual `caption` values.
+
 Supported generic block primitives include headings (with compound section rules), subsections (bar / rule / no accent variants), text (with inline HTML and pill badges), badges (solid, plain, dashed, gradient, pill), cards, key/value cards, callouts (accent and primary), statistics (gold top accent), tables, flow steps, tables of contents, quotes (serif, boxed), lists (card and row variants), images, spacers (named or custom heights), dividers (solid, dotted, double, gradient, and compound section rules with a two-tone accent overlay), groups, and artifact references.
 
 Supported visual artifacts include bar, line, donut, and progress charts plus flow and graph diagrams. Charts resolve colors from the design palette, an explicit per-chart `colors` list, or an interpolated `color_scale` ramp; donut legends support bilingual two-line entries; progress fills anchor to the logical end side for RTL documents.

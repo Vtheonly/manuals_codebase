@@ -43,6 +43,31 @@ def copy_font_assets(output_dir: Path) -> bool:
     return True
 
 
+def copy_image_assets(source_path: Path, output_dir: Path) -> bool:
+    """Copy image assets from source/images and assets/images into the output build folder."""
+    copied = False
+
+    src_images = source_path.parent / "images"
+    if src_images.is_dir():
+        target = output_dir / "images"
+        if target.exists():
+            shutil.rmtree(target)
+        shutil.copytree(src_images, target)
+        copied = True
+
+    assets_images = ASSETS_DIR / "images"
+    if assets_images.is_dir():
+        target = output_dir / "images"
+        target.mkdir(parents=True, exist_ok=True)
+        for item in assets_images.glob("*"):
+            dest = target / item.name
+            if item.is_file():
+                shutil.copy2(item, dest)
+            elif item.is_dir():
+                shutil.copytree(item, dest, dirs_exist_ok=True)
+        copied = True
+    return copied
+
 def load_source(path: str | Path) -> dict[str, Any]:
     source_path = Path(path)
     data = json.loads(source_path.read_text(encoding="utf-8"))
@@ -136,6 +161,7 @@ def build(source_path: str | Path, output_dir: str | Path) -> dict[str, Any]:
     artifact_dir = output_dir / "artifacts"
     artifact_dir.mkdir(parents=True)
     copy_font_assets(output_dir)
+    copy_image_assets(source_path, output_dir)
 
     # Every page gets a stable token so measurements survive reflow passes.
     for ordinal, page in enumerate(document["pages"], start=1):

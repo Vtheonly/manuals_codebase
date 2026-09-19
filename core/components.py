@@ -552,10 +552,33 @@ def render_group(block: Mapping[str, Any], design: DesignSystem) -> str:
 
 
 def render_image(block: Mapping[str, Any], design: DesignSystem) -> str:
-    src, alt = esc(block["src"]), esc(block.get("alt", ""))
+    src = esc(block.get("src", ""))
+    alt = esc(block.get("alt", ""))
     width = esc(block.get("width", "100%"))
-    caption = f'<figcaption>{clean_html(block["caption"])}</figcaption>' if "caption" in block else ""
-    return f'<figure class="image-block"><img src="{src}" alt="{alt}" style="max-width:{width};">{caption}</figure>'
+    height = block.get("height")
+    align = esc(block.get("align", "center"))
+    border = " bordered" if block.get("border", True) else ""
+
+    caption_html = ""
+    if "caption" in block:
+        c_main, c_sub = label_parts(block["caption"])
+        sub_part = f'<div class="caption-sub">{clean_html(c_sub)}</div>' if c_sub else ""
+        caption_html = (
+            f'<figcaption class="caption">'
+            f'<div class="caption-main">{clean_html(c_main)}</div>{sub_part}'
+            f'</figcaption>'
+        )
+
+    style = f"max-width:{width};"
+    if height:
+        style += f" max-height:{esc(height)};"
+
+    return (
+        f'<figure class="image-block align-{align}{border}">'
+        f'<img src="{src}" alt="{alt}" style="{style}">'
+        f'{caption_html}'
+        f'</figure>'
+    )
 
 
 RENDERERS = {

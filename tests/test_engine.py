@@ -197,6 +197,38 @@ def test_color_scale_and_series_override(tmp_path):
     assert "#654321" in bars
 
 
+def test_image_block_and_source_assets_are_rendered(tmp_path):
+    source_dir = tmp_path / "source"
+    image_dir = source_dir / "images" / "demo"
+    image_dir.mkdir(parents=True)
+    (image_dir / "diagram.jpg").write_bytes(b"test-image-bytes")
+
+    source_document = document("Images", "ar", "rtl")
+    source_document["pages"][0]["blocks"].append({
+        "type": "image",
+        "src": "images/demo/diagram.jpg",
+        "alt": "A technical diagram",
+        "width": "68%",
+        "height": "180pt",
+        "align": "center",
+        "border": True,
+        "caption": ["الشكل 1: مخطط تقني", "Figure 1: Technical diagram"],
+    })
+    source = source_dir / "images.json"
+    source.write_text(json.dumps(source_document, ensure_ascii=False), encoding="utf-8")
+
+    output = tmp_path / "images-out"
+    build(source, output)
+    rendered = (output / "images.html").read_text(encoding="utf-8")
+
+    assert (output / "images" / "demo" / "diagram.jpg").read_bytes() == b"test-image-bytes"
+    assert 'class="image-block align-center bordered"' in rendered
+    assert 'src="images/demo/diagram.jpg"' in rendered
+    assert 'max-width:68%; max-height:180pt;' in rendered
+    assert 'class="caption-main"' in rendered
+    assert 'class="caption-sub"' in rendered
+
+
 def test_bundled_fonts_are_copied_and_referenced(tmp_path):
     source = tmp_path / "fonts.json"
     output = tmp_path / "fonts-out"

@@ -629,24 +629,6 @@
           "description": "حيث: <strong>V</strong> = قيمة التطور على المحور، <strong>Δ</strong> = الفاصل الإجمالي، <strong>n</strong> = عدد أرباع الباترون المستقبلة، <strong>k</strong> = معامل التوزيع الهندسي."
         },
         {
-          "type": "callout",
-          "variant": "primary",
-          "icon": "target",
-          "title": "نقطة الارتكاز الثابتة (Origine des axes)",
-          "content": "تحدد نقطة ارتكاز المحاور عند تقاطع خط الصدر مع خط منتصف الأمام أو الخلف؛ لتكون البؤرة المرجعية التي تنطلق منها إزاحات التطور دون تشويه توازن الملبس."
-        }
-      ]
-    },
-    {
-      "id": "page-7",
-      "layout": "standard",
-      "footer": {
-        "left": "الموسم التكويني 2025/2026",
-        "center": "{page}",
-        "right": "HTE1204"
-      },
-      "blocks": [
-        {
           "type": "heading",
           "level": 2,
           "badge": "5",
@@ -676,7 +658,7 @@
           ],
           "rows": [
             [
-              "التدريج بالتجاور (Par juxtaposition)",
+              "التدريج بالتجاور (Juxtaposition)",
               "مطابقة خطوط المقاسين الأساسيين وتوليد المقاسات الوسطى بالمطابقة المباشرة",
               "الأشكال البسيطة وتدريب المبتدئين في الورشة"
             ],
@@ -686,7 +668,7 @@
               "التنورات والبنطلونات والقطع المسطحة الكلاسيكية"
             ],
             [
-              "التدريج المثلثي / الشعاعي (Trigonométrique)",
+              "التدريج المثلثي (Trigonométrique)",
               "استخدام حزم الأشعة المنطلقة من بؤرة مركزية وزوايا ميل محددة",
               "الياقات، الأكمام المنحنية، والقصات ثلاثية الأبعاد"
             ],
@@ -696,7 +678,7 @@
               "الورشات الإنتاجية المتوسطة للتوليد المتتابع السريع"
             ],
             [
-              "التدريج بالحاسوب (Par ordinateur / CAO)",
+              "التدريج بالحاسوب (Par ordinateur)",
               "إدخال جداول وقواعد التدريج الرقمية في برمجيات Lectra / Gerber",
               "المصانع الكبرى والإنتاج التسلسلي المؤتمت"
             ]
@@ -705,18 +687,11 @@
             "الجدول 4: مقارنة طرق التدريج الخمس المعتمدة في المنهاج الرسمي INFEP",
             "Tableau 4: Comparatif des cinq méthodes de gradation officielles"
           ]
-        },
-        {
-          "type": "callout",
-          "variant": "accent",
-          "icon": "check",
-          "title": "قاعدة اختيار طريقة التدريج",
-          "content": "تختار الطريقة الحسابية للقطع الأساسية لضمان الدقة المليمترية، بينما تعتمد الطريقة المثلثية لتعديل انحناءات الأكمام، وتستخدم أنظمة CAO للإنتاج الصناعي المتسلسل."
         }
       ]
     },
     {
-      "id": "page-8",
+      "id": "page-7",
       "layout": "standard",
       "footer": {
         "left": "الموسم التكويني 2025/2026",
@@ -768,16 +743,21 @@
           ]
         },
         {
-          "type": "callout",
-          "variant": "primary",
-          "icon": "target",
-          "title": "الإسناد المتكافئ للأمام والخلف",
-          "content": "يوزع الفارق الأفقي بالتساوي بين ربع الأمام وربع الخلف (1 سم لكل منهما)، مع تعديل موضع رأس البنسة بنصف قيمة التطور الأفقي (+0.5 سم) للحفاظ على محور ارتكاز الصدر."
+          "type": "image",
+          "src": "images/garadtion/image_03.jpeg",
+          "alt": "مخطط الإزاحات التفاضلية لتدريج التنورة الأساسية",
+          "width": "68%",
+          "height": "180pt",
+          "border": true,
+          "caption": [
+            "الشكل 1: مخطط الإزاحات التفاضلية لتدريج تنورة الأساس (مقاس 38، 40، 42)",
+            "Figure 1: Évolution différentielle de la jupe de base (T38 à T42)"
+          ]
         }
       ]
     },
     {
-      "id": "page-9",
+      "id": "page-8",
       "layout": "standard",
       "footer": {
         "left": "الموسم التكويني 2025/2026",
@@ -861,13 +841,21 @@
           ]
         },
         {
-          "type": "artifact_ref",
-          "artifact_id": "chart_chest_growth"
+          "type": "image",
+          "src": "images/garadtion/image_01.jpg",
+          "alt": "مخطط التدريج التنازلي للكورساج والكم",
+          "width": "55%",
+          "height": "210pt",
+          "border": true,
+          "caption": [
+            "الشكل 2: مخطط التدريج التنازلي للكورساج الأساسي والكم (المقاسات من 40 إلى 32)",
+            "Figure 2: Gradation de base descendante du corsage et de la manche (T40 à T32)"
+          ]
         }
       ]
     },
     {
-      "id": "page-10",
+      "id": "page-9",
       "layout": "standard",
       "footer": {
         "left": "الموسم التكويني 2025/2026",
@@ -888,42 +876,20 @@
           "content": "يعد رسم أصل التدريج أو الجذع (Établissement de la souche de gradation) الوثيقة الهندسية المركزية التي تجمع خطوط كافة المقاسات المطلوبة متراكبة على مخطط واحد، ويشترط فيها التدرج المنتظم ونظافة الخطوط لضمان دقة الاستخراج اللاحق."
         },
         {
-          "type": "flow_steps",
-          "title": "خطوات رسم أصل التدريج المتراكب لبترون التايور",
-          "steps": [
-            {
-              "badge": 1,
-              "title": "تثبيت الباترون الأساسي المرجعي (المقاس 40) بدقة فوق ورق الكرافت",
-              "subtitle": "Fixation du gabarit de base"
-            },
-            {
-              "badge": 2,
-              "title": "رسم المحاور الديكارتية وإسقاط متجهات التطور (dx, dy) على كافة الزوايا",
-              "subtitle": "Projection des vecteurs d'écart"
-            },
-            {
-              "badge": 3,
-              "title": "تحديد نقاط المقاسات التصاعدية (42, 44, 46) والتنازلية (38, 36)",
-              "subtitle": "Pointage des tailles graduées"
-            },
-            {
-              "badge": 4,
-              "title": "رصف وتنعيم المنحنيات المتوازية والتأكد من عدم تقاطع خطوط المقاسات",
-              "subtitle": "Raccordement et parallélisme"
-            },
-            {
-              "badge": 5,
-              "title": "إدراج علامات التركيب والتقابل (Crans de montage) عبر كافة المقاسات",
-              "subtitle": "Report des crans d'assemblage"
-            }
+          "type": "image",
+          "src": "images/garadtion/image_02.jpg",
+          "alt": "مخطط تدريج المقاسات الكبرى للكورساج",
+          "width": "55%",
+          "height": "210pt",
+          "border": true,
+          "caption": [
+            "الشكل 3: مخطط تدريج المقاسات الكبرى للكورساج الأساسي (المقاسات من 48 إلى 56)",
+            "Figure 3: Gradation des tailles supérieures du corsage de base (T48 à T56)"
           ]
         },
         {
-          "type": "callout",
-          "variant": "primary",
-          "icon": "check",
-          "title": "مراقبة توازي خطوط أصل التدريج",
-          "content": "يجب أن تظهر خطوط المقاسات المتتالية متوازية بانتظام تام؛ فأي تقارب أو تباعد مفاجئ بين خطين يشير إلى خطأ حسابي في إسناد الفروق يستوجب التصحيح قبل الشروع في استخراج القطع."
+          "type": "artifact_ref",
+          "artifact_id": "chart_chest_growth"
         }
       ]
     },
@@ -1141,7 +1107,7 @@
       ]
     },
     {
-      "id": "page-14",
+      "id": "page-13",
       "layout": "standard",
       "footer": {
         "left": "الموسم التكويني 2025/2026",
@@ -1162,6 +1128,83 @@
           "type": "text",
           "content": "يستند التدريج الصناعي في الجزائر إلى مرجعية مزدوجة تجمع بين المعايير الوطنية الصادرة عن المعهد الجزائري للتقييس (IANOR) لا سيما المعيار NA EN 13402 الخاص بالمقاسات والأنثروبومتريا، والمعيار NA 1234 لمراقبة الجودة والتسامحات، وبرنامج الإشهاد INFEP/HTE1204."
         },
+        {
+          "type": "table",
+          "columns": [
+            {
+              "text": "فئة القطعة الملبوسية",
+              "subtext": "Catégorie de Vêtement"
+            },
+            {
+              "text": "فاصل محيط الصدر",
+              "subtext": "Pas poitrine"
+            },
+            {
+              "text": "فاصل محيط الخصر",
+              "subtext": "Pas taille"
+            },
+            {
+              "text": "فاصل محيط الورك",
+              "subtext": "Pas bassin"
+            },
+            {
+              "text": "المرجع المعياري المعتمد",
+              "subtext": "Référence"
+            }
+          ],
+          "rows": [
+            [
+              "القمصان والبلوزات القريبة",
+              "4 سم",
+              "4 سم",
+              "4 سم",
+              "NA EN 13402-3"
+            ],
+            [
+              "البنطلون المفصل (Pantalon)",
+              "4 سم",
+              "4 سم",
+              "4 سم",
+              "INFEP / HTE1204"
+            ],
+            [
+              "التنورة الأساسية (Jupe)",
+              "—",
+              "4 سم",
+              "4 سم",
+              "INFEP / HTE1204"
+            ],
+            [
+              "السترات والمعاطف الشتوية",
+              "6 سم",
+              "6 سم",
+              "6 سم",
+              "NA EN 13402-3"
+            ]
+          ],
+          "caption": [
+            "الجدول أ.1: الفواصل القياسية الرسمية المعتمدة في تصنيف المقاسات الجزائرية",
+            "Tableau A.1: Pas de gradation officiels par catégorie de vêtement"
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "accent",
+          "icon": "target",
+          "title": "قاعدة التحقق المعياري (التسامح 0.25± سم)",
+          "content": "وفق معيار مراقبة الجودة NA 1234، تخضع كافة الباترونات المتدرجة لفحص بعدي صارم: لا يجوز لأي نقطة حيوية أن تتجاوز انحرافاً قدره 0.25± سم عن القيم الحسابية لجدول المقاييس المعتمد قبل المصادقة على أصل التدريج ونقله لخطوط الإنتاج الصناعي."
+        }
+      ]
+    },
+    {
+      "id": "page-14",
+      "layout": "standard",
+      "footer": {
+        "left": "الموسم التكويني 2025/2026",
+        "center": "{page}",
+        "right": "HTE1204"
+      },
+      "blocks": [
         {
           "type": "heading",
           "level": 2,
@@ -1210,12 +1253,7 @@
             }
           ]
         }
-      ],
-      "footer": {
-        "left": "الموسم التكويني 2025/2026",
-        "center": "{page}",
-        "right": "HTE1204"
-      }
+      ]
     },
     {
       "id": "page-15",
@@ -1248,21 +1286,49 @@
       "title": "تطور مقاييس المرأة الجزائرية حسب المقاسات",
       "subtitle": "Évolution des Mesures Femme Algérienne par Taille",
       "unit": "سم",
-      "labels": ["36", "38", "40", "42", "44", "46"],
+      "labels": [
+        "36",
+        "38",
+        "40",
+        "42",
+        "44",
+        "46"
+      ],
       "series": [
         {
           "label": "محيط الأرداف",
-          "values": [90, 94, 98, 102, 106, 110],
+          "values": [
+            90,
+            94,
+            98,
+            102,
+            106,
+            110
+          ],
           "color": "#7ba3c4"
         },
         {
           "label": "محيط الخصر",
-          "values": [64, 68, 72, 76, 80, 84],
+          "values": [
+            64,
+            68,
+            72,
+            76,
+            80,
+            84
+          ],
           "color": "#c2932e"
         },
         {
           "label": "محيط الصدر",
-          "values": [84, 88, 92, 96, 100, 104],
+          "values": [
+            84,
+            88,
+            92,
+            96,
+            100,
+            104
+          ],
           "color": "#2d6494"
         }
       ],
@@ -1278,19 +1344,41 @@
       "title": "توزيع مصادر الأخطاء في التدريج اليدوي",
       "subtitle": "Répartition des Sources d'Erreurs en Gradation Manuelle",
       "labels": [
-        ["خطأ حسابي في الفروق", "Erreur mathématique"],
-        ["خطأ رسم وتنعيم المنحنيات", "Erreur de tracé"],
-        ["خطأ في قراءة سلم المقاييس", "Erreur de barème"],
-        ["خطأ أثناء استخراج الباترون", "Erreur d'extraction"]
+        [
+          "خطأ حسابي في الفروق",
+          "Erreur mathématique"
+        ],
+        [
+          "خطأ رسم وتنعيم المنحنيات",
+          "Erreur de tracé"
+        ],
+        [
+          "خطأ في قراءة سلم المقاييس",
+          "Erreur de barème"
+        ],
+        [
+          "خطأ أثناء استخراج الباترون",
+          "Erreur d'extraction"
+        ]
       ],
-      "values": [30, 35, 20, 15],
+      "values": [
+        30,
+        35,
+        20,
+        15
+      ],
       "center_val": "100%",
       "center_lbl": "مصادر الخطأ",
       "caption": [
         "الشكل 2: تحليل 200 حالة خطأ في التدريج اليدوي — 65% من الأخطاء قابلة للتلافي بالرقمنة",
         "Figure 2: Analyse de 200 cas d'erreurs — 65% évitables par la numérisation"
       ],
-      "colors": ["#0f2d4a", "#2d6494", "#c2932e", "#7ba3c4"]
+      "colors": [
+        "#0f2d4a",
+        "#2d6494",
+        "#c2932e",
+        "#7ba3c4"
+      ]
     },
     {
       "id": "chart_time_by_complexity",
@@ -1299,19 +1387,43 @@
       "title": "زمن التدريج اليدوي حسب نوع القطعة",
       "subtitle": "Temps de Gradation Manuelle par Type de Pièce",
       "labels": [
-        ["تنورة مستقيمة", "Jupe"],
-        ["قميص نسائي", "Chemise"],
-        ["بنطلون مفصل", "Pantalon"],
-        ["سترة تايور", "Veste"],
-        ["معطف شتوي", "Manteau"]
+        [
+          "تنورة مستقيمة",
+          "Jupe"
+        ],
+        [
+          "قميص نسائي",
+          "Chemise"
+        ],
+        [
+          "بنطلون مفصل",
+          "Pantalon"
+        ],
+        [
+          "سترة تايور",
+          "Veste"
+        ],
+        [
+          "معطف شتوي",
+          "Manteau"
+        ]
       ],
-      "values": [60, 90, 120, 180, 240],
+      "values": [
+        60,
+        90,
+        120,
+        180,
+        240
+      ],
       "unit": "د",
       "caption": [
         "الشكل 3: مقارنة زمن التدريج اليدوي (بالدقائق) حسب درجة تعقيد القطعة الملبوسية",
         "Figure 3: Comparaison du temps de gradation manuelle par type de pièce"
       ],
-      "colors": ["#2d6494", "#c2932e"]
+      "colors": [
+        "#2d6494",
+        "#c2932e"
+      ]
     },
     {
       "id": "chart_quality_grid",
@@ -1355,7 +1467,13 @@
         "الشكل 4: شبكة تقييم جودة التدريج — المجموع 21/25 (84% مطابقة معيارية)",
         "Figure 4: Grille d'évaluation de conformité — Score 21/25 (84%)"
       ],
-      "colors": ["#0f2d4a", "#2d6494", "#c2932e", "#7ba3c4", "#2d6494"]
+      "colors": [
+        "#0f2d4a",
+        "#2d6494",
+        "#c2932e",
+        "#7ba3c4",
+        "#2d6494"
+      ]
     },
     {
       "id": "chart_chest_growth",
@@ -1393,7 +1511,10 @@
         "الشكل 5: تطور محيط الصدر بفاصل 4 سم عبر السلسلة القياسية الرسمية",
         "Figure 5: Évolution régulière du tour de poitrine (pas de 4 cm)"
       ],
-      "color_scale": ["#7ba3c4", "#0f2d4a"]
+      "color_scale": [
+        "#7ba3c4",
+        "#0f2d4a"
+      ]
     }
   ]
 }

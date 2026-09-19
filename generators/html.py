@@ -1001,6 +1001,35 @@ def build_stylesheet(design: DesignSystem, direction: str) -> str:
       margin-top: 1.5pt;
     }}
 
+    /* ============ Image Blocks ============ */
+    .image-block {
+      margin: 6pt auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      break-inside: avoid;
+    }
+    .image-block.align-left { align-items: flex-start; text-align: left; }
+    .image-block.align-right { align-items: flex-end; text-align: right; }
+    .image-block.align-center { align-items: center; text-align: center; }
+    .image-block img {
+      display: block;
+      height: auto;
+      object-fit: contain;
+      border-radius: 4pt;
+    }
+    .image-block.bordered img {
+      border: 0.75pt solid {p.border};
+      box-shadow: 0 1pt 3pt rgba(0,0,0,0.06);
+      padding: 3pt;
+      background: #ffffff;
+    }
+    .image-block figcaption {
+      margin-top: 4pt;
+    }
+
     /* ============ Layout Spacers ============ */
     .spacer-xs {{ height: 4pt; }}
     .spacer-sm {{ height: 8pt; }}
