@@ -138,7 +138,7 @@ Every text surface passes through the ingestion pipeline:
    characters). The engine never guesses how to rejoin broken letters at
    render time — source data is repaired at the source.
 3. **Automated bidirectional isolation**: Latin letters, digits, signed
-   numbers (`+4.0`), dates (`2025/2026`), codes and mixed French phrases
+   numbers (`+4.0`), dates (`2025`), codes and mixed French phrases
    embedded in RTL prose are wrapped in `<bdi dir="ltr">` runs. The scanner is
    tag-aware and safe for both plain values and trusted author markup.
 

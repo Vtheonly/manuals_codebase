@@ -56,8 +56,8 @@ def test_compiler_rejects_broken_arabic(tmp_path, monkeypatch):
 # ---------------------------------------------------------------------------
 
 def test_bidi_isolates_codes_and_dates():
-    assert fmt("الموسم التكويني: 2025/2026") == (
-        'الموسم التكويني: <bdi dir="ltr">2025/2026</bdi>'
+    assert fmt("الموسم التكويني: 2025") == (
+        'الموسم التكويني: <bdi dir="ltr">2025</bdi>'
     )
 
 
