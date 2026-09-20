@@ -90,7 +90,7 @@
     {
      "type": "text",
      "align": "center",
-     "content": "<p style='font-size:9.5pt; font-weight:600; color:#475569;'>الموسم التكوين: 2025</p>"
+     "content": "<p style='font-size:9.5pt; font-weight:600; color:#475569;'>الموسم التكوين: 2026</p>"
     }
    ]
   },
@@ -98,7 +98,7 @@
    "id": "page-2",
    "layout": "standard",
    "footer": {
-    "left": "الموسم التكوين 2025",
+    "left": "الموسم التكوين 2026",
     "center": "{page}",
     "right": "HTE1204 / MQ7"
    },
@@ -197,7 +197,7 @@
    "id": "page-3",
    "layout": "standard",
    "footer": {
-    "left": "الموسم التكوين 2025",
+    "left": "الموسم التكوين 2026",
     "center": "{page}",
     "right": "HTE1204 / MQ7"
    },
@@ -269,7 +269,7 @@
    "id": "page-4",
    "layout": "standard",
    "footer": {
-    "left": "الموسم التكوين 2025",
+    "left": "الموسم التكوين 2026",
     "center": "{page}",
     "right": "HTE1204 / MQ7"
    },
@@ -362,7 +362,7 @@
    "id": "page-5",
    "layout": "standard",
    "footer": {
-    "left": "الموسم التكوين 2025",
+    "left": "الموسم التكوين 2026",
     "center": "{page}",
     "right": "HTE1204 / MQ7"
    },
@@ -550,7 +550,7 @@
    "id": "page-6",
    "layout": "standard",
    "footer": {
-    "left": "الموسم التكوين 2025",
+    "left": "الموسم التكوين 2026",
     "center": "{page}",
     "right": "HTE1204 / MQ7"
    },
@@ -754,7 +754,7 @@
    "id": "page-7",
    "layout": "standard",
    "footer": {
-    "left": "الموسم التكوين 2025",
+    "left": "الموسم التكوين 2026",
     "center": "{page}",
     "right": "HTE1204 / MQ7"
    },
@@ -789,7 +789,7 @@
    "id": "page-8",
    "layout": "standard",
    "footer": {
-    "left": "الموسم التكوين 2025",
+    "left": "الموسم التكوين 2026",
     "center": "{page}",
     "right": "HTE1204 / MQ7"
    },
@@ -914,7 +914,7 @@
    "id": "page-9",
    "layout": "standard",
    "footer": {
-    "left": "الموسم التكوين 2025",
+    "left": "الموسم التكوين 2026",
     "center": "{page}",
     "right": "HTE1204 / MQ7"
    },
@@ -1066,7 +1066,7 @@
    "id": "page-10",
    "layout": "standard",
    "footer": {
-    "left": "الموسم التكوين 2025",
+    "left": "الموسم التكوين 2026",
     "center": "{page}",
     "right": "HTE1204 / MQ7"
    },
@@ -1101,7 +1101,7 @@
    "id": "page-11",
    "layout": "standard",
    "footer": {
-    "left": "الموسم التكوين 2025",
+    "left": "الموسم التكوين 2026",
     "center": "{page}",
     "right": "HTE1204 / MQ7"
    },
@@ -1137,7 +1137,7 @@
    "id": "page-12",
    "layout": "standard",
    "footer": {
-    "left": "الموسم التكوين 2025",
+    "left": "الموسم التكوين 2026",
     "center": "{page}",
     "right": "HTE1204 / MQ7"
    },
@@ -1263,7 +1263,7 @@
    "id": "page-13",
    "layout": "standard",
    "footer": {
-    "left": "الموسم التكوين 2025",
+    "left": "الموسم التكوين 2026",
     "center": "{page}",
     "right": "HTE1204 / MQ7"
    },
@@ -1314,7 +1314,7 @@
    "id": "page-14",
    "layout": "standard",
    "footer": {
-    "left": "الموسم التكوين 2025",
+    "left": "الموسم التكوين 2026",
     "center": "{page}",
     "right": "HTE1204 / MQ7"
    },
@@ -1422,7 +1422,7 @@
     {
      "type": "text",
      "align": "center",
-     "content": "<p style='font-size:9.5pt; color:#d4b36a; margin-top:14pt;'>الدفعة 12 • 2025 / 2025</p>"
+     "content": "<p style='font-size:9.5pt; color:#d4b36a; margin-top:14pt;'>الدفعة 12 • 2026 / 2026</p>"
     }
    ]
   }
